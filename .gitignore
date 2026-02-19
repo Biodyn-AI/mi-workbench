@@ -36,15 +36,15 @@ workspaces/
 ws-*/
 
 # Compiled LaTeX artifacts
-paper/*.aux
-paper/*.log
-paper/*.out
-paper/*.toc
-paper/*.bbl
-paper/*.blg
-paper/*.fdb_latexmk
-paper/*.fls
-paper/*.synctex.gz
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
 
 # pytest
 .pytest_cache/
@@ -53,3 +53,6 @@ htmlcov/
 
 # Environment files
 .env
+
+# Local Claude Code instructions
+CLAUDE.md
