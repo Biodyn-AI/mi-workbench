@@ -1,0 +1,59 @@
+name: research_followups
+description: |
+  Executor-reviewer loop with follow-up generation on milestone completion.
+  When the reviewer accepts the work (grade A or B), the idea generator
+  produces prioritized follow-up research tasks. The top-priority follow-up
+  can optionally be fed back into the executor for the next cycle.
+version: "1.0.0"
+
+nodes:
+  - id: executor
+    role: executor
+    prompt_ref: "executor/mi_executor"
+    config:
+      save_checkpoints: true
+      artifact_types: ["MECH.md", "EVAL.md", "XP.md", "METHOD.md", "RUN_SUMMARY.md"]
+
+  - id: reviewer
+    role: reviewer
+    prompt_ref: "reviewer/mi_reviewer"
+    config:
+      min_severity_to_block: "high"
+      pass_grade: "B"
+
+  - id: idea_generator
+    role: idea_generator
+    prompt_ref: "idea_generator/follow_up_proposer"
+    config:
+      max_followups: 5
+      require_replication_task: true
+
+edges:
+  - source: executor
+    target: reviewer
+    condition: "always"
+
+  - source: reviewer
+    target: executor
+    condition: "on_flag:needs_revision"
+
+  - source: reviewer
+    target: idea_generator
+    condition: "on_flag:milestone_complete"
+
+  - source: idea_generator
+    target: executor
+    condition: "on_flag:auto_run_top_1"
+
+stop_conditions:
+  - "user_stop"
+  - "budget_exceeded"
+  - "max_iterations:30"
+
+max_iterations: 30
+
+config:
+  initial_node: executor
+  feedback_passthrough: true
+  accumulate_artifacts: true
+  followup_policy: "ask_approval"

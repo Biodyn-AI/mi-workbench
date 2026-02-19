@@ -1,0 +1,57 @@
+name: executor_reviewer
+description: |
+  Standard executor-reviewer loop with periodic adversarial review escalation.
+  The executor produces research artifacts, the reviewer critiques them, and
+  every 3rd iteration the adversarial reviewer performs a deep threat analysis.
+version: "1.0.0"
+
+nodes:
+  - id: executor
+    role: executor
+    prompt_ref: "executor/mi_executor"
+    config:
+      save_checkpoints: true
+      artifact_types: ["MECH.md", "EVAL.md", "XP.md", "METHOD.md", "RUN_SUMMARY.md"]
+
+  - id: reviewer
+    role: reviewer
+    prompt_ref: "reviewer/mi_reviewer"
+    config:
+      min_severity_to_block: "high"
+      pass_grade: "B"
+
+  - id: adversarial_reviewer
+    role: adversarial_reviewer
+    prompt_ref: "adversarial_reviewer/adversarial_reviewer"
+    config:
+      threat_models: ["p_hacking", "overclaiming", "causal_confusion", "dataset_leakage", "biological_implausibility", "statistical_theater", "null_model_inadequacy"]
+
+edges:
+  - source: executor
+    target: reviewer
+    condition: "always"
+
+  - source: reviewer
+    target: executor
+    condition: "always"
+
+  - source: reviewer
+    target: adversarial_reviewer
+    condition: "every_k:3"
+
+  - source: adversarial_reviewer
+    target: executor
+    condition: "always"
+
+stop_conditions:
+  - "user_stop"
+  - "budget_exceeded"
+  - "max_iterations:50"
+  - "on_flag:grade_A"
+
+max_iterations: 50
+
+config:
+  initial_node: executor
+  feedback_passthrough: true
+  accumulate_artifacts: true

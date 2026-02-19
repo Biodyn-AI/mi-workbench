@@ -1,0 +1,39 @@
+id: demo-workspace-001
+name: "MI Demo Workspace"
+path: "demo/"
+description: |
+  Demonstration workspace for MI-Workbench. Contains sample artifacts from a toy
+  mechanistic interpretability analysis: examining attention patterns in a 6-layer
+  transformer on synthetic gene expression data to test whether attention weights
+  recover known regulatory edges.
+
+providers_enabled:
+  - mock
+  - claude_code
+
+default_provider: mock
+default_model: ""
+
+git_mode: none
+
+budget_max_tokens_per_run: 100000
+budget_max_cost_per_run: 5.0
+budget_max_iterations: 20
+
+safety_deny_destructive_commands: true
+
+artifacts_dir: "artifacts/"
+
+data_paths:
+  synthetic_expression: "data/synthetic_expression_6layer.h5ad"
+  known_network: "data/synthetic_grn_100genes.tsv"
+  attention_scores: "data/attention_scores_layer_all.npy"
+
+metadata:
+  created_by: "mi-workbench demo setup"
+  created_at: "2026-01-15T00:00:00Z"
+  experiment_type: "synthetic_attention_recovery"
+  model_architecture: "6-layer, 4-head transformer"
+  num_genes: 100
+  num_cells: 500
+  num_regulatory_edges: 150

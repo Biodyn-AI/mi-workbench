@@ -1,0 +1,86 @@
+name: example_custom
+description: |
+  Advanced loop demonstrating conditional edges, multiple review stages, and
+  knowledge extraction. The executor produces artifacts, the reviewer critiques
+  them, the adversarial reviewer attacks high-risk claims, and the knowledge
+  extractor builds a structured claim graph from accepted results.
+version: "1.0.0"
+
+nodes:
+  - id: executor
+    role: executor
+    prompt_ref: "executor/mi_executor"
+    config:
+      save_checkpoints: true
+      artifact_types: ["MECH.md", "EVAL.md", "XP.md", "METHOD.md", "RUN_SUMMARY.md"]
+
+  - id: reviewer
+    role: reviewer
+    prompt_ref: "reviewer/mi_reviewer"
+    config:
+      min_severity_to_block: "medium"
+      pass_grade: "B"
+
+  - id: adversarial
+    role: adversarial_reviewer
+    prompt_ref: "adversarial_reviewer/adversarial_reviewer"
+    config:
+      threat_models: ["p_hacking", "overclaiming", "causal_confusion", "dataset_leakage"]
+
+  - id: knowledge_extractor
+    role: knowledge_extractor
+    prompt_ref: "knowledge_extractor/knowledge_miner"
+    config:
+      output_formats: ["knowledge_md", "claims_jsonl", "evidence_graph"]
+      min_confidence_to_include: 0.3
+
+edges:
+  # Standard executor -> reviewer flow
+  - source: executor
+    target: reviewer
+    condition: "always"
+
+  # Reviewer sends back to executor if revisions needed
+  - source: reviewer
+    target: executor
+    condition: "on_flag:needs_revision"
+
+  # Reviewer escalates to adversarial on high-risk claims
+  - source: reviewer
+    target: adversarial
+    condition: "on_flag:high_risk_claims"
+
+  # Adversarial always sends back to executor with attack findings
+  - source: adversarial
+    target: executor
+    condition: "always"
+
+  # Reviewer triggers knowledge extraction on milestone completion
+  - source: reviewer
+    target: knowledge_extractor
+    condition: "on_flag:milestone_complete"
+
+  # Knowledge extractor can trigger adversarial review if weak claims found
+  - source: knowledge_extractor
+    target: adversarial
+    condition: "on_flag:weak_claims_found"
+
+  # Also run adversarial every 5th iteration regardless
+  - source: reviewer
+    target: adversarial
+    condition: "every_k:5"
+
+stop_conditions:
+  - "user_stop"
+  - "budget_exceeded"
+  - "max_iterations:40"
+  - "on_flag:knowledge_graph_stable"
+
+max_iterations: 40
+
+config:
+  initial_node: executor
+  feedback_passthrough: true
+  accumulate_artifacts: true
+  knowledge_base_path: "KNOWLEDGE.md"
+  claims_path: "claims.jsonl"

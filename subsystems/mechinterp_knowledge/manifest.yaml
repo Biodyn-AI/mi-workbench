@@ -1,0 +1,52 @@
+name: mechinterp_knowledge
+version: "1.0.0"
+description: |
+  Knowledge discovery subsystem for mechanistic interpretability research.
+  Extracts structured claims from research artifacts, builds evidence graphs,
+  tracks claim evolution across iterations, and produces human-readable
+  knowledge summaries alongside machine-readable JSONL facts.
+
+roles:
+  - knowledge_extractor
+  - validator
+  - coordinator
+
+artifact_types:
+  - KNOWLEDGE.md
+  - claims.jsonl
+  - evidence_graph.json
+
+loop_presets:
+  - knowledge_extraction_cycle
+
+validation_rules:
+  - "every_claim_has_evidence_pointer"
+  - "uncertainty_in_range_0_1"
+  - "no_duplicate_claim_ids"
+  - "falsification_tests_non_empty"
+  - "evidence_graph_acyclic_dependencies"
+
+ui_panels:
+  - claim_browser
+  - evidence_graph_viewer
+  - uncertainty_heatmap
+
+prompts:
+  knowledge_extractor: "knowledge_extractor/knowledge_miner"
+
+data_flow:
+  inputs:
+    - "MECH.md"
+    - "EVAL.md"
+    - "METHOD.md"
+    - "RUN_SUMMARY.md"
+  outputs:
+    - "KNOWLEDGE.md"
+    - "claims.jsonl"
+    - "evidence_graph.json"
+
+config:
+  min_confidence_to_include: 0.2
+  max_claims_per_extraction: 50
+  track_claim_evolution: true
+  merge_strategy: "append_and_deduplicate"

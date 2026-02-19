@@ -1,0 +1,31 @@
+name: placeholder_example
+version: "0.1.0"
+description: |
+  Placeholder subsystem demonstrating the subsystem scaffold structure.
+  Use 'miw subsystem init <name>' to create a new subsystem from this template.
+  TODO: Replace this with your subsystem's description.
+
+roles: []
+  # TODO: Add roles used by this subsystem
+  # Example:
+  # - my_custom_role
+
+artifact_types: []
+  # TODO: Add artifact types produced by this subsystem
+  # Example:
+  # - MY_ARTIFACT.md
+
+loop_presets: []
+  # TODO: Add loop presets defined by this subsystem
+  # Example:
+  # - my_custom_loop
+
+validation_rules: []
+  # TODO: Add validation rules for this subsystem's artifacts
+  # Example:
+  # - "artifact_not_empty"
+
+ui_panels: []
+  # TODO: Add UI panels for this subsystem
+  # Example:
+  # - my_custom_panel

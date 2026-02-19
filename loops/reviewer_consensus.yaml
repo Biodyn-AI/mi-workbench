@@ -1,0 +1,92 @@
+name: reviewer_consensus
+description: |
+  Reviewer consensus loop with three parallel review stages. The executor
+  produces research artifacts, then three independent reviewers (standard,
+  adversarial, biological plausibility) critique them in parallel. A
+  consensus merger deduplicates similar critiques, escalates severity when
+  multiple reviewers agree, and produces a ranked critique list that feeds
+  back to the executor.
+version: "1.0.0"
+
+nodes:
+  - id: executor
+    role: executor
+    prompt_ref: "executor/mi_executor"
+    config:
+      save_checkpoints: true
+      artifact_types: ["MECH.md", "EVAL.md", "XP.md", "METHOD.md", "RUN_SUMMARY.md"]
+
+  - id: reviewer
+    role: reviewer
+    prompt_ref: "reviewer/mi_reviewer"
+    config:
+      min_severity_to_block: "high"
+      pass_grade: "B"
+
+  - id: adversarial_reviewer
+    role: adversarial_reviewer
+    prompt_ref: "adversarial_reviewer/adversarial_reviewer"
+    config:
+      threat_models: ["p_hacking", "overclaiming", "causal_confusion", "dataset_leakage", "biological_implausibility", "statistical_theater", "null_model_inadequacy"]
+
+  - id: bio_plausibility_checker
+    role: bio_plausibility_checker
+    prompt_ref: "biological_plausibility/bio_plausibility_checker"
+    config:
+      check_tissue_specificity: true
+      check_pathway_consistency: true
+      check_expression_levels: true
+
+  - id: consensus_merger
+    role: consensus_merger
+    prompt_ref: ""
+    config:
+      merge_strategy: "deduplicate_escalate"
+      similarity_threshold: 0.5
+      escalate_on_agreement: true
+
+edges:
+  # Executor fans out to all three reviewers in parallel
+  - source: executor
+    target: reviewer
+    condition: "always"
+
+  - source: executor
+    target: adversarial_reviewer
+    condition: "always"
+
+  - source: executor
+    target: bio_plausibility_checker
+    condition: "always"
+
+  # All three reviewers feed into consensus merger
+  - source: reviewer
+    target: consensus_merger
+    condition: "always"
+
+  - source: adversarial_reviewer
+    target: consensus_merger
+    condition: "always"
+
+  - source: bio_plausibility_checker
+    target: consensus_merger
+    condition: "always"
+
+  # Consensus merger sends merged feedback back to executor
+  - source: consensus_merger
+    target: executor
+    condition: "always"
+
+stop_conditions:
+  - "user_stop"
+  - "budget_exceeded"
+  - "max_iterations:50"
+  - "on_flag:grade_A"
+
+max_iterations: 50
+
+config:
+  initial_node: executor
+  feedback_passthrough: true
+  accumulate_artifacts: true
+  parallel_reviewers: true
