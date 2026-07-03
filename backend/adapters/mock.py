@@ -83,110 +83,123 @@ rather than causal regulatory relationships from TRRUST.
 
 1. Cross-tissue validation using GTEx data
 2. Temporal attention dynamics during fine-tuning
-3. Comparison with scBERT attention patterns"""
+3. Comparison with scBERT attention patterns
+
+## Analysis Code
+
+```python
+# Recompute the incremental value of attention over the correlation baseline.
+auroc_attention = {auroc}
+auroc_correlation = {corr}
+incremental = round(auroc_attention - auroc_correlation, 4)
+print("incremental_auroc", incremental)
+assert 0.0 <= auroc_attention <= 1.0
+```"""
 
 
-# ── Reviewer output (severity decreases with iteration) ─────────────
+# ── Reviewer lenses ─────────────────────────────────────────────────
+#
+# The three reviewer roles (rigour, adversarial, biological plausibility)
+# emit deliberately distinct critique sets with a small, controlled overlap.
+# One issue — missing effect sizes — is raised verbatim by both the rigour and
+# adversarial lenses so that consensus deduplication and agreement-based
+# severity escalation are exercised; every other issue is unique to one lens so
+# that panel-size ablations show larger panels surfacing strictly more distinct
+# issues. Severity de-escalates as the iteration index rises so the loop
+# converges. The shared critique text is byte-identical across lenses on
+# purpose (Jaccard-based dedup depends on it).
+
+_SHARED_EFFECT_SIZE = (
+    "Effect sizes are not reported alongside p-values for the main comparison")
+
+
+def _tier(iteration: int) -> int:
+    """Coarse quality tier: 1 (early, severe), 2 (mid), 3 (converged)."""
+    if iteration <= 1:
+        return 1
+    if iteration <= 3:
+        return 2
+    return 3
+
 
 def _reviewer_output(iteration: int) -> str:
+    """Rigour/reproducibility lens."""
     grade = _grade_for_iteration(iteration)
-
-    # Build critique blocks based on iteration
-    required_fixes = []
-    suggested = []
-
-    if iteration <= 1:
-        required_fixes.append(
-            "[CRITICAL] Statistical power analysis missing for the bootstrap test")
-        required_fixes.append(
-            "[CRITICAL] Negative control needed: attention for random gene pairs")
-        required_fixes.append(
-            "[HIGH] Need to report effect sizes alongside p-values")
-        required_fixes.append(
-            "[HIGH] Confidence intervals needed for AUROC difference")
-    elif iteration == 2:
-        required_fixes.append(
-            "[CRITICAL] Effect size confidence interval not reported for main comparison")
-        required_fixes.append(
-            "[HIGH] Consider Bonferroni correction alongside BH-FDR")
-    elif iteration == 3:
-        required_fixes.append(
-            "[HIGH] Minor gap: report Cohen's d for attention vs correlation comparison")
-    # iteration >= 4: no CRITICAL or HIGH
-
-    suggested.append(
-        "[MEDIUM] Consider adding a figure showing attention vs correlation scatter")
-    suggested.append(
-        "[LOW] Minor: standardize decimal places in Table 1")
-
-    required_section = "\n".join(required_fixes) if required_fixes else "(none)"
-    suggested_section = "\n".join(suggested)
+    tier = _tier(iteration)
+    if tier == 1:
+        critiques = [
+            "[CRITICAL] Statistical power analysis is missing for the bootstrap test",
+            "[HIGH] Confidence intervals are not reported for the AUROC difference",
+            f"[HIGH] {_SHARED_EFFECT_SIZE}",
+        ]
+    elif tier == 2:
+        critiques = [
+            "[HIGH] Confidence intervals are not reported for the AUROC difference",
+            f"[MEDIUM] {_SHARED_EFFECT_SIZE}",
+        ]
+    else:
+        critiques = ["[LOW] Standardize decimal places across tables"]
 
     return f"""\
 ## Review -- Iteration {iteration}
 
 Overall Grade: {grade}
 
-### Required Fixes
-{required_section}
-
-### Suggested Improvements
-{suggested_section}
+### Critiques
+{chr(10).join(critiques)}
 
 ### Reproducibility Gaps
 - Random seed not specified for bootstrap sampling
-- GPU/CPU reproducibility not addressed
+- GPU/CPU reproducibility not addressed"""
 
-### Suspected Confounders
-- Cell type composition may drive co-expression patterns
-- Batch effects from multi-donor Tabula Sapiens data"""
-
-
-# ── Adversarial reviewer output ─────────────────────────────────────
 
 def _adversarial_output(iteration: int) -> str:
+    """Adversarial red-team lens."""
     grade = _grade_for_iteration(iteration)
-
-    critiques = []
-    if iteration <= 1:
-        critiques.append(
-            '[CRITICAL] The claim that "attention captures co-expression" '
-            "is unfalsifiable as stated")
-        critiques.append(
-            "[CRITICAL] No negative control: what does attention look like "
-            "for random gene pairs?")
-        critiques.append(
-            "[HIGH] The AUROC improvement over correlation (0.743 vs 0.703) "
-            "may not be practically significant")
-        critiques.append(
-            "[MEDIUM] Confound decomposition methodology needs validation "
-            "on synthetic data")
-    elif iteration == 2:
-        critiques.append(
-            "[CRITICAL] Synthetic-data validation of residualization still missing")
-        critiques.append(
-            "[HIGH] Practical significance threshold should be pre-registered")
-        critiques.append(
-            "[MEDIUM] Consider reporting Bayes factors alongside frequentist tests")
-    elif iteration == 3:
-        critiques.append(
-            "[HIGH] Pre-registration of significance thresholds recommended")
-        critiques.append(
-            "[MEDIUM] Bayes factor analysis would strengthen the null-result claim")
+    tier = _tier(iteration)
+    if tier == 1:
+        critiques = [
+            "[CRITICAL] The central claim is unfalsifiable as stated",
+            f"[HIGH] {_SHARED_EFFECT_SIZE}",
+            "[MEDIUM] The residualization method needs validation on synthetic data",
+        ]
+    elif tier == 2:
+        critiques = [
+            "[MEDIUM] The residualization method needs validation on synthetic data",
+        ]
     else:
-        critiques.append(
-            "[MEDIUM] Consider expanding cross-tissue validation to more than 3 tissues")
-        critiques.append(
-            "[LOW] Figure resolution should be >= 300 DPI for publication")
-
-    critique_text = "\n".join(critiques)
+        critiques = ["[LOW] Figure resolution should be at least 300 DPI"]
 
     return f"""\
 ## Adversarial Review
 
 Grade: {grade}
 
-{critique_text}"""
+{chr(10).join(critiques)}"""
+
+
+def _bio_plausibility_output(iteration: int) -> str:
+    """Biological plausibility lens (issues the other two lenses do not raise)."""
+    grade = _grade_for_iteration(iteration)
+    tier = _tier(iteration)
+    if tier == 1:
+        critiques = [
+            "[HIGH] Cell-type composition confounds co-expression and the tissue is unspecified",
+            "[MEDIUM] Regulatory direction from transcription factor to target is not assessed",
+        ]
+    elif tier == 2:
+        critiques = [
+            "[MEDIUM] Regulatory direction from transcription factor to target is not assessed",
+        ]
+    else:
+        critiques = ["[INFO] Pathway consistency checks pass"]
+
+    return f"""\
+## Biological Plausibility Review
+
+Grade: {grade}
+
+{chr(10).join(critiques)}"""
 
 
 # ── Idea generator output ───────────────────────────────────────────
@@ -209,6 +222,7 @@ _OUTPUT_BUILDERS = {
     "executor": _executor_output,
     "reviewer": _reviewer_output,
     "adversarial": _adversarial_output,
+    "bio_plausibility": _bio_plausibility_output,
     "idea_generator": _idea_generator_output,
 }
 
@@ -219,6 +233,10 @@ class MockAdapter(BaseAdapter):
     name: str = "mock"
 
     _iteration_count: int = 0  # class-level counter shared across instances
+    # When set, every call uses this logical iteration instead of the global
+    # counter. Lets experiments pin a fixed quality tier so a reviewer panel is
+    # evaluated reproducibly and independently of invocation order.
+    fixed_iteration: Optional[int] = None
 
     def __init__(self, failure_rate: float = 0.0, min_delay: float = 0.1,
                  max_delay: float = 0.5):
@@ -242,7 +260,11 @@ class MockAdapter(BaseAdapter):
     async def run(self, request: AdapterRunRequest) -> AdapterRunResult:
         self.invocation_count += 1
         MockAdapter._iteration_count += 1
-        iteration = MockAdapter._iteration_count
+        iteration = (
+            MockAdapter.fixed_iteration
+            if MockAdapter.fixed_iteration is not None
+            else MockAdapter._iteration_count
+        )
         start = time.monotonic()
 
         delay = random.uniform(self.min_delay, self.max_delay)
@@ -272,9 +294,7 @@ class MockAdapter(BaseAdapter):
         artifacts = []
         if role == "executor":
             artifacts = ["MECH.md", "EVAL.md", "XP.md"]
-        elif role == "reviewer":
-            artifacts = ["EVAL.md"]
-        elif role == "adversarial":
+        elif role in ("reviewer", "adversarial", "bio_plausibility"):
             artifacts = ["EVAL.md"]
         elif role == "idea_generator":
             artifacts = ["XP.md"]
@@ -298,16 +318,39 @@ class MockAdapter(BaseAdapter):
         self.history.append({"request": request, "result": result})
         return result
 
+    # Map explicit role strings (set by the engine on the prompt bundle) to the
+    # mock's output-builder keys. This is authoritative when present.
+    _ROLE_ALIASES = {
+        "executor": "executor",
+        "reviewer": "reviewer",
+        "adversarial": "adversarial",
+        "adversarial_reviewer": "adversarial",
+        "bio_plausibility_checker": "bio_plausibility",
+        "bio_plausibility": "bio_plausibility",
+        "idea_generator": "idea_generator",
+    }
+
     def _detect_role(self, request: AdapterRunRequest) -> str:
-        """Guess the role from prompt content."""
+        """Determine the role for output selection.
+
+        Prefer the explicit ``role`` variable set by the engine; fall back to
+        keyword heuristics on the prompt text (e.g. for ad-hoc callers and tests
+        that do not populate variables).
+        """
+        role_var = request.prompt_bundle.variables.get("role", "").strip().lower()
+        if role_var in self._ROLE_ALIASES:
+            return self._ROLE_ALIASES[role_var]
+
         text = (request.prompt_bundle.system_prompt +
                 request.prompt_bundle.user_prompt).lower()
-        if "adversar" in text or "red.team" in text:
+        if "adversar" in text or "red.team" in text or "red team" in text:
             return "adversarial"
+        if "plausib" in text or "bio_plausibility" in text or "biological plausibility" in text:
+            return "bio_plausibility"
+        if "idea" in text or "propose" in text:
+            return "idea_generator"
         if "review" in text or "eval" in text:
             return "reviewer"
-        if "follow" in text or "idea" in text:
-            return "idea_generator"
         return "executor"
 
     @classmethod

@@ -1,0 +1,67 @@
+% Standalone source for Fig 1 (MI-Workbench architecture).
+% PLOS requires figures to be uploaded as separate image files, NOT embedded in
+% the manuscript PDF. Compile this file on its own to produce the figure, then
+% export it to TIFF or EPS at >=300 dpi per PLOS figure guidelines
+% (https://journals.plos.org/plosone/s/figures).
+%
+%   pdflatex Fig1.tex           % -> Fig1.pdf (cropped to the diagram)
+%   pdftoppr / convert Fig1.pdf -density 300 Fig1.tif   % -> Fig1.tif for upload
+%
+\documentclass[border=6pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc}
+\begin{document}
+\begin{tikzpicture}[
+  box/.style={rectangle, draw, rounded corners=3pt, minimum width=3cm, minimum height=0.8cm, align=center, font=\small},
+  bigbox/.style={rectangle, draw, dashed, rounded corners=5pt, inner sep=8pt, align=center},
+  arrow/.style={-{Stealth[length=3mm]}, thick},
+  every node/.style={font=\small}
+]
+
+% CLI / API layer
+\node[box, fill=blue!10] (cli) at (0, 6) {CLI (Click)};
+\node[box, fill=blue!10] (api) at (4, 6) {REST API\\(FastAPI)};
+\node[box, fill=blue!10] (ws) at (8, 6) {WebSocket\\Streaming};
+
+% Engine layer
+\node[box, fill=orange!15] (engine) at (4, 4.2) {Loop Engine};
+\node[box, fill=orange!15] (sm) at (0, 4.2) {State Machine};
+\node[box, fill=orange!15] (conv) at (8, 4.2) {Convergence\\Detector};
+\node[box, fill=orange!15] (fb) at (0, 2.8) {Feedback\\Formatter};
+\node[box, fill=orange!15] (cons) at (4, 2.8) {Consensus\\Reviewer};
+\node[box, fill=orange!15] (fu) at (8, 2.8) {Follow-Up\\Executor};
+
+% Adapter layer
+\node[box, fill=green!10] (claude) at (0, 1.0) {Claude Code};
+\node[box, fill=green!10] (codex) at (3, 1.0) {Codex CLI};
+\node[box, fill=green!10] (gemini) at (6, 1.0) {Gemini CLI};
+\node[box, fill=green!10] (mock) at (9, 1.0) {Mock};
+
+% Persistence layer
+\node[box, fill=gray!10] (db) at (1.5, -0.5) {SQLite\\(aiosqlite)};
+\node[box, fill=gray!10] (artifacts) at (4.5, -0.5) {Artifact\\Writer};
+\node[box, fill=gray!10] (knowledge) at (7.5, -0.5) {Knowledge\\Graph};
+
+% Grouping boxes
+\node[bigbox, fit=(cli)(api)(ws), label={[font=\footnotesize\bfseries]above:Interface Layer}] {};
+\node[bigbox, fit=(engine)(sm)(conv)(fb)(cons)(fu), label={[font=\footnotesize\bfseries]above left:Orchestration Layer}] {};
+
+% Arrows
+\draw[arrow] (cli) -- (api);
+\draw[arrow] (api) -- (engine);
+\draw[arrow] (api) -- (ws);
+\draw[arrow] (engine) -- (sm);
+\draw[arrow] (engine) -- (conv);
+\draw[arrow] (engine) -- (fb);
+\draw[arrow] (engine) -- (cons);
+\draw[arrow] (engine) -- (fu);
+\draw[arrow] (engine) -- (claude);
+\draw[arrow] (engine) -- (codex);
+\draw[arrow] (engine) -- (gemini);
+\draw[arrow] (engine) -- (mock);
+\draw[arrow] (engine) -- (db);
+\draw[arrow] (engine) -- (artifacts);
+\draw[arrow] (engine) -- (knowledge);
+
+\end{tikzpicture}
+\end{document}

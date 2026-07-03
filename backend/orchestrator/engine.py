@@ -21,6 +21,8 @@ from backend.models import (
     RunStatus,
     WorkspaceContext,
 )
+from backend.orchestrator.code_executor import CodeExecutor
+from backend.orchestrator.consensus import ConsensusReviewer
 from backend.orchestrator.context import WorkspaceContextReader
 from backend.orchestrator.convergence import ConvergenceDetector
 from backend.orchestrator.dsl import ExecutionPlan, ExecutionStep, compile_loop
@@ -59,6 +61,8 @@ class LoopEngine:
         self._feedback_formatter = FeedbackFormatter()
         self._followup_executor = FollowUpExecutor()
         self._convergence = ConvergenceDetector()
+        # Set when a consensus gate is holding the loop open on unresolved CRITICAL.
+        self._consensus_block = False
 
     def _emit(self, event_type: str, data: dict[str, Any]) -> None:
         if self._on_event:
@@ -93,7 +97,10 @@ class LoopEngine:
             reason=reason,
         )
 
-    def _should_run_step(self, step: ExecutionStep, iteration: int) -> bool:
+    def _should_run_step(
+        self, step: ExecutionStep, iteration: int,
+        run_state: Optional[RunState] = None,
+    ) -> bool:
         """Evaluate whether a step should execute given its condition."""
         cond = step.condition
         if cond == "always":
@@ -102,8 +109,12 @@ class LoopEngine:
             k = int(cond.split(":")[1])
             return k > 0 and iteration % k == 0
         if cond.startswith("on_flag:"):
-            # Flags would be checked from run state config; simplified here
-            return False
+            # Run when the named flag is truthy in run_state.config["flags"].
+            flag = cond.split(":", 1)[1].strip()
+            if run_state is None:
+                return False
+            flags = run_state.config.get("flags", {})
+            return bool(flags.get(flag, False))
         return True
 
     def _build_prompt_bundle(
@@ -184,6 +195,65 @@ class LoopEngine:
             user_prompt=user_prompt,
             variables=variables,
         )
+
+    def _resolve_role_system_prompt(
+        self, role: str, prompt_ref: str, run_state: RunState
+    ) -> str:
+        """Resolve a role's system prompt from the registry, or fall back inline."""
+        variables = {
+            "role": role,
+            "iteration": str(run_state.current_iteration),
+            "task": run_state.task,
+        }
+        if prompt_ref and self._prompt_registry:
+            try:
+                parts = prompt_ref.split("/", 1)
+                if len(parts) == 2:
+                    template = self._prompt_registry.load_prompt(parts[0], parts[1])
+                    return self._prompt_registry.resolve_template(template, variables)
+            except Exception:
+                logger.debug("Prompt lookup failed for %s, using inline", prompt_ref)
+        return (
+            f"You are the {role} in an automated MI research pipeline.\n"
+            f"Task: {run_state.task}\n"
+            f"Review the following artifacts and report critiques as "
+            f"[SEVERITY] lines."
+        )
+
+    async def _run_consensus_step(
+        self,
+        step: ExecutionStep,
+        run_state: RunState,
+        iteration_num: int,
+        artifacts_content: str,
+        workspace_path: str,
+    ) -> tuple[Any, str, list]:
+        """Run a consensus panel concurrently and merge critiques.
+
+        Returns (merged ReviewResult, formatted feedback string, raw results).
+        """
+        panel = [(pm.role, pm.prompt_ref) for pm in step.panel]
+        reviewer = ConsensusReviewer(
+            similarity_threshold=run_state.config.get("consensus_similarity_threshold", 0.5),
+            consensus_threshold=run_state.config.get("consensus_threshold", 2),
+            panel=panel or None,
+            role_weights=run_state.config.get("consensus_role_weights") or None,
+        )
+        ctx = WorkspaceContext(
+            workspace_path=workspace_path,
+            run_dir=f"runs/{run_state.run_id}",
+            iteration_dir=f"runs/{run_state.run_id}/iter_{iteration_num:03d}",
+        )
+        merged, raw_results = await reviewer.run_panel(
+            artifacts_content,
+            self.adapter,
+            ctx,
+            system_prompt_builder=lambda role, ref: self._resolve_role_system_prompt(
+                role, ref, run_state
+            ),
+        )
+        formatted = self._feedback_formatter.format_for_executor(merged)
+        return merged, formatted, raw_results
 
     async def run_loop(
         self,
@@ -277,7 +347,7 @@ class LoopEngine:
             step = plan.steps[step_index % plan.cycle_length]
 
             # Check if this conditional step should run
-            if not self._should_run_step(step, run_state.current_iteration):
+            if not self._should_run_step(step, run_state.current_iteration, run_state):
                 step_index += 1
                 continue
 
@@ -291,6 +361,86 @@ class LoopEngine:
                 "node_id": step.node_id,
             })
 
+            # Consensus step: fan out to the reviewer panel concurrently, merge,
+            # and feed the ranked critiques back to the executor.
+            if step.kind == "consensus" and step.panel:
+                iter_result = IterationResult(
+                    iteration_number=iteration_num,
+                    role=step.role,
+                    status=IterationStatus.RUNNING,
+                    started_at=datetime.utcnow(),
+                )
+                try:
+                    merged, formatted, raw_results = await self._run_consensus_step(
+                        step, run_state, iteration_num, previous_output, workspace_path
+                    )
+                except Exception as exc:
+                    iter_result.status = IterationStatus.FAILED
+                    iter_result.error = str(exc)
+                    iter_result.completed_at = datetime.utcnow()
+                    run_state.iterations.append(iter_result)
+                    sm.fail(f"Consensus error at iteration {iteration_num}: {exc}")
+                    return run_state
+
+                panel_tokens = sum(r.token_usage for r in raw_results)
+                panel_cost = sum(r.cost_estimate for r in raw_results)
+                run_state.total_tokens += panel_tokens
+                run_state.total_cost += panel_cost
+
+                report = ConsensusReviewer(
+                    consensus_threshold=run_state.config.get("consensus_threshold", 2),
+                    panel=[(pm.role, pm.prompt_ref) for pm in step.panel] or None,
+                ).compute_consensus_report(merged)
+
+                iter_result.status = IterationStatus.COMPLETED
+                iter_result.completed_at = datetime.utcnow()
+                iter_result.output_summary = formatted[:500]
+                iter_result.token_usage = panel_tokens
+                iter_result.cost_estimate = panel_cost
+                iter_result.feedback = formatted
+                if self._artifact_writer and formatted:
+                    try:
+                        self._artifact_writer(iteration_num, "EVAL.md", formatted)
+                        iter_result.artifacts_produced = ["EVAL.md"]
+                    except Exception:
+                        logger.debug("Consensus artifact write failed for iter %d", iteration_num)
+                run_state.iterations.append(iter_result)
+
+                self._emit("consensus_merged", {
+                    "run_id": run_state.run_id,
+                    "iteration": iteration_num,
+                    "panel_size": len(step.panel),
+                    "report": report,
+                })
+
+                previous_output = formatted
+
+                # Optional advancement gate (deadlock policy): while unresolved
+                # CRITICAL critiques remain, the run is not allowed to converge
+                # or complete; it keeps revising (bounded by max_iterations).
+                gate = run_state.config.get("consensus_gate", False)
+                self._consensus_block = bool(gate and report.get("unresolved_critical", 0) > 0)
+
+                self._convergence.record_iteration(
+                    iteration_num=iteration_num,
+                    role=step.role,
+                    output=formatted,
+                    review=merged,
+                )
+                if run_state.config.get("convergence_enabled", True) and not self._consensus_block:
+                    converged, reason = self._convergence.should_stop()
+                    if converged:
+                        self._emit("convergence_detected", {
+                            "run_id": run_state.run_id,
+                            "reason": reason,
+                            "metrics": self._convergence.get_metrics(),
+                        })
+                        sm.complete()
+                        return run_state
+
+                step_index += 1
+                continue
+
             # Build prompt and request
             prompt_bundle = self._build_prompt_bundle(step, run_state, previous_output)
             request = AdapterRunRequest(
@@ -300,7 +450,7 @@ class LoopEngine:
                     run_dir=f"runs/{run_state.run_id}",
                     iteration_dir=f"runs/{run_state.run_id}/iter_{iteration_num:03d}",
                 ),
-                timeout_seconds=300,
+                timeout_seconds=run_state.config.get("adapter_timeout", 900),
             )
 
             # Create iteration result
@@ -424,6 +574,39 @@ class LoopEngine:
             else:
                 previous_output = adapter_result.output
 
+            # Optionally execute analysis code emitted by the executor so that
+            # reviewers critique executed results, not an untested plan.
+            if (step.role == "executor"
+                    and run_state.config.get("code_execution_enabled", False)
+                    and adapter_result.output):
+                try:
+                    executor = CodeExecutor(
+                        timeout_seconds=run_state.config.get("code_execution_timeout", 20)
+                    )
+                    exec_report = await executor.run_artifact(adapter_result.output)
+                    if exec_report.executed:
+                        report_text = exec_report.to_feedback()
+                        previous_output = previous_output + "\n\n" + report_text
+                        iter_result.code_execution = {
+                            "executed": exec_report.executed,
+                            "passed": exec_report.passed,
+                            "failed": exec_report.failed,
+                        }
+                        if self._artifact_writer:
+                            try:
+                                self._artifact_writer(iteration_num, "RUN_LOG.md", report_text)
+                            except Exception:
+                                logger.debug("Run-log write failed for iter %d", iteration_num)
+                        self._emit("code_executed", {
+                            "run_id": run_state.run_id,
+                            "iteration": iteration_num,
+                            "executed": exec_report.executed,
+                            "passed": exec_report.passed,
+                            "failed": exec_report.failed,
+                        })
+                except Exception:
+                    logger.debug("Code execution failed for iter %d", iteration_num)
+
             # Record for convergence detection
             self._convergence.record_iteration(
                 iteration_num=iteration_num,
@@ -432,8 +615,8 @@ class LoopEngine:
                 review=review_result,
             )
 
-            # Check convergence (if enabled)
-            if run_state.config.get("convergence_enabled", True):
+            # Check convergence (if enabled and not held open by the consensus gate)
+            if run_state.config.get("convergence_enabled", True) and not self._consensus_block:
                 converged, reason = self._convergence.should_stop()
                 if converged:
                     self._emit("convergence_detected", {

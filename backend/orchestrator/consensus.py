@@ -36,12 +36,33 @@ _SEVERITY_ORDER = {
 # Threshold above which two critiques are considered duplicates
 _SIMILARITY_THRESHOLD = 0.5
 
+# Default number of agreeing reviewers required to escalate a shared critique
+_CONSENSUS_THRESHOLD = 2
+
 
 class ConsensusReviewer:
-    """Runs multiple reviewer roles in parallel and merges results."""
+    """Runs a configurable panel of reviewer roles in parallel and merges results.
 
-    def __init__(self, similarity_threshold: float = _SIMILARITY_THRESHOLD):
+    The panel defaults to the three MI reviewer lenses (rigour, adversarial,
+    biological plausibility) but any list of ``(role_name, prompt_ref)`` pairs
+    may be supplied, so a loop can instantiate a panel of any size. ``merge``
+    deduplicates near-identical critiques (word-level Jaccard), escalates
+    severity when at least ``consensus_threshold`` distinct reviewers raise the
+    same issue, and ranks the result deterministically.
+    """
+
+    def __init__(
+        self,
+        similarity_threshold: float = _SIMILARITY_THRESHOLD,
+        consensus_threshold: int = _CONSENSUS_THRESHOLD,
+        panel: Optional[list[tuple[str, str]]] = None,
+        role_weights: Optional[dict[str, float]] = None,
+    ):
         self.similarity_threshold = similarity_threshold
+        self.consensus_threshold = max(1, consensus_threshold)
+        self.panel = panel or list(_REVIEWER_ROLES)
+        # Optional per-role influence on ranking; default uniform (weight 1.0).
+        self.role_weights = role_weights or {}
 
     async def run_consensus(
         self,
@@ -49,33 +70,57 @@ class ConsensusReviewer:
         adapter: BaseAdapter,
         workspace_context: WorkspaceContext,
     ) -> ReviewResult:
-        """Run reviewer, adversarial reviewer, and bio plausibility checker in parallel.
-        Merge their outputs into a single ranked critique list."""
+        """Run the reviewer panel in parallel and merge into one ranked list."""
+        result, _ = await self.run_panel(artifacts_content, adapter, workspace_context)
+        return result
+
+    async def run_panel(
+        self,
+        artifacts_content: str,
+        adapter: BaseAdapter,
+        workspace_context: WorkspaceContext,
+        system_prompt_builder: Optional[callable] = None,
+    ) -> tuple[ReviewResult, list[AdapterRunResult]]:
+        """Run the panel concurrently, returning the merged result and the raw
+        per-reviewer results (for token/cost accounting and artifact writing)."""
         tasks = []
-        for role_name, prompt_ref in _REVIEWER_ROLES:
+        for role_name, prompt_ref in self.panel:
+            if system_prompt_builder is not None:
+                system_prompt = system_prompt_builder(role_name, prompt_ref)
+            else:
+                system_prompt = (
+                    f"You are the {role_name}. Review the following artifacts."
+                )
             request = AdapterRunRequest(
                 prompt_bundle=PromptBundle(
-                    system_prompt=f"You are the {role_name}. Review the following artifacts.",
+                    system_prompt=system_prompt,
                     user_prompt=artifacts_content,
+                    variables={"role": role_name},
                 ),
                 workspace_context=workspace_context,
             )
             tasks.append(adapter.run(request))
 
         results: list[AdapterRunResult] = await asyncio.gather(*tasks)
-        return self.merge_critiques(results)
+        role_names = [r[0] for r in self.panel]
+        return self.merge_critiques(results, role_names=role_names), results
 
-    def merge_critiques(self, results: list[AdapterRunResult]) -> ReviewResult:
+    def merge_critiques(
+        self,
+        results: list[AdapterRunResult],
+        role_names: Optional[list[str]] = None,
+    ) -> ReviewResult:
         """Merge multiple review results into consensus.
 
         - Deduplicate similar critiques (fuzzy match on description)
-        - Escalate severity if multiple reviewers flag same issue
-        - Rank by: severity (desc), then number of reviewers who flagged it
+        - Escalate severity if at least ``consensus_threshold`` reviewers flag it
+        - Rank by: severity (desc), reviewer count (desc), then text (stable tie-break)
         - Tag each critique with which reviewer(s) raised it
         """
         # Parse all critiques from each reviewer
         all_tagged: list[tuple[ReviewCritique, str]] = []
-        role_names = [r[0] for r in _REVIEWER_ROLES]
+        if role_names is None:
+            role_names = [r[0] for r in self.panel]
         for i, result in enumerate(results):
             role_name = role_names[i] if i < len(role_names) else f"reviewer_{i}"
             critiques = self._parse_review_output(strip_thinking_traces(result.output))
@@ -108,9 +153,9 @@ class ConsensusReviewer:
                 (c.severity for c, _ in group),
                 key=lambda s: _SEVERITY_ORDER.get(s, 0),
             )
-            # Escalate if multiple reviewers flagged the same issue
+            # Escalate if enough distinct reviewers flagged the same issue
             reviewer_names = sorted(set(r for _, r in group))
-            if len(reviewer_names) >= 2:
+            if len(reviewer_names) >= self.consensus_threshold:
                 best_severity = _escalate_severity(best_severity)
 
             # Use the longest description as the representative
@@ -126,11 +171,15 @@ class ConsensusReviewer:
                 suggested_experiment=critique.suggested_experiment,
             ))
 
-        # Sort: severity descending, then number of reviewers descending
+        # Sort: severity desc, role-weight desc, reviewer count desc, then
+        # description text as a deterministic tie-break so ties never depend on
+        # parse/gather ordering. With no role_weights the weight term is uniform.
         merged.sort(
             key=lambda c: (
                 -_SEVERITY_ORDER.get(c.severity, 0),
+                -self._critique_weight(c.description),
                 -_count_reviewers_in_tag(c.description),
+                c.description,
             )
         )
 
@@ -138,6 +187,36 @@ class ConsensusReviewer:
             overall_grade=_compute_grade(merged),
             critiques=merged,
         )
+
+    def compute_consensus_report(self, merged: ReviewResult) -> dict:
+        """Summarise agreement across the panel for the merged critique list.
+
+        Returns counts used for reporting and for the (optional) advancement
+        gate: how many merged critiques were raised by a single reviewer versus
+        by multiple reviewers, how many were severity-escalated by agreement,
+        the per-severity histogram, and the number of unresolved CRITICAL items.
+        """
+        single, agreed = 0, 0
+        histogram: dict[str, int] = {}
+        for c in merged.critiques:
+            n = _count_reviewers_in_tag(c.description)
+            if n >= self.consensus_threshold:
+                agreed += 1
+            else:
+                single += 1
+            histogram[c.severity.value] = histogram.get(c.severity.value, 0) + 1
+        return {
+            "panel_size": len(self.panel),
+            "consensus_threshold": self.consensus_threshold,
+            "total_merged": len(merged.critiques),
+            "single_reviewer": single,
+            "multi_reviewer": agreed,
+            "severity_histogram": histogram,
+            "unresolved_critical": sum(
+                1 for c in merged.critiques if c.severity == SeverityLevel.CRITICAL
+            ),
+            "grade": merged.overall_grade,
+        }
 
     def _parse_review_output(self, output: str) -> list[ReviewCritique]:
         """Parse reviewer output into structured critiques.
@@ -199,6 +278,21 @@ class ConsensusReviewer:
             ))
 
         return critiques
+
+    def _critique_weight(self, description: str) -> float:
+        """Ranking weight for a merged critique from its reviewer tag.
+
+        The weight is the maximum ``role_weights`` value among the reviewers that
+        raised the critique (default 1.0 for any role not listed). With no
+        configured weights every critique weighs 1.0 and ranking is unchanged.
+        """
+        if not self.role_weights:
+            return 1.0
+        match = re.match(r'\[([^\]]+)\]', description)
+        if not match:
+            return 1.0
+        reviewers = [r.strip() for r in match.group(1).split(',')]
+        return max((self.role_weights.get(r, 1.0) for r in reviewers), default=1.0)
 
     def _similarity_score(self, a: str, b: str) -> float:
         """Simple word-overlap (Jaccard) similarity for deduplication."""

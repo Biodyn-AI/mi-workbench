@@ -10,13 +10,28 @@ from backend.models import LoopDefinition, LoopNode, LoopEdge
 
 
 @dataclass
+class PanelMember:
+    """A reviewer that participates in a consensus panel step."""
+    node_id: str
+    role: str
+    prompt_ref: str
+
+
+@dataclass
 class ExecutionStep:
-    """A single step in a compiled execution plan."""
+    """A single step in a compiled execution plan.
+
+    ``kind`` is ``"single"`` for an ordinary one-adapter-call step, or
+    ``"consensus"`` for a step that fans out to every member of ``panel``
+    concurrently and merges their critiques.
+    """
     node_id: str
     role: str
     prompt_ref: str
     condition: str = "always"
     config: dict[str, Any] = field(default_factory=dict)
+    kind: str = "single"
+    panel: list[PanelMember] = field(default_factory=list)
 
 
 @dataclass
@@ -118,11 +133,47 @@ def validate_loop(loop_def: LoopDefinition) -> list[str]:
     return errors
 
 
+CONSENSUS_ROLE = "consensus_merger"
+
+
+def _find_consensus_nodes(loop_def: LoopDefinition) -> dict[str, list[PanelMember]]:
+    """Map each consensus-merger node id to its reviewer panel.
+
+    A node is a consensus merger if its role is ``consensus_merger``. Its panel
+    is every node that reaches it through an ``always`` edge, in node-definition
+    order. This lets a loop declare a reviewer panel of any size by fanning out
+    from the executor to N reviewers that all converge on one merger node.
+    """
+    node_map = {n.id: n for n in loop_def.nodes}
+    merger_ids = {n.id for n in loop_def.nodes if n.role == CONSENSUS_ROLE}
+    panels: dict[str, list[PanelMember]] = {mid: [] for mid in merger_ids}
+    if not merger_ids:
+        return panels
+
+    # Preserve node-definition order for determinism.
+    order = {n.id: i for i, n in enumerate(loop_def.nodes)}
+    for mid in merger_ids:
+        members = [
+            e.source for e in loop_def.edges
+            if e.target == mid and e.condition == "always" and e.source in node_map
+        ]
+        members.sort(key=lambda nid: order.get(nid, 0))
+        panels[mid] = [
+            PanelMember(node_id=node_map[m].id, role=node_map[m].role,
+                        prompt_ref=node_map[m].prompt_ref)
+            for m in members
+        ]
+    return panels
+
+
 def compile_loop(loop_def: LoopDefinition) -> ExecutionPlan:
     """Compile a LoopDefinition into an ExecutionPlan (ordered steps).
 
-    Uses topological-like ordering: start from the first node,
-    follow edges in order, building a cycle of steps.
+    Start from the first node and follow edges, building a repeating cycle of
+    steps. Ordinary nodes become ``single`` steps. When the walk reaches a
+    ``consensus_merger`` node, its reviewer panel (all nodes feeding it via
+    ``always`` edges) is absorbed into one ``consensus`` step that runs the
+    panel concurrently; the panel members are not emitted as standalone steps.
     """
     errors = validate_loop(loop_def)
     if errors:
@@ -135,7 +186,11 @@ def compile_loop(loop_def: LoopDefinition) -> ExecutionPlan:
     for edge in loop_def.edges:
         adjacency[edge.source].append((edge.target, edge.condition))
 
-    # Walk the graph from the first node, collecting steps until we revisit
+    panels = _find_consensus_nodes(loop_def)
+    # Nodes absorbed into a consensus step must not be emitted on their own.
+    panel_member_ids = {pm.node_id for members in panels.values() for pm in members}
+
+    # Walk the graph from the first node, collecting steps until we revisit.
     steps: list[ExecutionStep] = []
     visited_order: list[str] = []
     current = loop_def.nodes[0].id
@@ -146,21 +201,47 @@ def compile_loop(loop_def: LoopDefinition) -> ExecutionPlan:
             break
         visited_order.append(current)
         node = node_map[current]
-        # Find the outgoing edge (prefer "always" edges)
         outgoing = adjacency.get(current, [])
-        # Add a step for this node; attach the condition from the edge that led here
-        steps.append(ExecutionStep(
-            node_id=node.id,
-            role=node.role,
-            prompt_ref=node.prompt_ref,
-            condition="always",
-            config=node.config,
-        ))
-        # Pick next node: prefer "always" edges first
-        always_edges = [t for t, c in outgoing if c == "always"]
-        conditional_edges = [(t, c) for t, c in outgoing if c != "always"]
 
-        # Add conditional steps (they run at the same point but with conditions)
+        if node.role == CONSENSUS_ROLE:
+            # Emit one consensus step carrying the full reviewer panel.
+            steps.append(ExecutionStep(
+                node_id=node.id,
+                role=node.role,
+                prompt_ref=node.prompt_ref,
+                condition="always",
+                config=node.config,
+                kind="consensus",
+                panel=panels.get(node.id, []),
+            ))
+        else:
+            steps.append(ExecutionStep(
+                node_id=node.id,
+                role=node.role,
+                prompt_ref=node.prompt_ref,
+                condition="always",
+                config=node.config,
+            ))
+
+        # Classify successors, skipping panel members (absorbed into consensus).
+        always_edges = [t for t, c in outgoing
+                        if c == "always" and t not in panel_member_ids]
+        conditional_edges = [(t, c) for t, c in outgoing
+                             if c != "always" and t not in panel_member_ids]
+
+        # If this node fans out to a panel, route to the consensus node next.
+        panel_targets = [t for t, c in outgoing
+                         if c == "always" and t in panel_member_ids]
+        if panel_targets and not always_edges:
+            merger_id = next(
+                (m for m, members in panels.items()
+                 if any(pm.node_id in panel_targets for pm in members)),
+                None,
+            )
+            if merger_id is not None:
+                always_edges = [merger_id]
+
+        # Conditional steps run at the same point but gated by their condition.
         for target, condition in conditional_edges:
             cond_node = node_map[target]
             steps.append(ExecutionStep(

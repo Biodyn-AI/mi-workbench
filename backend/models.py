@@ -162,6 +162,7 @@ class IterationResult(BaseModel):
     output_summary: str = ""
     feedback: Optional[str] = None
     error: Optional[str] = None
+    code_execution: Optional[dict[str, Any]] = None
 
 
 class RunState(BaseModel):
