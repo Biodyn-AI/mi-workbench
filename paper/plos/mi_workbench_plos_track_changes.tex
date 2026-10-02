@@ -1,7 +1,7 @@
 %DIF 1c1
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL old_inline.tex   Fri Oct  2 05:01:20 2026
-%DIF ADD final.tex        Fri Oct  2 09:47:10 2026
+%DIF ADD final.tex        Fri Oct  2 09:59:37 2026
 %DIF < % MI-Workbench --- PLOS ONE submission
 %DIF -------
 % MI-Workbench --- PLOS ONE manuscript %DIF > 
@@ -1021,7 +1021,9 @@ MI-Workbench \DIFdelbegin \DIFdel{includes a knowledge extraction pipeline that 
 \DIFdel{. }\textbf{\DIFdel{Uncertainty estimation:}} %DIFAUXCMD
 \DIFdel{each claim receives an uncertainty score $u \in [0, 1]$ (baseline 0.5) adjusted by strong evidence ($p < 0.001$: $u \leftarrow u - 0.2$), confidence intervals present ($u \leftarrow u - 0.1$)}\DIFdelend \DIFaddbegin \DIFadd{is implemented in Python 3.11 with FastAPI, aiosqlite, Click and Pydantic~\mbox{%DIFAUXCMD
 \cite{pydantic}}\hskip0pt%DIFAUXCMD
-. The backend comprises about 19,800 lines of code; 1,067 automated tests cover orchestration, consensus review, feedback, adapters, execution backends and persistence, and 68 further tests cover the evaluation harnesses (S1 Text). The source code, prompts, workflow presets, evaluation harnesses and figure scripts are available under the MIT license at }\url{https://github.com/Biodyn-AI/mi-workbench}\DIFadd{, together with instructions to reproduce every experiment (}\texttt{\DIFadd{docs/REPRODUCING.md}}\DIFadd{); the archived release described here is identified in the Data Availability Statement.
+. The backend comprises about 19,800 lines of code; 1,067 automated tests cover orchestration, consensus review, feedback, adapters, execution backends and persistence, and 68 further tests cover the evaluation harnesses (S1 Text). The source code, prompts, workflow presets, evaluation harnesses and figure scripts are available under the MIT license at }\url{https://github.com/Biodyn-AI/mi-workbench}\DIFadd{, together with instructions to reproduce every experiment (}\texttt{\DIFadd{docs/REPRODUCING.md}}\DIFadd{); the version described here is archived on Zenodo (}\url{https://doi.org/10.5281/zenodo.23097814}\DIFadd{)~\mbox{%DIFAUXCMD
+\cite{kendiukhov2026miworkbench}}\hskip0pt%DIFAUXCMD
+.
 }
 
 
@@ -2026,6 +2028,11 @@ Benjamini Y, Hochberg Y.
 \bibitem{pydantic}
 {Pydantic}. Pydantic: data validation using {Python} type hints; 2026.
 \newblock \url{https://docs.pydantic.dev/}.
+
+\bibitem{kendiukhov2026miworkbench}
+Kendiukhov I. {MI-Workbench}; 2026.
+\newblock Zenodo.
+\newblock Available from: \url{https://doi.org/10.5281/zenodo.23097814}.
 
 \bibitem{vaswani2017attention}
 Vaswani A, Shazeer N, Parmar N, Uszkoreit J, Jones L, Gomez AN, et~al.

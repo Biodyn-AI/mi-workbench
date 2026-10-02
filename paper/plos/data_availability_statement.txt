@@ -3,7 +3,7 @@ DATA AVAILABILITY STATEMENT
 
 All data and code underlying the findings are fully available without restriction.
 
-Code. The MI-Workbench source code (platform, agent prompts, workflow presets, all evaluation harnesses, figure scripts and the test suite) is available under the MIT license at https://github.com/Biodyn-AI/mi-workbench. The release described in the paper (v1.1.0) is archived on Zenodo at https://doi.org/[ZENODO DOI — to be inserted by the author after the release is archived]. Step-by-step instructions to reproduce every experiment are in docs/REPRODUCING.md.
+Code. The MI-Workbench source code (platform, agent prompts, workflow presets, all evaluation harnesses, figure scripts and the test suite) is available under the MIT license at https://github.com/Biodyn-AI/mi-workbench. The version described in the paper is archived on Zenodo at https://doi.org/10.5281/zenodo.23097814. Step-by-step instructions to reproduce every experiment are in docs/REPRODUCING.md.
 
 Data. All data generated in this study are included in the Supporting Information: the planted-flaw benchmark with ground truth and the pre-specified analysis plan (S1 File); raw reviewer outputs, judge labels, adjudications, revision-loop trajectories and state judgments, with the analysis scripts and processed results (S2 File); and the case-study materials, including the data-kit construction and independent-analysis code with results, the agent runs with all iterations and execution outputs, and the number trace (S3 File). Run settings and token usage are listed in S1 Table and all numerical results in S2 Table.
 

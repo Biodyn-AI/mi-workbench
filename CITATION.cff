@@ -13,6 +13,12 @@ authors:
 repository-code: "https://github.com/Biodyn-AI/mi-workbench"
 license: MIT
 version: "1.1.0"
+date-released: "2026-10-02"
+doi: "10.5281/zenodo.23097814"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23097814"
+    description: "Zenodo archive of the version described in the PLOS ONE article"
 keywords:
   - mechanistic interpretability
   - multi-agent systems
