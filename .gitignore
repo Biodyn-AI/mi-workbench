@@ -67,3 +67,9 @@ paper/plos/si/*.zip
 *.out
 *.bbl.bak
 *.synctex.gz
+
+# Journal correspondence and revision notes (confidential peer review; kept local)
+paper/plos/response_to_reviewers.*
+paper/plos/REVISION_PLAN*.md
+paper/plos/cover_letter.*
+paper/plos/submitted_version/cover_letter.*

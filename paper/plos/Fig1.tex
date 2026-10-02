@@ -1,67 +1,80 @@
-% Standalone source for Fig 1 (MI-Workbench architecture).
-% PLOS requires figures to be uploaded as separate image files, NOT embedded in
-% the manuscript PDF. Compile this file on its own to produce the figure, then
-% export it to TIFF or EPS at >=300 dpi per PLOS figure guidelines
-% (https://journals.plos.org/plosone/s/figures).
-%
-%   pdflatex Fig1.tex           % -> Fig1.pdf (cropped to the diagram)
-%   pdftoppr / convert Fig1.pdf -density 300 Fig1.tif   % -> Fig1.tif for upload
-%
-\documentclass[border=6pt]{standalone}
+% Standalone source for Fig 1 (MI-Workbench architecture and review cycle).
+% Build:  pdflatex Fig1.tex   ->  Fig1.pdf
+% TIFF:   pdftoppm -r 600 -singlefile -tiff -tiffcompression lzw Fig1.pdf Fig1
+% (see scripts/make_plos_figures.sh)
+\documentclass[border=4pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,calc}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,backgrounds}
 \begin{document}
 \begin{tikzpicture}[
-  box/.style={rectangle, draw, rounded corners=3pt, minimum width=3cm, minimum height=0.8cm, align=center, font=\small},
-  bigbox/.style={rectangle, draw, dashed, rounded corners=5pt, inner sep=8pt, align=center},
-  arrow/.style={-{Stealth[length=3mm]}, thick},
-  every node/.style={font=\small}
+  font=\sffamily\footnotesize,
+  box/.style={rectangle, draw=black!70, rounded corners=2pt, minimum height=0.62cm, align=center, inner sep=2.5pt},
+  layer/.style={rectangle, draw=black!45, dashed, rounded corners=3pt, inner sep=5pt},
+  lab/.style={font=\sffamily\footnotesize\bfseries, anchor=north west},
+  arr/.style={-{Stealth[length=2.2mm]}, semithick},
 ]
+% ---------------- Panel A: layers ----------------
+\node[lab] at (-0.2, 9.15) {A};
+\node[box, fill=blue!8, minimum width=1.7cm] (cli) at (0.9, 8.3) {CLI};
+\node[box, fill=blue!8, minimum width=1.7cm] (api) at (2.8, 8.3) {REST API};
+\node[box, fill=blue!8, minimum width=1.7cm] (ws)  at (4.7, 8.3) {WebSocket};
+\node[layer, fit=(cli)(ws), label={[font=\sffamily\scriptsize]right:Interface}] (L1) {};
 
-% CLI / API layer
-\node[box, fill=blue!10] (cli) at (0, 6) {CLI (Click)};
-\node[box, fill=blue!10] (api) at (4, 6) {REST API\\(FastAPI)};
-\node[box, fill=blue!10] (ws) at (8, 6) {WebSocket\\Streaming};
+\node[box, fill=orange!12, minimum width=1.7cm] (dsl)  at (0.9, 6.95) {Graph\\compiler};
+\node[box, fill=orange!12, minimum width=1.7cm] (eng)  at (2.8, 6.95) {Loop\\engine};
+\node[box, fill=orange!12, minimum width=1.7cm] (stop) at (4.7, 6.95) {Stopping\\rule};
+\node[box, fill=orange!12, minimum width=1.7cm] (cons) at (0.9, 5.75) {Consensus\\review};
+\node[box, fill=orange!12, minimum width=1.7cm] (fb)   at (2.8, 5.75) {Feedback\\formatter};
+\node[box, fill=orange!12, minimum width=1.7cm] (exec) at (4.7, 5.75) {Verified\\execution};
+\node[layer, fit=(dsl)(exec), label={[font=\sffamily\scriptsize]right:Orchestration}] (L2) {};
 
-% Engine layer
-\node[box, fill=orange!15] (engine) at (4, 4.2) {Loop Engine};
-\node[box, fill=orange!15] (sm) at (0, 4.2) {State Machine};
-\node[box, fill=orange!15] (conv) at (8, 4.2) {Convergence\\Detector};
-\node[box, fill=orange!15] (fb) at (0, 2.8) {Feedback\\Formatter};
-\node[box, fill=orange!15] (cons) at (4, 2.8) {Consensus\\Reviewer};
-\node[box, fill=orange!15] (fu) at (8, 2.8) {Follow-Up\\Executor};
+\node[box, fill=green!9, minimum width=1.2cm] (cl) at (0.55, 4.35) {Claude\\Code};
+\node[box, fill=green!9, minimum width=1.2cm] (cx) at (1.95, 4.35) {Codex\\CLI};
+\node[box, fill=green!9, minimum width=1.2cm] (gm) at (3.35, 4.35) {Gemini\\CLI};
+\node[box, fill=green!9, minimum width=1.2cm] (mk) at (4.75, 4.35) {Mock};
+\node[layer, fit=(cl)(mk), label={[font=\sffamily\scriptsize]right:Adapters}] (L3) {};
 
-% Adapter layer
-\node[box, fill=green!10] (claude) at (0, 1.0) {Claude Code};
-\node[box, fill=green!10] (codex) at (3, 1.0) {Codex CLI};
-\node[box, fill=green!10] (gemini) at (6, 1.0) {Gemini CLI};
-\node[box, fill=green!10] (mock) at (9, 1.0) {Mock};
+\node[box, fill=black!6, minimum width=2.6cm] (db) at (1.35, 3.0) {SQLite\\(runs, iterations)};
+\node[box, fill=black!6, minimum width=2.6cm] (fs) at (4.25, 3.0) {Artifact store\\(iter\_NNNN/)};
+\node[layer, fit=(db)(fs), label={[font=\sffamily\scriptsize]right:Persistence}] (L4) {};
 
-% Persistence layer
-\node[box, fill=gray!10] (db) at (1.5, -0.5) {SQLite\\(aiosqlite)};
-\node[box, fill=gray!10] (artifacts) at (4.5, -0.5) {Artifact\\Writer};
-\node[box, fill=gray!10] (knowledge) at (7.5, -0.5) {Knowledge\\Graph};
+\draw[arr] (2.8,7.98) -- (2.8,7.55);
+\draw[arr] (2.8,5.2) -- (2.8,4.92);
+\draw[arr] (2.8,3.8) -- (2.8,3.55);
 
-% Grouping boxes
-\node[bigbox, fit=(cli)(api)(ws), label={[font=\footnotesize\bfseries]above:Interface Layer}] {};
-\node[bigbox, fit=(engine)(sm)(conv)(fb)(cons)(fu), label={[font=\footnotesize\bfseries]above left:Orchestration Layer}] {};
+% ---------------- Panel B: one review cycle ----------------
+\begin{scope}[xshift=8.3cm]
+\node[lab] at (-0.2, 9.15) {B};
+\node[box, fill=orange!12, minimum width=2.4cm] (ex) at (2.6, 8.35) {Executor};
+\node[box, fill=yellow!15, minimum width=3.6cm] (sb) at (2.6, 7.35) {Sandboxed execution\\{\scriptsize (results.json, stdout, stderr)}};
+\node[box, fill=white, minimum width=3.6cm] (art) at (2.6, 6.35) {Artifact + execution report};
+\node[box, fill=red!8, minimum width=1.45cm] (r1) at (0.85, 5.2) {Rigor};
+\node[box, fill=red!8, minimum width=1.45cm] (r2) at (2.6, 5.2) {Adversarial};
+\node[box, fill=red!8, minimum width=1.45cm] (r3) at (4.35, 5.2) {Biological\\plausibility};
+\node[box, fill=white, minimum width=4.9cm, align=left] (mg) at (2.6, 3.7) {%
+  1 Parse JSON critique contract\\
+  2 Merge duplicates (similarity or LLM)\\
+  3 Escalate on cross-lens agreement\\
+  4 Rank, grade, optional gate};
+\node[box, fill=orange!12, minimum width=2.6cm] (fd) at (2.6, 2.3) {Required fixes /\\suggestions};
+\node[box, fill=orange!12, minimum width=1.5cm, right=0.35cm of fd] (sr) {Stop?};
 
-% Arrows
-\draw[arrow] (cli) -- (api);
-\draw[arrow] (api) -- (engine);
-\draw[arrow] (api) -- (ws);
-\draw[arrow] (engine) -- (sm);
-\draw[arrow] (engine) -- (conv);
-\draw[arrow] (engine) -- (fb);
-\draw[arrow] (engine) -- (cons);
-\draw[arrow] (engine) -- (fu);
-\draw[arrow] (engine) -- (claude);
-\draw[arrow] (engine) -- (codex);
-\draw[arrow] (engine) -- (gemini);
-\draw[arrow] (engine) -- (mock);
-\draw[arrow] (engine) -- (db);
-\draw[arrow] (engine) -- (artifacts);
-\draw[arrow] (engine) -- (knowledge);
-
+\draw[arr] (ex) -- (sb);
+\draw[arr] (sb) -- (art);
+\draw[arr] (art.south) -- (r1.north);
+\draw[arr] (art.south) -- (r2.north);
+\draw[arr] (art.south) -- (r3.north);
+\draw[arr] (r1.south) -- (mg.north -| r1);
+\draw[arr] (r2.south) -- (mg.north);
+\draw[arr] (r3.south) -- (mg.north -| r3);
+\draw[arr] (mg) -- (fd);
+\draw[arr] (fd) -- (sr);
+\draw[arr] (fd.west) -- (-0.45,2.3) |- (ex.west);
+\node[font=\sffamily\scriptsize, align=center, rotate=90] at (-0.7, 5.5) {revision request};
+\node[font=\sffamily\scriptsize, anchor=west, align=left] at (4.45, 6.35) {lenses run\\in parallel};
+\end{scope}
 \end{tikzpicture}
 \end{document}

@@ -1,0 +1,7 @@
+# Supporting information files
+
+- S1_File.zip: 0.1 MB, sha256 7748ebf26492c548289a968525803d52f5632df71a50d9eb83509a884f9ffc0c
+- S2_File.zip: 35.7 MB, sha256 f482f76d993d74f00ac8540239c91f7e38c2c35e63cc64d1c303915e69560d4e
+- S3_File.zip: 9.1 MB, sha256 d92ef5fccddfe9fbf9cace7dc2fe761fea219e8cb8c455d8e6eddbb13e53bb0d
+- S1_Table.xlsx: 0.0 MB, sha256 3df5e1b6734e5a8512d188cff149cddd0850972466895059de768ae4a4a71fe2
+- S2_Table.xlsx: 0.1 MB, sha256 1278620b2b2869af48d6007c8d309b34c33e69d74419116cd15dd6e8d527c774

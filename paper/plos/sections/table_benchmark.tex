@@ -1,0 +1,18 @@
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\centering
+\caption{{\bf Benchmark outcomes by condition, pooled over the three model configurations.}}
+\label{table_benchmark}
+\begin{tabular}{@{}p{3.3cm}cp{2.3cm}p{1.8cm}p{1.9cm}p{1.6cm}@{}}
+\hline
+\textbf{Condition} & \textbf{Calls} & \textbf{Flaw recall (95\% CI)} & \textbf{Severity-aware recall} & \textbf{High or critical per clean item} & \textbf{Output tokens per item} \\ \hline
+C1 one rigor reviewer & 1 & 0.81 (0.72--0.88) & 0.74 & 6.0 & 2,469 \\
+C2 one combined reviewer & 1 & 0.86 (0.76--0.94) & 0.83 & 6.4 & 3,593 \\
+C3 rigor $\times$3 & 3 & 0.90 (0.83--0.96) & 0.86 & 19.4 & 7,416 \\
+C4 combined $\times$3 & 3 & 0.91 (0.84--0.97) & 0.90 & 19.4 & 10,889 \\
+C5 three-lens panel & 3 & 0.91 (0.86--0.97) & 0.88 & 11.4 & 6,143 \\ \hline
+\end{tabular}
+\begin{flushleft} Primary judge; 108 flawed and 54 clean item evaluations per condition. Severity outcomes use the pre-specified lexical merge ($\tau=0.5$), which merges few duplicates, so they approximate unmerged counts (see Evaluation protocol). With TF-IDF merging at $\tau=0.075$, high or critical critiques per clean item were 18.2 (C3), 21.8 (C4) and 11.8 (C5) (S2 Table).
+\end{flushleft}
+\end{adjustwidth}
+\end{table}

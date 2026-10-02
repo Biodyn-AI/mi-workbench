@@ -1,0 +1,10 @@
+backend_src_files:       76
+backend_loc_total:    19806
+backend_loc_nonblank: 17157
+test_files:       58
+test_loc:    16020
+prompt_templates:       11
+loop_yaml:        4
+api_routes:       54
+create_table: iterations knowledge_claims knowledge_facts knowledge_links runs schema_version telemetry workspaces 
+1067 tests collected in 2.32s

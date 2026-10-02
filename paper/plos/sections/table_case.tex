@@ -1,0 +1,17 @@
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\centering
+\caption{{\bf Executed case-study runs.}}
+\label{table_case}
+\begin{tabular}{@{}llcccp{6.2cm}@{}}
+\hline
+\textbf{Run} & \textbf{Model} & \textbf{Executions (failed)} & \textbf{Tokens (M)} & \textbf{Traced results} & \textbf{Final conclusion on the TRRUST question} \\ \hline
+1 & gpt-5.6-sol & 5 (1) & 0.94 & 460/460 & No information beyond the nuisance model; supported by adequately resampled nulls in iteration 4, written as a literal in iteration 5 \\
+2 & gpt-5.6-sol & 5 (1) & 0.98 & 149/149 & Not identifiable from aggregate attention (verdict written as a literal; 4 matched edges left) \\
+3 & gpt-5.5 & 5 (2) & 0.96 & 3/3 & No positive association beyond confounders; reference degree dominates (computed from results) \\
+Control & gpt-5.6-sol & none (disabled) & 0.39 & -- & Declined to report results in every iteration \\ \hline
+\end{tabular}
+\begin{flushleft} Each run: five executor iterations (an initial analysis and four revisions), each followed by a panel review. Traced results: numerical results in the code-generated reports of all five iterations that appear in executed output, out of all such results. Run 3's reports cited keys of its results file instead of stating values; its three traced numbers are the 95\% confidence level of its intervals. For runs 2 and 3 the final execution failed, and the conclusion column reports the last successful iteration. Run identifiers in S1 Table and S3 File: sol\_A (run 1), sol\_B (run 2), gpt55 (run 3) and sol\_planonly (control).
+\end{flushleft}
+\end{adjustwidth}
+\end{table}

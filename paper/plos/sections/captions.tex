@@ -1,0 +1,25 @@
+%FIG2%
+\begin{figure}[!h]
+\caption{{\bf Planted-flaw benchmark.}
+(A) Flaw recall by condition for each model configuration and pooled (points: means over items and repeats; bars: 95\% item-bootstrap confidence intervals). (B) Pooled recall by flaw family and condition; numbers in parentheses are planted flaws per family. (C) High and critical critiques per clean item under the pre-specified lexical merge ($\tau=0.5$), which recognizes few duplicates (bars: pooled means; points: configurations); every clean item drew at least one. (D) Pooled recall against mean output tokens per item. Conditions: one rigor reviewer, one combined-checklist reviewer, three rigor samples, three combined-checklist samples and the three-lens panel. Primary judge.}
+\label{fig2}
+\end{figure}
+%FIG3%
+\begin{figure}[!h]
+\caption{{\bf Merging duplicate critiques.}
+(A) Pairwise precision, recall and F1 of duplicate detection, held out by leave-one-scenario-out cross-validation, for lexical Jaccard and TF-IDF similarity at cross-validated thresholds and for LLM adjudication. (B) Precision and recall against the similarity threshold over all panels (in sample). Open circles: uncalibrated thresholds set a priori (Jaccard 0.5, TF-IDF 0.3); filled circles: the threshold selected most often by cross-validation (0.075, in 11 of 12 folds for each method); dotted line: the platform default (0.1, the upper end of the fold-selected range). Recall cannot exceed 0.74 because critiques from the same reviewer call are not merged (see Results).}
+\label{fig3}
+\end{figure}
+%FIG4%
+\begin{figure}[!h]
+\caption{{\bf Stopping calibration on 24 real revision loops.}
+(A) Planted flaws left unresolved per item after each revision, as judged. (B) Newly introduced errors per item. (C) Critical and high critiques per panel review (lexical merging, $\tau=0.5$). (D) Premature-stop rate against mean revisions used for each candidate stopping rule, pooled over both configurations; the selected default (a budget of four revisions) is filled. Grade stability alone and the rule that stops when any of the three signals holds share one point (diamond), because no other signal fired. Rules that require the absence of high-severity critiques or a stable executor output never stopped within five revisions.}
+\label{fig4}
+\end{figure}
+%FIG5%
+\begin{figure}[!h]
+\caption{{\bf Independent analysis of the case-study data.}
+(A) Spearman correlation between $A_{ij}$ and $A_{ji}$ by layer for head-averaged attention (line) and for the 144 individual heads (dots); a value of 1 would indicate symmetric attention. (B) Recovery of TRRUST edges (AUROC with TF-bootstrap 95\% confidence intervals) by symmetrized attention per layer, the degree-preserving null (mean and 95\% interval) and the absolute Spearman co-expression baseline. (C) Post hoc: the pair-specific component of attention after residualization on co-expression, expression and rank distance, against its degree-preserving null.}
+\label{fig5}
+\end{figure}
+%END%
