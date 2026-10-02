@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A06-flawed",
+  "scenario": "Ablating individual Geneformer attention heads impairs masked prediction of hematopoietic lineage genes",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A06-F1",
+      "type": "S2",
+      "family": "statistics",
+      "quote": "Ablating L3.H9 reduced top-1 accuracy on HSC/progenitor genes in HSC/MPP cells from 0.284 to 0.281 and raised their cross-entropy by 0.006 nats (paired Wilcoxon over 2,310 discovery cells, BH q = 4e-9, confirmed in held-out donors), identifying L3.H9 as a stemness head on which the model's representation of the progenitor program depends.",
+      "description": "The effect is negligible: a 0.003 change in accuracy (about 1% relative) and 0.006 nats (about 0.2% of baseline loss), close to the 0.004-nat median absolute effect across all 720 head–lineage combinations. Its significance comes from the large number of cells, yet it is read as evidence for a dedicated 'stemness head'.",
+      "detection_criterion": "The critique must single out the L3.H9 result and say that its effect (a 0.003 drop in top-1 accuracy, 0.006 nats) is practically negligible despite the very small q (for example, that it is no larger than the 0.004-nat median effect across all heads, or that it reaches significance only because thousands of cells are tested), so the 'stemness head' interpretation is unwarranted. Comments about L7.H4, or about effect sizes in general without identifying this claim, do not count."
+    },
+    {
+      "flaw_id": "A06-F2",
+      "type": "C1",
+      "family": "confounding",
+      "quote": "In the same cells, ablating L7.H4 raised cross-entropy on erythroid genes by 0.41 nats but on all other masked genes by only 0.06 nats; this sevenfold difference shows that L7.H4 is specialized for erythroid lineage genes.",
+      "description": "In erythroid cells the erythroid genes are the most highly expressed, top-ranked tokens (median input rank 9, against 512 for the other masked genes), and masked-prediction loss and ablation sensitivity depend on input rank, expression and detection. Comparing them with all other genes confounds lineage specificity with expression level. No rank-, expression- or detection-matched control genes are used.",
+      "detection_criterion": "The critique must say that the erythroid-vs-other-genes comparison is confounded by expression level, input rank or detection (erythroid genes rank near the top of the input), and ask for control genes matched on rank, expression or detection, or for an adjustment. A generic call for more baselines, or for other ablation methods, does not count."
+    },
+    {
+      "flaw_id": "A06-F3",
+      "type": "L1",
+      "family": "causal_logic",
+      "quote": "L7.H4 is the circuit through which Geneformer implements GATA1-driven regulation of erythroid genes: at erythroid-gene positions the head reads the GATA1 and KLF1 tokens and uses that signal to predict their targets, which is why ablating it disrupts erythroid-gene prediction.",
+      "description": "Whole-head ablation shows that the head is needed for prediction, but the proposed mechanism (routing GATA1/KLF1 information to target positions, 'implementing' GATA1-driven regulation) is inferred only from attention weights. No intervention targets that route, such as blocking attention to TF keys, path patching or deleting TF tokens, so the mechanistic and regulatory claim is overclaimed.",
+      "detection_criterion": "The critique must say that the claim that L7.H4 uses or implements GATA1/KLF1-to-target information flow rests on correlational attention patterns, and that head ablation does not establish this specific route. It should ask for a targeted intervention (e.g. blocking attention to TF keys, path patching, TF token deletion) or for the claim to be softened. Complaints that attention is 'not explanation' in general, without tying them to this claim, do not count."
+    },
+    {
+      "flaw_id": "A06-F4",
+      "type": "B1",
+      "family": "biological",
+      "quote": "The TF keys receiving the most attention from erythroid-gene queries were GATA1 (10.8% of attention mass), KLF1 (7.2%), MYOD1 (5.9%) and TAL1 (4.6%), which together form the core transcriptional regulators of the erythroid program.",
+      "description": "MYOD1 is the skeletal-muscle master regulator. It is not expressed in erythroid or other hematopoietic cells, and so should rarely appear as a token in erythroid cells' rank-value inputs. Presenting it as a core erythroid regulator without comment is biologically implausible.",
+      "detection_criterion": "The critique must flag MYOD1 as a muscle-specific TF that is implausible as an erythroid regulator or not expressed in erythroid/hematopoietic cells. Generic doubts about the TF list do not count."
+    }
+  ]
+}

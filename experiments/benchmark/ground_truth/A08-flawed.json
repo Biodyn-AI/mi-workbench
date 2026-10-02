@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A08-flawed",
+  "scenario": "Transfer of attention-edge score thresholds from kidney to lung (cross-tissue calibration of a single-cell foundation model GRN)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A08-F1",
+      "type": "C2",
+      "family": "confounding",
+      "quote": "Enrichment of reference edges among thresholded edges was assessed against 1,000 size-matched sets of TF–target pairs drawn uniformly at random from the tissue's candidate space.",
+      "description": "DoRothEA is dominated by a small number of heavily studied hub TFs with many annotated targets, and attention scores concentrate on highly expressed/hub genes; a uniform random-pair null ignores node degree, so the reported 3.9-fold enrichment (and the 'nearly four-fold enrichment for curated regulatory edges' interpretation) may simply reflect hub/degree bias rather than edge-level signal.",
+      "detection_criterion": "The critique must note that the uniform random-pair null does not control for node degree / hub or well-studied TFs in DoRothEA (and for score concentration on such genes), so the fold enrichment is inflated, and must ask for a degree-preserving (e.g. edge-swap) or degree-matched null, or per-TF/degree-stratified evaluation. Generic concerns that DoRothEA is incomplete or not tissue-specific do not qualify."
+    },
+    {
+      "flaw_id": "A08-F2",
+      "type": "S2",
+      "family": "statistics",
+      "quote": "Across the 2.41 million pairs scored in both tissues, kidney and lung attention scores were positively correlated (Spearman ρ = 0.028, p < 10^-300), indicating that the edge ranking is conserved between tissues and supporting direct reuse of the kidney threshold.",
+      "description": "With 2.41 million pairs, a Spearman correlation of 0.028 is astronomically significant yet practically negligible (it implies almost no shared ranking); interpreting it as conservation of edge ranking and as the justification for threshold transfer mistakes statistical significance for effect size.",
+      "detection_criterion": "The critique must say that rho = 0.028 is a negligible correlation (essentially no concordance, well under 1% of rank variance) whose tiny p-value is driven by the 2.41 million pairs, and therefore does not support the claim that edge rankings are conserved or justify transferring the threshold. A generic remark about large samples or p-values without tying it to this negligible correlation and the conservation claim does not qualify."
+    },
+    {
+      "flaw_id": "A08-F3",
+      "type": "L2",
+      "family": "causal_logic",
+      "quote": "As independent support for the transferred edges, we compared them with a GRNBoost2 network inferred from the same 10,000 lung cells: 61% of the 16,912 edges ranked in the top 5% of GRNBoost2 importances for their target gene, against 5% expected by chance.",
+      "description": "GRNBoost2 infers edges from co-expression-like dependencies in the very same lung cells from which the attention scores were computed, and attention scores themselves track co-expression, so agreement between the two is expected and does not constitute independent confirmation that the edges are real lung TF–target relationships.",
+      "detection_criterion": "The critique must state that the GRNBoost2 comparison is circular/non-independent because GRNBoost2 is inferred from the same lung cells (co-expression-based) that also shape the attention scores, so the 61% overlap cannot validate the transferred edges; it should call for genuinely independent evidence (e.g. perturbation/Perturb-seq, ChIP-seq, or a lung-specific external reference). Simply noting that GRNBoost2 is another imperfect method, without the same-data circularity point, does not qualify."
+    },
+    {
+      "flaw_id": "A08-F4",
+      "type": "B1",
+      "family": "biological",
+      "quote": "The AT2 module is organized around NKX2-1 and PAX8, the lineage factors that maintain surfactant gene expression in alveolar type II cells, with FOXA2 and CEBPA as secondary regulators, suggesting that the transferred threshold preserves lung-specific structure.",
+      "description": "PAX8 is a kidney, thyroid and Müllerian lineage TF that is essentially not expressed in lung alveolar epithelium (lung adenocarcinomas are characteristically PAX8-negative) and has no role in AT2 identity or surfactant expression; its presence as a top AT2 hub is biologically implausible, possibly kidney carry-over from the calibration tissue, and is presented without comment as evidence of lung-specific structure.",
+      "detection_criterion": "The critique must specifically flag PAX8 as implausible as an AT2/lung regulator (not expressed in lung alveolar epithelium; a kidney/thyroid/Müllerian lineage factor), e.g. noting it may indicate kidney carry-over or an artefact, rather than lung-specific structure. Generic doubts about hub TFs, or questioning NKX2-1/FOXA2/CEBPA, do not qualify."
+    }
+  ]
+}

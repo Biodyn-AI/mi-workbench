@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A06-clean",
+  "scenario": "Ablating individual Geneformer attention heads impairs masked prediction of hematopoietic lineage genes",
+  "version": "clean",
+  "flaws": []
+}

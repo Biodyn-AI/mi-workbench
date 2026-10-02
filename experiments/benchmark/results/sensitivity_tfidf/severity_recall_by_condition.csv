@@ -1,0 +1,21 @@
+view,model,condition,label,estimate,ci_low,ci_high,n_units,n_items
+judge:gpt-5.6-sol,gpt-5.5,C1,single rigour,0.6944,0.6181,0.7708,36,12
+judge:gpt-5.6-sol,gpt-5.5,C2,single combined,0.8194,0.7083,0.9167,36,12
+judge:gpt-5.6-sol,gpt-5.5,C3,rigour x3,0.9167,0.8542,0.9722,36,12
+judge:gpt-5.6-sol,gpt-5.5,C4,combined x3,0.9028,0.8333,0.9653,36,12
+judge:gpt-5.6-sol,gpt-5.5,C5,panel (rigour+adversarial+bio),0.8958,0.8333,0.9514,36,12
+judge:gpt-5.6-sol,gpt-5.6-luna,C1,single rigour,0.6806,0.5764,0.7917,36,12
+judge:gpt-5.6-sol,gpt-5.6-luna,C2,single combined,0.7639,0.6458,0.875,36,12
+judge:gpt-5.6-sol,gpt-5.6-luna,C3,rigour x3,0.8333,0.7429,0.9236,36,12
+judge:gpt-5.6-sol,gpt-5.6-luna,C4,combined x3,0.8819,0.7917,0.9583,36,12
+judge:gpt-5.6-sol,gpt-5.6-luna,C5,panel (rigour+adversarial+bio),0.8958,0.8194,0.9653,36,12
+judge:gpt-5.6-sol,gpt-5.6-sol,C1,single rigour,0.8472,0.7708,0.9236,36,12
+judge:gpt-5.6-sol,gpt-5.6-sol,C2,single combined,0.9097,0.8056,0.9792,36,12
+judge:gpt-5.6-sol,gpt-5.6-sol,C3,rigour x3,0.9444,0.875,1.0,36,12
+judge:gpt-5.6-sol,gpt-5.6-sol,C4,combined x3,0.9514,0.8819,1.0,36,12
+judge:gpt-5.6-sol,gpt-5.6-sol,C5,panel (rigour+adversarial+bio),0.9514,0.8958,1.0,36,12
+judge:gpt-5.6-sol,pooled,C1,single rigour,0.7407,0.669,0.8102,108,12
+judge:gpt-5.6-sol,pooled,C2,single combined,0.831,0.7245,0.919,108,12
+judge:gpt-5.6-sol,pooled,C3,rigour x3,0.8981,0.8356,0.956,108,12
+judge:gpt-5.6-sol,pooled,C4,combined x3,0.912,0.8472,0.9699,108,12
+judge:gpt-5.6-sol,pooled,C5,panel (rigour+adversarial+bio),0.9144,0.8542,0.9676,108,12

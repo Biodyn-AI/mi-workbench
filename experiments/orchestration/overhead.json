@@ -1,0 +1,3140 @@
+{
+  "schema": "miw-orchestration-overhead-set/1",
+  "storages": [
+    "internal_apfs",
+    "external_exfat"
+  ],
+  "integrity_ok": true,
+  "results": [
+    {
+      "schema": "miw-orchestration-overhead/1",
+      "created_utc": "2026-10-01T16:20:54.797301Z",
+      "finished_utc": "2026-10-01T16:25:40.344414Z",
+      "backend": "mock adapter (fixed delay); measurement of the orchestration layer only",
+      "path": "backend.orchestrator.runner.execute_run with backend.database (SQLite, WAL) and artifact writing to a temporary workspace",
+      "preset": "reviewer_consensus",
+      "iterations_per_run": 6,
+      "concurrency_levels": [
+        1,
+        2,
+        5,
+        10,
+        20
+      ],
+      "repeats": 5,
+      "adapter_delays_s": [
+        0.0,
+        1.0
+      ],
+      "mock_fixed_iteration": 1,
+      "convergence_enabled": false,
+      "merge": {
+        "consensus_similarity_method": "jaccard",
+        "consensus_similarity_threshold": 0.5
+      },
+      "definitions": {
+        "overhead_ms_per_iteration": "(run wall time - union of the run's adapter-call intervals) / iterations",
+        "overhead_upper_ms_per_iteration": "(run wall time - iterations x mock delay) / iterations (counts all event-loop contention as overhead)",
+        "throughput_iters_per_s": "iterations completed in a batch / batch wall time",
+        "latency_s": "wall time of one execute_run call",
+        "cpu_ms_per_iteration": "process CPU time (all threads) during the batch / iterations",
+        "percentiles": "nearest rank over all runs of all repeats at a level"
+      },
+      "environment": {
+        "python": "3.11.14",
+        "platform": "macOS-26.3-arm64-arm-64bit",
+        "machine": "arm64",
+        "cpu_count": 10,
+        "sqlite_version": "3.51.1",
+        "aiosqlite_version": "0.22.1",
+        "workdir": "/private/tmp/miw_overhead/miw_overhead_ium21zm8",
+        "workdir_kept": false,
+        "loadavg_start": [
+          192.72,
+          120.87,
+          82.01
+        ],
+        "loadavg_end": [
+          230.71,
+          177.26,
+          117.91
+        ]
+      },
+      "sweeps": [
+        {
+          "adapter_delay_s": 0.0,
+          "warmup": {
+            "wall_seconds": 0.0505,
+            "integrity_ok": true
+          },
+          "rows": [
+            {
+              "concurrency": 1,
+              "repeats": 5,
+              "runs": 5,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                0.1976,
+                0.212,
+                0.1231,
+                0.1604,
+                0.1796
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 35.65,
+                "p50": 33.4,
+                "p95": 48.74,
+                "min": 28.31,
+                "max": 48.74
+              },
+              "latency_s": {
+                "n": 5,
+                "mean": 0.1741,
+                "p50": 0.1792,
+                "p95": 0.2117,
+                "min": 0.1226,
+                "max": 0.2117
+              },
+              "overhead_ms_per_iteration": {
+                "n": 5,
+                "mean": 28.76,
+                "p50": 29.63,
+                "p95": 35.07,
+                "min": 20.27,
+                "max": 35.07
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 5,
+                "mean": 29.02,
+                "p50": 29.86,
+                "p95": 35.28,
+                "min": 20.44,
+                "max": 35.28
+              },
+              "adapter_ms_per_iteration": {
+                "n": 5,
+                "mean": 0.26,
+                "p50": 0.22,
+                "p95": 0.54,
+                "min": 0.17,
+                "max": 0.54
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 5,
+                "mean": 0.991,
+                "p50": 0.9924,
+                "p95": 0.9939,
+                "min": 0.9837,
+                "max": 0.9939
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 9.43,
+                "p50": 9.38,
+                "p95": 10.44,
+                "min": 8.25,
+                "max": 10.44
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 15.53,
+                "p50": 10.91,
+                "p95": 46.49,
+                "min": 2.36,
+                "max": 46.49
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 2,
+                  "iterations_checked": 8,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 3,
+                  "iterations_checked": 14,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 4,
+                  "iterations_checked": 20,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 5,
+                  "iterations_checked": 26,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 6,
+                  "iterations_checked": 32,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                192.72,
+                120.87,
+                82.01
+              ]
+            },
+            {
+              "concurrency": 2,
+              "repeats": 5,
+              "runs": 10,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                0.4502,
+                0.3468,
+                0.2218,
+                0.312,
+                0.413
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 36.58,
+                "p50": 34.6,
+                "p95": 54.11,
+                "min": 26.65,
+                "max": 54.11
+              },
+              "latency_s": {
+                "n": 10,
+                "mean": 0.3305,
+                "p50": 0.3268,
+                "p95": 0.4476,
+                "min": 0.1881,
+                "max": 0.4476
+              },
+              "overhead_ms_per_iteration": {
+                "n": 10,
+                "mean": 54.39,
+                "p50": 53.31,
+                "p95": 74.05,
+                "min": 30.55,
+                "max": 74.05
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 10,
+                "mean": 55.08,
+                "p50": 54.46,
+                "p95": 74.6,
+                "min": 31.36,
+                "max": 74.6
+              },
+              "adapter_ms_per_iteration": {
+                "n": 10,
+                "mean": 0.7,
+                "p50": 0.49,
+                "p95": 2.01,
+                "min": 0.29,
+                "max": 2.01
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 10,
+                "mean": 0.9868,
+                "p50": 0.9906,
+                "p95": 0.9952,
+                "min": 0.9647,
+                "max": 0.9952
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 9.36,
+                "p50": 9.23,
+                "p95": 9.97,
+                "min": 9.0,
+                "max": 9.97
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 13.29,
+                "p50": 6.26,
+                "p95": 44.41,
+                "min": 3.57,
+                "max": 44.41
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 8,
+                  "iterations_checked": 44,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 10,
+                  "iterations_checked": 56,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 12,
+                  "iterations_checked": 68,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 14,
+                  "iterations_checked": 80,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 16,
+                  "iterations_checked": 92,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                192.72,
+                120.87,
+                82.01
+              ]
+            },
+            {
+              "concurrency": 5,
+              "repeats": 5,
+              "runs": 25,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                0.9199,
+                0.8123,
+                1.1072,
+                0.8182,
+                0.7475
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 34.69,
+                "p50": 36.67,
+                "p95": 40.13,
+                "min": 27.09,
+                "max": 40.13
+              },
+              "latency_s": {
+                "n": 25,
+                "mean": 0.7295,
+                "p50": 0.7262,
+                "p95": 1.103,
+                "min": 0.4153,
+                "max": 1.1068
+              },
+              "overhead_ms_per_iteration": {
+                "n": 25,
+                "mean": 120.44,
+                "p50": 120.7,
+                "p95": 178.96,
+                "min": 67.34,
+                "max": 182.89
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 25,
+                "mean": 121.59,
+                "p50": 121.03,
+                "p95": 183.83,
+                "min": 69.22,
+                "max": 184.47
+              },
+              "adapter_ms_per_iteration": {
+                "n": 25,
+                "mean": 1.14,
+                "p50": 0.51,
+                "p95": 4.23,
+                "min": 0.2,
+                "max": 8.1
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 25,
+                "mean": 0.9907,
+                "p50": 0.9936,
+                "p95": 0.9984,
+                "min": 0.9561,
+                "max": 0.9987
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 8.89,
+                "p50": 9.0,
+                "p95": 9.16,
+                "min": 8.24,
+                "max": 9.16
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 10.98,
+                "p50": 11.33,
+                "p95": 18.3,
+                "min": 4.52,
+                "max": 18.3
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 21,
+                  "iterations_checked": 122,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 26,
+                  "iterations_checked": 152,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 31,
+                  "iterations_checked": 182,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 36,
+                  "iterations_checked": 212,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 41,
+                  "iterations_checked": 242,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                195.31,
+                122.6,
+                82.85
+              ]
+            },
+            {
+              "concurrency": 10,
+              "repeats": 5,
+              "runs": 50,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                1.5226,
+                1.4592,
+                1.5372,
+                1.5334,
+                1.4291
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 40.13,
+                "p50": 39.41,
+                "p95": 41.98,
+                "min": 39.03,
+                "max": 41.98
+              },
+              "latency_s": {
+                "n": 50,
+                "mean": 1.097,
+                "p50": 1.107,
+                "p95": 1.5222,
+                "min": 0.5507,
+                "max": 1.5356
+              },
+              "overhead_ms_per_iteration": {
+                "n": 50,
+                "mean": 181.55,
+                "p50": 183.48,
+                "p95": 251.55,
+                "min": 90.5,
+                "max": 255.2
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 50,
+                "mean": 182.84,
+                "p50": 184.49,
+                "p95": 253.7,
+                "min": 91.79,
+                "max": 255.94
+              },
+              "adapter_ms_per_iteration": {
+                "n": 50,
+                "mean": 1.29,
+                "p50": 0.54,
+                "p95": 5.14,
+                "min": 0.21,
+                "max": 9.0
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 50,
+                "mean": 0.9922,
+                "p50": 0.9969,
+                "p95": 0.9989,
+                "min": 0.9422,
+                "max": 0.999
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 8.93,
+                "p50": 8.99,
+                "p95": 9.14,
+                "min": 8.61,
+                "max": 9.14
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 10.54,
+                "p50": 12.6,
+                "p95": 16.08,
+                "min": 3.35,
+                "max": 16.08
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 51,
+                  "iterations_checked": 302,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 61,
+                  "iterations_checked": 362,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 71,
+                  "iterations_checked": 422,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 81,
+                  "iterations_checked": 482,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 91,
+                  "iterations_checked": 542,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                196.96,
+                124.15,
+                83.63
+              ]
+            },
+            {
+              "concurrency": 20,
+              "repeats": 5,
+              "runs": 100,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                3.3728,
+                3.7372,
+                5.9399,
+                11.8801,
+                6.9646
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 23.04,
+                "p50": 20.2,
+                "p95": 35.58,
+                "min": 10.1,
+                "max": 35.58
+              },
+              "latency_s": {
+                "n": 100,
+                "mean": 4.6843,
+                "p50": 3.9699,
+                "p95": 10.5726,
+                "min": 0.9062,
+                "max": 11.8562
+              },
+              "overhead_ms_per_iteration": {
+                "n": 100,
+                "mean": 778.36,
+                "p50": 652.24,
+                "p95": 1750.2,
+                "min": 150.78,
+                "max": 1974.38
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 100,
+                "mean": 780.71,
+                "p50": 661.65,
+                "p95": 1762.1,
+                "min": 151.03,
+                "max": 1976.04
+              },
+              "adapter_ms_per_iteration": {
+                "n": 100,
+                "mean": 2.35,
+                "p50": 0.9,
+                "p95": 7.56,
+                "min": 0.23,
+                "max": 14.08
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 100,
+                "mean": 0.9963,
+                "p50": 0.9983,
+                "p95": 0.9997,
+                "min": 0.9772,
+                "max": 0.9998
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 10.0,
+                "p50": 10.02,
+                "p95": 11.16,
+                "min": 8.62,
+                "max": 11.16
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 25.58,
+                "p50": 18.61,
+                "p95": 55.8,
+                "min": 5.64,
+                "max": 55.8
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 111,
+                  "iterations_checked": 662,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 131,
+                  "iterations_checked": 782,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 151,
+                  "iterations_checked": 902,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 171,
+                  "iterations_checked": 1022,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 191,
+                  "iterations_checked": 1142,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                198.57,
+                125.69,
+                84.41
+              ]
+            }
+          ],
+          "integrity_ok": true
+        },
+        {
+          "adapter_delay_s": 1.0,
+          "warmup": {
+            "wall_seconds": 2.1428,
+            "integrity_ok": true
+          },
+          "rows": [
+            {
+              "concurrency": 1,
+              "repeats": 5,
+              "runs": 5,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.1188,
+                6.3173,
+                6.5618,
+                6.3396,
+                6.563
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 0.94,
+                "p50": 0.95,
+                "p95": 0.98,
+                "min": 0.91,
+                "max": 0.98
+              },
+              "latency_s": {
+                "n": 5,
+                "mean": 6.3729,
+                "p50": 6.3253,
+                "p95": 6.5625,
+                "min": 6.1186,
+                "max": 6.5625
+              },
+              "overhead_ms_per_iteration": {
+                "n": 5,
+                "mean": 53.63,
+                "p50": 50.67,
+                "p95": 82.98,
+                "min": 17.06,
+                "max": 82.98
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 5,
+                "mean": 62.15,
+                "p50": 54.21,
+                "p95": 93.75,
+                "min": 19.77,
+                "max": 93.75
+              },
+              "adapter_ms_per_iteration": {
+                "n": 5,
+                "mean": 1008.52,
+                "p50": 1004.17,
+                "p95": 1021.43,
+                "min": 1002.71,
+                "max": 1021.43
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 5,
+                "mean": 0.05,
+                "p50": 0.0481,
+                "p95": 0.0759,
+                "min": 0.0167,
+                "max": 0.0759
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 13.76,
+                "p50": 14.25,
+                "p95": 15.87,
+                "min": 10.86,
+                "max": 15.87
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 14.65,
+                "p50": 5.36,
+                "p95": 34.03,
+                "min": 2.99,
+                "max": 34.03
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 2,
+                  "iterations_checked": 8,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 3,
+                  "iterations_checked": 14,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 4,
+                  "iterations_checked": 20,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 5,
+                  "iterations_checked": 26,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 6,
+                  "iterations_checked": 32,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                194.55,
+                133.28,
+                89.05
+              ]
+            },
+            {
+              "concurrency": 2,
+              "repeats": 5,
+              "runs": 10,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.7226,
+                7.442,
+                6.7948,
+                6.7487,
+                6.4099
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 1.76,
+                "p50": 1.78,
+                "p95": 1.87,
+                "min": 1.61,
+                "max": 1.87
+              },
+              "latency_s": {
+                "n": 10,
+                "mean": 6.7741,
+                "p50": 6.728,
+                "p95": 7.431,
+                "min": 6.3899,
+                "max": 7.431
+              },
+              "overhead_ms_per_iteration": {
+                "n": 10,
+                "mean": 118.21,
+                "p50": 115.19,
+                "p95": 221.9,
+                "min": 58.48,
+                "max": 221.9
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 10,
+                "mean": 129.02,
+                "p50": 121.34,
+                "p95": 238.5,
+                "min": 64.98,
+                "max": 238.5
+              },
+              "adapter_ms_per_iteration": {
+                "n": 10,
+                "mean": 1010.8,
+                "p50": 1010.37,
+                "p95": 1017.87,
+                "min": 1005.51,
+                "max": 1017.87
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 10,
+                "mean": 0.1031,
+                "p50": 0.1027,
+                "p95": 0.1792,
+                "min": 0.0549,
+                "max": 0.1792
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 12.18,
+                "p50": 11.89,
+                "p95": 14.81,
+                "min": 10.72,
+                "max": 14.81
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 38.76,
+                "p50": 27.95,
+                "p95": 75.3,
+                "min": 5.63,
+                "max": 75.3
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 8,
+                  "iterations_checked": 44,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 10,
+                  "iterations_checked": 56,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 12,
+                  "iterations_checked": 68,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 14,
+                  "iterations_checked": 80,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 16,
+                  "iterations_checked": 92,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                178.52,
+                135.33,
+                91.33
+              ]
+            },
+            {
+              "concurrency": 5,
+              "repeats": 5,
+              "runs": 25,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.3544,
+                8.0374,
+                7.5943,
+                7.7253,
+                7.3399
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 4.07,
+                "p50": 3.95,
+                "p95": 4.72,
+                "min": 3.73,
+                "max": 4.72
+              },
+              "latency_s": {
+                "n": 25,
+                "mean": 7.1917,
+                "p50": 7.3292,
+                "p95": 7.7246,
+                "min": 6.2515,
+                "max": 8.0367
+              },
+              "overhead_ms_per_iteration": {
+                "n": 25,
+                "mean": 184.29,
+                "p50": 200.98,
+                "p95": 266.67,
+                "min": 38.54,
+                "max": 313.2
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 25,
+                "mean": 198.62,
+                "p50": 221.53,
+                "p95": 287.43,
+                "min": 41.92,
+                "max": 339.45
+              },
+              "adapter_ms_per_iteration": {
+                "n": 25,
+                "mean": 1014.33,
+                "p50": 1011.52,
+                "p95": 1030.56,
+                "min": 1002.27,
+                "max": 1039.87
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 25,
+                "mean": 0.1499,
+                "p50": 0.1649,
+                "p95": 0.2071,
+                "min": 0.037,
+                "max": 0.2338
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 11.21,
+                "p50": 11.74,
+                "p95": 12.91,
+                "min": 8.49,
+                "max": 12.91
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 61.11,
+                "p50": 63.38,
+                "p95": 111.9,
+                "min": 5.16,
+                "max": 111.9
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 21,
+                  "iterations_checked": 122,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 26,
+                  "iterations_checked": 152,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 31,
+                  "iterations_checked": 182,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 36,
+                  "iterations_checked": 212,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 41,
+                  "iterations_checked": 242,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                164.54,
+                136.77,
+                93.64
+              ]
+            },
+            {
+              "concurrency": 10,
+              "repeats": 5,
+              "runs": 50,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                8.1736,
+                8.8818,
+                11.2668,
+                10.8161,
+                8.586
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 6.39,
+                "p50": 6.76,
+                "p95": 7.34,
+                "min": 5.33,
+                "max": 7.34
+              },
+              "latency_s": {
+                "n": 50,
+                "mean": 8.9248,
+                "p50": 8.497,
+                "p95": 11.2479,
+                "min": 7.4153,
+                "max": 11.2592
+              },
+              "overhead_ms_per_iteration": {
+                "n": 50,
+                "mean": 450.75,
+                "p50": 372.61,
+                "p95": 816.25,
+                "min": 210.52,
+                "max": 840.51
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 50,
+                "mean": 487.46,
+                "p50": 416.16,
+                "p95": 874.65,
+                "min": 235.89,
+                "max": 876.54
+              },
+              "adapter_ms_per_iteration": {
+                "n": 50,
+                "mean": 1036.71,
+                "p50": 1029.38,
+                "p95": 1104.58,
+                "min": 1007.55,
+                "max": 1120.7
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 50,
+                "mean": 0.2928,
+                "p50": 0.2645,
+                "p95": 0.4353,
+                "min": 0.1703,
+                "max": 0.4483
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 10.09,
+                "p50": 9.91,
+                "p95": 11.21,
+                "min": 9.45,
+                "max": 11.21
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 68.45,
+                "p50": 57.31,
+                "p95": 111.58,
+                "min": 42.32,
+                "max": 111.58
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 51,
+                  "iterations_checked": 302,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 61,
+                  "iterations_checked": 362,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 71,
+                  "iterations_checked": 422,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 81,
+                  "iterations_checked": 482,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 91,
+                  "iterations_checked": 542,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                181.44,
+                144.56,
+                98.47
+              ]
+            },
+            {
+              "concurrency": 20,
+              "repeats": 5,
+              "runs": 100,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                9.1116,
+                10.9952,
+                12.7597,
+                15.7414,
+                10.1069
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 10.6,
+                "p50": 10.91,
+                "p95": 13.17,
+                "min": 7.62,
+                "max": 13.17
+              },
+              "latency_s": {
+                "n": 100,
+                "mean": 10.6391,
+                "p50": 9.9413,
+                "p95": 14.8999,
+                "min": 7.3012,
+                "max": 15.7347
+              },
+              "overhead_ms_per_iteration": {
+                "n": 100,
+                "mean": 733.9,
+                "p50": 610.23,
+                "p95": 1394.35,
+                "min": 197.52,
+                "max": 1544.61
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 100,
+                "mean": 773.18,
+                "p50": 656.89,
+                "p95": 1483.32,
+                "min": 216.86,
+                "max": 1622.45
+              },
+              "adapter_ms_per_iteration": {
+                "n": 100,
+                "mean": 1039.28,
+                "p50": 1028.01,
+                "p95": 1105.42,
+                "min": 1001.21,
+                "max": 1126.06
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 100,
+                "mean": 0.3971,
+                "p50": 0.3739,
+                "p95": 0.5615,
+                "min": 0.1623,
+                "max": 0.589
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 10.23,
+                "p50": 10.73,
+                "p95": 11.22,
+                "min": 8.33,
+                "max": 11.22
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 38.08,
+                "p50": 31.35,
+                "p95": 89.97,
+                "min": 13.24,
+                "max": 89.97
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 111,
+                  "iterations_checked": 662,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 131,
+                  "iterations_checked": 782,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 151,
+                  "iterations_checked": 902,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 171,
+                  "iterations_checked": 1022,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 191,
+                  "iterations_checked": 1142,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                240.4,
+                165.94,
+                109.22
+              ]
+            }
+          ],
+          "integrity_ok": true
+        }
+      ],
+      "integrity_ok": true,
+      "storage": {
+        "label": "internal_apfs",
+        "parent_dir": "/private/tmp/miw_overhead",
+        "mount_point": "/",
+        "fs_type": "apfs",
+        "device": "/dev/disk3s1s1"
+      }
+    },
+    {
+      "schema": "miw-orchestration-overhead/1",
+      "created_utc": "2026-10-01T16:25:41.046096Z",
+      "finished_utc": "2026-10-01T16:32:02.421004Z",
+      "backend": "mock adapter (fixed delay); measurement of the orchestration layer only",
+      "path": "backend.orchestrator.runner.execute_run with backend.database (SQLite, WAL) and artifact writing to a temporary workspace",
+      "preset": "reviewer_consensus",
+      "iterations_per_run": 6,
+      "concurrency_levels": [
+        1,
+        2,
+        5,
+        10,
+        20
+      ],
+      "repeats": 5,
+      "adapter_delays_s": [
+        0.0,
+        1.0
+      ],
+      "mock_fixed_iteration": 1,
+      "convergence_enabled": false,
+      "merge": {
+        "consensus_similarity_method": "jaccard",
+        "consensus_similarity_threshold": 0.5
+      },
+      "definitions": {
+        "overhead_ms_per_iteration": "(run wall time - union of the run's adapter-call intervals) / iterations",
+        "overhead_upper_ms_per_iteration": "(run wall time - iterations x mock delay) / iterations (counts all event-loop contention as overhead)",
+        "throughput_iters_per_s": "iterations completed in a batch / batch wall time",
+        "latency_s": "wall time of one execute_run call",
+        "cpu_ms_per_iteration": "process CPU time (all threads) during the batch / iterations",
+        "percentiles": "nearest rank over all runs of all repeats at a level"
+      },
+      "environment": {
+        "python": "3.11.14",
+        "platform": "macOS-26.3-arm64-arm-64bit",
+        "machine": "arm64",
+        "cpu_count": 10,
+        "sqlite_version": "3.51.1",
+        "aiosqlite_version": "0.22.1",
+        "workdir": "/Volumes/Crucial X6/tmp_miw/overhead_exfat/miw_overhead_iigpmf3p",
+        "workdir_kept": false,
+        "loadavg_start": [
+          230.71,
+          177.26,
+          117.91
+        ],
+        "loadavg_end": [
+          360.85,
+          286.42,
+          190.08
+        ]
+      },
+      "sweeps": [
+        {
+          "adapter_delay_s": 0.0,
+          "warmup": {
+            "wall_seconds": 0.5486,
+            "integrity_ok": true
+          },
+          "rows": [
+            {
+              "concurrency": 1,
+              "repeats": 5,
+              "runs": 5,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                2.4073,
+                1.7672,
+                1.9586,
+                2.6408,
+                3.1193
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 2.63,
+                "p50": 2.49,
+                "p95": 3.4,
+                "min": 1.92,
+                "max": 3.4
+              },
+              "latency_s": {
+                "n": 5,
+                "mean": 2.3659,
+                "p50": 2.3984,
+                "p95": 3.0879,
+                "min": 1.7667,
+                "max": 3.0879
+              },
+              "overhead_ms_per_iteration": {
+                "n": 5,
+                "mean": 391.11,
+                "p50": 393.95,
+                "p95": 509.8,
+                "min": 293.11,
+                "max": 509.8
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 5,
+                "mean": 394.31,
+                "p50": 399.73,
+                "p95": 514.65,
+                "min": 294.45,
+                "max": 514.65
+              },
+              "adapter_ms_per_iteration": {
+                "n": 5,
+                "mean": 3.2,
+                "p50": 3.71,
+                "p95": 5.78,
+                "min": 0.31,
+                "max": 5.78
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 5,
+                "mean": 0.9924,
+                "p50": 0.9915,
+                "p95": 0.999,
+                "min": 0.9855,
+                "max": 0.999
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 18.38,
+                "p50": 18.75,
+                "p95": 19.62,
+                "min": 17.1,
+                "max": 19.62
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 187.14,
+                "p50": 193.4,
+                "p95": 286.22,
+                "min": 112.56,
+                "max": 286.22
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 2,
+                  "iterations_checked": 8,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 3,
+                  "iterations_checked": 14,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 4,
+                  "iterations_checked": 20,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 5,
+                  "iterations_checked": 26,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 6,
+                  "iterations_checked": 32,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                235.38,
+                179.12,
+                118.91
+              ]
+            },
+            {
+              "concurrency": 2,
+              "repeats": 5,
+              "runs": 10,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                2.7422,
+                1.1916,
+                1.1324,
+                1.2209,
+                1.7944
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 8.31,
+                "p50": 9.83,
+                "p95": 10.6,
+                "min": 4.38,
+                "max": 10.6
+              },
+              "latency_s": {
+                "n": 10,
+                "mean": 1.5977,
+                "p50": 1.2092,
+                "p95": 2.7415,
+                "min": 1.1126,
+                "max": 2.7415
+              },
+              "overhead_ms_per_iteration": {
+                "n": 10,
+                "mean": 264.94,
+                "p50": 200.36,
+                "p95": 454.58,
+                "min": 185.08,
+                "max": 454.58
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 10,
+                "mean": 266.28,
+                "p50": 201.54,
+                "p95": 456.91,
+                "min": 185.43,
+                "max": 456.91
+              },
+              "adapter_ms_per_iteration": {
+                "n": 10,
+                "mean": 1.34,
+                "p50": 0.51,
+                "p95": 4.22,
+                "min": 0.19,
+                "max": 4.22
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 10,
+                "mean": 0.9952,
+                "p50": 0.9978,
+                "p95": 0.9994,
+                "min": 0.9869,
+                "max": 0.9994
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 13.43,
+                "p50": 13.02,
+                "p95": 15.35,
+                "min": 12.49,
+                "max": 15.35
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 108.71,
+                "p50": 109.74,
+                "p95": 174.09,
+                "min": 40.05,
+                "max": 174.09
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 8,
+                  "iterations_checked": 44,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 10,
+                  "iterations_checked": 56,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 12,
+                  "iterations_checked": 68,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 14,
+                  "iterations_checked": 80,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 16,
+                  "iterations_checked": 92,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                242.42,
+                182.5,
+                120.81
+              ]
+            },
+            {
+              "concurrency": 5,
+              "repeats": 5,
+              "runs": 25,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                3.3711,
+                3.9707,
+                7.4248,
+                7.3971,
+                5.6147
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 5.98,
+                "p50": 5.34,
+                "p95": 8.9,
+                "min": 4.04,
+                "max": 8.9
+              },
+              "latency_s": {
+                "n": 25,
+                "mean": 4.8638,
+                "p50": 5.2745,
+                "p95": 7.3723,
+                "min": 1.9738,
+                "max": 7.4229
+              },
+              "overhead_ms_per_iteration": {
+                "n": 25,
+                "mean": 804.6,
+                "p50": 873.74,
+                "p95": 1215.42,
+                "min": 328.67,
+                "max": 1234.34
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 25,
+                "mean": 810.63,
+                "p50": 879.08,
+                "p95": 1228.72,
+                "min": 328.96,
+                "max": 1237.16
+              },
+              "adapter_ms_per_iteration": {
+                "n": 25,
+                "mean": 6.02,
+                "p50": 3.33,
+                "p95": 13.49,
+                "min": 0.29,
+                "max": 13.51
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 25,
+                "mean": 0.9914,
+                "p50": 0.9957,
+                "p95": 0.9995,
+                "min": 0.9701,
+                "max": 0.9997
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 13.24,
+                "p50": 13.12,
+                "p95": 13.95,
+                "min": 12.44,
+                "max": 13.95
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 107.15,
+                "p50": 101.27,
+                "p95": 158.28,
+                "min": 53.84,
+                "max": 158.28
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 21,
+                  "iterations_checked": 122,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 26,
+                  "iterations_checked": 152,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 31,
+                  "iterations_checked": 182,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 36,
+                  "iterations_checked": 212,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 41,
+                  "iterations_checked": 242,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                237.57,
+                183.49,
+                121.89
+              ]
+            },
+            {
+              "concurrency": 10,
+              "repeats": 5,
+              "runs": 50,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.394,
+                3.206,
+                3.1968,
+                3.2339,
+                3.4147
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 16.6,
+                "p50": 18.55,
+                "p95": 18.77,
+                "min": 9.38,
+                "max": 18.77
+              },
+              "latency_s": {
+                "n": 50,
+                "mean": 3.0289,
+                "p50": 2.7209,
+                "p95": 6.2812,
+                "min": 1.284,
+                "max": 6.3882
+              },
+              "overhead_ms_per_iteration": {
+                "n": 50,
+                "mean": 503.28,
+                "p50": 452.97,
+                "p95": 1044.51,
+                "min": 213.71,
+                "max": 1061.79
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 50,
+                "mean": 504.82,
+                "p50": 453.49,
+                "p95": 1046.87,
+                "min": 214.0,
+                "max": 1064.7
+              },
+              "adapter_ms_per_iteration": {
+                "n": 50,
+                "mean": 1.54,
+                "p50": 0.51,
+                "p95": 6.42,
+                "min": 0.21,
+                "max": 17.16
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 50,
+                "mean": 0.9971,
+                "p50": 0.9989,
+                "p95": 0.9995,
+                "min": 0.9729,
+                "max": 0.9996
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 12.61,
+                "p50": 12.6,
+                "p95": 13.35,
+                "min": 11.98,
+                "max": 13.35
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 40.76,
+                "p50": 28.99,
+                "p95": 91.24,
+                "min": 22.89,
+                "max": 91.24
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 51,
+                  "iterations_checked": 302,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 61,
+                  "iterations_checked": 362,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 71,
+                  "iterations_checked": 422,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 81,
+                  "iterations_checked": 482,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 91,
+                  "iterations_checked": 542,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                247.35,
+                191.21,
+                127.14
+              ]
+            },
+            {
+              "concurrency": 20,
+              "repeats": 5,
+              "runs": 100,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                7.1244,
+                6.2597,
+                5.6914,
+                5.783,
+                7.066
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 18.97,
+                "p50": 19.17,
+                "p95": 21.08,
+                "min": 16.84,
+                "max": 21.08
+              },
+              "latency_s": {
+                "n": 100,
+                "mean": 4.6024,
+                "p50": 4.7944,
+                "p95": 6.6175,
+                "min": 1.1306,
+                "max": 7.1235
+              },
+              "overhead_ms_per_iteration": {
+                "n": 100,
+                "mean": 766.02,
+                "p50": 798.71,
+                "p95": 1102.06,
+                "min": 186.27,
+                "max": 1186.83
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 100,
+                "mean": 767.07,
+                "p50": 799.06,
+                "p95": 1102.91,
+                "min": 188.43,
+                "max": 1187.25
+              },
+              "adapter_ms_per_iteration": {
+                "n": 100,
+                "mean": 1.05,
+                "p50": 0.49,
+                "p95": 4.86,
+                "min": 0.18,
+                "max": 8.75
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 100,
+                "mean": 0.9984,
+                "p50": 0.9993,
+                "p95": 0.9997,
+                "min": 0.9868,
+                "max": 0.9998
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 13.64,
+                "p50": 13.44,
+                "p95": 14.04,
+                "min": 13.34,
+                "max": 14.04
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 27.02,
+                "p50": 28.53,
+                "p95": 29.77,
+                "min": 22.97,
+                "max": 29.77
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 111,
+                  "iterations_checked": 662,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 131,
+                  "iterations_checked": 782,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 151,
+                  "iterations_checked": 902,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 171,
+                  "iterations_checked": 1022,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 191,
+                  "iterations_checked": 1142,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                242.96,
+                193.89,
+                129.59
+              ]
+            }
+          ],
+          "integrity_ok": true
+        },
+        {
+          "adapter_delay_s": 1.0,
+          "warmup": {
+            "wall_seconds": 2.2142,
+            "integrity_ok": true
+          },
+          "rows": [
+            {
+              "concurrency": 1,
+              "repeats": 5,
+              "runs": 5,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.3712,
+                6.3811,
+                6.3842,
+                6.369,
+                6.5499
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 0.94,
+                "p50": 0.94,
+                "p95": 0.94,
+                "min": 0.92,
+                "max": 0.94
+              },
+              "latency_s": {
+                "n": 5,
+                "mean": 6.4108,
+                "p50": 6.3809,
+                "p95": 6.5496,
+                "min": 6.3689,
+                "max": 6.5496
+              },
+              "overhead_ms_per_iteration": {
+                "n": 5,
+                "mean": 66.35,
+                "p50": 61.11,
+                "p95": 89.41,
+                "min": 59.4,
+                "max": 89.41
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 5,
+                "mean": 68.47,
+                "p50": 63.48,
+                "p95": 91.59,
+                "min": 61.48,
+                "max": 91.59
+              },
+              "adapter_ms_per_iteration": {
+                "n": 5,
+                "mean": 1002.12,
+                "p50": 1002.11,
+                "p95": 1002.37,
+                "min": 1001.85,
+                "max": 1002.37
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 5,
+                "mean": 0.062,
+                "p50": 0.0575,
+                "p95": 0.0819,
+                "min": 0.056,
+                "max": 0.0819
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 16.71,
+                "p50": 16.68,
+                "p95": 17.39,
+                "min": 15.9,
+                "max": 17.39
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 18.67,
+                "p50": 18.04,
+                "p95": 22.17,
+                "min": 15.27,
+                "max": 22.17
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 2,
+                  "iterations_checked": 8,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 3,
+                  "iterations_checked": 14,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 4,
+                  "iterations_checked": 20,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 5,
+                  "iterations_checked": 26,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 6,
+                  "iterations_checked": 32,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                245.5,
+                200.29,
+                134.87
+              ]
+            },
+            {
+              "concurrency": 2,
+              "repeats": 5,
+              "runs": 10,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                6.912,
+                6.9093,
+                6.7947,
+                7.1828,
+                7.9117
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 1.69,
+                "p50": 1.74,
+                "p95": 1.77,
+                "min": 1.52,
+                "max": 1.77
+              },
+              "latency_s": {
+                "n": 10,
+                "mean": 7.1274,
+                "p50": 6.9102,
+                "p95": 7.908,
+                "min": 6.7775,
+                "max": 7.908
+              },
+              "overhead_ms_per_iteration": {
+                "n": 10,
+                "mean": 170.05,
+                "p50": 145.87,
+                "p95": 302.07,
+                "min": 107.82,
+                "max": 302.07
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 10,
+                "mean": 187.9,
+                "p50": 151.7,
+                "p95": 318.0,
+                "min": 129.58,
+                "max": 318.0
+              },
+              "adapter_ms_per_iteration": {
+                "n": 10,
+                "mean": 1017.85,
+                "p50": 1013.21,
+                "p95": 1042.29,
+                "min": 1004.07,
+                "max": 1042.29
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 10,
+                "mean": 0.1408,
+                "p50": 0.1267,
+                "p95": 0.2295,
+                "min": 0.0939,
+                "max": 0.2295
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 15.34,
+                "p50": 15.11,
+                "p95": 16.29,
+                "min": 14.75,
+                "max": 16.29
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 119.5,
+                "p50": 24.57,
+                "p95": 500.92,
+                "min": 23.04,
+                "max": 500.92
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 8,
+                  "iterations_checked": 44,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 10,
+                  "iterations_checked": 56,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 12,
+                  "iterations_checked": 68,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 14,
+                  "iterations_checked": 80,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 16,
+                  "iterations_checked": 92,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                238.81,
+                203.67,
+                138.74
+              ]
+            },
+            {
+              "concurrency": 5,
+              "repeats": 5,
+              "runs": 25,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                8.3559,
+                9.1584,
+                8.1897,
+                8.0281,
+                8.9057
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 3.53,
+                "p50": 3.59,
+                "p95": 3.74,
+                "min": 3.28,
+                "max": 3.74
+              },
+              "latency_s": {
+                "n": 25,
+                "mean": 8.4135,
+                "p50": 8.3055,
+                "p95": 9.0645,
+                "min": 7.7868,
+                "max": 9.1579
+              },
+              "overhead_ms_per_iteration": {
+                "n": 25,
+                "mean": 349.83,
+                "p50": 335.83,
+                "p95": 470.54,
+                "min": 252.74,
+                "max": 470.65
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 25,
+                "mean": 402.26,
+                "p50": 384.24,
+                "p95": 510.74,
+                "min": 297.81,
+                "max": 526.32
+              },
+              "adapter_ms_per_iteration": {
+                "n": 25,
+                "mean": 1052.43,
+                "p50": 1052.65,
+                "p95": 1076.64,
+                "min": 1017.04,
+                "max": 1078.58
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 25,
+                "mean": 0.2478,
+                "p50": 0.2431,
+                "p95": 0.3084,
+                "min": 0.1906,
+                "max": 0.3117
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 14.31,
+                "p50": 14.58,
+                "p95": 16.41,
+                "min": 11.94,
+                "max": 16.41
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 65.16,
+                "p50": 71.52,
+                "p95": 83.21,
+                "min": 40.92,
+                "max": 83.21
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 21,
+                  "iterations_checked": 122,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 26,
+                  "iterations_checked": 152,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 31,
+                  "iterations_checked": 182,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 36,
+                  "iterations_checked": 212,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 41,
+                  "iterations_checked": 242,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                272.62,
+                215.02,
+                145.43
+              ]
+            },
+            {
+              "concurrency": 10,
+              "repeats": 5,
+              "runs": 50,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                16.6633,
+                8.9683,
+                10.2961,
+                8.9605,
+                8.6273
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 5.95,
+                "p50": 6.69,
+                "p95": 6.95,
+                "min": 3.6,
+                "max": 6.95
+              },
+              "latency_s": {
+                "n": 50,
+                "mean": 10.4811,
+                "p50": 8.9069,
+                "p95": 16.507,
+                "min": 6.8517,
+                "max": 16.6618
+              },
+              "overhead_ms_per_iteration": {
+                "n": 50,
+                "mean": 629.77,
+                "p50": 410.3,
+                "p95": 1562.47,
+                "min": 125.97,
+                "max": 1719.29
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 50,
+                "mean": 746.86,
+                "p50": 484.49,
+                "p95": 1751.17,
+                "min": 141.95,
+                "max": 1776.97
+              },
+              "adapter_ms_per_iteration": {
+                "n": 50,
+                "mean": 1117.08,
+                "p50": 1094.29,
+                "p95": 1399.99,
+                "min": 1001.45,
+                "max": 1477.13
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 50,
+                "mean": 0.3282,
+                "p50": 0.276,
+                "p95": 0.5681,
+                "min": 0.1103,
+                "max": 0.6301
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 11.52,
+                "p50": 10.9,
+                "p95": 14.74,
+                "min": 10.19,
+                "max": 14.74
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 41.86,
+                "p50": 28.77,
+                "p95": 75.17,
+                "min": 27.87,
+                "max": 75.17
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 51,
+                  "iterations_checked": 302,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 61,
+                  "iterations_checked": 362,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 71,
+                  "iterations_checked": 422,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 81,
+                  "iterations_checked": 482,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 91,
+                  "iterations_checked": 542,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                327.13,
+                238.14,
+                157.57
+              ]
+            },
+            {
+              "concurrency": 20,
+              "repeats": 5,
+              "runs": 100,
+              "iterations_per_run": 6,
+              "adapter_calls_per_run": [
+                12
+              ],
+              "wall_seconds": [
+                11.1853,
+                15.4762,
+                12.2825,
+                10.948,
+                10.7408
+              ],
+              "throughput_iters_per_s": {
+                "n": 5,
+                "mean": 10.08,
+                "p50": 10.73,
+                "p95": 11.17,
+                "min": 7.75,
+                "max": 11.17
+              },
+              "latency_s": {
+                "n": 100,
+                "mean": 11.7366,
+                "p50": 10.8985,
+                "p95": 15.2735,
+                "min": 9.2707,
+                "max": 15.4746
+              },
+              "overhead_ms_per_iteration": {
+                "n": 100,
+                "mean": 779.74,
+                "p50": 674.24,
+                "p95": 1396.88,
+                "min": 422.14,
+                "max": 1498.59
+              },
+              "overhead_upper_ms_per_iteration": {
+                "n": 100,
+                "mean": 956.1,
+                "p50": 816.42,
+                "p95": 1545.59,
+                "min": 545.12,
+                "max": 1579.09
+              },
+              "adapter_ms_per_iteration": {
+                "n": 100,
+                "mean": 1176.37,
+                "p50": 1159.8,
+                "p95": 1341.91,
+                "min": 1001.31,
+                "max": 1404.88
+              },
+              "overhead_fraction_of_run_wall": {
+                "n": 100,
+                "mean": 0.3875,
+                "p50": 0.3654,
+                "p95": 0.5504,
+                "min": 0.257,
+                "max": 0.5992
+              },
+              "cpu_ms_per_iteration": {
+                "n": 5,
+                "mean": 10.17,
+                "p50": 10.4,
+                "p95": 11.21,
+                "min": 9.34,
+                "max": 11.21
+              },
+              "run_creation_ms_per_run": {
+                "n": 5,
+                "mean": 34.23,
+                "p50": 36.22,
+                "p95": 41.29,
+                "min": 25.03,
+                "max": 41.29
+              },
+              "integrity": [
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 111,
+                  "iterations_checked": 662,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 131,
+                  "iterations_checked": 782,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 151,
+                  "iterations_checked": 902,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 171,
+                  "iterations_checked": 1022,
+                  "n_problems": 0,
+                  "problems": []
+                },
+                {
+                  "ok": true,
+                  "integrity_check": "ok",
+                  "foreign_key_violations": 0,
+                  "orphan_iteration_rows": 0,
+                  "orphan_run_rows": 0,
+                  "orphan_run_dirs": 0,
+                  "runs_checked": 191,
+                  "iterations_checked": 1142,
+                  "n_problems": 0,
+                  "problems": []
+                }
+              ],
+              "integrity_ok": true,
+              "loadavg_start": [
+                340.8,
+                255.55,
+                169.4
+              ]
+            }
+          ],
+          "integrity_ok": true
+        }
+      ],
+      "integrity_ok": true,
+      "storage": {
+        "label": "external_exfat",
+        "parent_dir": "/Volumes/Crucial X6/tmp_miw/overhead_exfat",
+        "mount_point": "/Volumes/Crucial X6",
+        "fs_type": "exfat",
+        "device": "/dev/disk6s2"
+      }
+    }
+  ]
+}

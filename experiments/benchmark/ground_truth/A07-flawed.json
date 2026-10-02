@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A07-flawed",
+  "scenario": "Activation patching localizes an interferon-response circuit in scGPT",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A07-F1",
+      "type": "C3",
+      "family": "confounding",
+      "quote": "Pairs from all eight donors were pooled and randomly assigned 70/30 to a discovery set (6,860 pairs) and an evaluation set (2,940 pairs).",
+      "description": "The discovery/evaluation split is at the level of cell pairs, so the same eight donors contribute to both the set used to select the circuit and the set used to test it; the evaluation-set faithfulness (0.84 vs 0.86) therefore cannot support the Interpretation's claim that the circuit generalizes beyond the cells used to find it and is not tied to particular individuals.",
+      "detection_criterion": "The critique must state that discovery and evaluation pairs share donors (random pair/cell-level split across all eight donors), so donor-specific signal can leak between circuit selection and evaluation and the held-out faithfulness does not demonstrate generalization to new individuals; it must call for a donor-held-out (e.g. leave-donor-out) split or equivalent. Generic remarks about needing more validation or replication do not qualify."
+    },
+    {
+      "flaw_id": "A07-F2",
+      "type": "T1",
+      "family": "technical",
+      "quote": "Because scaled dot-product attention is symmetric, A_ij = A_ji, the weight a head places from token i onto token j equals the reverse, so we ablated each unordered pair among the 40 most-attended tokens once (780 pairs per head) and report routes as undirected gene pairs.",
+      "description": "Scaled dot-product attention A = softmax(QK^T/sqrt(d)) uses separate query and key projections and a row-wise softmax, so it is generally asymmetric (A_ij != A_ji); the claimed symmetry is false and is used to justify ablating unordered pairs and reporting undirected routes, discarding the query-to-key direction that attention does define.",
+      "detection_criterion": "The critique must explicitly say that attention is not symmetric (different W_Q and W_K and/or row-wise softmax normalization make A_ij differ from A_ji), and that therefore ablating both entries together / reporting undirected routes is unjustified and the direction (which token reads from which) is recoverable. Merely criticizing the interpretability of attention or the choice of 40 tokens does not qualify."
+    },
+    {
+      "flaw_id": "A07-F3",
+      "type": "L2",
+      "family": "causal_logic",
+      "quote": "To confirm that the circuit carries the stimulation state, we trained an L2-regularized logistic regression on the concatenated, position-averaged outputs of the circuit components, scored by 5-fold cross-validation on the discovery cells, and compared it with the same probe on random component sets of equal size.",
+      "description": "The nine components were selected precisely because their outputs differ between stimulated and control cells in the discovery pairs, so a probe trained and cross-validated on those same discovery cells separating stimulated from control is guaranteed by construction; the 98.1% accuracy is presented as confirmation but is not independent evidence.",
+      "detection_criterion": "The critique must identify the probe validation as circular/non-independent: the circuit components were chosen on the discovery cells for carrying the stimulated-vs-control difference, and the probe is fit and scored on those same discovery cells (within-set cross-validation does not remove the selection), so high accuracy is expected and does not confirm the circuit. A general comment that probes can be misleading, without the selection-on-the-same-data point, does not qualify."
+    },
+    {
+      "flaw_id": "A07-F4",
+      "type": "S3",
+      "family": "statistics",
+      "quote": "In resting blood, the pre-set circuit-score threshold classified cells as ISG-high or not with 99.3% accuracy.",
+      "description": "Only 0.8% of resting cells (83 of 10,390) are ISG-high, so a classifier that labels every cell as not ISG-high already achieves about 99.2% accuracy; 99.3% accuracy is uninformative, yet it is the sole metric and is used to claim the circuit tracks interferon activity outside the stimulation experiment.",
+      "detection_criterion": "The critique must point out that accuracy is misleading given the ~0.8% prevalence of ISG-high cells (a trivial all-negative classifier gets ~99.2%), and must ask for imbalance-appropriate metrics such as precision/recall or sensitivity for ISG-high cells, AUPRC with its baseline, F1, or balanced accuracy. Asking for 'more metrics' without the class-imbalance argument does not qualify."
+    }
+  ]
+}

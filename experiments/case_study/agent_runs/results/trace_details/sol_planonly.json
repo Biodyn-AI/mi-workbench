@@ -1,0 +1,92 @@
+{
+ "key": "sol_planonly",
+ "run_id": "x4_sol_planonly",
+ "iterations": [
+  {
+   "iteration": 1,
+   "numbers": []
+  },
+  {
+   "iteration": 3,
+   "numbers": []
+  },
+  {
+   "iteration": 5,
+   "numbers": [
+    {
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "line": 11,
+     "context": "violate the task\u2019s central constraint.  Please rerun with:  1. Shell/Python execution access. 2. Read"
+    },
+    {
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "line": 12,
+     "context": "int.  Please rerun with:  1. Shell/Python execution access. 2. Read access to the stated kit director"
+    },
+    {
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "line": 13,
+     "context": "ecution access. 2. Read access to the stated kit directory. 3. Write access to this workspace.  Those"
+    }
+   ]
+  },
+  {
+   "iteration": 7,
+   "numbers": [
+    {
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "line": 13,
+     "context": "coding TF\u2192target regulation.  A successful rerun requires:  1. Programmatic read access to the kit. 2"
+    },
+    {
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "line": 14,
+     "context": "ul rerun requires:  1. Programmatic read access to the kit. 2. Python/numerical execution access. 3."
+    },
+    {
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "line": 15,
+     "context": "ad access to the kit. 2. Python/numerical execution access. 3. Write access to the workspace for the"
+    }
+   ]
+  },
+  {
+   "iteration": 9,
+   "numbers": [
+    {
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "line": 19,
+     "context": "tion contains TF\u2192target information.  A valid rerun needs:  1. Read access to the kit through Python"
+    },
+    {
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "line": 20,
+     "context": "the kit through Python or an equivalent numerical runtime. 2. Permission to execute numerical/statis"
+    },
+    {
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "line": 21,
+     "context": "ntime. 2. Permission to execute numerical/statistical code. 3. Write access to this workspace for `ME"
+    }
+   ]
+  }
+ ]
+}

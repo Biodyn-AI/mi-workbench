@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A01-flawed",
+  "scenario": "Geneformer V2-104M attention heads recover TRRUST TF-target edges in human PBMCs (attention-as-GRN analysis across all heads/layers)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A01-F1",
+      "type": "S1",
+      "family": "statistics",
+      "quote": "Against the degree-preserving null, 19 of the 144 heads showed significant enrichment (permutation p < 0.05), 14 of them in layers 7–10 (Table 1); we refer to these 19 as regulatory heads.",
+      "description": "Significance is declared for each of 144 heads (12 layers x 12 heads) at an uncorrected per-head threshold of p < 0.05, with no FDR or family-wise correction; about 7 heads are expected to pass by chance under the global null, and with 1,000 permutations the smallest attainable p (~0.001) cannot survive a Bonferroni threshold of 0.05/144 (~3.5e-4), so the 'regulatory head' set, its layer distribution and the top-head statistics are inflated by multiplicity/selection.",
+      "detection_criterion": "The critique must state that the 144 per-head tests (12 x 12 heads) were declared significant from uncorrected p < 0.05 without multiple-testing correction (BH-FDR, Bonferroni/Holm or equivalent), e.g. noting that ~7 false positives are expected by chance, or that few or no heads would survive correction given 1,000 permutations. A generic call for 'more rigorous statistics' or for replication without identifying the missing correction across heads does not qualify."
+    },
+    {
+      "flaw_id": "A01-F2",
+      "type": "C1",
+      "family": "confounding",
+      "quote": "Because the null preserves each gene's number of TRRUST partners, the enrichment cannot be attributed to highly connected genes attracting attention in general; it reflects pair-specific regulatory relationships between TFs and their targets.",
+      "description": "The degree-preserving null controls only gene-level connectivity, not pair-level co-expression or expression level (rank position/detection) of the two genes, which are known to drive attention scores in rank-value-encoded models; no co-expression or expression baseline was computed, so the enrichment (whose top pairs, e.g. CIITA-HLA-DRA and SPI1-CSF1R, are co-expressed cell-type programs) cannot be interpreted as regulation-specific.",
+      "detection_criterion": "The critique must say that the attention-TRRUST enrichment may be explained by co-expression and/or expression level (rank position, detection rate) of the gene pairs rather than regulation, and that a co-expression or expression-level baseline, or a conditional/partial analysis controlling for it, is required before interpreting the heads as regulatory; pointing out that the degree-preserving null does not address co-expression also qualifies. Generic requests for 'more baselines' or 'more controls' that do not name co-expression/expression confounding do not qualify."
+    },
+    {
+      "flaw_id": "A01-F3",
+      "type": "L1",
+      "family": "causal_logic",
+      "quote": "These heads are the mechanism through which Geneformer uses TF–target regulatory relationships to predict masked genes, and they constitute the model's internal regulatory circuit.",
+      "description": "The evidence is purely observational (cell-averaged attention compared with a reference network); no ablation, patching or other intervention was performed, so claims that these heads are the mechanism/circuit the model uses for masked-gene prediction are causal overclaims.",
+      "detection_criterion": "The critique must identify the claim that the heads are the mechanism/circuit Geneformer uses to predict masked genes as a causal or mechanistic claim unsupported by correlational attention evidence, and indicate that interventions (e.g. head ablation, activation patching, measuring effects on masked-gene predictions) would be needed. General remarks that 'attention is not explanation' count only if tied to this specific claim of use/mechanism."
+    },
+    {
+      "flaw_id": "A01-F4",
+      "type": "T1",
+      "family": "technical",
+      "quote": "Because scaled dot-product attention is symmetric between the two tokens (A_ij = A_ji), a single head cannot distinguish TF-to-target from target-to-TF attention; we therefore took one attention value per gene pair and evaluated TRRUST edges as unordered pairs.",
+      "description": "Attention A = softmax(QK^T/sqrt(d)) uses different query and key projections and a row-wise softmax, so it is row-stochastic and generally asymmetric (A_ij != A_ji); the false symmetry premise led the analysis to discard directional information, take an arbitrary single entry per pair and collapse directed TRRUST edges into unordered pairs.",
+      "detection_criterion": "The critique must state that attention matrices are not symmetric (because W_Q and W_K differ and/or softmax normalizes each query row), so the premise A_ij = A_ji is false and the decision to take one value per pair / treat edges as unordered discards or scrambles directional information. A comment that merely asks for 'directed evaluation' without identifying the false symmetry claim does not qualify."
+    }
+  ]
+}

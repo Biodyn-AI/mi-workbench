@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A09-clean",
+  "scenario": "A donor-age signal in Geneformer cell embeddings (age regression / aging axis)",
+  "version": "clean",
+  "flaws": []
+}

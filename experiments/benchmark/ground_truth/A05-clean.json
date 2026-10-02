@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A05-clean",
+  "scenario": "Sparse-autoencoder features on the scGPT residual stream correspond to biological pathways (enrichment analysis)",
+  "version": "clean",
+  "flaws": []
+}

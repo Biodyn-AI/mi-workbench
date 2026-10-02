@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A12-flawed",
+  "scenario": "Geneformer V2-104M gene-embedding cosine similarity compared with STRING physical protein-protein interactions (Tabula Sapiens), with candidate novel interactions",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A12-F1",
+      "type": "S2",
+      "family": "statistics",
+      "quote": "Across all scored pairs, STRING physical pairs had a mean cosine similarity of 0.019 (SD 0.141), compared with 0.012 (SD 0.139) for other pairs (Mann–Whitney p = 1e-29), showing that physical interaction partners are systematically closer in Geneformer's embedding space.",
+      "description": "The genome-wide difference is 0.007 in cosine against SDs of ~0.14 (standardized effect ~0.05, equivalent to an AUROC of ~0.51); the tiny p-value reflects the ~51,900 vs 33.7 million pairs, not a substantive effect, yet it is interpreted as interaction partners being 'systematically closer' in embedding space.",
+      "detection_criterion": "The critique must point out that the genome-wide difference in mean cosine (0.019 vs 0.012, i.e. ~0.007 with SD ~0.14; standardized effect ~0.05 or AUROC ~0.51) is practically negligible and that the very small p-value is driven by the enormous number of pairs, so the claim that interacting partners are 'systematically closer' is not supported by this result. Generic remarks that 'effect sizes should be reported' without identifying that this particular effect is negligible do not qualify."
+    },
+    {
+      "flaw_id": "A12-F2",
+      "type": "T2",
+      "family": "technical",
+      "quote": "Because Geneformer is pretrained with next-token prediction, learning to predict each gene from the genes ranked above it, the representation of a gene is formed at the position that precedes it; we therefore took the layer-11 hidden state at position i − 1 as the embedding of the gene at position i.",
+      "description": "Geneformer is a BERT-style encoder pretrained with masked-gene prediction and bidirectional attention, not an autoregressive next-token model; the hidden state at position i represents gene i, so taking the state at position i - 1 assigns each gene the contextual representation of the gene ranked just above it, invalidating the gene embeddings and every downstream similarity result.",
+      "detection_criterion": "The critique must state that Geneformer is trained with a masked-gene (masked language modelling, bidirectional) objective rather than next-token/autoregressive prediction, and that therefore using the hidden state at position i - 1 as gene i's embedding is wrong (it represents a different gene, the one ranked above). Identifying only one half (the objective is wrong, or the i - 1 offset is wrong because the hidden state at i encodes gene i) with a correct explanation qualifies; a vague comment on 'embedding extraction choices' does not."
+    },
+    {
+      "flaw_id": "A12-F3",
+      "type": "L2",
+      "family": "causal_logic",
+      "quote": "In the in-silico deletion test, deleting gene A shifted gene B's embedding more than the median matched random deletion for 381 of the 500 candidates (76%; binomial p = 5e-33 against 50%), which provides independent confirmation that these high-similarity pairs are genuine interactions missing from STRING.",
+      "description": "The 'validation' uses the same Geneformer model whose embeddings generated the candidates: embedding similarity and in-silico deletion shifts both derive from the model's own learned representation of co-occurring genes, so agreement between them is expected and is not independent evidence that the pairs are real protein-protein interactions; external evidence (e.g. held-out experimental PPI datasets such as BioPlex/HuRI, or wet-lab assays) is required.",
+      "detection_criterion": "The critique must state that the in-silico deletion check is not independent validation because it uses the same model (Geneformer's own representations) that produced the similarity-based predictions, so it cannot confirm that candidate pairs are genuine physical interactions, and must indicate that external/experimental interaction data are needed. Generic requests for 'experimental validation' that do not identify the circularity of model-based confirmation do not qualify."
+    },
+    {
+      "flaw_id": "A12-F4",
+      "type": "C1",
+      "family": "confounding",
+      "quote": "Because the reference was restricted to STRING's physical subnetwork, which excludes co-expression evidence, the enrichment shows that embedding similarity reflects protein–protein interaction itself rather than transcriptional co-variation of the interacting genes.",
+      "description": "Removing co-expression evidence from the reference does not remove co-expression from the predictor: embedding similarity computed from the same cells is expected to track co-expression and expression level, and the top hits (ribosome, complex I, proteasome, CCT, MCM) are highly expressed, tightly co-expressed complexes. Without a co-expression or expression-level baseline on the same cells, or a partial analysis conditioning on co-expression, the enrichment cannot be attributed to PPI-specific information.",
+      "detection_criterion": "The critique must state that embedding similarity may largely reflect co-expression and/or expression level of the gene pairs in the same cells (e.g. highly expressed, co-regulated complex subunits such as ribosomal or OXPHOS genes), that restricting STRING to physical interactions does not control this confound in the predictor, and that a co-expression (or expression-level) baseline or partial/conditional analysis is needed before claiming PPI-specific information. Generic requests for 'more baselines' without naming co-expression/expression confounding do not qualify."
+    }
+  ]
+}

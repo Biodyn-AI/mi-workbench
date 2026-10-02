@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A11-clean",
+  "scenario": "scGPT fine-tuned perturbation-response prediction compared against a linear baseline on held-out perturbations of the Replogle K562 essential-gene CRISPRi Perturb-seq screen",
+  "version": "clean",
+  "flaws": []
+}

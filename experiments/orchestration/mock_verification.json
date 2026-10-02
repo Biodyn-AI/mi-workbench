@@ -1,0 +1,203 @@
+{
+  "schema": "miw-orchestration-mock-verification/1",
+  "created_utc": "2026-10-01T16:20:54.650630Z",
+  "purpose": "Implementation verification of the merge semantics and loop control on the mock adapter, whose critique sets are fixed and hand-written (one critique is shared verbatim by two lenses). These results check that the code does what it specifies; they are not evidence about reviewer quality or coverage.",
+  "adapter": "mock",
+  "merge_semantics": {
+    "tier": 1,
+    "consensus_threshold": 2,
+    "similarity_method": "jaccard",
+    "similarity_threshold": 0.5,
+    "n_distinct_exact": 7,
+    "n_shared_exact": 1,
+    "n_merged": 7,
+    "multi_reviewer": 1,
+    "checks": {
+      "distinct_equals_exact_union": true,
+      "shared_critiques_merged_once_with_all_raisers": true,
+      "agreement_escalates_one_level": true,
+      "single_lens_critiques_keep_severity": true,
+      "panel_size_monotonic": true
+    },
+    "all_passed": true,
+    "problems": []
+  },
+  "consensus_ablation": {
+    "tier": 1,
+    "rows": [
+      {
+        "panel_size": 1,
+        "lenses": [
+          "reviewer"
+        ],
+        "distinct_critiques": 3,
+        "multi_reviewer": 0,
+        "unresolved_critical": 1,
+        "grade": "D",
+        "severity_histogram": {
+          "critical": 1,
+          "high": 2
+        }
+      },
+      {
+        "panel_size": 2,
+        "lenses": [
+          "reviewer",
+          "adversarial_reviewer"
+        ],
+        "distinct_critiques": 5,
+        "multi_reviewer": 1,
+        "unresolved_critical": 3,
+        "grade": "F",
+        "severity_histogram": {
+          "critical": 3,
+          "high": 1,
+          "medium": 1
+        }
+      },
+      {
+        "panel_size": 3,
+        "lenses": [
+          "reviewer",
+          "adversarial_reviewer",
+          "bio_plausibility_checker"
+        ],
+        "distinct_critiques": 7,
+        "multi_reviewer": 1,
+        "unresolved_critical": 3,
+        "grade": "F",
+        "severity_histogram": {
+          "critical": 3,
+          "high": 2,
+          "medium": 2
+        }
+      }
+    ]
+  },
+  "role_overlap": {
+    "tier": 1,
+    "overlap_measure": "exact_string_set_overlap = |A∩B|/|A∪B| over critique strings compared by exact equality after removing the reviewer tag (verbatim duplicates only)",
+    "per_role_counts": {
+      "reviewer": 3,
+      "adversarial_reviewer": 3,
+      "bio_plausibility_checker": 2
+    },
+    "pairwise": [
+      {
+        "roles": [
+          "reviewer",
+          "adversarial_reviewer"
+        ],
+        "exact_string_set_overlap": 0.2,
+        "shared_exact": 1
+      },
+      {
+        "roles": [
+          "reviewer",
+          "bio_plausibility_checker"
+        ],
+        "exact_string_set_overlap": 0.0,
+        "shared_exact": 0
+      },
+      {
+        "roles": [
+          "adversarial_reviewer",
+          "bio_plausibility_checker"
+        ],
+        "exact_string_set_overlap": 0.0,
+        "shared_exact": 0
+      }
+    ],
+    "union_size": 7,
+    "sum_individual": 8
+  },
+  "convergence_profile": {
+    "n_runs": 1,
+    "deterministic": true,
+    "note": "The mock adapter's outputs depend only on the call index, so the loop has exactly one trajectory; this is a single deterministic run, not a sample. Seeds change only mock delays and token jitter and are used to confirm the trajectory is reproduced exactly.",
+    "preset": "reviewer_consensus",
+    "max_iterations": 40,
+    "iterations": 7,
+    "stop_reason": "converged:output_similar",
+    "signals": [
+      "output_similar"
+    ],
+    "reason": "Executor output similarity >= 0.9 for 3 consecutive executor iterations (avg=0.980)",
+    "trajectory": [
+      {
+        "iteration": 1,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "critical": null,
+        "high": null
+      },
+      {
+        "iteration": 2,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "C",
+        "critical": 0,
+        "high": 1
+      },
+      {
+        "iteration": 3,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "critical": null,
+        "high": null
+      },
+      {
+        "iteration": 4,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "A",
+        "critical": 0,
+        "high": 0
+      },
+      {
+        "iteration": 5,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "critical": null,
+        "high": null
+      },
+      {
+        "iteration": 6,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "A",
+        "critical": 0,
+        "high": 0
+      },
+      {
+        "iteration": 7,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "critical": null,
+        "high": null
+      }
+    ],
+    "determinism_check": {
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "identical": true,
+      "iterations_per_seed": [
+        7,
+        7,
+        7
+      ],
+      "stop_reason_per_seed": [
+        "converged:output_similar",
+        "converged:output_similar",
+        "converged:output_similar"
+      ]
+    }
+  }
+}

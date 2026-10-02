@@ -1,0 +1,137 @@
+{
+ "key": "gpt55",
+ "run_id": "x4_gpt55",
+ "iterations": [
+  {
+   "iteration": 1,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "result",
+     "context": "on_residual_q_bh_all_attention_tests` | | Best residual SMD 95% cluster-bootstrap CI | `best_all_residu",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "result",
+     "context": "smd_ci_low`, `best_all_residual_smd_ci_high` | | Best AUROC 95% cluster-bootstrap CI | `best_all_auroc_",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "result",
+     "context": "_all_auroc_ci_low`, `best_all_auroc_ci_high` | | Best AUPRC 95% cluster-bootstrap CI | `best_all_auprc_",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "d confounders requires positive residual SMD and BH-FDR q < 0.05 across the full attention-test family.",
+     "status": "literal_matches_output"
+    }
+   ]
+  },
+  {
+   "iteration": 3,
+   "numbers": []
+  },
+  {
+   "iteration": 5,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "effect | `best_positive_tf_cluster_mean_smd` | | BH-FDR q < 0.05 across all attention tests | `best_posi",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "on_q_bh_all_attention_tests` | | Matched within-TF null p < 0.05 | `negative_control_matched_within_tf_p",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "f_permutation_best_positive_p` | | Family max-statistic p < 0.05 | `negative_control_maxstat_family_perm",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "parameter",
+     "context": "_tf_cluster_mean_smd` | | Selected positive TF-balanced SMD 95% CI | `best_positive_tf_cluster_mean_smd",
+     "status": "literal_matches_output"
+    }
+   ]
+  },
+  {
+   "iteration": 7,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "effect | `best_positive_tf_cluster_mean_smd` | | BH-FDR q < 0.05 across all attention tests | `best_posi",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "on_q_bh_all_attention_tests` | | Matched within-TF null p < 0.05 | `negative_control_matched_within_tf_p",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "threshold",
+     "context": "ation_best_positive_p` | | Powered family max-statistic p < 0.05 | `negative_control_maxstat_family_perm",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "parameter",
+     "context": "_tf_cluster_mean_smd` | | Selected positive TF-balanced SMD 95% CI, exploratory post-selection | `best_",
+     "status": "literal_matches_output"
+    }
+   ]
+  },
+  {
+   "iteration": 9,
+   "numbers": []
+  }
+ ]
+}

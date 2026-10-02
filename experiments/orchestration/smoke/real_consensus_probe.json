@@ -1,0 +1,341 @@
+{
+  "schema": "miw-real-consensus-probe/2",
+  "created_utc": "2026-10-01T02:38:50.146269Z",
+  "note": "Smoke test of the live consensus path (one panel, 3 calls); not an evaluation.",
+  "artifact": "experiments/benchmark/artifacts/A01-clean.md",
+  "artifact_sha256": "2a44b10853c1ed5a60710002fbfe42c7d18c8f46d235fe198fd2786e7b63df7c",
+  "provider": "codex",
+  "model_requested": "gpt-5.6-luna",
+  "reasoning_effort": "low",
+  "allow_tools": false,
+  "web_search": "disabled",
+  "cli_version": "codex-cli 0.145.0",
+  "answering_models": [
+    "gpt-5.6-luna"
+  ],
+  "panel_wall_seconds": 367.323,
+  "tokens_total": {
+    "input_tokens": 44947,
+    "cached_input_tokens": 38144,
+    "output_tokens": 3697,
+    "reasoning_output_tokens": 136
+  },
+  "lenses": [
+    {
+      "role": "reviewer",
+      "prompt_ref": "reviewer/mi_reviewer",
+      "prompt_version": "2.0.0",
+      "prompt_sha256": "5bb394dfc0618159398dff744715306ff889f8a3466808a56825a7f24343cf9d",
+      "status": "ok",
+      "error": null,
+      "attempts": 1,
+      "latency_s": [
+        367.271
+      ],
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "low",
+      "cli_version": "codex-cli 0.145.0",
+      "input_tokens": 15000,
+      "cached_input_tokens": 14080,
+      "output_tokens": 1509,
+      "reasoning_output_tokens": 0,
+      "tool_events": 0,
+      "parse_method": "json",
+      "raw_critiques": 14,
+      "raw_output": "```json\n{\n  \"critiques\": [\n    {\n      \"severity\": \"high\",\n      \"category\": \"statistics\",\n      \"description\": \"The reported confidence intervals cover AUPRC ratios but not AUROC, top-1% fold enrichment, median head performance, or the random-model comparison. Several central claims therefore lack uncertainty estimates.\",\n      \"required_fix\": \"Report 95% confidence intervals for AUROC, fold enrichment, summary statistics, and model-control differences using a dependence-aware bootstrap or appropriate resampling scheme.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"claim_validity\",\n      \"description\": \"The analysis reports q-values for raw and residual scans, reverse orientation, and multiple baseline comparisons, but does not state whether all tested families were included in multiplicity correction. Calling three residual heads enriched may be anti-conservative if residual, orientation, and raw analyses were corrected separately.\",\n      \"required_fix\": \"Define the full hypothesis family in advance and apply BH-FDR across every head-orientation-score analysis used to support the mechanistic conclusion, or explicitly limit claims to a pre-registered family.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"confounder\",\n      \"description\": \"Attention pair scores are pooled across cells, while co-expression is averaged across populations. Differences in cell-type composition, gene detectability, and TF/target presence across populations can produce apparent TF-target enrichment that the stated regression does not fully remove.\",\n      \"required_fix\": \"Compute scores within each cell population and combine them with a prespecified meta-analysis or population-stratified model; report population-specific effects and test heterogeneity.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"confounder\",\n      \"description\": \"The rewiring null controls TRRUST TF out-degree and target in-degree but does not establish that attention enrichment exceeds gene-degree, attention-frequency, or hubness effects in the model-derived score matrix.\",\n      \"required_fix\": \"Add nulls or matched controls preserving TF/target attention-score distributions and gene degree, and report performance against degree-matched random pairs and hub-excluded analyses.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"negative_control\",\n      \"description\": \"The random model and expression baseline are described, but no statistical comparison demonstrates that trained-head performance exceeds these controls; co-expression is said to be competitive without a formal paired comparison.\",\n      \"required_fix\": \"Use paired bootstrap or permutation tests comparing each trained head with random, expression-only, co-expression-only, and combined baseline scores, with multiplicity correction.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"claim_validity\",\n      \"description\": \"Residualization is linear and performed on the same pair-level data used for evaluation, so the residual signal may reflect nonlinear co-expression, interactions among predictors, or overfitting rather than information beyond the stated confounders.\",\n      \"required_fix\": \"Use held-out or cross-fitted residualization and evaluate nonlinear controls such as splines or flexible models, followed by the same degree-preserving null test.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"statistics\",\n      \"description\": \"The bootstrap resamples TFs with their edges, but the reported confidence intervals do not explain how dependence among targets, repeated cells, and highly connected TFs is handled; ordinary pair-level uncertainty would be invalid here.\",\n      \"required_fix\": \"Specify and justify the hierarchical bootstrap design, including TF, donor, population, and cell resampling levels, and provide sensitivity intervals under alternative clustering schemes.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"reproducibility\",\n      \"description\": \"No explicit dataset paths or accession identifiers, preprocessing code, Geneformer/tokenizer version, software versions, hardware details, or environment specification are provided.\",\n      \"required_fix\": \"Publish an executable analysis repository with immutable data/model identifiers, explicit paths or download instructions, dependency lockfiles, container/environment details, and exact preprocessing commands.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"reproducibility\",\n      \"description\": \"Random seeds are not reported for cell subsampling, TF splitting, bootstrap resampling, rewiring, clustering, or random model initialization.\",\n      \"required_fix\": \"Set and document independent seeds for every stochastic operation and record them in the analysis configuration and output metadata.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"reproducibility\",\n      \"description\": \"The artifact does not state whether attention matrices, filtered candidate pairs, rewired edge sets, bootstrap estimates, residuals, and per-head metrics were saved for inspection or whether the reported table can be regenerated directly.\",\n      \"required_fix\": \"Save and release intermediate artifacts and a single command or workflow that regenerates all tables, figures, q-values, and confidence intervals from the raw inputs.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"confounder\",\n      \"description\": \"Geneformer rank-value encoding can create direction- and context-dependent artifacts from rank ties, truncation, normalization, and detection patterns. Mean rank and detection rate regression may not capture these effects, especially because token presence is itself a selection condition.\",\n      \"required_fix\": \"Add rank-matched and detection-matched controls, assess tied ranks and sequence-position effects, and repeat analyses on shuffled expression ranks or token-presence-preserving null inputs.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"biology\",\n      \"description\": \"The biological plausibility assessment names TRRUST edges but provides no source validation, evidence direction, database provenance, or independent regulatory reference. The claim that residual top pairs are biologically meaningful is therefore not independently supported.\",\n      \"required_fix\": \"Cite the exact TRRUST records and corroborate residual top pairs against independent resources such as ChEA, DoRothEA, ENCODE, or perturbation data, reporting concordance and evidence direction.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"category\": \"claim_validity\",\n      \"description\": \"The statement that L9H4 ranked in the top five in both TF halves is descriptive and does not quantify uncertainty or test whether the ranking stability exceeds chance.\",\n      \"required_fix\": \"Repeat the TF split many times, report a confidence interval or permutation-based null for rank correlation and top-k overlap, and state the number of repetitions and seed.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"category\": \"statistics\",\n      \"description\": \"AUROC is reported despite the 0.40% prevalence, but the analysis emphasizes AUPRC without reporting precision at operationally relevant recall or the absolute precision implied by the top-1% enrichment.\",\n      \"required_fix\": \"Report precision-recall curves, precision at fixed recall and top-k values, and absolute precision alongside AUROC and AUPRC ratios.\"\n    }\n  ],\n  \"overall_assessment\": \"The analysis is directionally cautious and includes useful degree-preserving nulls and baseline controls, but the core residual-head claims require stronger multiplicity handling, population- and degree-aware controls, uncertainty estimates, and reproducibility artifacts before they are fully supported.\"\n}\n```",
+      "raw_log": "2026-10-01T02:38:20.938323Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 137 column 5\n"
+    },
+    {
+      "role": "adversarial_reviewer",
+      "prompt_ref": "adversarial_reviewer/adversarial_reviewer",
+      "prompt_version": "2.0.0",
+      "prompt_sha256": "2702a4bac20d654a6e8aac520bb238ab8ad2c3c5518a5256f5ff994e405c1bc0",
+      "status": "ok",
+      "error": null,
+      "attempts": 1,
+      "latency_s": [
+        364.003
+      ],
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "low",
+      "cli_version": "codex-cli 0.145.0",
+      "input_tokens": 15194,
+      "cached_input_tokens": 14080,
+      "output_tokens": 1285,
+      "reasoning_output_tokens": 0,
+      "tool_events": 0,
+      "parse_method": "json",
+      "raw_critiques": 9,
+      "raw_output": "```json\n{\n  \"critiques\": [\n    {\n      \"severity\": \"high\",\n      \"category\": \"null_model\",\n      \"description\": \"The degree-preserving TRRUST rewiring preserves TF out-degree and target in-degree but not cell-type specificity, expression abundance, co-expression, or genomic proximity. Because attention and the reported top edges are strongly related to co-expression, a null that randomizes edges among biologically heterogeneous genes can make shared cellular-context structure appear significant.\",\n      \"required_fix\": \"Use stratified nulls that preserve TF and target expression/detection bins, population-specific co-expression or cell-type membership, and optionally genomic distance; report whether the three residual enrichments survive these stronger nulls.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"overclaiming\",\n      \"description\": \"The residual enrichment is only 1.3–1.5 times a 0.40% base rate, while the residualization is linear and attention remains correlated with co-expression. Nonlinear, cell-type-specific, or interaction-dependent co-expression could explain the remaining signal, so the result does not yet isolate regulatory information.\",\n      \"required_fix\": \"Compare against nonlinear and within-cell-type baselines, including matched gene-pair classifiers using co-expression, detection, expression rank, cell-type specificity, and gene variance; report incremental predictive performance over these baselines.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"p_hacking\",\n      \"description\": \"Although the orientation and pair filter are described as fixed in advance, there is no preregistration or complete accounting of analysis choices such as score aggregation, layer/head selection, residualization specification, top-1% threshold, and TF split. Selecting the maximum head among 144 and emphasizing layers 7–10 can produce optimistic conclusions even with BH correction over heads.\",\n      \"required_fix\": \"Provide a full multiverse analysis or preregistered pipeline covering both orientations, aggregation rules, thresholds, residual models, and layer/head selection; validate the final head choices on an independent dataset or donor-held-out split.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"causal_confusion\",\n      \"description\": \"The analysis interprets target-as-query attention as potentially contributing to target prediction, but no intervention establishes that these heads mediate the claimed relationship. Ablating a head could reduce prediction quality through general capacity loss rather than a specific TF-to-target mechanism.\",\n      \"required_fix\": \"Ablate the candidate heads and matched non-candidate heads, measure masked-gene prediction specifically for TRRUST targets versus matched non-targets, and include activation patching or targeted key/value interventions with controls for equal changes in overall loss and attention mass.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"leakage\",\n      \"description\": \"TRRUST is treated as an external ground truth, but the analysis does not establish independence from Geneformer's pretraining corpus. If the corpus included literature-derived annotations, curated gene lists, or cells annotated using TRRUST-like resources, the model could have memorized associations rather than learned a mechanistic representation.\",\n      \"required_fix\": \"Document the pretraining corpus and exclude or audit documents, annotations, and datasets containing TRRUST edges; repeat evaluation with an independently curated and temporally held-out regulatory resource.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"statistical_theater\",\n      \"description\": \"The confidence intervals resample only 118 TFs and their edges, whereas pair scores are also dependent through shared cells, genes, and tokenization. Treating tens of thousands of pair scores as the effective evidence can understate uncertainty and does not quantify donor-level reproducibility.\",\n      \"required_fix\": \"Report donor- and cell-type-level bootstrap or hierarchical intervals, include leave-one-donor-out results, and make the TF or donor the inferential unit rather than treating pair-level observations as independent.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"biological_implausibility\",\n      \"description\": \"TRRUST edges are pooled across conditions and tissues, but the experiment uses unstimulated PBMCs and does not show whether the claimed residual examples are active in the relevant cell populations. For example, TBX21→IFNG and STAT1→IRF1 may be activation- or cell-state-dependent, so a pooled edge label need not represent a regulatory relationship in these cells.\",\n      \"required_fix\": \"Stratify evaluation by cell population and activation state, require regulator and target co-presence within the relevant population, and validate residual top edges against context-specific ChIP/perturbation resources or independent PBMC perturbation data.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"category\": \"p_hacking\",\n      \"description\": \"The two random TF-half splits are presented as robustness evidence, but a single random split is a weak check and can preserve the same TF-family and cell-type confounding in both halves. A head ranking correlation of 0.58 does not demonstrate replication.\",\n      \"required_fix\": \"Repeat the TF split many times, report the distribution of enrichment and rank stability, and add donor-held-out and gene-family-held-out validation.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"category\": \"causal_confusion\",\n      \"description\": \"The analysis fixes attention orientation at target-query/TF-key, but attention weights alone are not sufficient evidence that the TF token's information is used by the downstream representation or prediction; value projections and residual pathways are not analyzed.\",\n      \"required_fix\": \"Track the effect of removing or patching the TF token's key, value, and resulting residual contribution separately, and distinguish attention-weight association from causal information flow.\"\n    }\n  ],\n  \"overall_assessment\": \"The analysis is appropriately cautious about co-expression and low precision, but the main residual claim remains vulnerable to structure-poor nulls, nonlinear cellular confounding, selection effects, context-mismatched TRRUST labels, and the absence of causal interventions; no specific biological implausibility is established for the listed pairs, but their context dependence must be tested.\"\n}\n```",
+      "raw_log": "2026-10-01T02:38:21.002494Z ERROR codex_models_manager::manager: failed to renew cache TTL: missing field `base_instructions` at line 137 column 5\n"
+    },
+    {
+      "role": "bio_plausibility_checker",
+      "prompt_ref": "biological_plausibility/bio_plausibility_checker",
+      "prompt_version": "2.0.0",
+      "prompt_sha256": "72e758889b3a7360399ae20e9af757522eb747940597faee34354c58748b790e",
+      "status": "ok",
+      "error": null,
+      "attempts": 1,
+      "latency_s": [
+        23.685
+      ],
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "low",
+      "cli_version": "codex-cli 0.145.0",
+      "input_tokens": 14753,
+      "cached_input_tokens": 9984,
+      "output_tokens": 903,
+      "reasoning_output_tokens": 136,
+      "tool_events": 0,
+      "parse_method": "json",
+      "raw_critiques": 5,
+      "raw_output": "```json\n{\n  \"critiques\": [\n    {\n      \"severity\": \"high\",\n      \"category\": \"tissue_specificity\",\n      \"description\": \"TRRUST edges were evaluated across pooled PBMC populations despite strong lineage restriction: CIITA→HLA-DRA and RFX5→HLA-DRB1 are primarily relevant to antigen-presenting B cells and monocytes, SPI1→CSF1R to myeloid cells, and TBX21→IFNG mainly to activated NK/T cells. Pooling these contexts can make lineage co-occurrence appear to be a regulatory signal.\",\n      \"required_fix\": \"Repeat the analysis within each annotated cell type, report cell-type-specific expression and enrichment, and require adequate donor replication before interpreting an edge as regulatory.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"category\": \"expression\",\n      \"description\": \"The analysis does not report whether the implicated TFs are expressed at sufficient levels in the cells contributing each score. In particular, IFNG and its regulatory program are often sparse or activation-dependent in resting PBMC datasets, so TBX21→IFNG may be driven by shared cell-state or detection patterns rather than an active regulatory interaction.\",\n      \"required_fix\": \"Stratify scores by TF and target detection/expression, show expression distributions for every highlighted pair, and test whether enrichment persists among cells expressing the TF and within relevant activated subsets.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"regulatory_relationship\",\n      \"description\": \"The target-as-query attention orientation is biologically motivated as information flow into the target representation, but attention from target to TF does not establish TF binding, activation, or repression. The reported residual pairs, including STAT1→IRF1 and TBX21→IFNG, are therefore not validated regulatory edges merely because they survive covariate adjustment.\",\n      \"required_fix\": \"Validate highlighted pairs against cell-type-matched ChIP-seq or CUT&RUN and perturbation data, and phrase residual attention enrichment as association unless head ablation or activation-patching demonstrates a causal effect on target predictions.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"category\": \"context_mismatch\",\n      \"description\": \"TRRUST aggregates evidence from heterogeneous tissues, cell lines, and experimental conditions, while the study uses healthy PBMCs from four donors. A generic TRRUST edge may be real in another context but inactive in these cells, and the reported enrichment cannot distinguish context-appropriate regulation from database provenance.\",\n      \"required_fix\": \"Annotate each TRRUST edge by evidence source and biological context, repeat the benchmark using PBMC- or immune-cell-specific ChIP/perturbation resources, and report results separately for context-supported and context-unsupported edges.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"category\": \"pathway\",\n      \"description\": \"The highlighted edges span antigen presentation, myeloid differentiation, interferon signaling, and cytotoxic lymphocyte activation. These pathways are biologically plausible in PBMCs, but the pooled analysis does not show whether attention enrichment is concentrated within coherent pathway programs or is largely a consequence of broad lineage/state structure.\",\n      \"required_fix\": \"Perform pathway- and cell-type-stratified enrichment analyses and compare against matched non-regulatory pairs within the same lineage and signaling program.\"\n    }\n  ],\n  \"overall_assessment\": \"The modest enrichment is biologically plausible as a mixture of lineage, cell-state, and expression structure, but the pooled PBMC design and context-agnostic TRRUST reference do not support interpreting residual attention as active gene regulation without cell-type-specific expression and independent regulatory validation.\"\n}\n```",
+      "raw_log": ""
+    }
+  ],
+  "report": {
+    "grade": "D",
+    "total_merged": 28,
+    "multi_reviewer": 0,
+    "unresolved_critical": 0,
+    "severity_histogram": {
+      "high": 11,
+      "medium": 12,
+      "low": 4,
+      "info": 1
+    },
+    "panel_failed": false,
+    "panel_partial": false,
+    "failed_lenses": [],
+    "similarity_method": "jaccard",
+    "similarity_threshold": 0.5,
+    "n_groups_multi_lens": 0
+  },
+  "merged_critiques": [
+    {
+      "severity": "high",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "p_hacking",
+      "description": "[adversarial_reviewer] Although the orientation and pair filter are described as fixed in advance, there is no preregistration or complete accounting of analysis choices such as score aggregation, layer/head selection, residualization specification, top-1% threshold, and TF split. Selecting the maximum head among 144 and emphasizing layers 7–10 can produce optimistic conclusions even with BH correction over heads."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "causal_confusion",
+      "description": "[adversarial_reviewer] The analysis interprets target-as-query attention as potentially contributing to target prediction, but no intervention establishes that these heads mediate the claimed relationship. Ablating a head could reduce prediction quality through general capacity loss rather than a specific TF-to-target mechanism."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "null_model",
+      "description": "[adversarial_reviewer] The degree-preserving TRRUST rewiring preserves TF out-degree and target in-degree but not cell-type specificity, expression abundance, co-expression, or genomic proximity. Because attention and the reported top edges are strongly related to co-expression, a null that randomizes edges among biologically heterogeneous genes can make shared cellular-context structure appear significant."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "overclaiming",
+      "description": "[adversarial_reviewer] The residual enrichment is only 1.3–1.5 times a 0.40% base rate, while the residualization is linear and attention remains correlated with co-expression. Nonlinear, cell-type-specific, or interaction-dependent co-expression could explain the remaining signal, so the result does not yet isolate regulatory information."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "bio_plausibility_checker"
+      ],
+      "category": "tissue_specificity",
+      "description": "[bio_plausibility_checker] TRRUST edges were evaluated across pooled PBMC populations despite strong lineage restriction: CIITA→HLA-DRA and RFX5→HLA-DRB1 are primarily relevant to antigen-presenting B cells and monocytes, SPI1→CSF1R to myeloid cells, and TBX21→IFNG mainly to activated NK/T cells. Pooling these contexts can make lineage co-occurrence appear to be a regulatory signal."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "bio_plausibility_checker"
+      ],
+      "category": "expression",
+      "description": "[bio_plausibility_checker] The analysis does not report whether the implicated TFs are expressed at sufficient levels in the cells contributing each score. In particular, IFNG and its regulatory program are often sparse or activation-dependent in resting PBMC datasets, so TBX21→IFNG may be driven by shared cell-state or detection patterns rather than an active regulatory interaction."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "confounder",
+      "description": "[reviewer] Attention pair scores are pooled across cells, while co-expression is averaged across populations. Differences in cell-type composition, gene detectability, and TF/target presence across populations can produce apparent TF-target enrichment that the stated regression does not fully remove."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "claim_validity",
+      "description": "[reviewer] The analysis reports q-values for raw and residual scans, reverse orientation, and multiple baseline comparisons, but does not state whether all tested families were included in multiplicity correction. Calling three residual heads enriched may be anti-conservative if residual, orientation, and raw analyses were corrected separately."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "negative_control",
+      "description": "[reviewer] The random model and expression baseline are described, but no statistical comparison demonstrates that trained-head performance exceeds these controls; co-expression is said to be competitive without a formal paired comparison."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "statistics",
+      "description": "[reviewer] The reported confidence intervals cover AUPRC ratios but not AUROC, top-1% fold enrichment, median head performance, or the random-model comparison. Several central claims therefore lack uncertainty estimates."
+    },
+    {
+      "severity": "high",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "confounder",
+      "description": "[reviewer] The rewiring null controls TRRUST TF out-degree and target in-degree but does not establish that attention enrichment exceeds gene-degree, attention-frequency, or hubness effects in the model-derived score matrix."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "biological_implausibility",
+      "description": "[adversarial_reviewer] TRRUST edges are pooled across conditions and tissues, but the experiment uses unstimulated PBMCs and does not show whether the claimed residual examples are active in the relevant cell populations. For example, TBX21→IFNG and STAT1→IRF1 may be activation- or cell-state-dependent, so a pooled edge label need not represent a regulatory relationship in these cells."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "leakage",
+      "description": "[adversarial_reviewer] TRRUST is treated as an external ground truth, but the analysis does not establish independence from Geneformer's pretraining corpus. If the corpus included literature-derived annotations, curated gene lists, or cells annotated using TRRUST-like resources, the model could have memorized associations rather than learned a mechanistic representation."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "statistical_theater",
+      "description": "[adversarial_reviewer] The confidence intervals resample only 118 TFs and their edges, whereas pair scores are also dependent through shared cells, genes, and tokenization. Treating tens of thousands of pair scores as the effective evidence can understate uncertainty and does not quantify donor-level reproducibility."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "bio_plausibility_checker"
+      ],
+      "category": "context_mismatch",
+      "description": "[bio_plausibility_checker] TRRUST aggregates evidence from heterogeneous tissues, cell lines, and experimental conditions, while the study uses healthy PBMCs from four donors. A generic TRRUST edge may be real in another context but inactive in these cells, and the reported enrichment cannot distinguish context-appropriate regulation from database provenance."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "bio_plausibility_checker"
+      ],
+      "category": "regulatory_relationship",
+      "description": "[bio_plausibility_checker] The target-as-query attention orientation is biologically motivated as information flow into the target representation, but attention from target to TF does not establish TF binding, activation, or repression. The reported residual pairs, including STAT1→IRF1 and TBX21→IFNG, are therefore not validated regulatory edges merely because they survive covariate adjustment."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "confounder",
+      "description": "[reviewer] Geneformer rank-value encoding can create direction- and context-dependent artifacts from rank ties, truncation, normalization, and detection patterns. Mean rank and detection rate regression may not capture these effects, especially because token presence is itself a selection condition."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "reproducibility",
+      "description": "[reviewer] No explicit dataset paths or accession identifiers, preprocessing code, Geneformer/tokenizer version, software versions, hardware details, or environment specification are provided."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "reproducibility",
+      "description": "[reviewer] Random seeds are not reported for cell subsampling, TF splitting, bootstrap resampling, rewiring, clustering, or random model initialization."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "claim_validity",
+      "description": "[reviewer] Residualization is linear and performed on the same pair-level data used for evaluation, so the residual signal may reflect nonlinear co-expression, interactions among predictors, or overfitting rather than information beyond the stated confounders."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "reproducibility",
+      "description": "[reviewer] The artifact does not state whether attention matrices, filtered candidate pairs, rewired edge sets, bootstrap estimates, residuals, and per-head metrics were saved for inspection or whether the reported table can be regenerated directly."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "biology",
+      "description": "[reviewer] The biological plausibility assessment names TRRUST edges but provides no source validation, evidence direction, database provenance, or independent regulatory reference. The claim that residual top pairs are biologically meaningful is therefore not independently supported."
+    },
+    {
+      "severity": "medium",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "statistics",
+      "description": "[reviewer] The bootstrap resamples TFs with their edges, but the reported confidence intervals do not explain how dependence among targets, repeated cells, and highly connected TFs is handled; ordinary pair-level uncertainty would be invalid here."
+    },
+    {
+      "severity": "low",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "p_hacking",
+      "description": "[adversarial_reviewer] The two random TF-half splits are presented as robustness evidence, but a single random split is a weak check and can preserve the same TF-family and cell-type confounding in both halves. A head ranking correlation of 0.58 does not demonstrate replication."
+    },
+    {
+      "severity": "low",
+      "raised_by": [
+        "bio_plausibility_checker"
+      ],
+      "category": "pathway",
+      "description": "[bio_plausibility_checker] The highlighted edges span antigen presentation, myeloid differentiation, interferon signaling, and cytotoxic lymphocyte activation. These pathways are biologically plausible in PBMCs, but the pooled analysis does not show whether attention enrichment is concentrated within coherent pathway programs or is largely a consequence of broad lineage/state structure."
+    },
+    {
+      "severity": "low",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "statistics",
+      "description": "[reviewer] AUROC is reported despite the 0.40% prevalence, but the analysis emphasizes AUPRC without reporting precision at operationally relevant recall or the absolute precision implied by the top-1% enrichment."
+    },
+    {
+      "severity": "low",
+      "raised_by": [
+        "reviewer"
+      ],
+      "category": "claim_validity",
+      "description": "[reviewer] The statement that L9H4 ranked in the top five in both TF halves is descriptive and does not quantify uncertainty or test whether the ranking stability exceeds chance."
+    },
+    {
+      "severity": "info",
+      "raised_by": [
+        "adversarial_reviewer"
+      ],
+      "category": "causal_confusion",
+      "description": "[adversarial_reviewer] The analysis fixes attention orientation at target-query/TF-key, but attention weights alone are not sufficient evidence that the TF token's information is used by the downstream representation or prediction; value projections and residual pathways are not analyzed."
+    }
+  ]
+}

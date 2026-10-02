@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A05-flawed",
+  "scenario": "Sparse-autoencoder features on the scGPT residual stream correspond to biological pathways (enrichment analysis)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A05-F1",
+      "type": "S1",
+      "family": "statistics",
+      "quote": "A feature was called pathway-aligned if its best gene set reached p < 0.01, and it was labelled with that gene set.",
+      "description": "Each feature is tested against 1,665 gene sets (about 12 million feature–gene set tests in all) and is called aligned and labelled from its best uncorrected p < 0.01. Up to about 17 false-positive gene sets per feature (1,665 × 0.01) are expected under the null, so the 96.5% alignment rate and the labels are inflated. The reported median best p for random sets (10^-2.8) means most random lists would also pass.",
+      "detection_criterion": "The critique must say that alignment and labels rest on an uncorrected p < 0.01 across the 1,665 gene sets per feature (or across the roughly 12 million feature × gene-set tests), and ask for multiple-testing correction (BH/FDR or similar). Pointing out that most random gene sets would pass the same threshold, given their median best p of about 10^-2.8, also counts. Vague comments about 'significance thresholds' without the multiplicity point do not count."
+    },
+    {
+      "flaw_id": "A05-F2",
+      "type": "C2",
+      "family": "confounding",
+      "quote": "Features aligned with pathways far more strongly than random gene lists did: the median best-set −log10 p was 8.7 (interquartile range 4.9–15.2) for SAE features versus 2.8 (2.3–3.4) for the uniformly drawn random sets. This separation shows that the pathway structure of the dictionary is not something that arbitrary gene lists of the same size reproduce.",
+      "description": "The null gene sets are drawn uniformly, with no matching on annotation degree (how many curated gene sets each gene belongs to) or on the well-studied, highly expressed status of genes. The features' top genes are dominated by heavily annotated hub genes (ribosomal proteins, OXPHOS, HLA, interferon-stimulated genes) that match many Reactome and Hallmark sets, so the comparison overstates how pathway-specific the features are.",
+      "detection_criterion": "The critique must say that the uniform random-gene-set null ignores the annotation-degree or study bias of curated pathway databases: well-studied, highly expressed or hub genes belong to many gene sets and dominate the features' top genes. It must ask for a null matched on annotation degree (or on expression/study bias). A generic request for 'a better null' or 'more baselines' without the degree/annotation-bias argument does not count."
+    },
+    {
+      "flaw_id": "A05-F3",
+      "type": "T2",
+      "family": "technical",
+      "quote": "Because scGPT orders each cell's genes by expression rank before tokenization, we kept the first 512 gene tokens of every cell, which correspond to its 512 most highly expressed genes, and collected residual-stream vectors at those positions after layer 8.",
+      "description": "scGPT does not use rank-value encoding (that is Geneformer's scheme). It pairs gene tokens with embeddings of value-binned expression, and token order carries no expression information. The first 512 tokens are therefore an arbitrary (dataset-order or sampled) subset rather than the most highly expressed genes, so the SAE training data and per-cell gene universe are not what the analysis assumes.",
+      "detection_criterion": "The critique must state that scGPT encodes expression through value binning or expression-value embeddings, not rank ordering (rank-value encoding belongs to Geneformer), and so keeping the first 512 tokens does not select each cell's most highly expressed genes. Saying only that truncation to 512 tokens loses information does not count."
+    },
+    {
+      "flaw_id": "A05-F4",
+      "type": "B2",
+      "family": "biological",
+      "quote": "Feature 2913, whose top genes are HLA-DRA, CD74, HLA-DPA1, HLA-DPB1 and HLA-DQA1 and which is most active in B cells, monocytes and conventional dendritic cells, is an MHC class I antigen-presentation feature that reflects peptide loading for recognition by CD8+ T cells.",
+      "description": "HLA-DR, -DP and -DQ genes and the invariant chain CD74 make up the MHC class II pathway of professional antigen-presenting cells, which present peptides to CD4+ T cells. Labelling this feature as class I presentation to CD8+ T cells misattributes the pathway.",
+      "detection_criterion": "The critique must identify that the feature's genes (HLA-DR/DP/DQ, CD74) are MHC class II and present to CD4+ T cells, so the 'MHC class I / CD8+' label is wrong. Generic doubts about feature labelling do not count."
+    }
+  ]
+}

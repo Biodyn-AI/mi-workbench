@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A04-flawed",
+  "scenario": "In-silico TF deletion in Geneformer shifts cardiomyocyte embeddings toward a disease state",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A04-F1",
+      "type": "S1",
+      "family": "statistics",
+      "quote": "Each of the 412 TFs was tested separately, and TFs with p < 0.05 were called hits.",
+      "description": "Hits are called from 412 separate per-TF Wilcoxon tests at an uncorrected p < 0.05, so roughly 20 of the 87 reported hits are expected by chance alone and no FDR or family-wise control is applied.",
+      "detection_criterion": "The critique must say that the 87 hits were called at an uncorrected p < 0.05 across the 412 per-TF tests (a multiple-comparisons problem), and ask for FDR/Bonferroni correction or point out the expected number of false-positive hits (about 20). General remarks about weak statistics or small donor numbers do not count."
+    },
+    {
+      "flaw_id": "A04-F2",
+      "type": "C1",
+      "family": "confounding",
+      "quote": "Because hit TFs moved nuclei several-fold further than deletion of random expressed genes, we read the size of the shift as the regulatory weight Geneformer assigns to each TF, which places GATA4, TBX20, MEF2A and NKX2-5 at the top of the model's hierarchy of regulators of the non-failing cardiomyocyte state.",
+      "description": "Under rank-value encoding, deleting a highly expressed, top-ranked gene perturbs the input and the embedding more than deleting a low-ranked one. The hits have a median input rank of 104, against 918 for the uniformly sampled random control genes, so the shift magnitude mostly tracks expression rank. No expression- or rank-matched control or adjustment is used before the shift is read as regulatory weight.",
+      "detection_criterion": "The critique must name the TF's expression level or input rank (or detection) as a confound of the deletion shift, noting that highly expressed or high-ranked genes give larger shifts, and that the random-gene control is not matched on expression or rank. It should ask for rank- or expression-matched control genes or an adjustment for rank. A generic request for 'more controls', or a complaint that in-silico deletion is not a real knockout, does not count."
+    },
+    {
+      "flaw_id": "A04-F3",
+      "type": "L2",
+      "family": "causal_logic",
+      "quote": "This agreement provides independent confirmation that the in-silico hits are TFs whose reduced activity accompanies DCM in patient hearts.",
+      "description": "The validation is not independent. The disease axis comes from NF-versus-DCM expression differences in this cohort, and removing a TF whose expression is lower in DCM moves the embedding toward DCM almost by construction. The pseudobulk DE uses all 38 donors, including the 16 axis donors and the 14 screening donors, so concordance with it is expected and cannot confirm the hits.",
+      "detection_criterion": "The critique must say that the differential-expression 'validation' uses the same cohort, and the same NF-vs-DCM expression differences, that define the disease axis and hence the hits. It must call the concordance circular or expected by construction, not independent, and ask for independent evidence such as an external cohort, perturbation data or TF–target evidence. Merely asking for 'experimental validation' without naming the circularity does not count."
+    },
+    {
+      "flaw_id": "A04-F4",
+      "type": "B2",
+      "family": "biological",
+      "quote": "REST is a transcriptional activator of the natriuretic peptide genes NPPA and NPPB in adult ventricular myocytes, so its appearance links the embedding shift to the neurohormonal arm of the heart-failure program rather than only to loss of lineage identity.",
+      "description": "REST (NRSF, RE1-silencing transcription factor) represses NPPA, NPPB and other fetal cardiac genes in adult ventricular myocytes, and its loss de-represses them. Calling it an activator of these genes reverses the sign of a well-known regulatory relationship.",
+      "detection_criterion": "The critique must state that REST/NRSF is a repressor, not an activator, of NPPA/NPPB (or of the fetal cardiac gene program), so the stated direction of regulation is wrong. Questioning REST's relevance without identifying the sign error does not count."
+    }
+  ]
+}

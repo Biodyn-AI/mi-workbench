@@ -1,0 +1,569 @@
+[
+  {
+    "key": "sol_A",
+    "run_id": "x4_sol_A",
+    "model": "gpt-5.6-sol",
+    "effort": "medium",
+    "execution": true,
+    "status": "completed",
+    "stop_reason": "max_iterations",
+    "current_iteration": 10,
+    "total_input_tokens": 798489,
+    "total_output_tokens": 146133,
+    "error": null,
+    "run_dir": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/workspaces/sol_A/runs/x4_sol_A",
+    "iterations": [
+      {
+        "n": 1,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 600.782,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 2,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 98.632,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 3,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 503.172,
+        "code_execution": {
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 4,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 85.849,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 5,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 423.646,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 6,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 100.56,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 7,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 1167.581,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 8,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 128.871,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 9,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 474.988,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 10,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 86.424,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      }
+    ],
+    "repropack": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/repropacks/sol_A.zip",
+    "wall_seconds_this_invocation": 3684.9
+  },
+  {
+    "key": "sol_B",
+    "run_id": "x4_sol_B",
+    "model": "gpt-5.6-sol",
+    "effort": "medium",
+    "execution": true,
+    "status": "completed",
+    "stop_reason": "max_iterations",
+    "current_iteration": 10,
+    "total_input_tokens": 838235,
+    "total_output_tokens": 139239,
+    "error": null,
+    "run_dir": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/workspaces/sol_B/runs/x4_sol_B",
+    "iterations": [
+      {
+        "n": 1,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 274.071,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 2,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 98.151,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 3,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 468.649,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 4,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 116.338,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 5,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 460.161,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 6,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 151.745,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 7,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 444.54,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 8,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 116.624,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 9,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 371.372,
+        "code_execution": {
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 10,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 83.909,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      }
+    ],
+    "repropack": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/repropacks/sol_B.zip",
+    "wall_seconds_this_invocation": 2597.2
+  },
+  {
+    "key": "gpt55",
+    "run_id": "x4_gpt55",
+    "model": "gpt-5.5",
+    "effort": "medium",
+    "execution": true,
+    "status": "completed",
+    "stop_reason": "max_iterations",
+    "current_iteration": 10,
+    "total_input_tokens": 864168,
+    "total_output_tokens": 97580,
+    "error": null,
+    "run_dir": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/workspaces/gpt55/runs/x4_gpt55",
+    "iterations": [
+      {
+        "n": 1,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 307.777,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 2,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 107.346,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 3,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 1120.638,
+        "code_execution": {
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 1,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 4,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 54.594,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 5,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 810.375,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 6,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "D",
+        "duration_s": 88.112,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 7,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 1559.916,
+        "code_execution": {
+          "executed": 1,
+          "passed": 1,
+          "failed": 0,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 0,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 8,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "D",
+        "duration_s": 51.729,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 9,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 1283.278,
+        "code_execution": {
+          "executed": 1,
+          "passed": 0,
+          "failed": 1,
+          "mode": "single",
+          "backend": "sandbox_exec",
+          "code_blocks": 1,
+          "timed_out": 1,
+          "killed_by_limit": 0
+        },
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 10,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 58.013,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      }
+    ],
+    "repropack": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/repropacks/gpt55.zip",
+    "wall_seconds_this_invocation": 5506.6
+  },
+  {
+    "key": "sol_planonly",
+    "run_id": "x4_sol_planonly",
+    "model": "gpt-5.6-sol",
+    "effort": "medium",
+    "execution": false,
+    "status": "completed",
+    "stop_reason": "max_iterations",
+    "current_iteration": 10,
+    "total_input_tokens": 367552,
+    "total_output_tokens": 19150,
+    "error": null,
+    "run_dir": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/workspaces/sol_planonly/runs/x4_sol_planonly",
+    "iterations": [
+      {
+        "n": 1,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 32.595,
+        "code_execution": null,
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 2,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 55.165,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 3,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 21.65,
+        "code_execution": null,
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 4,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 43.703,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 5,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 18.403,
+        "code_execution": null,
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 6,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 50.019,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 7,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 21.91,
+        "code_execution": null,
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 8,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 55.343,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      },
+      {
+        "n": 9,
+        "role": "executor",
+        "status": "completed",
+        "grade": null,
+        "duration_s": 28.68,
+        "code_execution": null,
+        "consensus_grade_valid": null
+      },
+      {
+        "n": 10,
+        "role": "consensus_merger",
+        "status": "completed",
+        "grade": "F",
+        "duration_s": 34.883,
+        "code_execution": null,
+        "consensus_grade_valid": true
+      }
+    ],
+    "repropack": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs/repropacks/sol_planonly.zip",
+    "wall_seconds_this_invocation": 366.6
+  }
+]

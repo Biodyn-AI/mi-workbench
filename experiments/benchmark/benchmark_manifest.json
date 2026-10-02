@@ -1,0 +1,335 @@
+{
+  "schema": "miw-benchmark-manifest/1",
+  "created_utc": "2026-10-01T01:35:33.125973Z",
+  "hash_algorithm": "sha256",
+  "files": {
+    "artifacts/A01-clean.md": "2a44b10853c1ed5a60710002fbfe42c7d18c8f46d235fe198fd2786e7b63df7c",
+    "artifacts/A01-flawed.md": "706a05a7c0192048cfb8a14b91a391146c8c7ee2f12cbee4325f384c43abbf7d",
+    "artifacts/A02-flawed.md": "c6e7348d1a1e36e2cf7f79051b31276f170f266fc8f3969189c2a98cb7cb23b4",
+    "artifacts/A03-clean.md": "7cdce499127fd8aa298ca718da394fdc1d0517904290884cdeb0d84273c320f7",
+    "artifacts/A03-flawed.md": "32c673d989233dfbb61010dfae1a6682872f79e332853c32f1b7e9bd875521dc",
+    "artifacts/A04-flawed.md": "6193442d417847c57082d6aed3797026d423a784b51e130595a24cede4c2674e",
+    "artifacts/A05-clean.md": "cacdaf62d70c1ad2a9bc22849a54c89fa5e4453e18235ab9247f29706885bda1",
+    "artifacts/A05-flawed.md": "7cf45a4a2e4b8ea381dd39419c0b934ff4f879639e4c8ff38a533bb6a6e83a13",
+    "artifacts/A06-clean.md": "c7d877a3d9ba77989a7e7667d5853c16ad9e2712dc4dd297599868ed61a61b56",
+    "artifacts/A06-flawed.md": "98107ca7c16d61eb462b25d6e172308685b36989b643cfac9ca5c3a02065cb4a",
+    "artifacts/A07-flawed.md": "25bd22fa73c8f2c453cfae6761cad3b4c46328d46b1596b698d662814e093e67",
+    "artifacts/A08-flawed.md": "78733487ac050b428c9f71ed77fa703d342f3362d18588cffa93b3d721d03518",
+    "artifacts/A09-clean.md": "1dd4f4ad1f021444412f81924fcc48e91164e0b9bc73a70c9fec6d75d5225e31",
+    "artifacts/A09-flawed.md": "7c7a5ed7d08c2ae9f8f346a3b6b3968d2fe21e6dc1a4d978193f5ed69522ffc7",
+    "artifacts/A10-flawed.md": "17330d643e497a560906f19ac4ce51df0a86891200cfcee74bb834949b020987",
+    "artifacts/A11-clean.md": "8680efe91810c3a631bf43debf7e5e0db0ee1569afb3ce62e6f1f6a99637856f",
+    "artifacts/A11-flawed.md": "da050bac672da1a866340197b0353df008bb413391b615a606ef4a0837ea730a",
+    "artifacts/A12-flawed.md": "100cc3affa2a5e9ea1565781965548c787f98084ecb2eca322507090a5356871",
+    "ground_truth/A01-clean.json": "cb5526f673bb12aaa9ee8c7fd2e5a332460e383ac877e77fe6497e00b05c14b6",
+    "ground_truth/A01-flawed.json": "12d005a17807f26c2f7cf78fa2cf43673813d86298a33f99a5eaae216338d331",
+    "ground_truth/A02-flawed.json": "52a1783a43a94cacb632df2e6af9584dd54d18fe9d7c7facf3821bde78a85aa2",
+    "ground_truth/A03-clean.json": "4572879a953f906bf311873f0985dc82835327649507d362d3ccc120f3a274f5",
+    "ground_truth/A03-flawed.json": "66e732274851f2ff5ce79ef7da5fab28d70059047721f7e500f0ef3dcc6685cf",
+    "ground_truth/A04-flawed.json": "1a5f3e4a17917021d41a74ce6c15863911f710d8ee3406e4d707ef549d99a674",
+    "ground_truth/A05-clean.json": "bf243094b2d4a9d8d1b0b4b919a90b241b2282aaad43acdb54e49344136d4e82",
+    "ground_truth/A05-flawed.json": "2a96b9bbccaea4ed8b1cf596cfb550f57b565110d59a9d13b1feae359cf0416d",
+    "ground_truth/A06-clean.json": "756da750c11213e882a9e17e8c5ba69c4456faeda828f0ab232268e79cf1dfcc",
+    "ground_truth/A06-flawed.json": "2681d278542e7832f0fd935981fc8fb0de6872719b748a30b7a81fb14a665e54",
+    "ground_truth/A07-flawed.json": "2e2dc362dc52f46ba9e0a6368a28dd48786a960986c97295b3b015b091d81040",
+    "ground_truth/A08-flawed.json": "8eca2273f7eb2a0949034ae65fcb1209b8ede5e167e4998369c13e712cc809e8",
+    "ground_truth/A09-clean.json": "039ce37ea381977f08328cdd74321be9db85c7c673abe34e1d0ac54b736d9d3c",
+    "ground_truth/A09-flawed.json": "757680d5b5f32fa34a53c689b749704085299c7f8de85287079f0b64adfe8dd7",
+    "ground_truth/A10-flawed.json": "92fe097922b4f5bcae09cad9bf618e93b4f1c522daecbd86358cb7877f312609",
+    "ground_truth/A11-clean.json": "06bf82741870657f64ce26ce11098f1fe7188747b6186231155a32e4c87eb66c",
+    "ground_truth/A11-flawed.json": "44c72df911ee9e3f69cd351bf61fc5d27f84643aba6e4861c632fcc0d325b72d",
+    "ground_truth/A12-flawed.json": "250014794cd84e98a1e150c67fe1121666abd942cf14bc294c7df49e305e7084",
+    "ANALYSIS_PLAN.md": "5f14f9ba7c81c89246d04a7fd2bec1bf0ceb3b13e22cb555dbba16ea380ae176"
+  },
+  "counts": {
+    "items": 18,
+    "flawed_items": 12,
+    "clean_items": 6,
+    "flaws": 48,
+    "flaws_per_type": {
+      "S1": 4,
+      "S2": 4,
+      "S3": 4,
+      "C1": 4,
+      "C2": 4,
+      "C3": 4,
+      "L1": 4,
+      "L2": 4,
+      "T1": 4,
+      "T2": 4,
+      "B1": 4,
+      "B2": 4
+    },
+    "flaws_per_family": {
+      "biological": 8,
+      "causal_logic": 8,
+      "confounding": 12,
+      "statistics": 12,
+      "technical": 8
+    }
+  },
+  "t1_symmetry_instances": [
+    "A01-F4",
+    "A02-F3",
+    "A07-F2"
+  ],
+  "quote_occurrences": {
+    "A01-F1": 1,
+    "A01-F2": 1,
+    "A01-F3": 1,
+    "A01-F4": 1,
+    "A02-F1": 1,
+    "A02-F2": 1,
+    "A02-F3": 1,
+    "A02-F4": 1,
+    "A03-F1": 1,
+    "A03-F2": 1,
+    "A03-F3": 1,
+    "A03-F4": 1,
+    "A04-F1": 1,
+    "A04-F2": 1,
+    "A04-F3": 1,
+    "A04-F4": 1,
+    "A05-F1": 1,
+    "A05-F2": 1,
+    "A05-F3": 1,
+    "A05-F4": 1,
+    "A06-F1": 1,
+    "A06-F2": 1,
+    "A06-F3": 1,
+    "A06-F4": 1,
+    "A07-F1": 1,
+    "A07-F2": 1,
+    "A07-F3": 1,
+    "A07-F4": 1,
+    "A08-F1": 1,
+    "A08-F2": 1,
+    "A08-F3": 1,
+    "A08-F4": 1,
+    "A09-F1": 1,
+    "A09-F2": 1,
+    "A09-F3": 1,
+    "A09-F4": 1,
+    "A10-F1": 1,
+    "A10-F2": 1,
+    "A10-F3": 1,
+    "A10-F4": 1,
+    "A11-F1": 1,
+    "A11-F2": 1,
+    "A11-F3": 1,
+    "A11-F4": 1,
+    "A12-F1": 1,
+    "A12-F2": 1,
+    "A12-F3": 1,
+    "A12-F4": 1
+  },
+  "items": [
+    {
+      "item_id": "A01-clean",
+      "scenario": "A01",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A01-flawed",
+      "scenario": "A01",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S1",
+        "C1",
+        "L1",
+        "T1"
+      ]
+    },
+    {
+      "item_id": "A02-flawed",
+      "scenario": "A02",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S3",
+        "C2",
+        "T1",
+        "B1"
+      ]
+    },
+    {
+      "item_id": "A03-clean",
+      "scenario": "A03",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A03-flawed",
+      "scenario": "A03",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S2",
+        "C3",
+        "L1",
+        "T2"
+      ]
+    },
+    {
+      "item_id": "A04-flawed",
+      "scenario": "A04",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S1",
+        "C1",
+        "L2",
+        "B2"
+      ]
+    },
+    {
+      "item_id": "A05-clean",
+      "scenario": "A05",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A05-flawed",
+      "scenario": "A05",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S1",
+        "C2",
+        "T2",
+        "B2"
+      ]
+    },
+    {
+      "item_id": "A06-clean",
+      "scenario": "A06",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A06-flawed",
+      "scenario": "A06",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S2",
+        "C1",
+        "L1",
+        "B1"
+      ]
+    },
+    {
+      "item_id": "A07-flawed",
+      "scenario": "A07",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "C3",
+        "T1",
+        "L2",
+        "S3"
+      ]
+    },
+    {
+      "item_id": "A08-flawed",
+      "scenario": "A08",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "C2",
+        "S2",
+        "L2",
+        "B1"
+      ]
+    },
+    {
+      "item_id": "A09-clean",
+      "scenario": "A09",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A09-flawed",
+      "scenario": "A09",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "C3",
+        "S3",
+        "B2",
+        "L1"
+      ]
+    },
+    {
+      "item_id": "A10-flawed",
+      "scenario": "A10",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S1",
+        "C2",
+        "T1",
+        "B1"
+      ]
+    },
+    {
+      "item_id": "A11-clean",
+      "scenario": "A11",
+      "version": "clean",
+      "n_flaws": 0,
+      "flaw_types": []
+    },
+    {
+      "item_id": "A11-flawed",
+      "scenario": "A11",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S3",
+        "C3",
+        "T2",
+        "B2"
+      ]
+    },
+    {
+      "item_id": "A12-flawed",
+      "scenario": "A12",
+      "version": "flawed",
+      "n_flaws": 4,
+      "flaw_types": [
+        "S2",
+        "T2",
+        "L2",
+        "C1"
+      ]
+    }
+  ],
+  "task_statement": "Review the following mechanistic-interpretability analysis of a single-cell foundation model.",
+  "task_statement_sha256": "3cf7380f4793714ce94a17011108f37ffb6b19c35484b73c6fcc61491eb53e18",
+  "reviewer_prompts_at_freeze": {
+    "reviewer/mi_reviewer": {
+      "version": "2.0.0",
+      "sha256": "5bb394dfc0618159398dff744715306ff889f8a3466808a56825a7f24343cf9d"
+    },
+    "reviewer/mi_reviewer_combined": {
+      "version": "1.0.0",
+      "sha256": "3528673854dbdc39f20b6cffdfc3c4fe88ffe1d8d379f015d1dadc9ea8836563"
+    },
+    "adversarial_reviewer/adversarial_reviewer": {
+      "version": "2.0.0",
+      "sha256": "2702a4bac20d654a6e8aac520bb238ab8ad2c3c5518a5256f5ff994e405c1bc0"
+    },
+    "biological_plausibility/bio_plausibility_checker": {
+      "version": "2.0.0",
+      "sha256": "72e758889b3a7360399ae20e9af757522eb747940597faee34354c58748b790e"
+    }
+  },
+  "note": "files{} is the frozen contract (artifacts, ground truth, analysis plan); reviewer_prompts_at_freeze is informational (each review record stores its own system-prompt hash and version)."
+}

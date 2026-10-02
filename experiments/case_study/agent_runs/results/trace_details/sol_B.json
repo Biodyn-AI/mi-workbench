@@ -1,0 +1,1425 @@
+{
+ "key": "sol_B",
+ "run_id": "x4_sol_B",
+ "iterations": [
+  {
+   "iteration": 1,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "424",
+     "value": 424.0,
+     "category": "result",
+     "context": "rded at `benchmark_summary.trrust.matched_positive_edges` = 424 and `benchmark_summary.trrust.matched_c",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "2120",
+     "value": 2120.0,
+     "category": "list_marker",
+     "context": "424 and `benchmark_summary.trrust.matched_control_edges` = 2120. The TF-cluster count is `benchmark_sum"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "126",
+     "value": 126.0,
+     "category": "list_marker",
+     "context": "F-cluster count is `benchmark_summary.trrust.tf_clusters` = 126.  DoRothEA-exclusive matched positives"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "1949",
+     "value": 1949.0,
+     "category": "result",
+     "context": "chmark_summary.dorothea_exclusive.matched_positive_edges` = 1949 and `benchmark_summary.dorothea_exclusi",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "9745",
+     "value": 9745.0,
+     "category": "list_marker",
+     "context": "nchmark_summary.dorothea_exclusive.matched_control_edges` = 9745. The TF-cluster count is `benchmark_sum"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "81",
+     "value": 81.0,
+     "category": "list_marker",
+     "context": "unt is `benchmark_summary.dorothea_exclusive.tf_clusters` = 81.  ## Matching quality and nuisance base"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.3801",
+     "value": 0.3801,
+     "category": "result",
+     "context": "s `benchmark_summary.trrust.maximum_absolute_matched_smd` = 0.3801 for TRRUST and `benchmark_summary.dorot",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.3566",
+     "value": 0.3566,
+     "category": "result",
+     "context": "_summary.dorothea_exclusive.maximum_absolute_matched_smd` = 0.3566 for DoRothEA-exclusive.  ### TRRUST dia",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0198",
+     "value": 0.0198,
+     "category": "result",
+     "context": "| |---|---:|---:| | `matching_diagnostics.trrust.pearson` | 0.0198 | [-0.0148, 0.0546] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0148",
+     "value": -0.0148,
+     "category": "result",
+     "context": ":|---:| | `matching_diagnostics.trrust.pearson` | 0.0198 | [-0.0148, 0.0546] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0546",
+     "value": 0.0546,
+     "category": "result",
+     "context": "`matching_diagnostics.trrust.pearson` | 0.0198 | [-0.0148, 0.0546] | | `matching_diagnostics.trrust.spear",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0001",
+     "value": 0.0001,
+     "category": "result",
+     "context": ".0148, 0.0546] | | `matching_diagnostics.trrust.spearman` | 0.0001 | [-0.0373, 0.0390] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0373",
+     "value": -0.0373,
+     "category": "result",
+     "context": "546] | | `matching_diagnostics.trrust.spearman` | 0.0001 | [-0.0373, 0.0390] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0390",
+     "value": 0.039,
+     "category": "result",
+     "context": "`matching_diagnostics.trrust.spearman` | 0.0001 | [-0.0373, 0.0390] | | `matching_diagnostics.trrust.abs_p",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0447",
+     "value": 0.0447,
+     "category": "result",
+     "context": "73, 0.0390] | | `matching_diagnostics.trrust.abs_pearson` | 0.0447 | [0.0046, 0.0862] | | `matching_diagno",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0046",
+     "value": 0.0046,
+     "category": "result",
+     "context": "] | | `matching_diagnostics.trrust.abs_pearson` | 0.0447 | [0.0046, 0.0862] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0862",
+     "value": 0.0862,
+     "category": "result",
+     "context": "atching_diagnostics.trrust.abs_pearson` | 0.0447 | [0.0046, 0.0862] | | `matching_diagnostics.trrust.rank_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0071",
+     "value": -0.0071,
+     "category": "result",
+     "context": "0.0862] | | `matching_diagnostics.trrust.rank_proximity` | -0.0071 | [-0.0450, 0.0324] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0450",
+     "value": -0.045,
+     "category": "result",
+     "context": "| `matching_diagnostics.trrust.rank_proximity` | -0.0071 | [-0.0450, 0.0324] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0324",
+     "value": 0.0324,
+     "category": "result",
+     "context": "ng_diagnostics.trrust.rank_proximity` | -0.0071 | [-0.0450, 0.0324] | | `matching_diagnostics.trrust.copre",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0501",
+     "value": -0.0501,
+     "category": "result",
+     "context": "450, 0.0324] | | `matching_diagnostics.trrust.copresence` | -0.0501 | [-0.0832, -0.0151] | | `matching_diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0832",
+     "value": -0.0832,
+     "category": "result",
+     "context": "] | | `matching_diagnostics.trrust.copresence` | -0.0501 | [-0.0832, -0.0151] | | `matching_diagnostics.trr",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0151",
+     "value": -0.0151,
+     "category": "result",
+     "context": "tching_diagnostics.trrust.copresence` | -0.0501 | [-0.0832, -0.0151] | | `matching_diagnostics.trrust.targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0296",
+     "value": 0.0296,
+     "category": "result",
+     "context": "0151] | | `matching_diagnostics.trrust.target_expression` | 0.0296 | [-0.0090, 0.0676] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0090",
+     "value": -0.009,
+     "category": "result",
+     "context": "`matching_diagnostics.trrust.target_expression` | 0.0296 | [-0.0090, 0.0676] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0676",
+     "value": 0.0676,
+     "category": "result",
+     "context": "_diagnostics.trrust.target_expression` | 0.0296 | [-0.0090, 0.0676] | | `matching_diagnostics.trrust.targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0370",
+     "value": -0.037,
+     "category": "result",
+     "context": "0.0676] | | `matching_diagnostics.trrust.target_presence` | -0.0370 | [-0.0686, -0.0038] | | `matching_diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0686",
+     "value": -0.0686,
+     "category": "result",
+     "context": "`matching_diagnostics.trrust.target_presence` | -0.0370 | [-0.0686, -0.0038] | | `matching_diagnostics.trr",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0038",
+     "value": -0.0038,
+     "category": "result",
+     "context": "g_diagnostics.trrust.target_presence` | -0.0370 | [-0.0686, -0.0038] | | `matching_diagnostics.trrust.targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0364",
+     "value": 0.0364,
+     "category": "result",
+     "context": "] | | `matching_diagnostics.trrust.target_rank_proximity` | 0.0364 | [-0.0082, 0.0799] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0082",
+     "value": -0.0082,
+     "category": "result",
+     "context": "ching_diagnostics.trrust.target_rank_proximity` | 0.0364 | [-0.0082, 0.0799] | | `matching_diagnostics.trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0799",
+     "value": 0.0799,
+     "category": "result",
+     "context": "gnostics.trrust.target_rank_proximity` | 0.0364 | [-0.0082, 0.0799] | | `matching_diagnostics.trrust.targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.2169",
+     "value": 0.2169,
+     "category": "result",
+     "context": ".0799] | | `matching_diagnostics.trrust.target_in_degree` | 0.2169 | [0.1906, 0.2424] |  ### DoRothEA-excl",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.1906",
+     "value": 0.1906,
+     "category": "result",
+     "context": "`matching_diagnostics.trrust.target_in_degree` | 0.2169 | [0.1906, 0.2424] |  ### DoRothEA-exclusive diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.2424",
+     "value": 0.2424,
+     "category": "result",
+     "context": "ng_diagnostics.trrust.target_in_degree` | 0.2169 | [0.1906, 0.2424] |  ### DoRothEA-exclusive diagnostic s",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0379",
+     "value": 0.0379,
+     "category": "result",
+     "context": "---:| | `matching_diagnostics.dorothea_exclusive.pearson` | 0.0379 | [0.0123, 0.0630] | | `matching_diagno",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0123",
+     "value": 0.0123,
+     "category": "result",
+     "context": "atching_diagnostics.dorothea_exclusive.pearson` | 0.0379 | [0.0123, 0.0630] | | `matching_diagnostics.doro",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0630",
+     "value": 0.063,
+     "category": "result",
+     "context": "diagnostics.dorothea_exclusive.pearson` | 0.0379 | [0.0123, 0.0630] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0189",
+     "value": 0.0189,
+     "category": "result",
+     "context": "0] | | `matching_diagnostics.dorothea_exclusive.spearman` | 0.0189 | [-0.0053, 0.0445] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0053",
+     "value": -0.0053,
+     "category": "result",
+     "context": "tching_diagnostics.dorothea_exclusive.spearman` | 0.0189 | [-0.0053, 0.0445] | | `matching_diagnostics.doro",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0445",
+     "value": 0.0445,
+     "category": "result",
+     "context": "agnostics.dorothea_exclusive.spearman` | 0.0189 | [-0.0053, 0.0445] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0593",
+     "value": 0.0593,
+     "category": "result",
+     "context": "| | `matching_diagnostics.dorothea_exclusive.abs_pearson` | 0.0593 | [0.0341, 0.0823] | | `matching_diagno",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0341",
+     "value": 0.0341,
+     "category": "result",
+     "context": "ing_diagnostics.dorothea_exclusive.abs_pearson` | 0.0593 | [0.0341, 0.0823] | | `matching_diagnostics.doro",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0823",
+     "value": 0.0823,
+     "category": "result",
+     "context": "nostics.dorothea_exclusive.abs_pearson` | 0.0593 | [0.0341, 0.0823] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0320",
+     "value": -0.032,
+     "category": "result",
+     "context": "`matching_diagnostics.dorothea_exclusive.rank_proximity` | -0.0320 | [-0.0615, -0.0039] | | `matching_diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0615",
+     "value": -0.0615,
+     "category": "result",
+     "context": "diagnostics.dorothea_exclusive.rank_proximity` | -0.0320 | [-0.0615, -0.0039] | | `matching_diagnostics.dor",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0039",
+     "value": -0.0039,
+     "category": "result",
+     "context": "cs.dorothea_exclusive.rank_proximity` | -0.0320 | [-0.0615, -0.0039] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0297",
+     "value": -0.0297,
+     "category": "result",
+     "context": "| | `matching_diagnostics.dorothea_exclusive.copresence` | -0.0297 | [-0.0540, -0.0079] | | `matching_diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0540",
+     "value": -0.054,
+     "category": "result",
+     "context": "ing_diagnostics.dorothea_exclusive.copresence` | -0.0297 | [-0.0540, -0.0079] | | `matching_diagnostics.dor",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0079",
+     "value": -0.0079,
+     "category": "result",
+     "context": "ostics.dorothea_exclusive.copresence` | -0.0297 | [-0.0540, -0.0079] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0462",
+     "value": 0.0462,
+     "category": "result",
+     "context": "atching_diagnostics.dorothea_exclusive.target_expression` | 0.0462 | [0.0154, 0.0765] | | `matching_diagno",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0154",
+     "value": 0.0154,
+     "category": "result",
+     "context": "agnostics.dorothea_exclusive.target_expression` | 0.0462 | [0.0154, 0.0765] | | `matching_diagnostics.doro",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0765",
+     "value": 0.0765,
+     "category": "result",
+     "context": "s.dorothea_exclusive.target_expression` | 0.0462 | [0.0154, 0.0765] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0390",
+     "value": -0.039,
+     "category": "result",
+     "context": "`matching_diagnostics.dorothea_exclusive.target_presence` | -0.0390 | [-0.0659, -0.0124] | | `matching_diag",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0659",
+     "value": -0.0659,
+     "category": "result",
+     "context": "iagnostics.dorothea_exclusive.target_presence` | -0.0390 | [-0.0659, -0.0124] | | `matching_diagnostics.dor",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0124",
+     "value": -0.0124,
+     "category": "result",
+     "context": "s.dorothea_exclusive.target_presence` | -0.0390 | [-0.0659, -0.0124] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0089",
+     "value": -0.0089,
+     "category": "result",
+     "context": "ing_diagnostics.dorothea_exclusive.target_rank_proximity` | -0.0089 | [-0.0358, 0.0177] | | `matching_diagn",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "-0.0358",
+     "value": -0.0358,
+     "category": "result",
+     "context": "tics.dorothea_exclusive.target_rank_proximity` | -0.0089 | [-0.0358, 0.0177] | | `matching_diagnostics.doro",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0177",
+     "value": 0.0177,
+     "category": "result",
+     "context": "thea_exclusive.target_rank_proximity` | -0.0089 | [-0.0358, 0.0177] | | `matching_diagnostics.dorothea_exc",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.1800",
+     "value": 0.18,
+     "category": "result",
+     "context": "matching_diagnostics.dorothea_exclusive.target_in_degree` | 0.1800 | [0.1590, 0.1986] |  These diagnostics",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.1590",
+     "value": 0.159,
+     "category": "result",
+     "context": "iagnostics.dorothea_exclusive.target_in_degree` | 0.1800 | [0.1590, 0.1986] |  These diagnostics quantify",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.1986",
+     "value": 0.1986,
+     "category": "result",
+     "context": "cs.dorothea_exclusive.target_in_degree` | 0.1800 | [0.1590, 0.1986] |  These diagnostics quantify residual",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "1248",
+     "value": 1248.0,
+     "category": "result",
+     "context": "ily includes `configuration.multiple_testing_family_size` = 1248 attention tests. Supported-test counts",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "40",
+     "value": 40.0,
+     "category": "result",
+     "context": "counts are `benchmark_summary.trrust.bh_supported_tests` = 40 and `benchmark_summary.dorothea_exclusi",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "72",
+     "value": 72.0,
+     "category": "list_marker",
+     "context": "`benchmark_summary.dorothea_exclusive.bh_supported_tests` = 72. All supported and null results, includ"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "15",
+     "value": 15.0,
+     "category": "list_marker",
+     "context": "replicated-score count is `verdict.replicated_test_count` = 15. This is an associational result. It do"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.5",
+     "value": 0.5,
+     "category": "result",
+     "context": "on results  ### TRRUST  | results.json key | effect (cAUC \u2212 0.5) | cluster CI | p | BH q | |---|---:|--",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0982",
+     "value": 0.0982,
+     "category": "result",
+     "context": "--:|---:| | `attention_tests.trrust.head_L03_H05_forward` | 0.0982 | [0.0539, 0.1417] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0539",
+     "value": 0.0539,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L03_H05_forward` | 0.0982 | [0.0539, 0.1417] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1417",
+     "value": 0.1417,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L03_H05_forward` | 0.0982 | [0.0539, 0.1417] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": ".trrust.head_L03_H05_forward` | 0.0982 | [0.0539, 0.1417] | 0.000100 | 0.006239 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "d_L03_H05_forward` | 0.0982 | [0.0539, 0.1417] | 0.000100 | 0.006239 | | `attention_tests.trrust.layer_mean_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0972",
+     "value": 0.0972,
+     "category": "result",
+     "context": "06239 | | `attention_tests.trrust.layer_mean_L00_forward` | 0.0972 | [0.0550, 0.1382] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0550",
+     "value": 0.055,
+     "category": "result",
+     "context": "`attention_tests.trrust.layer_mean_L00_forward` | 0.0972 | [0.0550, 0.1382] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1382",
+     "value": 0.1382,
+     "category": "result",
+     "context": "on_tests.trrust.layer_mean_L00_forward` | 0.0972 | [0.0550, 0.1382] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "rrust.layer_mean_L00_forward` | 0.0972 | [0.0550, 0.1382] | 0.000100 | 0.006239 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "_mean_L00_forward` | 0.0972 | [0.0550, 0.1382] | 0.000100 | 0.006239 | | `attention_tests.trrust.layer_mean_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0948",
+     "value": 0.0948,
+     "category": "result",
+     "context": "06239 | | `attention_tests.trrust.layer_mean_L01_forward` | 0.0948 | [0.0546, 0.1336] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0546",
+     "value": 0.0546,
+     "category": "result",
+     "context": "`attention_tests.trrust.layer_mean_L01_forward` | 0.0948 | [0.0546, 0.1336] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1336",
+     "value": 0.1336,
+     "category": "result",
+     "context": "on_tests.trrust.layer_mean_L01_forward` | 0.0948 | [0.0546, 0.1336] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "rrust.layer_mean_L01_forward` | 0.0948 | [0.0546, 0.1336] | 0.000100 | 0.006239 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "_mean_L01_forward` | 0.0948 | [0.0546, 0.1336] | 0.000100 | 0.006239 | | `attention_tests.trrust.head_L04_H1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0905",
+     "value": 0.0905,
+     "category": "result",
+     "context": ".006239 | | `attention_tests.trrust.head_L04_H10_reverse` | 0.0905 | [0.0451, 0.1367] | 0.000200 | 0.00860",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0451",
+     "value": 0.0451,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L04_H10_reverse` | 0.0905 | [0.0451, 0.1367] | 0.000200 | 0.008606 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1367",
+     "value": 0.1367,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L04_H10_reverse` | 0.0905 | [0.0451, 0.1367] | 0.000200 | 0.008606 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000200",
+     "value": 0.0002,
+     "category": "result",
+     "context": ".trrust.head_L04_H10_reverse` | 0.0905 | [0.0451, 0.1367] | 0.000200 | 0.008606 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.008606",
+     "value": 0.008606,
+     "category": "result",
+     "context": "d_L04_H10_reverse` | 0.0905 | [0.0451, 0.1367] | 0.000200 | 0.008606 | | `attention_tests.trrust.head_L02_H1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0854",
+     "value": 0.0854,
+     "category": "result",
+     "context": ".008606 | | `attention_tests.trrust.head_L02_H11_forward` | 0.0854 | [0.0417, 0.1307] | 0.000200 | 0.00860",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0417",
+     "value": 0.0417,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L02_H11_forward` | 0.0854 | [0.0417, 0.1307] | 0.000200 | 0.008606 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1307",
+     "value": 0.1307,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L02_H11_forward` | 0.0854 | [0.0417, 0.1307] | 0.000200 | 0.008606 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000200",
+     "value": 0.0002,
+     "category": "result",
+     "context": ".trrust.head_L02_H11_forward` | 0.0854 | [0.0417, 0.1307] | 0.000200 | 0.008606 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.008606",
+     "value": 0.008606,
+     "category": "result",
+     "context": "d_L02_H11_forward` | 0.0854 | [0.0417, 0.1307] | 0.000200 | 0.008606 | | `attention_tests.trrust.head_L00_H0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0803",
+     "value": 0.0803,
+     "category": "result",
+     "context": ".008606 | | `attention_tests.trrust.head_L00_H06_reverse` | 0.0803 | [0.0390, 0.1198] | 0.000200 | 0.00860",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0390",
+     "value": 0.039,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L00_H06_reverse` | 0.0803 | [0.0390, 0.1198] | 0.000200 | 0.008606 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1198",
+     "value": 0.1198,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L00_H06_reverse` | 0.0803 | [0.0390, 0.1198] | 0.000200 | 0.008606 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000200",
+     "value": 0.0002,
+     "category": "result",
+     "context": ".trrust.head_L00_H06_reverse` | 0.0803 | [0.0390, 0.1198] | 0.000200 | 0.008606 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.008606",
+     "value": 0.008606,
+     "category": "result",
+     "context": "d_L00_H06_reverse` | 0.0803 | [0.0390, 0.1198] | 0.000200 | 0.008606 | | `attention_tests.trrust.head_L04_H0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0896",
+     "value": 0.0896,
+     "category": "result",
+     "context": ".008606 | | `attention_tests.trrust.head_L04_H02_forward` | 0.0896 | [0.0460, 0.1295] | 0.000300 | 0.01011",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0460",
+     "value": 0.046,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L04_H02_forward` | 0.0896 | [0.0460, 0.1295] | 0.000300 | 0.010118 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1295",
+     "value": 0.1295,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L04_H02_forward` | 0.0896 | [0.0460, 0.1295] | 0.000300 | 0.010118 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000300",
+     "value": 0.0003,
+     "category": "result",
+     "context": ".trrust.head_L04_H02_forward` | 0.0896 | [0.0460, 0.1295] | 0.000300 | 0.010118 | | `attention_tests.trrust.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.010118",
+     "value": 0.010118,
+     "category": "result",
+     "context": "d_L04_H02_forward` | 0.0896 | [0.0460, 0.1295] | 0.000300 | 0.010118 | | `attention_tests.trrust.head_L10_H0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0848",
+     "value": 0.0848,
+     "category": "result",
+     "context": ".010118 | | `attention_tests.trrust.head_L10_H00_forward` | 0.0848 | [0.0395, 0.1314] | 0.000500 | 0.01418",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0395",
+     "value": 0.0395,
+     "category": "result",
+     "context": "| `attention_tests.trrust.head_L10_H00_forward` | 0.0848 | [0.0395, 0.1314] | 0.000500 | 0.014180 |  ### N",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1314",
+     "value": 0.1314,
+     "category": "result",
+     "context": "tion_tests.trrust.head_L10_H00_forward` | 0.0848 | [0.0395, 0.1314] | 0.000500 | 0.014180 |  ### Non-overl",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000500",
+     "value": 0.0005,
+     "category": "result",
+     "context": ".trrust.head_L10_H00_forward` | 0.0848 | [0.0395, 0.1314] | 0.000500 | 0.014180 |  ### Non-overlapping DoRot",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.014180",
+     "value": 0.01418,
+     "category": "result",
+     "context": "d_L10_H00_forward` | 0.0848 | [0.0395, 0.1314] | 0.000500 | 0.014180 |  ### Non-overlapping DoRothEA validat",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.5",
+     "value": 0.5,
+     "category": "result",
+     "context": "ng DoRothEA validation  | results.json key | effect (cAUC \u2212 0.5) | cluster CI | p | BH q | |---|---:|--",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0806",
+     "value": 0.0806,
+     "category": "result",
+     "context": "ttention_tests.dorothea_exclusive.layer_mean_L03_forward` | 0.0806 | [0.0496, 0.1132] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0496",
+     "value": 0.0496,
+     "category": "result",
+     "context": "ests.dorothea_exclusive.layer_mean_L03_forward` | 0.0806 | [0.0496, 0.1132] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1132",
+     "value": 0.1132,
+     "category": "result",
+     "context": "othea_exclusive.layer_mean_L03_forward` | 0.0806 | [0.0496, 0.1132] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "usive.layer_mean_L03_forward` | 0.0806 | [0.0496, 0.1132] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "_mean_L03_forward` | 0.0806 | [0.0496, 0.1132] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0798",
+     "value": 0.0798,
+     "category": "result",
+     "context": "ention_tests.dorothea_exclusive.layer_mean_L00_symmetric` | 0.0798 | [0.0493, 0.1097] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0493",
+     "value": 0.0493,
+     "category": "result",
+     "context": "ts.dorothea_exclusive.layer_mean_L00_symmetric` | 0.0798 | [0.0493, 0.1097] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1097",
+     "value": 0.1097,
+     "category": "result",
+     "context": "hea_exclusive.layer_mean_L00_symmetric` | 0.0798 | [0.0493, 0.1097] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "ive.layer_mean_L00_symmetric` | 0.0798 | [0.0493, 0.1097] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "ean_L00_symmetric` | 0.0798 | [0.0493, 0.1097] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0784",
+     "value": 0.0784,
+     "category": "result",
+     "context": "ention_tests.dorothea_exclusive.layer_mean_L03_symmetric` | 0.0784 | [0.0521, 0.1062] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0521",
+     "value": 0.0521,
+     "category": "result",
+     "context": "ts.dorothea_exclusive.layer_mean_L03_symmetric` | 0.0784 | [0.0521, 0.1062] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1062",
+     "value": 0.1062,
+     "category": "result",
+     "context": "hea_exclusive.layer_mean_L03_symmetric` | 0.0784 | [0.0521, 0.1062] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "ive.layer_mean_L03_symmetric` | 0.0784 | [0.0521, 0.1062] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "ean_L03_symmetric` | 0.0784 | [0.0521, 0.1062] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0779",
+     "value": 0.0779,
+     "category": "result",
+     "context": "`attention_tests.dorothea_exclusive.head_L02_H05_reverse` | 0.0779 | [0.0498, 0.1073] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0498",
+     "value": 0.0498,
+     "category": "result",
+     "context": "_tests.dorothea_exclusive.head_L02_H05_reverse` | 0.0779 | [0.0498, 0.1073] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1073",
+     "value": 0.1073,
+     "category": "result",
+     "context": "orothea_exclusive.head_L02_H05_reverse` | 0.0779 | [0.0498, 0.1073] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "clusive.head_L02_H05_reverse` | 0.0779 | [0.0498, 0.1073] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "d_L02_H05_reverse` | 0.0779 | [0.0498, 0.1073] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0731",
+     "value": 0.0731,
+     "category": "result",
+     "context": "ttention_tests.dorothea_exclusive.head_L03_H10_symmetric` | 0.0731 | [0.0402, 0.1052] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0402",
+     "value": 0.0402,
+     "category": "result",
+     "context": "ests.dorothea_exclusive.head_L03_H10_symmetric` | 0.0731 | [0.0402, 0.1052] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1052",
+     "value": 0.1052,
+     "category": "result",
+     "context": "othea_exclusive.head_L03_H10_symmetric` | 0.0731 | [0.0402, 0.1052] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "usive.head_L03_H10_symmetric` | 0.0731 | [0.0402, 0.1052] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "L03_H10_symmetric` | 0.0731 | [0.0402, 0.1052] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0714",
+     "value": 0.0714,
+     "category": "result",
+     "context": "`attention_tests.dorothea_exclusive.head_L02_H07_forward` | 0.0714 | [0.0425, 0.1007] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0425",
+     "value": 0.0425,
+     "category": "result",
+     "context": "_tests.dorothea_exclusive.head_L02_H07_forward` | 0.0714 | [0.0425, 0.1007] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1007",
+     "value": 0.1007,
+     "category": "result",
+     "context": "orothea_exclusive.head_L02_H07_forward` | 0.0714 | [0.0425, 0.1007] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "clusive.head_L02_H07_forward` | 0.0714 | [0.0425, 0.1007] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "d_L02_H07_forward` | 0.0714 | [0.0425, 0.1007] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0697",
+     "value": 0.0697,
+     "category": "result",
+     "context": "ttention_tests.dorothea_exclusive.head_L00_H07_symmetric` | 0.0697 | [0.0398, 0.1013] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0398",
+     "value": 0.0398,
+     "category": "result",
+     "context": "ests.dorothea_exclusive.head_L00_H07_symmetric` | 0.0697 | [0.0398, 0.1013] | 0.000100 | 0.006239 | | `att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.1013",
+     "value": 0.1013,
+     "category": "result",
+     "context": "othea_exclusive.head_L00_H07_symmetric` | 0.0697 | [0.0398, 0.1013] | 0.000100 | 0.006239 | | `attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "usive.head_L00_H07_symmetric` | 0.0697 | [0.0398, 0.1013] | 0.000100 | 0.006239 | | `attention_tests.dorothe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "L00_H07_symmetric` | 0.0697 | [0.0398, 0.1013] | 0.000100 | 0.006239 | | `attention_tests.dorothea_exclusive",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0687",
+     "value": 0.0687,
+     "category": "result",
+     "context": "ention_tests.dorothea_exclusive.head_L09_H05_directional` | 0.0687 | [0.0400, 0.0988] | 0.000100 | 0.00623",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0400",
+     "value": 0.04,
+     "category": "result",
+     "context": "ts.dorothea_exclusive.head_L09_H05_directional` | 0.0687 | [0.0400, 0.0988] | 0.000100 | 0.006239 |  Every",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0988",
+     "value": 0.0988,
+     "category": "result",
+     "context": "hea_exclusive.head_L09_H05_directional` | 0.0687 | [0.0400, 0.0988] | 0.000100 | 0.006239 |  Every interva",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000100",
+     "value": 0.0001,
+     "category": "result",
+     "context": "ive.head_L09_H05_directional` | 0.0687 | [0.0400, 0.0988] | 0.000100 | 0.006239 |  Every interval above resa",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.006239",
+     "value": 0.006239,
+     "category": "result",
+     "context": "9_H05_directional` | 0.0687 | [0.0400, 0.0988] | 0.000100 | 0.006239 |  Every interval above resamples TF cl",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0982",
+     "value": 0.0982,
+     "category": "result",
+     "context": "adjusted effect is `benchmark_summary.trrust.best_effect` = 0.0982 with interval [`benchmark_summary.trrus",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0539",
+     "value": 0.0539,
+     "category": "result",
+     "context": "t.best_ci_low`, `benchmark_summary.trrust.best_ci_high`] = [0.0539, 0.1417].  The strongest DoRothEA-exclu",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.1417",
+     "value": 0.1417,
+     "category": "result",
+     "context": "i_low`, `benchmark_summary.trrust.best_ci_high`] = [0.0539, 0.1417].  The strongest DoRothEA-exclusive adj",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0806",
+     "value": 0.0806,
+     "category": "result",
+     "context": "ect is `benchmark_summary.dorothea_exclusive.best_effect` = 0.0806 with interval [`benchmark_summary.dorot",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0496",
+     "value": 0.0496,
+     "category": "result",
+     "context": "w`, `benchmark_summary.dorothea_exclusive.best_ci_high`] = [0.0496, 0.1132].  ## Reproducibility artifacts",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.1132",
+     "value": 0.1132,
+     "category": "result",
+     "context": "chmark_summary.dorothea_exclusive.best_ci_high`] = [0.0496, 0.1132].  ## Reproducibility artifacts  - `res",
+     "status": "computed"
+    }
+   ]
+  },
+  {
+   "iteration": 3,
+   "numbers": []
+  },
+  {
+   "iteration": 5,
+   "numbers": []
+  },
+  {
+   "iteration": 7,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "0",
+     "value": 0.0,
+     "category": "index",
+     "context": "Prediction compares nuisance-only and nuisance-plus-layer-0-forward-attention models. Each bootstra"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "256",
+     "value": 256.0,
+     "category": "result",
+     "context": "he exact executable source under a stable filename with SHA-256 and   performed a clean-output rerun ch",
+     "status": "literal_matches_output"
+    }
+   ]
+  },
+  {
+   "iteration": 9,
+   "numbers": []
+  }
+ ]
+}

@@ -1,0 +1,2224 @@
+{
+  "generated_at": "2026-10-01T15:17:09.104908",
+  "data_dir": "/Volumes/Crucial X6/MacBook/biomechinterp/biodyn-work/automation/mi-workbench/experiments_data/case_study_agent_runs",
+  "method": {
+    "writeup": "executor_output.md minus fenced code blocks",
+    "categories": {
+      "result": "primary: checked for provenance",
+      "small_integer": "integers |v| <= 12; traced, reported separately",
+      "parameter": "analysis settings (seeds, permutations, thresholds, CI level, chance)",
+      "threshold": "conventional significance levels next to p/q/FDR/alpha",
+      "task_given": "literal appears in the task text (excluded)",
+      "list_marker": "ordered-list / heading numbering (excluded)",
+      "index": "layer/head/iteration/section/critique indices (excluded)",
+      "year": "citation-like years (excluded)"
+    },
+    "sources": "complete stdout and every text file written by the code (persisted per execution unit via code_execution_persist_dir; fallback: the capped report in CODE_EXECUTION.json) of the same iteration (current) or of earlier executor iterations of the run (earlier); stderr and code are not sources",
+    "match": "equal after rounding to the shown precision (tolerance half a unit in the last shown digit); percent <-> fraction; sign-agnostic fallback flagged",
+    "plan_only": "no execution: every result number is untraceable by definition",
+    "channels": {
+      "agent_text": "numbers the agent typed in its response outside code blocks; traced against the executed outputs",
+      "generated_reports": "numbers in *.md reports written by the executed code; computed unless the executed code contains the literal; a literal that matches no stdout / non-narrative output value is hard_coded (untraceable)",
+      "combined_result": "agent_text + generated_reports result numbers"
+    }
+  },
+  "runs": {
+    "gpt55": {
+      "key": "gpt55",
+      "run_id": "x4_gpt55",
+      "execution": true,
+      "model": "gpt-5.5",
+      "reasoning_effort": "medium",
+      "status": "completed",
+      "stop_reason": "max_iterations",
+      "executor_iterations": 5,
+      "totals": {
+        "result": {
+          "total": 0,
+          "traceable": 0,
+          "traceable_current": 0,
+          "traceable_earlier": 0,
+          "untraceable": 0,
+          "traceable_but_literal_in_code": 0
+        },
+        "small_integer": {
+          "total": 0,
+          "traceable": 0
+        },
+        "parameter": {
+          "total": 0,
+          "traceable": 0
+        },
+        "threshold": {
+          "total": 0,
+          "traceable": 0
+        }
+      },
+      "excluded_totals": {
+        "task_given": 0,
+        "list_marker": 0,
+        "index": 0,
+        "year": 0
+      },
+      "result_traceable_fraction": null,
+      "result_untraceable_per_iteration": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "generated_reports_totals": {
+        "total": 3,
+        "traceable": 3,
+        "computed": 0,
+        "literal_matches_output": 3,
+        "hard_coded": 0
+      },
+      "combined_result": {
+        "total": 3,
+        "traceable": 3,
+        "untraceable": 0,
+        "traceable_fraction": 1.0
+      },
+      "iterations": [
+        {
+          "iteration": 1,
+          "executor_round": 1,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "attention_tests.tsv",
+              "baseline_metrics.tsv",
+              "results.json",
+              "top_attention_tests.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 4,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 3,
+                "traceable": 3,
+                "computed": 0,
+                "literal_matches_output": 3,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 1,
+                "traceable": 1
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 3,
+            "traceable": 3,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 3,
+          "executor_round": 2,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "timed_out": 1,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "attention_tests.tsv",
+              "baseline_metrics.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 5,
+          "executor_round": 3,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "attention_tests.tsv",
+              "baseline_metrics.tsv",
+              "candidate_pairs.tsv",
+              "checkpoint_status.json",
+              "results.json",
+              "selected_pair_scores.tsv",
+              "top_attention_tests.tsv",
+              "top_pair_celltype_presence.tsv",
+              "top_positive_attention_tests.tsv",
+              "top_positive_residual_pairs.tsv",
+              "trrust_mode_metrics_best_positive.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 4,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 1,
+                "traceable": 1
+              },
+              "threshold": {
+                "total": 3,
+                "traceable": 3
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 7,
+          "executor_round": 4,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "attention_tests.tsv",
+              "baseline_metrics.tsv",
+              "candidate_pairs.tsv",
+              "checkpoint_status.json",
+              "results.json",
+              "selected_pair_scores.tsv",
+              "top_attention_tests.tsv",
+              "top_pair_celltype_copresence.tsv",
+              "top_pair_celltype_presence.tsv",
+              "top_positive_attention_tests.tsv",
+              "top_positive_residual_pairs.tsv",
+              "trrust_mode_metrics_best_positive.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 4,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 1,
+                "traceable": 1
+              },
+              "threshold": {
+                "total": 3,
+                "traceable": 3
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 9,
+          "executor_round": 5,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "timed_out": 1,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "attention_tests.tsv",
+              "baseline_metrics.tsv",
+              "candidate_pairs.tsv",
+              "checkpoint_status.json",
+              "executed_analysis.py",
+              "selected_pair_scores.tsv",
+              "top_attention_tests.tsv",
+              "top_positive_attention_tests.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        }
+      ]
+    },
+    "sol_A": {
+      "key": "sol_A",
+      "run_id": "x4_sol_A",
+      "execution": true,
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "medium",
+      "status": "completed",
+      "stop_reason": "max_iterations",
+      "executor_iterations": 5,
+      "totals": {
+        "result": {
+          "total": 0,
+          "traceable": 0,
+          "traceable_current": 0,
+          "traceable_earlier": 0,
+          "untraceable": 0,
+          "traceable_but_literal_in_code": 0
+        },
+        "small_integer": {
+          "total": 0,
+          "traceable": 0
+        },
+        "parameter": {
+          "total": 0,
+          "traceable": 0
+        },
+        "threshold": {
+          "total": 0,
+          "traceable": 0
+        }
+      },
+      "excluded_totals": {
+        "task_given": 0,
+        "list_marker": 0,
+        "index": 0,
+        "year": 0
+      },
+      "result_traceable_fraction": null,
+      "result_untraceable_per_iteration": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "generated_reports_totals": {
+        "total": 460,
+        "traceable": 460,
+        "computed": 449,
+        "literal_matches_output": 11,
+        "hard_coded": 0
+      },
+      "combined_result": {
+        "total": 460,
+        "traceable": 460,
+        "untraceable": 0,
+        "traceable_fraction": 1.0
+      },
+      "iterations": [
+        {
+          "iteration": 1,
+          "executor_round": 1,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "_checkpoint_head_stats.tsv",
+              "_checkpoint_layer_records.json",
+              "head_stats.tsv",
+              "layer_predictions_checkpoint.npz",
+              "layer_stats.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 411,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 403,
+                "traceable": 403,
+                "computed": 399,
+                "literal_matches_output": 4,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 4,
+                "traceable": 4
+              },
+              "parameter": {
+                "total": 4,
+                "traceable": 4
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 403,
+            "traceable": 403,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 3,
+          "executor_round": 2,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "_checkpoint_attention_residuals_f32.dat"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 5,
+          "executor_round": 3,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "analysis_config.json",
+              "analysis_environment.json",
+              "analysis_split_checkpoint.npz",
+              "artifact_manifest.json",
+              "association_checkpoint.json",
+              "attention_tests.tsv",
+              "evaluation_predictions.npz",
+              "layer_selection_tests.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 40,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 7,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 31,
+                "traceable": 31,
+                "computed": 29,
+                "literal_matches_output": 2,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 2,
+                "traceable": 2
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 31,
+            "traceable": 31,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 7,
+          "executor_round": 4,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "analysis_checkpoint.npz",
+              "analysis_config.json",
+              "analysis_environment.json",
+              "artifact_manifest.json",
+              "layer_selection_tests.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 26,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 9,
+              "index": 1,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 16,
+                "traceable": 16,
+                "computed": 12,
+                "literal_matches_output": 4,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 16,
+            "traceable": 16,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 9,
+          "executor_round": 5,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "analysis_checkpoint.npz",
+              "analysis_config.json",
+              "analysis_environment.json",
+              "artifact_manifest.json",
+              "multiverse_results.tsv",
+              "nested_split_results.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "PATCH_NOTES.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 20,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 10,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 10,
+                "traceable": 10,
+                "computed": 9,
+                "literal_matches_output": 1,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 10,
+            "traceable": 10,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        }
+      ]
+    },
+    "sol_B": {
+      "key": "sol_B",
+      "run_id": "x4_sol_B",
+      "execution": true,
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "medium",
+      "status": "completed",
+      "stop_reason": "max_iterations",
+      "executor_iterations": 5,
+      "totals": {
+        "result": {
+          "total": 0,
+          "traceable": 0,
+          "traceable_current": 0,
+          "traceable_earlier": 0,
+          "untraceable": 0,
+          "traceable_but_literal_in_code": 0
+        },
+        "small_integer": {
+          "total": 0,
+          "traceable": 0
+        },
+        "parameter": {
+          "total": 0,
+          "traceable": 0
+        },
+        "threshold": {
+          "total": 0,
+          "traceable": 0
+        }
+      },
+      "excluded_totals": {
+        "task_given": 0,
+        "list_marker": 0,
+        "index": 0,
+        "year": 0
+      },
+      "result_traceable_fraction": null,
+      "result_untraceable_per_iteration": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "generated_reports_totals": {
+        "total": 149,
+        "traceable": 149,
+        "computed": 146,
+        "literal_matches_output": 3,
+        "hard_coded": 0
+      },
+      "combined_result": {
+        "total": 149,
+        "traceable": 149,
+        "untraceable": 0,
+        "traceable_fraction": 1.0
+      },
+      "iterations": [
+        {
+          "iteration": 1,
+          "executor_round": 1,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "attention_test_results.tsv",
+              "matching_checkpoint.npz",
+              "matching_diagnostic_results.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 154,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 6,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 148,
+                "traceable": 148,
+                "computed": 146,
+                "literal_matches_output": 2,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 148,
+            "traceable": 148,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 3,
+          "executor_round": 2,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "balance_diagnostics.tsv",
+              "exploratory_attention_family.tsv",
+              "leading_pairs.tsv",
+              "matching_checkpoint.npz",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 5,
+          "executor_round": 3,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "balance_diagnostics.tsv",
+              "exploratory_attention_family.tsv",
+              "joint_family_null_draws.tsv",
+              "matching_checkpoint.npz",
+              "matching_sensitivity.tsv",
+              "out_of_fold_predictions.tsv",
+              "pair_biological_audit.tsv",
+              "rematched_tf_bootstrap_draws.tsv",
+              "repeated_cv_metrics.tsv",
+              "results.json",
+              "selection_audit.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        },
+        {
+          "iteration": 7,
+          "executor_round": 4,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 1,
+            "failed": 0,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md",
+              "analysis_iteration7.py",
+              "attention_family.tsv",
+              "balance_diagnostics.tsv",
+              "degree_null_draws.tsv",
+              "family_null_draws.tsv",
+              "matching_checkpoint.npz",
+              "pair_biological_audit.tsv",
+              "prediction_bootstrap_draws.tsv",
+              "results.json"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [
+              "EVAL.md",
+              "MECH.md",
+              "METHOD.md",
+              "RUN_SUMMARY.md",
+              "XP.md"
+            ],
+            "numbers_extracted": 2,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 1,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 1,
+                "traceable": 1,
+                "computed": 0,
+                "literal_matches_output": 1,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 1,
+            "traceable": 1,
+            "untraceable": 0,
+            "traceable_fraction": 1.0
+          }
+        },
+        {
+          "iteration": 9,
+          "executor_round": 5,
+          "n_python_blocks": 1,
+          "execution": {
+            "executed": 1,
+            "passed": 0,
+            "failed": 1,
+            "timed_out": 0,
+            "complete": true,
+            "stdout_truncated": false,
+            "files": [
+              "context_audit_checkpoint.npz",
+              "degree_null_draws.tsv",
+              "manifest_verification.tsv",
+              "pair_biological_audit.tsv"
+            ],
+            "files_truncated": [],
+            "files_unread": [],
+            "persist_notes": []
+          },
+          "execution_available": true,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          }
+        }
+      ]
+    },
+    "sol_planonly": {
+      "key": "sol_planonly",
+      "run_id": "x4_sol_planonly",
+      "execution": false,
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "medium",
+      "status": "completed",
+      "stop_reason": "max_iterations",
+      "executor_iterations": 5,
+      "totals": {
+        "result": {
+          "total": 0,
+          "traceable": 0,
+          "traceable_current": 0,
+          "traceable_earlier": 0,
+          "untraceable": 0,
+          "traceable_but_literal_in_code": 0
+        },
+        "small_integer": {
+          "total": 0,
+          "traceable": 0
+        },
+        "parameter": {
+          "total": 0,
+          "traceable": 0
+        },
+        "threshold": {
+          "total": 0,
+          "traceable": 0
+        }
+      },
+      "excluded_totals": {
+        "task_given": 0,
+        "list_marker": 9,
+        "index": 0,
+        "year": 0
+      },
+      "result_traceable_fraction": null,
+      "result_untraceable_per_iteration": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "generated_reports_totals": {
+        "total": 0,
+        "traceable": 0,
+        "computed": 0,
+        "literal_matches_output": 0,
+        "hard_coded": 0
+      },
+      "combined_result": {
+        "total": 0,
+        "traceable": 0,
+        "untraceable": 0,
+        "traceable_fraction": null
+      },
+      "iterations": [
+        {
+          "iteration": 1,
+          "executor_round": 1,
+          "n_python_blocks": 0,
+          "execution": null,
+          "execution_available": false,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          },
+          "note": "plan-only control: nothing was executed, so every reported result number is untraceable by definition"
+        },
+        {
+          "iteration": 3,
+          "executor_round": 2,
+          "n_python_blocks": 0,
+          "execution": null,
+          "execution_available": false,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 0,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 0,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          },
+          "note": "plan-only control: nothing was executed, so every reported result number is untraceable by definition"
+        },
+        {
+          "iteration": 5,
+          "executor_round": 3,
+          "n_python_blocks": 0,
+          "execution": null,
+          "execution_available": false,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 3,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 3,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          },
+          "note": "plan-only control: nothing was executed, so every reported result number is untraceable by definition"
+        },
+        {
+          "iteration": 7,
+          "executor_round": 4,
+          "n_python_blocks": 0,
+          "execution": null,
+          "execution_available": false,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 3,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 3,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          },
+          "note": "plan-only control: nothing was executed, so every reported result number is untraceable by definition"
+        },
+        {
+          "iteration": 9,
+          "executor_round": 5,
+          "n_python_blocks": 0,
+          "execution": null,
+          "execution_available": false,
+          "output_possibly_truncated": false,
+          "numbers_extracted": 3,
+          "excluded": {
+            "task_given": 0,
+            "list_marker": 3,
+            "index": 0,
+            "year": 0
+          },
+          "counts": {
+            "result": {
+              "total": 0,
+              "traceable": 0,
+              "traceable_current": 0,
+              "traceable_earlier": 0,
+              "untraceable": 0,
+              "traceable_but_literal_in_code": 0
+            },
+            "small_integer": {
+              "total": 0,
+              "traceable": 0
+            },
+            "parameter": {
+              "total": 0,
+              "traceable": 0
+            },
+            "threshold": {
+              "total": 0,
+              "traceable": 0
+            }
+          },
+          "result_traceable_fraction": null,
+          "untraceable_results": [],
+          "generated_reports": {
+            "files": [],
+            "numbers_extracted": 0,
+            "excluded": {
+              "task_given": 0,
+              "list_marker": 0,
+              "index": 0,
+              "year": 0
+            },
+            "counts": {
+              "result": {
+                "total": 0,
+                "traceable": 0,
+                "computed": 0,
+                "literal_matches_output": 0,
+                "hard_coded": 0
+              },
+              "small_integer": {
+                "total": 0,
+                "traceable": 0
+              },
+              "parameter": {
+                "total": 0,
+                "traceable": 0
+              },
+              "threshold": {
+                "total": 0,
+                "traceable": 0
+              }
+            },
+            "hard_coded_results": []
+          },
+          "combined_result": {
+            "total": 0,
+            "traceable": 0,
+            "untraceable": 0,
+            "traceable_fraction": null
+          },
+          "note": "plan-only control: nothing was executed, so every reported result number is untraceable by definition"
+        }
+      ]
+    }
+  }
+}

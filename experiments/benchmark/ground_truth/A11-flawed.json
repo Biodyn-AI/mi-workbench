@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A11-flawed",
+  "scenario": "scGPT fine-tuned perturbation-response prediction compared against a linear baseline on held-out perturbations of the Replogle K562 essential-gene CRISPRi Perturb-seq screen",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A11-F1",
+      "type": "S3",
+      "family": "statistics",
+      "quote": "Fine-tuned scGPT predicts the transcriptome-wide response to CRISPRi perturbations it never saw during training with near-perfect accuracy (mean r = 0.989) and outperforms the linear baseline on 90% of test perturbations.",
+      "description": "The only accuracy metric is the Pearson correlation between predicted and observed absolute post-perturbation expression across all 5,741 genes; because most genes barely change after a single knockdown, this correlation is dominated by between-gene differences in baseline expression, and a no-change prediction (control mean) would typically also score ~0.98-0.99, comparable to both models. The metric therefore cannot show accurate response prediction or a meaningful advantage; change-based metrics (e.g. Pearson on expression deltas, errors on top DE genes) and no-change/mean baselines are missing.",
+      "detection_criterion": "The critique must state that the Pearson correlation is computed on absolute expression profiles (not on perturbation-induced changes relative to control) and is therefore inflated/saturated by baseline expression levels, such that a trivial no-change or control-mean predictor would achieve a similarly high r; it must conclude that r = 0.989 (and the difference to the linear baseline) does not demonstrate accurate response prediction and ask for delta-based or DE-gene metrics and/or a no-change/mean baseline. A generic request for 'additional metrics' without identifying the absolute-expression saturation problem does not qualify."
+    },
+    {
+      "flaw_id": "A11-F2",
+      "type": "C3",
+      "family": "confounding",
+      "quote": "Learning rate (1e-4, 5e-5 or 1e-5) and number of epochs (up to 20) were set by grid search, keeping the configuration and epoch with the highest mean Pearson correlation on the 212 test perturbations (learning rate 5e-5, epoch 14).",
+      "description": "scGPT's hyperparameters and stopping epoch were selected on the same 212 test perturbations used to report performance, which leaks test information into model selection and optimistically biases scGPT's test accuracy; the linear baseline was tuned by cross-validation within the training perturbations, so the comparison is also asymmetric.",
+      "detection_criterion": "The critique must identify that scGPT's hyperparameters/epoch were chosen using performance on the test perturbations (test-set selection / leakage), making the reported test performance optimistically biased and the comparison with the training-CV-tuned linear baseline unfair, and must call for a separate validation split or nested selection. Generic comments about 'overfitting' or 'small test set' that do not name selection on the test set do not qualify."
+    },
+    {
+      "flaw_id": "A11-F3",
+      "type": "T2",
+      "family": "technical",
+      "quote": "The model was the scGPT whole-human checkpoint (24 transformer layers, 16 attention heads, 1,024-dimensional embeddings), pretrained on about 33 million human cells from CELLxGENE. To limit overfitting with 850 training perturbations, we froze the gene and value embeddings and the first 18 of the 24 transformer layers and fine-tuned the last six layers together with the expression decoder.",
+      "description": "The scGPT whole-human checkpoint has 12 transformer layers, 8 attention heads and 512-dimensional embeddings, not 24/16/1,024; the described partial fine-tuning scheme (freezing layers 1-18 of 24 and tuning the last six) cannot correspond to this checkpoint, so which model and which parameters were actually fine-tuned is misreported and the 'fine-tuned scGPT' result cannot be interpreted or reproduced.",
+      "detection_criterion": "The critique must state that the reported architecture is wrong for the scGPT whole-human checkpoint (it has 12 layers, 8 heads, 512-dimensional embeddings) and that consequently the freezing/fine-tuning scheme (first 18 of 24 layers frozen, last six tuned) is impossible or inconsistent, leaving unclear what model or which layers were fine-tuned. Merely asking for more implementation details without identifying the incorrect layer/head/dimension counts does not qualify."
+    },
+    {
+      "flaw_id": "A11-F4",
+      "type": "B2",
+      "family": "biological",
+      "quote": "scGPT reproduced this profile with r = 0.971 (linear baseline 0.938), including the decrease of the unfolded protein response (UPR) target genes DDIT3, HERPUD1, DNAJB9 and SEL1L (observed log2 fold changes −1.2 to −2.3; scGPT −0.9 to −1.8), the expected consequence of depleting BiP, the chaperone that activates the ERN1, EIF2AK3 and ATF6 stress sensors.",
+      "description": "BiP (HSPA5) is a negative regulator of the UPR: it binds the luminal domains of IRE1 (ERN1), PERK (EIF2AK3) and ATF6 and keeps them inactive, so HSPA5 knockdown activates all three branches and induces DDIT3, HERPUD1, DNAJB9 and SEL1L. The stated mechanism (BiP activates the sensors) and the reported direction (decrease of UPR targets) are inverted, and a model 'reproducing' this direction is not evidence of correct biology.",
+      "detection_criterion": "The critique must state that HSPA5/BiP knockdown should induce (increase) UPR target genes such as DDIT3, HERPUD1, DNAJB9 and SEL1L, because BiP restrains (holds inactive) the IRE1/ERN1, PERK/EIF2AK3 and ATF6 sensors rather than activating them, so the described decrease and/or the stated mechanism are backwards. A generic doubt about the example without identifying the inverted regulatory direction does not qualify."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A03-clean",
+  "scenario": "Linear probing of Geneformer V1-10M layer embeddings for immune cell type (Tabula Sapiens immune)",
+  "version": "clean",
+  "flaws": []
+}

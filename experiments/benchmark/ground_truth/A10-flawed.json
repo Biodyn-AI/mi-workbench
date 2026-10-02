@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A10-flawed",
+  "scenario": "Attention-derived hub genes from a single-cell foundation model (Geneformer V2-316M, head-averaged attention) proposed as candidate disease drivers in ulcerative colitis (inflamed vs non-inflamed colonic biopsies, DisGeNET enrichment)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A10-F1",
+      "type": "S1",
+      "family": "statistics",
+      "quote": "Of the 6,918 gene–compartment tests, 612 reached p < 0.05 (371 epithelial, 241 immune), and we refer to these as differential hubs and carry them forward as candidates.",
+      "description": "Differential-hub status is declared from uncorrected per-gene paired Wilcoxon p < 0.05 across 6,918 gene-compartment tests (3,655 epithelial + 3,263 immune genes) with no FDR or family-wise correction; about 346 genes are expected to pass by chance alone, so a large share of the 612 'candidates' (and per-gene claims such as CDX2 at p = 0.004) may be false positives.",
+      "detection_criterion": "The critique must state that the ~6,918 per-gene (gene x compartment) tests were thresholded at uncorrected p < 0.05 without multiple-testing correction (BH-FDR, Bonferroni/Holm or equivalent), e.g. noting that roughly 5% (~350) of tests would pass by chance so that many of the 612 differential hubs may be false positives. A generic request for 'stricter statistics' or replication without identifying the missing correction across genes does not qualify."
+    },
+    {
+      "flaw_id": "A10-F2",
+      "type": "C2",
+      "family": "confounding",
+      "quote": "We took the 100 genes with the highest mean adjusted hub score in inflamed biopsies in each compartment and tested enrichment for curated IBD genes with a one-sided hypergeometric test against the union of the two gene universes; as an empirical check, we drew 10,000 random gene sets of the same size uniformly from that union.",
+      "description": "Curated disease-gene references such as DisGeNET are dominated by well-studied, highly connected genes (e.g. inflammatory cytokines, signalling hubs), and network-central genes are exactly such genes; both the hypergeometric test and the uniformly drawn random sets ignore this study/degree bias, so the 3.9-fold enrichment may reflect annotation bias rather than disease relevance of attention hubs, and the interpretation that hubs are 'disease-relevant rather than arbitrary' is unsupported.",
+      "detection_criterion": "The critique must identify that the enrichment null (hypergeometric test / uniform random gene sets) does not account for the study or degree bias of the curated IBD reference (well-studied or highly connected genes are over-represented in DisGeNET and likely among hub genes), and must call for a null matched on node degree, publication/annotation count, or expression level/breadth (or an equivalent degree-aware comparison). Generic statements that 'more controls are needed' or that DisGeNET is incomplete do not qualify."
+    },
+    {
+      "flaw_id": "A10-F3",
+      "type": "T1",
+      "family": "technical",
+      "quote": "Because a layer's multi-head output is the head-averaged attention matrix applied to the value vectors, the mean of the 18 head-specific matrices is the effective attention pattern of the layer, and we scored hubs on this head-averaged matrix.",
+      "description": "Multi-head attention does not apply an averaged attention matrix to shared values: each head has its own value (and output) projection, head outputs are concatenated and mixed by W_O, so the mean of the 18 attention matrices is not the layer's effective attention pattern; hub scores computed on it conflate heads with different functions and have no privileged computational meaning.",
+      "detection_criterion": "The critique must state that averaging attention matrices across heads is not equivalent to the multi-head computation (because each head has separate value/output projections and head outputs are concatenated and linearly mixed), so the head-averaged matrix is not the layer's 'effective attention pattern' and the justification for scoring hubs on it is false. A remark that head-level analysis 'might be more informative' without identifying the false equivalence does not qualify."
+    },
+    {
+      "flaw_id": "A10-F4",
+      "type": "B1",
+      "family": "biological",
+      "quote": "The genes that lost hub status form a coherent lineage module: CDX2, HNF4A and NKX2-5, core transcription factors of the absorptive colonocyte program, decline in centrality in inflamed epithelium, in line with the loss of differentiated colonocytes in active disease.",
+      "description": "NKX2-5 is a cardiac homeobox transcription factor (heart development) that is not expressed in, and has no known role in, colonic epithelium; presenting it as a core colonocyte lineage factor and proposing it for perturbation as a candidate driver, without comment, is biologically implausible and suggests an artefact (ambient RNA, low-level noise, annotation error) rather than a lineage signal.",
+      "detection_criterion": "The critique must identify NKX2-5 as a cardiac transcription factor that is not expressed in / not relevant to colonic epithelium (colonocytes), so its designation as a core colonocyte lineage factor and candidate UC driver is implausible and should have been questioned (e.g. as an artefact or mis-annotation). Generic calls to validate candidates experimentally do not qualify."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "artifact_id": "A01-clean",
+  "scenario": "Geneformer V2-104M attention heads recover TRRUST TF-target edges in human PBMCs (attention-as-GRN analysis across all heads/layers)",
+  "version": "clean",
+  "flaws": []
+}

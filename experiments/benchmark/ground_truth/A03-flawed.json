@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A03-flawed",
+  "scenario": "Linear probing of Geneformer V1-10M layer embeddings for immune cell type (Tabula Sapiens immune)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A03-F1",
+      "type": "S2",
+      "family": "statistics",
+      "quote": "The layer-4 probe outperformed the expression baseline on the test set (macro-F1 0.921 vs 0.917; paired bootstrap p = 0.003 over 12,284 test cells), showing that Geneformer embeddings contain cell-type information beyond what is available from expression alone.",
+      "description": "The difference of 0.004 macro-F1 is practically negligible; its significance reflects the large number of (correlated) test cells, not a meaningful effect, so it does not support the claim that the embeddings carry cell-type information beyond expression.",
+      "detection_criterion": "The critique must point out that the 0.004 macro-F1 difference between layer 4 and the expression PCA baseline is negligible in magnitude (significant only because of large N/non-independent cells) and does not justify the claim of cell-type information beyond expression; it should ask for effect sizes with confidence intervals or an equivalence-style interpretation. A generic remark that 'p-values should be accompanied by effect sizes' without referring to this comparison does not qualify."
+    },
+    {
+      "flaw_id": "A03-F2",
+      "type": "C3",
+      "family": "confounding",
+      "quote": "Cells from all 15 donors were pooled and split at random into a training set (80%, 49,136 cells) and a test set (20%, 12,284 cells), stratified by cell type.",
+      "description": "Cells from the same donors (and tissues) appear in both training and test sets, so donor- and batch-specific signals are shared across the split; test macro-F1, the cross-validated layer selection and the bootstrap (over non-independent cells) are optimistic, and the conclusion about annotating cells from new donors is not supported without donor-held-out evaluation.",
+      "detection_criterion": "The critique must state that the split is at the cell level with donors shared between training and test sets (donor/batch leakage or non-independence), so test performance does not reflect generalization to new donors, and must call for donor-grouped/held-out-donor splits (e.g. GroupKFold by donor). Generic remarks about 'possible overfitting' or 'external validation' without identifying the shared-donor split do not qualify."
+    },
+    {
+      "flaw_id": "A03-F3",
+      "type": "L1",
+      "family": "causal_logic",
+      "quote": "Geneformer thus computes an explicit cell-type representation by layer 4 and then uses it to drive masked-gene prediction in layers 5 and 6, which is why decodability declines toward the output.",
+      "description": "Linear probe accuracy shows only that cell-type information is linearly decodable; it does not show that the model computes or uses this representation for masked-gene prediction, nor that such use explains the late-layer decline, which would require interventions (e.g. projecting out or ablating probe directions and measuring effects on masked-gene predictions).",
+      "detection_criterion": "The critique must identify the claim that Geneformer computes and uses the layer-4 cell-type representation to drive masked-gene prediction (and that this explains the decline) as a causal claim unsupported by probing, and indicate that decodability is not evidence of use and that interventions (ablation, amnesic probing/projecting out directions, patching) would be needed. Generic 'probes are correlational' remarks count only if tied to this claim."
+    },
+    {
+      "flaw_id": "A03-F4",
+      "type": "T2",
+      "family": "technical",
+      "quote": "Geneformer tokenizes each cell by discretizing the normalized expression of every detected gene into a fixed set of expression bins and adding the bin embedding to the gene's token embedding, so the input layer already carries each gene's expression level. We therefore treated layer 0 as an in-model expression reference: gains in decodability over layer 0 reflect integration across genes by the transformer layers rather than additional expression information.",
+      "description": "Geneformer does not embed binned expression values (that is scGPT's scheme); it uses rank-value encoding, ordering gene tokens by normalized expression rank. Mean-pooled layer-0 embeddings therefore record mainly which genes are among the top-ranked genes and discard rank/expression information, so layer 0 is not an expression reference and the layer-0-to-layer-4 gain cannot be attributed to cross-gene integration rather than expression information.",
+      "detection_criterion": "The critique must state that Geneformer does not embed binned expression values (bin embeddings added to gene tokens) but uses rank-value encoding, ordering gene tokens by normalized expression, i.e. it must identify this tokenization description as factually wrong. Linking the error to the invalid use of layer 0 as an expression reference (mean-pooled layer 0 does not carry per-gene expression levels, so the gain over layer 0 cannot be credited to cross-gene integration) is expected but not required. Remarks that only call layer 0 a weak baseline or question the layer-0 comparison without identifying the tokenization error do not qualify."
+    }
+  ]
+}

@@ -1,0 +1,4476 @@
+{
+ "key": "sol_A",
+ "run_id": "x4_sol_A",
+ "iterations": [
+  {
+   "iteration": 1,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "100",
+     "value": 100.0,
+     "category": "parameter",
+     "context": "f-pairs are excluded, and candidate pairs require at least `100` co-present cells (`config.copresence_m",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.997642",
+     "value": 0.997642,
+     "category": "result",
+     "context": "presence_min_cells`). The retained TRRUST edge coverage is `0.997642` (`universe.trrust_edge_coverage_by_can",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.00136351",
+     "value": 0.00136351,
+     "category": "result",
+     "context": "ss distribution. AUPRC is emphasized because prevalence is `0.00136351` (`universe.trrust_positive_prevalence`",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.987664",
+     "value": 0.987664,
+     "category": "result",
+     "context": "nd target in-degree. Its grouped-CV metrics are:  - AUROC: `0.987664` (`baseline.oof_auroc`) - AUPRC: `0.126",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.126071",
+     "value": 0.126071,
+     "category": "result",
+     "context": "are:  - AUROC: `0.987664` (`baseline.oof_auroc`) - AUPRC: `0.126071` (`baseline.oof_auprc`)  TF-grouped fol",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "468",
+     "value": 468.0,
+     "category": "result",
+     "context": "use TF-clustered sandwich uncertainty. The family contains `468` tests (`multiple_testing.n_total_atten",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "result",
+     "context": "iants. Benjamini-Hochberg correction is applied jointly at `0.05` (`config.familywise_bh_alpha`).  ## Ne",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "309805",
+     "value": 309805.0,
+     "category": "result",
+     "context": "t.  ## External evaluation  The external universe contains `309805` pairs (`universe.n_external_candidate_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "1921",
+     "value": 1921.0,
+     "category": "result",
+     "context": "se.n_external_candidate_pairs_after_trrust_exclusion`) and `1921` DoRothEA positives (`universe.n_extern",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0170801",
+     "value": 0.0170801,
+     "category": "result",
+     "context": "ter excluding every TRRUST positive. The baseline AUPRC is `0.0170801` (`external_nonoverlapping_dorothea.bas",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.0169984",
+     "value": 0.0169984,
+     "category": "result",
+     "context": "baseline_oof_auprc`), and the attention-augmented AUPRC is `0.0169984` (`external_nonoverlapping_dorothea.att",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "310228",
+     "value": 310228.0,
+     "category": "result",
+     "context": "ect quantitative evidence  The candidate universe contains `310228` directed pairs (`universe.n_candidate_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "423",
+     "value": 423.0,
+     "category": "result",
+     "context": "8` directed pairs (`universe.n_candidate_pairs`), of which `423` are TRRUST positives (`universe.n_trru",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.987664",
+     "value": 0.987664,
+     "category": "result",
+     "context": "rs`). The nuisance-only grouped-CV baseline achieved AUROC `0.987664` (`baseline.oof_auroc`) and AUPRC `0.12",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.126071",
+     "value": 0.126071,
+     "category": "result",
+     "context": "achieved AUROC `0.987664` (`baseline.oof_auroc`) and AUPRC `0.126071` (`baseline.oof_auprc`).  The TRRUST-se",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0020295",
+     "value": 0.0020295,
+     "category": "result",
+     "context": "er_variant.record_id`). Its grouped-CV AUPRC difference is `0.0020295` (`best_trrust_layer_variant.delta_oof_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.928919",
+     "value": 0.928919,
+     "category": "result",
+     "context": "al one-step odds ratio per raw-score standard deviation is `0.928919`, with TF-clustered confidence interval",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.829732",
+     "value": 0.829732,
+     "category": "result",
+     "context": "tion is `0.928919`, with TF-clustered confidence interval `[0.829732, 1.03996]` (`best_trrust_layer_variant.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.03996",
+     "value": 1.03996,
+     "category": "result",
+     "context": ".928919`, with TF-clustered confidence interval `[0.829732, 1.03996]` (`best_trrust_layer_variant.odds_rati",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "ds_ratio_ci95_high`). Its multiplicity-adjusted q-value is `0.873093` (`best_trrust_layer_variant.bh_q_value",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-8.16925e-05",
+     "value": -8.169250000000001e-05,
+     "category": "result",
+     "context": "sitive pairs, the selected score changed DoRothEA AUPRC by `-8.16925e-05`, with TF-cluster bootstrap interval `[",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.000450665",
+     "value": -0.000450665,
+     "category": "result",
+     "context": "PRC by `-8.16925e-05`, with TF-cluster bootstrap interval `[-0.000450665, 0.000157047]` (`external_nonoverlappin",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000157047",
+     "value": 0.000157047,
+     "category": "result",
+     "context": "25e-05`, with TF-cluster bootstrap interval `[-0.000450665, 0.000157047]` (`external_nonoverlapping_dorothea.de",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0",
+     "value": 0.0,
+     "category": "small_integer",
+     "context": "`).  Across the joint layer/head/variant family there were `0` layer discoveries (`multiple_testing.n",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0",
+     "value": 0.0,
+     "category": "small_integer",
+     "context": "iscoveries (`multiple_testing.n_layer_discoveries_bh`) and `0` head discoveries (`multiple_testing.n_",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0",
+     "value": 0.0,
+     "category": "small_integer",
+     "context": "degree-aware shuffled-attention negative control produced `0` discoveries (`multiple_testing.n_degre",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "parameter",
+     "context": "t key | Raw AUPRC | CV delta AUPRC | Conditional OR per SD (95% CI) | p | joint BH q | |---|---:|---:|-",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00206531",
+     "value": 0.00206531,
+     "category": "result",
+     "context": "---:|---:|---:|---:|---:| | `layer_0_tf_query_target_key` | 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00168963",
+     "value": -0.00168963,
+     "category": "result",
+     "context": ":|---:|---:| | `layer_0_tf_query_target_key` | 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.26854",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.06669",
+     "value": 1.06669,
+     "category": "result",
+     "context": "`layer_0_tf_query_target_key` | 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.268545 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.951672",
+     "value": 0.951672,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.268545 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.19561",
+     "value": 1.19561,
+     "category": "result",
+     "context": "target_key` | 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.268545 | 0.873093 | | `layer_0_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.268545",
+     "value": 0.268545,
+     "category": "result",
+     "context": "| 0.00206531 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.268545 | 0.873093 | | `layer_0_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "31 | -0.00168963 | 1.06669 [0.951672, 1.19561] | 0.268545 | 0.873093 | | `layer_0_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00245268",
+     "value": 0.00245268,
+     "category": "result",
+     "context": "] | 0.268545 | 0.873093 | | `layer_0_target_query_tf_key` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.20",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00199614",
+     "value": -0.00199614,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_0_target_query_tf_key` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.087579",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.08891",
+     "value": 1.08891,
+     "category": "result",
+     "context": "`layer_0_target_query_tf_key` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.0875798 | 0.8658",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.987933",
+     "value": 0.987933,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.0875798 | 0.865844 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.2002",
+     "value": 1.2002,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.0875798 | 0.865844 | | `layer_0_sy",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0875798",
+     "value": 0.0875798,
+     "category": "result",
+     "context": "` | 0.00245268 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.0875798 | 0.865844 | | `layer_0_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "68 | -0.00199614 | 1.08891 [0.987933, 1.2002] | 0.0875798 | 0.865844 | | `layer_0_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00244172",
+     "value": 0.00244172,
+     "category": "result",
+     "context": ".0875798 | 0.865844 | | `layer_0_symmetric_log_geometric` | 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00216617",
+     "value": -0.00216617,
+     "category": "result",
+     "context": "865844 | | `layer_0_symmetric_log_geometric` | 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.10648",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.09461",
+     "value": 1.09461,
+     "category": "result",
+     "context": "yer_0_symmetric_log_geometric` | 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.106489 | 0.8658",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.981234",
+     "value": 0.981234,
+     "category": "result",
+     "context": "metric_log_geometric` | 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.106489 | 0.865844 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.22109",
+     "value": 1.22109,
+     "category": "result",
+     "context": "_geometric` | 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.106489 | 0.865844 | | `layer_1_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.106489",
+     "value": 0.106489,
+     "category": "result",
+     "context": "| 0.00244172 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.106489 | 0.865844 | | `layer_1_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "72 | -0.00216617 | 1.09461 [0.981234, 1.22109] | 0.106489 | 0.865844 | | `layer_1_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0024993",
+     "value": 0.0024993,
+     "category": "result",
+     "context": "] | 0.106489 | 0.865844 | | `layer_1_tf_query_target_key` | 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00280047",
+     "value": -0.00280047,
+     "category": "result",
+     "context": "| 0.865844 | | `layer_1_tf_query_target_key` | 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.9444",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.996105",
+     "value": 0.996105,
+     "category": "result",
+     "context": "| `layer_1_tf_query_target_key` | 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.944434 | 0.9874",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.892685",
+     "value": 0.892685,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.944434 | 0.987422 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.11151",
+     "value": 1.11151,
+     "category": "result",
+     "context": "target_key` | 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.944434 | 0.987422 | | `layer_1_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.944434",
+     "value": 0.944434,
+     "category": "result",
+     "context": "| 0.0024993 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.944434 | 0.987422 | | `layer_1_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.987422",
+     "value": 0.987422,
+     "category": "result",
+     "context": "3 | -0.00280047 | 0.996105 [0.892685, 1.11151] | 0.944434 | 0.987422 | | `layer_1_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00223669",
+     "value": 0.00223669,
+     "category": "result",
+     "context": "] | 0.944434 | 0.987422 | | `layer_1_target_query_tf_key` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.15",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00315816",
+     "value": -0.00315816,
+     "category": "result",
+     "context": "| 0.987422 | | `layer_1_target_query_tf_key` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.04781",
+     "value": 1.04781,
+     "category": "result",
+     "context": "`layer_1_target_query_tf_key` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298 | 0.87309",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.952468",
+     "value": 0.952468,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298 | 0.873093 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1527",
+     "value": 1.1527,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298 | 0.873093 | | `layer_1_sym",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.338298",
+     "value": 0.338298,
+     "category": "result",
+     "context": "` | 0.00223669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298 | 0.873093 | | `layer_1_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "669 | -0.00315816 | 1.04781 [0.952468, 1.1527] | 0.338298 | 0.873093 | | `layer_1_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00274975",
+     "value": 0.00274975,
+     "category": "result",
+     "context": "0.338298 | 0.873093 | | `layer_1_symmetric_log_geometric` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.132",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0024733",
+     "value": -0.0024733,
+     "category": "result",
+     "context": "873093 | | `layer_1_symmetric_log_geometric` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.64723",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.02383",
+     "value": 1.02383,
+     "category": "result",
+     "context": "ayer_1_symmetric_log_geometric` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.647235 | 0.9479",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.925721",
+     "value": 0.925721,
+     "category": "result",
+     "context": "mmetric_log_geometric` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.647235 | 0.947907 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.13233",
+     "value": 1.13233,
+     "category": "result",
+     "context": "g_geometric` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.647235 | 0.947907 | | `layer_2_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.647235",
+     "value": 0.647235,
+     "category": "result",
+     "context": "` | 0.00274975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.647235 | 0.947907 | | `layer_2_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.947907",
+     "value": 0.947907,
+     "category": "result",
+     "context": "975 | -0.0024733 | 1.02383 [0.925721, 1.13233] | 0.647235 | 0.947907 | | `layer_2_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00342498",
+     "value": 0.00342498,
+     "category": "result",
+     "context": "] | 0.647235 | 0.947907 | | `layer_2_tf_query_target_key` | 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.000682282",
+     "value": -0.000682282,
+     "category": "result",
+     "context": "| 0.947907 | | `layer_2_tf_query_target_key` | 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01051",
+     "value": 1.01051,
+     "category": "result",
+     "context": "`layer_2_tf_query_target_key` | 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417 | 0.98280",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.902386",
+     "value": 0.902386,
+     "category": "result",
+     "context": "tf_query_target_key` | 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417 | 0.982806 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1316",
+     "value": 1.1316,
+     "category": "result",
+     "context": "arget_key` | 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417 | 0.982806 | | `layer_2_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.856417",
+     "value": 0.856417,
+     "category": "result",
+     "context": "| 0.00342498 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417 | 0.982806 | | `layer_2_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.982806",
+     "value": 0.982806,
+     "category": "result",
+     "context": "98 | -0.000682282 | 1.01051 [0.902386, 1.1316] | 0.856417 | 0.982806 | | `layer_2_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00264158",
+     "value": 0.00264158,
+     "category": "result",
+     "context": "] | 0.856417 | 0.982806 | | `layer_2_target_query_tf_key` | 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00461724",
+     "value": -0.00461724,
+     "category": "result",
+     "context": "| 0.982806 | | `layer_2_target_query_tf_key` | 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.06621",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.14531",
+     "value": 1.14531,
+     "category": "result",
+     "context": "`layer_2_target_query_tf_key` | 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.0662159 | 0.865",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.991624",
+     "value": 0.991624,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.0662159 | 0.865844 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.32281",
+     "value": 1.32281,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.0662159 | 0.865844 | | `layer_2_sy",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0662159",
+     "value": 0.0662159,
+     "category": "result",
+     "context": "| 0.00264158 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.0662159 | 0.865844 | | `layer_2_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "8 | -0.00461724 | 1.14531 [0.991624, 1.32281] | 0.0662159 | 0.865844 | | `layer_2_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00359",
+     "value": 0.00359,
+     "category": "result",
+     "context": ".0662159 | 0.865844 | | `layer_2_symmetric_log_geometric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.2527",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0024575",
+     "value": -0.0024575,
+     "category": "result",
+     "context": "0.865844 | | `layer_2_symmetric_log_geometric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.09222",
+     "value": 1.09222,
+     "category": "result",
+     "context": "`layer_2_symmetric_log_geometric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517 | 0.87309",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.95229",
+     "value": 0.95229,
+     "category": "result",
+     "context": "_symmetric_log_geometric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.25272",
+     "value": 1.25272,
+     "category": "result",
+     "context": "c_log_geometric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517 | 0.873093 | | `layer_3_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.208517",
+     "value": 0.208517,
+     "category": "result",
+     "context": "tric` | 0.00359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517 | 0.873093 | | `layer_3_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "0359 | -0.0024575 | 1.09222 [0.95229, 1.25272] | 0.208517 | 0.873093 | | `layer_3_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00270372",
+     "value": 0.00270372,
+     "category": "result",
+     "context": "] | 0.208517 | 0.873093 | | `layer_3_tf_query_target_key` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.125",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00247044",
+     "value": -0.00247044,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_3_tf_query_target_key` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.00665",
+     "value": 1.00665,
+     "category": "result",
+     "context": "`layer_3_tf_query_target_key` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371 | 0.985193",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.90043",
+     "value": 0.90043,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371 | 0.985193 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1254",
+     "value": 1.1254,
+     "category": "result",
+     "context": "_target_key` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371 | 0.985193 | | `layer_3_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.907371",
+     "value": 0.907371,
+     "category": "result",
+     "context": "y` | 0.00270372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371 | 0.985193 | | `layer_3_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.985193",
+     "value": 0.985193,
+     "category": "result",
+     "context": "0372 | -0.00247044 | 1.00665 [0.90043, 1.1254] | 0.907371 | 0.985193 | | `layer_3_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00205484",
+     "value": 0.00205484,
+     "category": "result",
+     "context": "] | 0.907371 | 0.985193 | | `layer_3_target_query_tf_key` | 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.000192568",
+     "value": -0.000192568,
+     "category": "result",
+     "context": "| 0.985193 | | `layer_3_target_query_tf_key` | 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.57909",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.03297",
+     "value": 1.03297,
+     "category": "result",
+     "context": "`layer_3_target_query_tf_key` | 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.579091 | 0.9409",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.921258",
+     "value": 0.921258,
+     "category": "result",
+     "context": "target_query_tf_key` | 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.579091 | 0.940996 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.15823",
+     "value": 1.15823,
+     "category": "result",
+     "context": "ry_tf_key` | 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.579091 | 0.940996 | | `layer_3_sym",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.579091",
+     "value": 0.579091,
+     "category": "result",
+     "context": "| 0.00205484 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.579091 | 0.940996 | | `layer_3_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.940996",
+     "value": 0.940996,
+     "category": "result",
+     "context": "4 | -0.000192568 | 1.03297 [0.921258, 1.15823] | 0.579091 | 0.940996 | | `layer_3_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00266551",
+     "value": 0.00266551,
+     "category": "result",
+     "context": "0.579091 | 0.940996 | | `layer_3_symmetric_log_geometric` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.14",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00021542",
+     "value": -0.00021542,
+     "category": "result",
+     "context": "940996 | | `layer_3_symmetric_log_geometric` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.02227",
+     "value": 1.02227,
+     "category": "result",
+     "context": "yer_3_symmetric_log_geometric` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551 | 0.97356",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.914209",
+     "value": 0.914209,
+     "category": "result",
+     "context": "metric_log_geometric` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551 | 0.973566 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1431",
+     "value": 1.1431,
+     "category": "result",
+     "context": "_geometric` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551 | 0.973566 | | `layer_4_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.699551",
+     "value": 0.699551,
+     "category": "result",
+     "context": "` | 0.00266551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551 | 0.973566 | | `layer_4_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.973566",
+     "value": 0.973566,
+     "category": "result",
+     "context": "551 | -0.00021542 | 1.02227 [0.914209, 1.1431] | 0.699551 | 0.973566 | | `layer_4_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0030197",
+     "value": 0.0030197,
+     "category": "result",
+     "context": "] | 0.699551 | 0.973566 | | `layer_4_tf_query_target_key` | 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.1",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00259562",
+     "value": -0.00259562,
+     "category": "result",
+     "context": "| 0.973566 | | `layer_4_tf_query_target_key` | 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.9394",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.995645",
+     "value": 0.995645,
+     "category": "result",
+     "context": "| `layer_4_tf_query_target_key` | 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.939486 | 0.9874",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.889657",
+     "value": 0.889657,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.939486 | 0.987422 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.11426",
+     "value": 1.11426,
+     "category": "result",
+     "context": "target_key` | 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.939486 | 0.987422 | | `layer_4_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.939486",
+     "value": 0.939486,
+     "category": "result",
+     "context": "| 0.0030197 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.939486 | 0.987422 | | `layer_4_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.987422",
+     "value": 0.987422,
+     "category": "result",
+     "context": "7 | -0.00259562 | 0.995645 [0.889657, 1.11426] | 0.939486 | 0.987422 | | `layer_4_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00217772",
+     "value": 0.00217772,
+     "category": "result",
+     "context": "] | 0.939486 | 0.987422 | | `layer_4_target_query_tf_key` | 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00137345",
+     "value": -0.00137345,
+     "category": "result",
+     "context": "| 0.987422 | | `layer_4_target_query_tf_key` | 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.16805",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07605",
+     "value": 1.07605,
+     "category": "result",
+     "context": "`layer_4_target_query_tf_key` | 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.168055 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.969867",
+     "value": 0.969867,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.168055 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.19385",
+     "value": 1.19385,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.168055 | 0.873093 | | `layer_4_sym",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.168055",
+     "value": 0.168055,
+     "category": "result",
+     "context": "| 0.00217772 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.168055 | 0.873093 | | `layer_4_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "72 | -0.00137345 | 1.07605 [0.969867, 1.19385] | 0.168055 | 0.873093 | | `layer_4_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00323531",
+     "value": 0.00323531,
+     "category": "result",
+     "context": "0.168055 | 0.873093 | | `layer_4_symmetric_log_geometric` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.171",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00136619",
+     "value": -0.00136619,
+     "category": "result",
+     "context": "873093 | | `layer_4_symmetric_log_geometric` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.0393",
+     "value": 1.0393,
+     "category": "result",
+     "context": "yer_4_symmetric_log_geometric` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258 | 0.9316",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.922124",
+     "value": 0.922124,
+     "category": "result",
+     "context": "mmetric_log_geometric` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258 | 0.931616 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.17137",
+     "value": 1.17137,
+     "category": "result",
+     "context": "g_geometric` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258 | 0.931616 | | `layer_5_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.528258",
+     "value": 0.528258,
+     "category": "result",
+     "context": "` | 0.00323531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258 | 0.931616 | | `layer_5_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.931616",
+     "value": 0.931616,
+     "category": "result",
+     "context": "531 | -0.00136619 | 1.0393 [0.922124, 1.17137] | 0.528258 | 0.931616 | | `layer_5_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00251636",
+     "value": 0.00251636,
+     "category": "result",
+     "context": "] | 0.528258 | 0.931616 | | `layer_5_tf_query_target_key` | 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00403666",
+     "value": -0.00403666,
+     "category": "result",
+     "context": "| 0.931616 | | `layer_5_tf_query_target_key` | 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.76974",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.986923",
+     "value": 0.986923,
+     "category": "result",
+     "context": "`layer_5_tf_query_target_key` | 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.769746 | 0.97916",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.90375",
+     "value": 0.90375,
+     "category": "result",
+     "context": "tf_query_target_key` | 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.769746 | 0.979162 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07775",
+     "value": 1.07775,
+     "category": "result",
+     "context": "target_key` | 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.769746 | 0.979162 | | `layer_5_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.769746",
+     "value": 0.769746,
+     "category": "result",
+     "context": "| 0.00251636 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.769746 | 0.979162 | | `layer_5_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979162",
+     "value": 0.979162,
+     "category": "result",
+     "context": "36 | -0.00403666 | 0.986923 [0.90375, 1.07775] | 0.769746 | 0.979162 | | `layer_5_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00209885",
+     "value": 0.00209885,
+     "category": "result",
+     "context": "] | 0.769746 | 0.979162 | | `layer_5_target_query_tf_key` | 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00186462",
+     "value": -0.00186462,
+     "category": "result",
+     "context": "| 0.979162 | | `layer_5_target_query_tf_key` | 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.35079",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.04476",
+     "value": 1.04476,
+     "category": "result",
+     "context": "`layer_5_target_query_tf_key` | 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.350795 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.953123",
+     "value": 0.953123,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.350795 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.14521",
+     "value": 1.14521,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.350795 | 0.873093 | | `layer_5_sym",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.350795",
+     "value": 0.350795,
+     "category": "result",
+     "context": "| 0.00209885 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.350795 | 0.873093 | | `layer_5_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "85 | -0.00186462 | 1.04476 [0.953123, 1.14521] | 0.350795 | 0.873093 | | `layer_5_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00261628",
+     "value": 0.00261628,
+     "category": "result",
+     "context": "0.350795 | 0.873093 | | `layer_5_symmetric_log_geometric` | 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00177654",
+     "value": -0.00177654,
+     "category": "result",
+     "context": "873093 | | `layer_5_symmetric_log_geometric` | 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.69964",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01782",
+     "value": 1.01782,
+     "category": "result",
+     "context": "yer_5_symmetric_log_geometric` | 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.699647 | 0.9735",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.930558",
+     "value": 0.930558,
+     "category": "result",
+     "context": "metric_log_geometric` | 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.699647 | 0.973566 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.11327",
+     "value": 1.11327,
+     "category": "result",
+     "context": "_geometric` | 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.699647 | 0.973566 | | `layer_6_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.699647",
+     "value": 0.699647,
+     "category": "result",
+     "context": "| 0.00261628 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.699647 | 0.973566 | | `layer_6_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.973566",
+     "value": 0.973566,
+     "category": "result",
+     "context": "28 | -0.00177654 | 1.01782 [0.930558, 1.11327] | 0.699647 | 0.973566 | | `layer_6_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00217219",
+     "value": 0.00217219,
+     "category": "result",
+     "context": "] | 0.699647 | 0.973566 | | `layer_6_tf_query_target_key` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.06",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00111827",
+     "value": -0.00111827,
+     "category": "result",
+     "context": "| 0.973566 | | `layer_6_tf_query_target_key` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.96909",
+     "value": 0.96909,
+     "category": "result",
+     "context": "`layer_6_tf_query_target_key` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761 | 0.93161",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.878601",
+     "value": 0.878601,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761 | 0.931616 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.0689",
+     "value": 1.0689,
+     "category": "result",
+     "context": "target_key` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761 | 0.931616 | | `layer_6_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.530761",
+     "value": 0.530761,
+     "category": "result",
+     "context": "` | 0.00217219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761 | 0.931616 | | `layer_6_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.931616",
+     "value": 0.931616,
+     "category": "result",
+     "context": "219 | -0.00111827 | 0.96909 [0.878601, 1.0689] | 0.530761 | 0.931616 | | `layer_6_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00206373",
+     "value": 0.00206373,
+     "category": "result",
+     "context": "] | 0.530761 | 0.931616 | | `layer_6_target_query_tf_key` | 0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.000519566",
+     "value": -0.000519566,
+     "category": "result",
+     "context": "| 0.931616 | | `layer_6_target_query_tf_key` | 0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.9739",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.998745",
+     "value": 0.998745,
+     "category": "result",
+     "context": "`layer_6_target_query_tf_key` | 0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.973916 | 0.9909",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.926386",
+     "value": 0.926386,
+     "category": "result",
+     "context": "arget_query_tf_key` | 0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.973916 | 0.990972 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07675",
+     "value": 1.07675,
+     "category": "result",
+     "context": "y_tf_key` | 0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.973916 | 0.990972 | | `layer_6_sym",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.973916",
+     "value": 0.973916,
+     "category": "result",
+     "context": "0.00206373 | -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.973916 | 0.990972 | | `layer_6_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.990972",
+     "value": 0.990972,
+     "category": "result",
+     "context": "| -0.000519566 | 0.998745 [0.926386, 1.07675] | 0.973916 | 0.990972 | | `layer_6_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0023304",
+     "value": 0.0023304,
+     "category": "result",
+     "context": "0.973916 | 0.990972 | | `layer_6_symmetric_log_geometric` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.06",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00182953",
+     "value": 0.00182953,
+     "category": "result",
+     "context": ".990972 | | `layer_6_symmetric_log_geometric` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.63184",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979022",
+     "value": 0.979022,
+     "category": "result",
+     "context": "layer_6_symmetric_log_geometric` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.631844 | 0.94790",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.897791",
+     "value": 0.897791,
+     "category": "result",
+     "context": "mmetric_log_geometric` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.631844 | 0.947907 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.0676",
+     "value": 1.0676,
+     "category": "result",
+     "context": "g_geometric` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.631844 | 0.947907 | | `layer_7_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.631844",
+     "value": 0.631844,
+     "category": "result",
+     "context": "c` | 0.0023304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.631844 | 0.947907 | | `layer_7_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.947907",
+     "value": 0.947907,
+     "category": "result",
+     "context": "304 | 0.00182953 | 0.979022 [0.897791, 1.0676] | 0.631844 | 0.947907 | | `layer_7_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00161593",
+     "value": 0.00161593,
+     "category": "result",
+     "context": "] | 0.631844 | 0.947907 | | `layer_7_tf_query_target_key` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.039",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0020295",
+     "value": 0.0020295,
+     "category": "result",
+     "context": "| 0.947907 | | `layer_7_tf_query_target_key` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.2018",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.928919",
+     "value": 0.928919,
+     "category": "result",
+     "context": "| `layer_7_tf_query_target_key` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.201872 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.829732",
+     "value": 0.829732,
+     "category": "result",
+     "context": "7_tf_query_target_key` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.201872 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.03996",
+     "value": 1.03996,
+     "category": "result",
+     "context": "_target_key` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.201872 | 0.873093 | | `layer_7_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.201872",
+     "value": 0.201872,
+     "category": "result",
+     "context": "` | 0.00161593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.201872 | 0.873093 | | `layer_7_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "593 | 0.0020295 | 0.928919 [0.829732, 1.03996] | 0.201872 | 0.873093 | | `layer_7_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0016256",
+     "value": 0.0016256,
+     "category": "result",
+     "context": "] | 0.201872 | 0.873093 | | `layer_7_target_query_tf_key` | 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00215278",
+     "value": -0.00215278,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_7_target_query_tf_key` | 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.970872",
+     "value": 0.970872,
+     "category": "result",
+     "context": "| `layer_7_target_query_tf_key` | 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501 | 0.920901",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.899292",
+     "value": 0.899292,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501 | 0.920901 | | `laye",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.04815",
+     "value": 1.04815,
+     "category": "result",
+     "context": "ery_tf_key` | 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501 | 0.920901 | | `layer_7_symme",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.4501",
+     "value": 0.4501,
+     "category": "result",
+     "context": "| 0.0016256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501 | 0.920901 | | `layer_7_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.920901",
+     "value": 0.920901,
+     "category": "result",
+     "context": "256 | -0.00215278 | 0.970872 [0.899292, 1.04815] | 0.4501 | 0.920901 | | `layer_7_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00167817",
+     "value": 0.00167817,
+     "category": "result",
+     "context": "| 0.4501 | 0.920901 | | `layer_7_symmetric_log_geometric` | 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.000905122",
+     "value": 0.000905122,
+     "category": "result",
+     "context": "920901 | | `layer_7_symmetric_log_geometric` | 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.20911",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.939027",
+     "value": 0.939027,
+     "category": "result",
+     "context": "yer_7_symmetric_log_geometric` | 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.209118 | 0.87309",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.85145",
+     "value": 0.85145,
+     "category": "result",
+     "context": "etric_log_geometric` | 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.209118 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.03561",
+     "value": 1.03561,
+     "category": "result",
+     "context": "_geometric` | 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.209118 | 0.873093 | | `layer_8_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.209118",
+     "value": 0.209118,
+     "category": "result",
+     "context": "| 0.00167817 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.209118 | 0.873093 | | `layer_8_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "17 | 0.000905122 | 0.939027 [0.85145, 1.03561] | 0.209118 | 0.873093 | | `layer_8_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00204407",
+     "value": 0.00204407,
+     "category": "result",
+     "context": "] | 0.209118 | 0.873093 | | `layer_8_tf_query_target_key` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.213",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00381682",
+     "value": -0.00381682,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_8_tf_query_target_key` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07382",
+     "value": 1.07382,
+     "category": "result",
+     "context": "`layer_8_tf_query_target_key` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036 | 0.87309",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.95016",
+     "value": 0.95016,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.21358",
+     "value": 1.21358,
+     "category": "result",
+     "context": "_target_key` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036 | 0.873093 | | `layer_8_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.255036",
+     "value": 0.255036,
+     "category": "result",
+     "context": "` | 0.00204407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036 | 0.873093 | | `layer_8_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "407 | -0.00381682 | 1.07382 [0.95016, 1.21358] | 0.255036 | 0.873093 | | `layer_8_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0015943",
+     "value": 0.0015943,
+     "category": "result",
+     "context": "] | 0.255036 | 0.873093 | | `layer_8_target_query_tf_key` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00216542",
+     "value": -0.00216542,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_8_target_query_tf_key` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01083",
+     "value": 1.01083,
+     "category": "result",
+     "context": "| `layer_8_target_query_tf_key` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715 | 0.98280",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.906091",
+     "value": 0.906091,
+     "category": "result",
+     "context": "8_target_query_tf_key` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715 | 0.982806 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.12767",
+     "value": 1.12767,
+     "category": "result",
+     "context": "uery_tf_key` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715 | 0.982806 | | `layer_8_symm",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.84715",
+     "value": 0.84715,
+     "category": "result",
+     "context": "` | 0.0015943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715 | 0.982806 | | `layer_8_symmetric_log_g",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.982806",
+     "value": 0.982806,
+     "category": "result",
+     "context": "943 | -0.00216542 | 1.01083 [0.906091, 1.12767] | 0.84715 | 0.982806 | | `layer_8_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00190531",
+     "value": 0.00190531,
+     "category": "result",
+     "context": "0.84715 | 0.982806 | | `layer_8_symmetric_log_geometric` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.183",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0039085",
+     "value": -0.0039085,
+     "category": "result",
+     "context": "982806 | | `layer_8_symmetric_log_geometric` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.39318",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.05262",
+     "value": 1.05262,
+     "category": "result",
+     "context": "ayer_8_symmetric_log_geometric` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.393181 | 0.8804",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.935932",
+     "value": 0.935932,
+     "category": "result",
+     "context": "mmetric_log_geometric` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.393181 | 0.880425 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.18385",
+     "value": 1.18385,
+     "category": "result",
+     "context": "g_geometric` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.393181 | 0.880425 | | `layer_9_tf_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.393181",
+     "value": 0.393181,
+     "category": "result",
+     "context": "` | 0.00190531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.393181 | 0.880425 | | `layer_9_tf_query_target",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.880425",
+     "value": 0.880425,
+     "category": "result",
+     "context": "531 | -0.0039085 | 1.05262 [0.935932, 1.18385] | 0.393181 | 0.880425 | | `layer_9_tf_query_target_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00166338",
+     "value": 0.00166338,
+     "category": "result",
+     "context": "] | 0.393181 | 0.880425 | | `layer_9_tf_query_target_key` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00265733",
+     "value": -0.00265733,
+     "category": "result",
+     "context": "| 0.880425 | | `layer_9_tf_query_target_key` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01445",
+     "value": 1.01445,
+     "category": "result",
+     "context": "`layer_9_tf_query_target_key` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 | 0.979162",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.9242",
+     "value": 0.9242,
+     "category": "result",
+     "context": "_tf_query_target_key` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 | 0.979162 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1135",
+     "value": 1.1135,
+     "category": "result",
+     "context": "y_target_key` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 | 0.979162 | | `layer_9_tar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.763127",
+     "value": 0.763127,
+     "category": "result",
+     "context": "ey` | 0.00166338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 | 0.979162 | | `layer_9_target_query_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979162",
+     "value": 0.979162,
+     "category": "result",
+     "context": "66338 | -0.00265733 | 1.01445 [0.9242, 1.1135] | 0.763127 | 0.979162 | | `layer_9_target_query_tf_key` | 0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00169391",
+     "value": 0.00169391,
+     "category": "result",
+     "context": "] | 0.763127 | 0.979162 | | `layer_9_target_query_tf_key` | 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00123226",
+     "value": -0.00123226,
+     "category": "result",
+     "context": "| 0.979162 | | `layer_9_target_query_tf_key` | 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.3745",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.972215",
+     "value": 0.972215,
+     "category": "result",
+     "context": "`layer_9_target_query_tf_key` | 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.374559 | 0.8798",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.913695",
+     "value": 0.913695,
+     "category": "result",
+     "context": "target_query_tf_key` | 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.374559 | 0.87986 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.03448",
+     "value": 1.03448,
+     "category": "result",
+     "context": "ry_tf_key` | 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.374559 | 0.87986 | | `layer_9_symm",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.374559",
+     "value": 0.374559,
+     "category": "result",
+     "context": "| 0.00169391 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.374559 | 0.87986 | | `layer_9_symmetric_log_ge",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.87986",
+     "value": 0.87986,
+     "category": "result",
+     "context": "1 | -0.00123226 | 0.972215 [0.913695, 1.03448] | 0.374559 | 0.87986 | | `layer_9_symmetric_log_geometric` |",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00182422",
+     "value": 0.00182422,
+     "category": "result",
+     "context": "0.374559 | 0.87986 | | `layer_9_symmetric_log_geometric` | 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00237367",
+     "value": -0.00237367,
+     "category": "result",
+     "context": ".87986 | | `layer_9_symmetric_log_geometric` | 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.8029",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.990624",
+     "value": 0.990624,
+     "category": "result",
+     "context": "yer_9_symmetric_log_geometric` | 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.802999 | 0.9791",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.920033",
+     "value": 0.920033,
+     "category": "result",
+     "context": "etric_log_geometric` | 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.802999 | 0.979162 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.06663",
+     "value": 1.06663,
+     "category": "result",
+     "context": "geometric` | 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.802999 | 0.979162 | | `layer_10_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.802999",
+     "value": 0.802999,
+     "category": "result",
+     "context": "| 0.00182422 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.802999 | 0.979162 | | `layer_10_tf_query_targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979162",
+     "value": 0.979162,
+     "category": "result",
+     "context": "2 | -0.00237367 | 0.990624 [0.920033, 1.06663] | 0.802999 | 0.979162 | | `layer_10_tf_query_target_key` | 0.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0018046",
+     "value": 0.0018046,
+     "category": "result",
+     "context": "| 0.802999 | 0.979162 | | `layer_10_tf_query_target_key` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.21",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00332938",
+     "value": -0.00332938,
+     "category": "result",
+     "context": "| 0.979162 | | `layer_10_tf_query_target_key` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07129",
+     "value": 1.07129,
+     "category": "result",
+     "context": "`layer_10_tf_query_target_key` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649 | 0.87309",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.944347",
+     "value": 0.944347,
+     "category": "result",
+     "context": "0_tf_query_target_key` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649 | 0.873093 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.2153",
+     "value": 1.2153,
+     "category": "result",
+     "context": "_target_key` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649 | 0.873093 | | `layer_10_ta",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.285649",
+     "value": 0.285649,
+     "category": "result",
+     "context": "y` | 0.0018046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649 | 0.873093 | | `layer_10_target_query_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "046 | -0.00332938 | 1.07129 [0.944347, 1.2153] | 0.285649 | 0.873093 | | `layer_10_target_query_tf_key` | 0.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00185737",
+     "value": 0.00185737,
+     "category": "result",
+     "context": "| 0.285649 | 0.873093 | | `layer_10_target_query_tf_key` | 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00179292",
+     "value": -0.00179292,
+     "category": "result",
+     "context": "0.873093 | | `layer_10_target_query_tf_key` | 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.33117",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.05289",
+     "value": 1.05289,
+     "category": "result",
+     "context": "`layer_10_target_query_tf_key` | 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.331174 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.949142",
+     "value": 0.949142,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.331174 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.16798",
+     "value": 1.16798,
+     "category": "result",
+     "context": "ery_tf_key` | 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.331174 | 0.873093 | | `layer_10_sy",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.331174",
+     "value": 0.331174,
+     "category": "result",
+     "context": "| 0.00185737 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.331174 | 0.873093 | | `layer_10_symmetric_log_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "37 | -0.00179292 | 1.05289 [0.949142, 1.16798] | 0.331174 | 0.873093 | | `layer_10_symmetric_log_geometric`",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00200715",
+     "value": 0.00200715,
+     "category": "result",
+     "context": ".331174 | 0.873093 | | `layer_10_symmetric_log_geometric` | 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00195436",
+     "value": -0.00195436,
+     "category": "result",
+     "context": "73093 | | `layer_10_symmetric_log_geometric` | 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.21434",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07476",
+     "value": 1.07476,
+     "category": "result",
+     "context": "er_10_symmetric_log_geometric` | 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.214343 | 0.8730",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.959446",
+     "value": 0.959446,
+     "category": "result",
+     "context": "metric_log_geometric` | 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.214343 | 0.873093 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.20394",
+     "value": 1.20394,
+     "category": "result",
+     "context": "_geometric` | 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.214343 | 0.873093 | | `layer_11_tf",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.214343",
+     "value": 0.214343,
+     "category": "result",
+     "context": "| 0.00200715 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.214343 | 0.873093 | | `layer_11_tf_query_targe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.873093",
+     "value": 0.873093,
+     "category": "result",
+     "context": "15 | -0.00195436 | 1.07476 [0.959446, 1.20394] | 0.214343 | 0.873093 | | `layer_11_tf_query_target_key` | 0.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0021016",
+     "value": 0.0021016,
+     "category": "result",
+     "context": "| 0.214343 | 0.873093 | | `layer_11_tf_query_target_key` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00291469",
+     "value": -0.00291469,
+     "category": "result",
+     "context": "| 0.873093 | | `layer_11_tf_query_target_key` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.76921",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01986",
+     "value": 1.01986,
+     "category": "result",
+     "context": "`layer_11_tf_query_target_key` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.769215 | 0.9791",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.894435",
+     "value": 0.894435,
+     "category": "result",
+     "context": "1_tf_query_target_key` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.769215 | 0.979162 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.16288",
+     "value": 1.16288,
+     "category": "result",
+     "context": "_target_key` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.769215 | 0.979162 | | `layer_11_ta",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.769215",
+     "value": 0.769215,
+     "category": "result",
+     "context": "` | 0.0021016 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.769215 | 0.979162 | | `layer_11_target_query_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979162",
+     "value": 0.979162,
+     "category": "result",
+     "context": "16 | -0.00291469 | 1.01986 [0.894435, 1.16288] | 0.769215 | 0.979162 | | `layer_11_target_query_tf_key` | 0.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00146863",
+     "value": 0.00146863,
+     "category": "result",
+     "context": "| 0.769215 | 0.979162 | | `layer_11_target_query_tf_key` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.089",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00021255",
+     "value": -0.00021255,
+     "category": "result",
+     "context": "0.979162 | | `layer_11_target_query_tf_key` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.00457",
+     "value": 1.00457,
+     "category": "result",
+     "context": "`layer_11_target_query_tf_key` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108 | 0.98519",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.92656",
+     "value": 0.92656,
+     "category": "result",
+     "context": "_target_query_tf_key` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108 | 0.985193 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.08914",
+     "value": 1.08914,
+     "category": "result",
+     "context": "uery_tf_key` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108 | 0.985193 | | `layer_11_sy",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.912108",
+     "value": 0.912108,
+     "category": "result",
+     "context": "` | 0.00146863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108 | 0.985193 | | `layer_11_symmetric_log_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.985193",
+     "value": 0.985193,
+     "category": "result",
+     "context": "863 | -0.00021255 | 1.00457 [0.92656, 1.08914] | 0.912108 | 0.985193 | | `layer_11_symmetric_log_geometric`",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00193737",
+     "value": 0.00193737,
+     "category": "result",
+     "context": ".912108 | 0.985193 | | `layer_11_symmetric_log_geometric` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.14",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.00139148",
+     "value": -0.00139148,
+     "category": "result",
+     "context": "85193 | | `layer_11_symmetric_log_geometric` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01789",
+     "value": 1.01789,
+     "category": "result",
+     "context": "er_11_symmetric_log_geometric` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948 | 0.97916",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.901507",
+     "value": 0.901507,
+     "category": "result",
+     "context": "metric_log_geometric` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948 | 0.979162 |  ## Mo",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1493",
+     "value": 1.1493,
+     "category": "result",
+     "context": "_geometric` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948 | 0.979162 |  ## Most signi",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.774948",
+     "value": 0.774948,
+     "category": "result",
+     "context": "` | 0.00193737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948 | 0.979162 |  ## Most significant head",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979162",
+     "value": 0.979162,
+     "category": "result",
+     "context": "737 | -0.00139148 | 1.01789 [0.901507, 1.1493] | 0.774948 | 0.979162 |  ## Most significant head tests  This",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "95%",
+     "value": 95.0,
+     "category": "parameter",
+     "context": "tats.tsv`.  | Test key | Raw AUPRC | Conditional OR per SD (95% CI) | p | joint BH q | |---|---:|---:|-",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00181633",
+     "value": 0.00181633,
+     "category": "result",
+     "context": "-:|---:|---:|---:| | `layer_0_head_5_tf_query_target_key` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.006128",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.20925",
+     "value": 1.20925,
+     "category": "result",
+     "context": "---:| | `layer_0_head_5_tf_query_target_key` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.00612832 | 0.751",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.05692",
+     "value": 1.05692,
+     "category": "result",
+     "context": "layer_0_head_5_tf_query_target_key` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.00612832 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.38352",
+     "value": 1.38352,
+     "category": "result",
+     "context": "ead_5_tf_query_target_key` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.00612832 | 0.751215 | | `layer_0_h",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00612832",
+     "value": 0.00612832,
+     "category": "result",
+     "context": "ery_target_key` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.00612832 | 0.751215 | | `layer_0_head_5_target_q",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "y` | 0.00181633 | 1.20925 [1.05692, 1.38352] | 0.00612832 | 0.751215 | | `layer_0_head_5_target_query_tf_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0025061",
+     "value": 0.0025061,
+     "category": "result",
+     "context": "12832 | 0.751215 | | `layer_0_head_5_target_query_tf_key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.014264",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.14209",
+     "value": 1.14209,
+     "category": "result",
+     "context": "1215 | | `layer_0_head_5_target_query_tf_key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.0142648 | 0.7512",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.02777",
+     "value": 1.02777,
+     "category": "result",
+     "context": "`layer_0_head_5_target_query_tf_key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.0142648 | 0.751215 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.26913",
+     "value": 1.26913,
+     "category": "result",
+     "context": "head_5_target_query_tf_key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.0142648 | 0.751215 | | `layer_0_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0142648",
+     "value": 0.0142648,
+     "category": "result",
+     "context": "et_query_tf_key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.0142648 | 0.751215 | | `layer_0_head_5_symmetri",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "key` | 0.0025061 | 1.14209 [1.02777, 1.26913] | 0.0142648 | 0.751215 | | `layer_0_head_5_symmetric_log_geome",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00235329",
+     "value": 0.00235329,
+     "category": "result",
+     "context": "8 | 0.751215 | | `layer_0_head_5_symmetric_log_geometric` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.002385",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.22495",
+     "value": 1.22495,
+     "category": "result",
+     "context": "| | `layer_0_head_5_symmetric_log_geometric` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.00238563 | 0.751",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.07617",
+     "value": 1.07617,
+     "category": "result",
+     "context": "r_0_head_5_symmetric_log_geometric` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.00238563 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.39431",
+     "value": 1.39431,
+     "category": "result",
+     "context": "5_symmetric_log_geometric` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.00238563 | 0.751215 | | `layer_0_h",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00238563",
+     "value": 0.00238563,
+     "category": "result",
+     "context": "_log_geometric` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.00238563 | 0.751215 | | `layer_0_head_7_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "c` | 0.00235329 | 1.22495 [1.07617, 1.39431] | 0.00238563 | 0.751215 | | `layer_0_head_7_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00207361",
+     "value": 0.00207361,
+     "category": "result",
+     "context": "38563 | 0.751215 | | `layer_0_head_7_tf_query_target_key` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.015222",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.14071",
+     "value": 1.14071,
+     "category": "result",
+     "context": "215 | | `layer_0_head_7_tf_query_target_key` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.0152225 | 0.7512",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.02646",
+     "value": 1.02646,
+     "category": "result",
+     "context": "layer_0_head_7_tf_query_target_key` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.0152225 | 0.751215 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.26768",
+     "value": 1.26768,
+     "category": "result",
+     "context": "ead_7_tf_query_target_key` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.0152225 | 0.751215 | | `layer_1_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0152225",
+     "value": 0.0152225,
+     "category": "result",
+     "context": "ery_target_key` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.0152225 | 0.751215 | | `layer_1_head_5_target_q",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "ey` | 0.00207361 | 1.14071 [1.02646, 1.26768] | 0.0152225 | 0.751215 | | `layer_1_head_5_target_query_tf_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00479617",
+     "value": 0.00479617,
+     "category": "result",
+     "context": "52225 | 0.751215 | | `layer_1_head_5_target_query_tf_key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1238",
+     "value": 1.1238,
+     "category": "result",
+     "context": "215 | | `layer_1_head_5_target_query_tf_key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516 | 0.7512",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.02265",
+     "value": 1.02265,
+     "category": "result",
+     "context": "`layer_1_head_5_target_query_tf_key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516 | 0.751215 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.23496",
+     "value": 1.23496,
+     "category": "result",
+     "context": "head_5_target_query_tf_key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516 | 0.751215 | | `layer_2_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0160516",
+     "value": 0.0160516,
+     "category": "result",
+     "context": "et_query_tf_key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516 | 0.751215 | | `layer_2_head_9_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "key` | 0.00479617 | 1.1238 [1.02265, 1.23496] | 0.0160516 | 0.751215 | | `layer_2_head_9_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00128693",
+     "value": 0.00128693,
+     "category": "result",
+     "context": "60516 | 0.751215 | | `layer_2_head_9_tf_query_target_key` | 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.016",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.876008",
+     "value": 0.876008,
+     "category": "result",
+     "context": "215 | | `layer_2_head_9_tf_query_target_key` | 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.0160439 | 0.75",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.787138",
+     "value": 0.787138,
+     "category": "result",
+     "context": "ayer_2_head_9_tf_query_target_key` | 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.0160439 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.974913",
+     "value": 0.974913,
+     "category": "result",
+     "context": "d_9_tf_query_target_key` | 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.0160439 | 0.751215 | | `layer_6_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0160439",
+     "value": 0.0160439,
+     "category": "result",
+     "context": "_target_key` | 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.0160439 | 0.751215 | | `layer_6_head_4_target_q",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "| 0.00128693 | 0.876008 [0.787138, 0.974913] | 0.0160439 | 0.751215 | | `layer_6_head_4_target_query_tf_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00135342",
+     "value": 0.00135342,
+     "category": "result",
+     "context": "60439 | 0.751215 | | `layer_6_head_4_target_query_tf_key` | 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.010",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.885274",
+     "value": 0.885274,
+     "category": "result",
+     "context": "215 | | `layer_6_head_4_target_query_tf_key` | 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.0100947 | 0.75",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.807393",
+     "value": 0.807393,
+     "category": "result",
+     "context": "ayer_6_head_4_target_query_tf_key` | 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.0100947 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.970667",
+     "value": 0.970667,
+     "category": "result",
+     "context": "d_4_target_query_tf_key` | 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.0100947 | 0.751215 | | `layer_7_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0100947",
+     "value": 0.0100947,
+     "category": "result",
+     "context": "uery_tf_key` | 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.0100947 | 0.751215 | | `layer_7_head_6_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "| 0.00135342 | 0.885274 [0.807393, 0.970667] | 0.0100947 | 0.751215 | | `layer_7_head_6_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00122524",
+     "value": 0.00122524,
+     "category": "result",
+     "context": "00947 | 0.751215 | | `layer_7_head_6_tf_query_target_key` | 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.010",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865761",
+     "value": 0.865761,
+     "category": "result",
+     "context": "215 | | `layer_7_head_6_tf_query_target_key` | 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.0102979 | 0.75",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.776178",
+     "value": 0.776178,
+     "category": "result",
+     "context": "ayer_7_head_6_tf_query_target_key` | 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.0102979 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.965683",
+     "value": 0.965683,
+     "category": "result",
+     "context": "d_6_tf_query_target_key` | 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.0102979 | 0.751215 | | `layer_9_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0102979",
+     "value": 0.0102979,
+     "category": "result",
+     "context": "_target_key` | 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.0102979 | 0.751215 | | `layer_9_head_2_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "| 0.00122524 | 0.865761 [0.776178, 0.965683] | 0.0102979 | 0.751215 | | `layer_9_head_2_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00110416",
+     "value": 0.00110416,
+     "category": "result",
+     "context": "02979 | 0.751215 | | `layer_9_head_2_tf_query_target_key` | 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.015",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.879302",
+     "value": 0.879302,
+     "category": "result",
+     "context": "215 | | `layer_9_head_2_tf_query_target_key` | 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.0154057 | 0.75",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.793006",
+     "value": 0.793006,
+     "category": "result",
+     "context": "ayer_9_head_2_tf_query_target_key` | 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.0154057 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.974989",
+     "value": 0.974989,
+     "category": "result",
+     "context": "d_2_tf_query_target_key` | 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.0154057 | 0.751215 | | `layer_9_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0154057",
+     "value": 0.0154057,
+     "category": "result",
+     "context": "_target_key` | 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.0154057 | 0.751215 | | `layer_9_head_2_symmetri",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "| 0.00110416 | 0.879302 [0.793006, 0.974989] | 0.0154057 | 0.751215 | | `layer_9_head_2_symmetric_log_geome",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00118166",
+     "value": 0.00118166,
+     "category": "result",
+     "context": "7 | 0.751215 | | `layer_9_head_2_symmetric_log_geometric` | 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.012",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.885826",
+     "value": 0.885826,
+     "category": "result",
+     "context": "| | `layer_9_head_2_symmetric_log_geometric` | 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.0123132 | 0.75",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.806195",
+     "value": 0.806195,
+     "category": "result",
+     "context": "_9_head_2_symmetric_log_geometric` | 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.0123132 | 0.751215 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.973324",
+     "value": 0.973324,
+     "category": "result",
+     "context": "symmetric_log_geometric` | 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.0123132 | 0.751215 | | `layer_3_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0123132",
+     "value": 0.0123132,
+     "category": "result",
+     "context": "g_geometric` | 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.0123132 | 0.751215 | | `layer_3_head_1_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.751215",
+     "value": 0.751215,
+     "category": "result",
+     "context": "| 0.00118166 | 0.885826 [0.806195, 0.973324] | 0.0123132 | 0.751215 | | `layer_3_head_1_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00139939",
+     "value": 0.00139939,
+     "category": "result",
+     "context": "23132 | 0.751215 | | `layer_3_head_1_tf_query_target_key` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.02048",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.901051",
+     "value": 0.901051,
+     "category": "result",
+     "context": "215 | | `layer_3_head_1_tf_query_target_key` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.0204822 | 0.7988",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.82554",
+     "value": 0.82554,
+     "category": "result",
+     "context": "ayer_3_head_1_tf_query_target_key` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.0204822 | 0.798807 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.98347",
+     "value": 0.98347,
+     "category": "result",
+     "context": "ad_1_tf_query_target_key` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.0204822 | 0.798807 | | `layer_9_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0204822",
+     "value": 0.0204822,
+     "category": "result",
+     "context": "ry_target_key` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.0204822 | 0.798807 | | `layer_9_head_11_symmetr",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.798807",
+     "value": 0.798807,
+     "category": "result",
+     "context": "y` | 0.00139939 | 0.901051 [0.82554, 0.98347] | 0.0204822 | 0.798807 | | `layer_9_head_11_symmetric_log_geom",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00151069",
+     "value": 0.00151069,
+     "category": "result",
+     "context": "| 0.798807 | | `layer_9_head_11_symmetric_log_geometric` | 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.019",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.905133",
+     "value": 0.905133,
+     "category": "result",
+     "context": "| `layer_9_head_11_symmetric_log_geometric` | 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.0192483 | 0.79",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.833137",
+     "value": 0.833137,
+     "category": "result",
+     "context": "9_head_11_symmetric_log_geometric` | 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.0192483 | 0.798807 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.983352",
+     "value": 0.983352,
+     "category": "result",
+     "context": "symmetric_log_geometric` | 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.0192483 | 0.798807 | | `layer_0_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0192483",
+     "value": 0.0192483,
+     "category": "result",
+     "context": "g_geometric` | 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.0192483 | 0.798807 | | `layer_0_head_4_tf_query",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.798807",
+     "value": 0.798807,
+     "category": "result",
+     "context": "| 0.00151069 | 0.905133 [0.833137, 0.983352] | 0.0192483 | 0.798807 | | `layer_0_head_4_tf_query_target_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00128978",
+     "value": 0.00128978,
+     "category": "result",
+     "context": "92483 | 0.798807 | | `layer_0_head_4_tf_query_target_key` | 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.024",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.858517",
+     "value": 0.858517,
+     "category": "result",
+     "context": "807 | | `layer_0_head_4_tf_query_target_key` | 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.0247412 | 0.84",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.752129",
+     "value": 0.752129,
+     "category": "result",
+     "context": "ayer_0_head_4_tf_query_target_key` | 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.0247412 | 0.846903 | | `",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.979954",
+     "value": 0.979954,
+     "category": "result",
+     "context": "d_4_tf_query_target_key` | 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.0247412 | 0.846903 | | `layer_7_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0247412",
+     "value": 0.0247412,
+     "category": "result",
+     "context": "_target_key` | 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.0247412 | 0.846903 | | `layer_7_head_6_symmetri",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.846903",
+     "value": 0.846903,
+     "category": "result",
+     "context": "| 0.00128978 | 0.858517 [0.752129, 0.979954] | 0.0247412 | 0.846903 | | `layer_7_head_6_symmetric_log_geome",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0012123",
+     "value": 0.0012123,
+     "category": "result",
+     "context": "2 | 0.846903 | | `layer_7_head_6_symmetric_log_geometric` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.896444",
+     "value": 0.896444,
+     "category": "result",
+     "context": "| | `layer_7_head_6_symmetric_log_geometric` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253347 | 0.846",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.815039",
+     "value": 0.815039,
+     "category": "result",
+     "context": "r_7_head_6_symmetric_log_geometric` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253347 | 0.846903 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.98598",
+     "value": 0.98598,
+     "category": "result",
+     "context": "_symmetric_log_geometric` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253347 | 0.846903 | | `layer_0_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0253347",
+     "value": 0.0253347,
+     "category": "result",
+     "context": "log_geometric` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253347 | 0.846903 | | `layer_0_head_6_target_q",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.846903",
+     "value": 0.846903,
+     "category": "result",
+     "context": "c` | 0.0012123 | 0.896444 [0.815039, 0.98598] | 0.0253347 | 0.846903 | | `layer_0_head_6_target_query_tf_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00249166",
+     "value": 0.00249166,
+     "category": "result",
+     "context": "53347 | 0.846903 | | `layer_0_head_6_target_query_tf_key` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.042817",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.11509",
+     "value": 1.11509,
+     "category": "result",
+     "context": "903 | | `layer_0_head_6_target_query_tf_key` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.0428171 | 0.8658",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.00411",
+     "value": 1.00411,
+     "category": "result",
+     "context": "layer_0_head_6_target_query_tf_key` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.0428171 | 0.865844 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.23835",
+     "value": 1.23835,
+     "category": "result",
+     "context": "ead_6_target_query_tf_key` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.0428171 | 0.865844 | | `layer_1_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0428171",
+     "value": 0.0428171,
+     "category": "result",
+     "context": "t_query_tf_key` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.0428171 | 0.865844 | | `layer_1_head_5_symmetri",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "ey` | 0.00249166 | 1.11509 [1.00411, 1.23835] | 0.0428171 | 0.865844 | | `layer_1_head_5_symmetric_log_geome",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00426991",
+     "value": 0.00426991,
+     "category": "result",
+     "context": "1 | 0.865844 | | `layer_1_head_5_symmetric_log_geometric` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.048278",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.09267",
+     "value": 1.09267,
+     "category": "result",
+     "context": "| | `layer_1_head_5_symmetric_log_geometric` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.0482787 | 0.8658",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.00113",
+     "value": 1.00113,
+     "category": "result",
+     "context": "r_1_head_5_symmetric_log_geometric` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.0482787 | 0.865844 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.19257",
+     "value": 1.19257,
+     "category": "result",
+     "context": "5_symmetric_log_geometric` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.0482787 | 0.865844 | | `layer_2_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0482787",
+     "value": 0.0482787,
+     "category": "result",
+     "context": "_log_geometric` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.0482787 | 0.865844 | | `layer_2_head_4_target_q",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "ic` | 0.00426991 | 1.09267 [1.00113, 1.19257] | 0.0482787 | 0.865844 | | `layer_2_head_4_target_query_tf_key",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00135123",
+     "value": 0.00135123,
+     "category": "result",
+     "context": "82787 | 0.865844 | | `layer_2_head_4_target_query_tf_key` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.915972",
+     "value": 0.915972,
+     "category": "result",
+     "context": "844 | | `layer_2_head_4_target_query_tf_key` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890331 | 0.865",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.828191",
+     "value": 0.828191,
+     "category": "result",
+     "context": "ayer_2_head_4_target_query_tf_key` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890331 | 0.865844 | | `l",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.01306",
+     "value": 1.01306,
+     "category": "result",
+     "context": "d_4_target_query_tf_key` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890331 | 0.865844 | | `layer_2_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0890331",
+     "value": 0.0890331,
+     "category": "result",
+     "context": "query_tf_key` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890331 | 0.865844 | | `layer_2_head_9_symmetri",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "` | 0.00135123 | 0.915972 [0.828191, 1.01306] | 0.0890331 | 0.865844 | | `layer_2_head_9_symmetric_log_geome",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00128033",
+     "value": 0.00128033,
+     "category": "result",
+     "context": "1 | 0.865844 | | `layer_2_head_9_symmetric_log_geometric` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.05178",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.892555",
+     "value": 0.892555,
+     "category": "result",
+     "context": "| | `layer_2_head_9_symmetric_log_geometric` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.051784 | 0.86584",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.796418",
+     "value": 0.796418,
+     "category": "result",
+     "context": "_2_head_9_symmetric_log_geometric` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.051784 | 0.865844 | | `lay",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.0003",
+     "value": 1.0003,
+     "category": "result",
+     "context": "symmetric_log_geometric` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.051784 | 0.865844 | | `layer_2_hea",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.051784",
+     "value": 0.051784,
+     "category": "result",
+     "context": "log_geometric` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.051784 | 0.865844 | | `layer_2_head_10_target_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "ic` | 0.00128033 | 0.892555 [0.796418, 1.0003] | 0.051784 | 0.865844 | | `layer_2_head_10_target_query_tf_ke",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00168739",
+     "value": 0.00168739,
+     "category": "result",
+     "context": "1784 | 0.865844 | | `layer_2_head_10_target_query_tf_key` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.088922",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.05878",
+     "value": 1.05878,
+     "category": "result",
+     "context": "44 | | `layer_2_head_10_target_query_tf_key` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.0889228 | 0.8658",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.991616",
+     "value": 0.991616,
+     "category": "result",
+     "context": "ayer_2_head_10_target_query_tf_key` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.0889228 | 0.865844 | | `la",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1.1305",
+     "value": 1.1305,
+     "category": "result",
+     "context": "d_10_target_query_tf_key` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.0889228 | 0.865844 | | `layer_2_he",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0889228",
+     "value": 0.0889228,
+     "category": "result",
+     "context": "t_query_tf_key` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.0889228 | 0.865844 | | `layer_2_head_11_target_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "ey` | 0.00168739 | 1.05878 [0.991616, 1.1305] | 0.0889228 | 0.865844 | | `layer_2_head_11_target_query_tf_ke",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00140201",
+     "value": 0.00140201,
+     "category": "result",
+     "context": "9228 | 0.865844 | | `layer_2_head_11_target_query_tf_key` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.903607",
+     "value": 0.903607,
+     "category": "result",
+     "context": "44 | | `layer_2_head_11_target_query_tf_key` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380353 | 0.865",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.82153",
+     "value": 0.82153,
+     "category": "result",
+     "context": "yer_2_head_11_target_query_tf_key` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380353 | 0.865844 |  ##",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.993883",
+     "value": 0.993883,
+     "category": "result",
+     "context": "d_11_target_query_tf_key` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380353 | 0.865844 |  ## Interpret",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0380353",
+     "value": 0.0380353,
+     "category": "result",
+     "context": "query_tf_key` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380353 | 0.865844 |  ## Interpretation boundar",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.865844",
+     "value": 0.865844,
+     "category": "result",
+     "context": "` | 0.00140201 | 0.903607 [0.82153, 0.993883] | 0.0380353 | 0.865844 |  ## Interpretation boundary  Attentio",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "1e-12",
+     "value": 1e-12,
+     "category": "result",
+     "context": "ent to the log geometric mean. The stabilizing constant is `1e-12` (`config.attention_log_epsilon`). Scor",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "100",
+     "value": 100.0,
+     "category": "parameter",
+     "context": "TF to a kit gene are eligible when co-presence is at least `100` (`config.copresence_min_cells`) and ev",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "16",
+     "value": 16.0,
+     "category": "result",
+     "context": "## Baseline and cross-validation  The nuisance design has `16` columns (`config.n_base_features`). Co",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "5",
+     "value": 5.0,
+     "category": "small_integer",
+     "context": "ized. Logistic models use TF-grouped cross-validation with `5` folds (`config.grouped_cv_folds`). Deg",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "METHOD.md",
+     "text": "200",
+     "value": 200.0,
+     "category": "result",
+     "context": "ng exact TRRUST-positive edges. TF-cluster resampling uses `200` requested replicates (`config.external",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "310228",
+     "value": 310228.0,
+     "category": "result",
+     "context": "# Run summary  The analysis evaluated `310228` directed TF-gene candidates (`universe",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0020295",
+     "value": 0.0020295,
+     "category": "result",
+     "context": "_layer_variant.record_id`).  Best grouped-CV AUPRC change: `0.0020295` (`best_trrust_layer_variant.delta_oof_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "-8.16925e-05",
+     "value": -8.169250000000001e-05,
+     "category": "result",
+     "context": "_oof_auprc_vs_baseline`).  External DoRothEA AUPRC change: `-8.16925e-05` (`external_nonoverlapping_dorothea.del",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "-0.000450665",
+     "value": -0.000450665,
+     "category": "result",
+     "context": "_nonoverlapping_dorothea.delta_oof_auprc`), with interval `[-0.000450665, 0.000157047]` (`external_nonoverlappin",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.000157047",
+     "value": 0.000157047,
+     "category": "result",
+     "context": "g_dorothea.delta_oof_auprc`), with interval `[-0.000450665, 0.000157047]` (`external_nonoverlapping_dorothea.de",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "0.05",
+     "value": 0.05,
+     "category": "result",
+     "context": "ST-selected layer/variant:  - has a joint BH q-value below `0.05` (`config.familywise_bh_alpha`); - impr",
+     "status": "literal_matches_output"
+    }
+   ]
+  },
+  {
+   "iteration": 3,
+   "numbers": []
+  },
+  {
+   "iteration": 5,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "500",
+     "value": 500.0,
+     "category": "result",
+     "context": "d predictions on the selection rows.  Metric intervals use `500` valid crossed TF-target product-weight",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "468",
+     "value": 468.0,
+     "category": "result",
+     "context": ". Benjamini-Yekutieli correction is applied jointly to all `468` tests (`config.n_attention_tests`). No",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "500",
+     "value": 500.0,
+     "category": "result",
+     "context": "tion component. A synthetic implementation diagnostic used `500` valid simulations and obtained null co",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "0.956",
+     "value": 0.956,
+     "category": "result",
+     "context": "ic used `500` valid simulations and obtained null coverage `0.956` (`two_way_variance_coverage_diagnostic",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "169",
+     "value": 169.0,
+     "category": "result",
+     "context": "e_control`.  ## Annotation audit  TRRUST and DoRothEA have `169` exact overlapping pairs, `65` shared T",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "65",
+     "value": 65.0,
+     "category": "result",
+     "context": "t  TRRUST and DoRothEA have `169` exact overlapping pairs, `65` shared TFs, and `155` shared targets (",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "155",
+     "value": 155.0,
+     "category": "result",
+     "context": "A have `169` exact overlapping pairs, `65` shared TFs, and `155` shared targets (`database_overlap_audi",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "310228",
+     "value": 310228.0,
+     "category": "result",
+     "context": "atory association screen  The candidate universe contained `310228` directed pairs (`universe.n_candidate_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "423",
+     "value": 423.0,
+     "category": "result",
+     "context": "` directed pairs (`universe.n_candidate_pairs`), including `423` context-agnostic TRRUST annotations (`",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "468",
+     "value": 468.0,
+     "category": "result",
+     "context": "d uncurated, not biological negatives.  The screen covered `468` layer/head/orientation scores (`config",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.235842",
+     "value": 0.235842,
+     "category": "result",
+     "context": "y` (`association_screen.best_test.record_id`), with effect `0.235842` and two-way cluster interval `[0.07327",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0732728",
+     "value": 0.0732728,
+     "category": "result",
+     "context": "id`), with effect `0.235842` and two-way cluster interval `[0.0732728, 0.398411]` (`association_screen.best_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.398411",
+     "value": 0.398411,
+     "category": "result",
+     "context": "effect `0.235842` and two-way cluster interval `[0.0732728, 0.398411]` (`association_screen.best_test.differ",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "1",
+     "value": 1.0,
+     "category": "small_integer",
+     "context": "t.two_way_cluster_ci95_high`). Its BY-adjusted q-value was `1` (`association_screen.best_test.benjami",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0",
+     "value": 0.0,
+     "category": "small_integer",
+     "context": "est.benjamini_yekutieli_q`). The complete family contained `0` BY discoveries (`association_screen.n_",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "34340",
+     "value": 34340.0,
+     "category": "result",
+     "context": "omputed only on a separate evaluation partition containing `34340` pairs and `84` annotations (`predictiv",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "84",
+     "value": 84.0,
+     "category": "result",
+     "context": "separate evaluation partition containing `34340` pairs and `84` annotations (`predictive_evaluation.n_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0150947",
+     "value": 0.0150947,
+     "category": "result",
+     "context": "ve to the flexible nuisance baseline, its AUROC change was `0.0150947`, with crossed TF-target interval `[0.0",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00159448",
+     "value": 0.00159448,
+     "category": "result",
+     "context": "C change was `0.0150947`, with crossed TF-target interval `[0.00159448, 0.0320287]` (`predictive_evaluation.de",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0320287",
+     "value": 0.0320287,
+     "category": "result",
+     "context": "`0.0150947`, with crossed TF-target interval `[0.00159448, 0.0320287]` (`predictive_evaluation.delta_auroc`,",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0224308",
+     "value": -0.0224308,
+     "category": "result",
+     "context": "e_evaluation.delta_auroc_ci95_high`). Its AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.0091000",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0607446",
+     "value": -0.0607446,
+     "category": "result",
+     "context": "_high`). Its AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.00910004]` (`predictive_evaluation.d",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00910004",
+     "value": 0.00910004,
+     "category": "result",
+     "context": "AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.00910004]` (`predictive_evaluation.delta_auprc`,",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.069267",
+     "value": -0.069267,
+     "category": "result",
+     "context": "n-TF target-alignment permutation control had AUPRC change `-0.069267`, with interval `[-0.204965, 0.0106281]",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.204965",
+     "value": -0.204965,
+     "category": "result",
+     "context": "ation control had AUPRC change `-0.069267`, with interval `[-0.204965, 0.0106281]` (`predictive_negative_cont",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0106281",
+     "value": 0.0106281,
+     "category": "result",
+     "context": "ol had AUPRC change `-0.069267`, with interval `[-0.204965, 0.0106281]` (`predictive_negative_control.delta_a",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "468",
+     "value": 468.0,
+     "category": "result",
+     "context": "ithout writing a candidate-by-test matrix. It streamed all `468` attention tests (`config.n_attention_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.235842",
+     "value": 0.235842,
+     "category": "result",
+     "context": "yer_4_head_10_target_query_tf_key`, with residual contrast `0.235842` and interval `[0.0732728, 0.398411]` (",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0732728",
+     "value": 0.0732728,
+     "category": "result",
+     "context": "y_tf_key`, with residual contrast `0.235842` and interval `[0.0732728, 0.398411]` (`association_screen.best_t",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.398411",
+     "value": 0.398411,
+     "category": "result",
+     "context": "with residual contrast `0.235842` and interval `[0.0732728, 0.398411]` (`association_screen.best_test.record",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "-0.0224308",
+     "value": -0.0224308,
+     "category": "result",
+     "context": "_target_query_tf_key`. Its final held-out AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.0091000",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "-0.0607446",
+     "value": -0.0607446,
+     "category": "result",
+     "context": "nal held-out AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.00910004]` (`predictive_evaluation.s",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.00910004",
+     "value": 0.00910004,
+     "category": "result",
+     "context": "AUPRC change was `-0.0224308`, with interval `[-0.0607446, 0.00910004]` (`predictive_evaluation.selected_reco",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "context": "ssion opportunity, and hub features.  ## Analysis sequence  1. Form directed TF-gene candidates with"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "context": "nce threshold recorded in    `config.copresence_min_cells`. 2. Evaluate TF-query, target-query, and s"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "context": "ry, target-query, and symmetric log-attention orientations. 3. Screen all layer and head variants usi"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "4",
+     "value": 4.0,
+     "category": "list_marker",
+     "context": "e/target cluster variance with the intersection correction. 4. Select only among layer-level variants"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "5",
+     "value": 5.0,
+     "category": "list_marker",
+     "context": "among layer-level variants on a TF-disjoint selection set. 5. Refit nuisance-only and attention-augm"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "6",
+     "value": 6.0,
+     "category": "list_marker",
+     "context": "ls on development    TFs and evaluate once on held-out TFs. 6. Compare against a within-TF target-ali"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "7",
+     "value": 7.0,
+     "category": "list_marker",
+     "context": "e against a within-TF target-alignment permutation control. 7. Interpret all results as exploratory a"
+    }
+   ]
+  },
+  {
+   "iteration": 7,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.010576504",
+     "value": -0.010576504,
+     "category": "result",
+     "context": "held-out changes relative to the full nuisance model were `-0.010576504` AUROC and `0.00047961624` AUPRC (`pred",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00047961624",
+     "value": 0.00047961624,
+     "category": "result",
+     "context": "e to the full nuisance model were `-0.010576504` AUROC and `0.00047961624` AUPRC (`predictive_evaluation.delta_au",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "200",
+     "value": 200.0,
+     "category": "result",
+     "context": "omplete selection and refitting procedure was repeated for `200` within-TF target-alignment permutation",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.056978066",
+     "value": -0.056978066,
+     "category": "result",
+     "context": "_completed`). The direct actual-minus-null intervals were `[-0.056978066, 0.027315384]` for AUROC and `[-0.00429",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.027315384",
+     "value": 0.027315384,
+     "category": "result",
+     "context": "The direct actual-minus-null intervals were `[-0.056978066, 0.027315384]` for AUROC and `[-0.0042936336, 0.0006",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0042936336",
+     "value": -0.0042936336,
+     "category": "result",
+     "context": "ntervals were `[-0.056978066, 0.027315384]` for AUROC and `[-0.0042936336, 0.00068515206]` for AUPRC (`alignment_",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.00068515206",
+     "value": 0.00068515206,
+     "category": "result",
+     "context": "[-0.056978066, 0.027315384]` for AUROC and `[-0.0042936336, 0.00068515206]` for AUPRC (`alignment_permutation_nul",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "100",
+     "value": 100.0,
+     "category": "result",
+     "context": "ee-preserving null  The complete pipeline was repeated for `100` rewired annotation networks that prese",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.057656951",
+     "value": -0.057656951,
+     "category": "result",
+     "context": "es_target_in_degree`). Observed-minus-null intervals were `[-0.057656951, 0.041680865]` for AUROC and `[-0.01157",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.041680865",
+     "value": 0.041680865,
+     "category": "result",
+     "context": "egree`). Observed-minus-null intervals were `[-0.057656951, 0.041680865]` for AUROC and `[-0.011579372, 0.00243",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.011579372",
+     "value": -0.011579372,
+     "category": "result",
+     "context": "ntervals were `[-0.057656951, 0.041680865]` for AUROC and `[-0.011579372, 0.0024314229]` for AUPRC (`degree_pres",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0024314229",
+     "value": 0.0024314229,
+     "category": "result",
+     "context": "`[-0.057656951, 0.041680865]` for AUROC and `[-0.011579372, 0.0024314229]` for AUPRC (`degree_preserving_null.ob",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "PATCH_NOTES.md",
+     "text": "7",
+     "value": 7.0,
+     "category": "index",
+     "context": "# Patch notes  ## Iteration 7 targeted changes  - Added a prespecifie"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "-0.010576504",
+     "value": -0.010576504,
+     "category": "result",
+     "context": "valuation.selected_record_id`), with held-out AUROC change `-0.010576504` and AUPRC change `0.00047961624` (`pre",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.00047961624",
+     "value": 0.00047961624,
+     "category": "result",
+     "context": "with held-out AUROC change `-0.010576504` and AUPRC change `0.00047961624` (`predictive_evaluation.delta_auroc`,",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "200",
+     "value": 200.0,
+     "category": "result",
+     "context": "uation.delta_auprc`).  The target-alignment null completed `200` full pipeline replicates (`alignment_p",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "100",
+     "value": 100.0,
+     "category": "result",
+     "context": "ates_completed`), and the degree-preserving null completed `100` (`degree_preserving_null.replicates_co",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "context": "ures.  ## Prespecified analysis sequence for this revision  1. Build the eligible directed TF-gene un"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "context": "revision  1. Build the eligible directed TF-gene universe. 2. Split both positive-bearing and zero-p"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "context": "s across training,    selection, and evaluation partitions. 3. Fit the measured nuisance model using"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "4",
+     "value": 4.0,
+     "category": "list_marker",
+     "context": "red nuisance model using development-label degree features. 4. Compare a prespecified TF-query primar"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "5",
+     "value": 5.0,
+     "category": "list_marker",
+     "context": "nsitivity variants against an explicit no-attention option. 5. Refit the same learner and protocol on"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "6",
+     "value": 6.0,
+     "category": "list_marker",
+     "context": "5. Refit the same learner and protocol on development TFs. 6. Repeat the full procedure for within-T"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "7",
+     "value": 7.0,
+     "category": "list_marker",
+     "context": "at the full procedure for within-TF attention permutations. 7. Repeat it for degree-preserving, nuisa"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "8",
+     "value": 8.0,
+     "category": "list_marker",
+     "context": "degree-preserving, nuisance-stratified annotation rewires. 8. Report DoRothEA-nonoverlap and regulat"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "9",
+     "value": 9.0,
+     "category": "list_marker",
+     "context": ". 8. Report DoRothEA-nonoverlap and regulatory-mode audits. 9. Interpret results only as context-agno"
+    }
+   ]
+  },
+  {
+   "iteration": 9,
+   "numbers": [
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "15",
+     "value": 15.0,
+     "category": "result",
+     "context": "ts are mean selected-minus-nuisance AUROC and AUPRC across `15` repeated nested TF-group splits (`prim",
+     "status": "literal_matches_output"
+    },
+    {
+     "channel": "generated_report",
+     "file": "EVAL.md",
+     "text": "37",
+     "value": 37.0,
+     "category": "result",
+     "context": "on with all layer/orientation variants. The family size is `37` (`config.selection_family_size_includi",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.011987063",
+     "value": 0.011987063,
+     "category": "result",
+     "context": "ted nested TF-group splits, the mean incremental AUROC was `0.011987063`, with repeated-split mean interval `[-",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "-0.0018354673",
+     "value": -0.0018354673,
+     "category": "result",
+     "context": "UROC was `0.011987063`, with repeated-split mean interval `[-0.0018354673, 0.025809593]` (`primary_nested_evaluat",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.025809593",
+     "value": 0.025809593,
+     "category": "result",
+     "context": "987063`, with repeated-split mean interval `[-0.0018354673, 0.025809593]` (`primary_nested_evaluation.mean_delt",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0046476757",
+     "value": 0.0046476757,
+     "category": "result",
+     "context": "_mean_ci95`). The corresponding mean incremental AUPRC was `0.0046476757`, with interval `[0.0017261886, 0.00756",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0017261886",
+     "value": 0.0017261886,
+     "category": "result",
+     "context": "mean incremental AUPRC was `0.0046476757`, with interval `[0.0017261886, 0.0075691629]` (`primary_nested_evalua",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "MECH.md",
+     "text": "0.0075691629",
+     "value": 0.0075691629,
+     "category": "result",
+     "context": "tal AUPRC was `0.0046476757`, with interval `[0.0017261886, 0.0075691629]` (`primary_nested_evaluation.mean_delt",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.011987063",
+     "value": 0.011987063,
+     "category": "result",
+     "context": "ed inside each outer split. The mean incremental AUROC was `0.011987063` and the mean incremental AUPRC was `0.",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "RUN_SUMMARY.md",
+     "text": "0.0046476757",
+     "value": 0.0046476757,
+     "category": "result",
+     "context": "AUROC was `0.011987063` and the mean incremental AUPRC was `0.0046476757` (`primary_nested_evaluation.mean_delta",
+     "status": "computed"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "1",
+     "value": 1.0,
+     "category": "list_marker",
+     "context": "sition, and degree features.  ## Revised analysis sequence  1. Verify every consumed input against it"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "2",
+     "value": 2.0,
+     "category": "list_marker",
+     "context": "onsumed input against its filename-associated manifest MD5. 2. Build eligible TF-gene universes at al"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "3",
+     "value": 3.0,
+     "category": "list_marker",
+     "context": "F-gene universes at all prespecified copresence thresholds. 3. Perform repeated outer TF-group splits"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "4",
+     "value": 4.0,
+     "category": "list_marker",
+     "context": "-group splits with an inner TF-disjoint selection    split. 4. In every split, redraw training negati"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "5",
+     "value": 5.0,
+     "category": "list_marker",
+     "context": "ll nuisance, calibration,    and attention-stacking models. 5. Select among no attention and the comp"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "6",
+     "value": 6.0,
+     "category": "list_marker",
+     "context": "mplete layer/orientation family only in    the inner split. 6. Evaluate the selected model once in th"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "7",
+     "value": 7.0,
+     "category": "list_marker",
+     "context": "ate the selected model once in that split's outer test TFs. 7. Repeat the procedure over negative rat"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "8",
+     "value": 8.0,
+     "category": "list_marker",
+     "context": "the procedure over negative ratios and nuisance capacities. 8. Repeat the complete nested pipeline fo"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "9",
+     "value": 9.0,
+     "category": "list_marker",
+     "context": "arget-alignment and    degree-preserving negative controls. 9. Report TF-query-only results separatel"
+    },
+    {
+     "channel": "generated_report",
+     "file": "XP.md",
+     "text": "10",
+     "value": 10.0,
+     "category": "list_marker",
+     "context": "ative controls. 9. Report TF-query-only results separately. 10. Treat DoRothEA only as an unvalidated"
+    }
+   ]
+  }
+ ]
+}

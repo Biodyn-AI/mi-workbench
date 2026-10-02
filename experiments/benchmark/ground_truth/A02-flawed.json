@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A02-flawed",
+  "scenario": "scGPT (whole-human) attention-derived GRN evaluated against DoRothEA in K562 cells",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A02-F1",
+      "type": "S3",
+      "family": "statistics",
+      "quote": "With an AUROC of 0.71, the attention network ranks DoRothEA edges well above non-edges across the whole candidate set, a strong performance that makes it directly usable for prioritizing regulatory interactions in K562.",
+      "description": "With 612 positives among 191,510 candidate pairs (~0.32%), AUROC is dominated by true negatives and says nothing about precision among top-ranked edges; AUROC 0.71 is compatible with an AUPRC barely above the base rate, so reporting AUROC as the only metric and calling it strong and directly usable for prioritization is metric misuse.",
+      "detection_criterion": "The critique must note that AUROC is the only metric on an extremely imbalanced problem (~0.3% positive rate) and is misleading for claims about prioritization, and must ask for AUPRC, precision at top-k/early precision, or comparison to the base rate. A generic request for 'additional metrics' without the class-imbalance argument does not qualify."
+    },
+    {
+      "flaw_id": "A02-F2",
+      "type": "C2",
+      "family": "confounding",
+      "quote": "Statistical significance was assessed against 1,000 random reference networks in which the same number of edges (612) was placed uniformly at random among the candidate pairs, and the empirical p-value was the fraction of random networks giving an AUROC at least as high as the observed one.",
+      "description": "The uniform random-edge null ignores the strongly skewed degree structure of DoRothEA (MYC alone contributes 118 of 612 edges); a score that merely reflects TF-level or gene-level attention propensity toward hub/well-studied regulators would beat this null and inflate the pooled AUROC, so neither the significance nor the AUROC demonstrates pair-specific regulatory information without a degree-preserving/degree-matched null or per-TF evaluation.",
+      "detection_criterion": "The critique must state that the evaluation/null does not account for node degree or hub structure in DoRothEA (e.g. MYC's many targets, well-studied TFs), so the AUROC and its significance could be driven by hub TFs or gene-level attention propensity rather than pair-level signal, and must call for a degree-preserving rewiring null, degree-matched negatives, or per-TF/degree-stratified evaluation. Generic statements that 'DoRothEA is incomplete' or 'the reference is biased' without the degree/hub argument do not qualify."
+    },
+    {
+      "flaw_id": "A02-F3",
+      "type": "T1",
+      "family": "technical",
+      "quote": "Because scaled dot-product attention is symmetric in the pair of genes (q_i·k_j = q_j·k_i, hence A_ij = A_ji), we stored only the upper triangle of each cell's head-averaged attention matrix and used that entry as the score for both orientations of a gene pair.",
+      "description": "q_i·k_j != q_j·k_i in general because queries and keys come from different projections, and the softmax normalizes each row, so A is asymmetric; keeping only the upper triangle means that, depending on arbitrary gene index order, roughly half of the TF->gene pairs are scored with gene->TF attention, and directional information is lost.",
+      "detection_criterion": "The critique must state that attention is not symmetric (q_i·k_j != q_j·k_i because W_Q != W_K, and/or row-wise softmax normalization), so storing only the upper triangle and using it for both orientations is invalid and discards or scrambles edge direction. A request for 'directed evaluation' that does not identify the false symmetry claim does not qualify."
+    },
+    {
+      "flaw_id": "A02-F4",
+      "type": "B1",
+      "family": "biological",
+      "quote": "The hub structure is also biologically coherent: MYC, GATA1, TAL1 and MYOD1 are the most connected regulators, placing MYOD1 alongside the GATA1–TAL1 complex at the core of the K562 regulatory network.",
+      "description": "MYOD1 is a skeletal-muscle-specific myogenic TF that is not expressed or functional in the erythroleukemic K562 line; its appearance as a top hub is biologically implausible (and inconsistent with the stated >=5% detection filter), indicating an artifact, yet it is presented as coherent without comment.",
+      "detection_criterion": "The critique must specifically flag MYOD1 as implausible in K562 (muscle-specific myogenic regulator, not expressed/relevant in an erythroleukemia line) and question its hub/core status or treat it as a likely artifact. Generic comments about hub analysis or biological validation that do not name MYOD1 do not qualify."
+    }
+  ]
+}

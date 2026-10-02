@@ -1,0 +1,2393 @@
+{
+  "schema": "miw-orchestration-real-concurrency/1",
+  "created_utc": "2026-10-01T02:28:48.197675Z",
+  "config": {
+    "provider": "codex_cli",
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "allow_tools": false,
+    "web_search": "disabled",
+    "artifact": "experiments/benchmark/artifacts/A01-clean.md",
+    "artifact_sha256": "2a44b10853c1ed5a60710002fbfe42c7d18c8f46d235fe198fd2786e7b63df7c",
+    "artifact_chars": 6850,
+    "user_prompt_sha256": "0e919bd9ad35560ae9e0ed18e068e4e35e9d68327ca92cc73710c1bcd18c1d33",
+    "panel": [
+      {
+        "role": "reviewer",
+        "prompt_ref": "reviewer/mi_reviewer",
+        "version": "2.0.0",
+        "sha256": "5bb394dfc0618159398dff744715306ff889f8a3466808a56825a7f24343cf9d"
+      },
+      {
+        "role": "adversarial_reviewer",
+        "prompt_ref": "adversarial_reviewer/adversarial_reviewer",
+        "version": "2.0.0",
+        "sha256": "2702a4bac20d654a6e8aac520bb238ab8ad2c3c5518a5256f5ff994e405c1bc0"
+      },
+      {
+        "role": "bio_plausibility_checker",
+        "prompt_ref": "biological_plausibility/bio_plausibility_checker",
+        "version": "2.0.0",
+        "sha256": "72e758889b3a7360399ae20e9af757522eb747940597faee34354c58748b790e"
+      }
+    ],
+    "lens_prompt_sha256": [
+      "5bb394dfc0618159398dff744715306ff889f8a3466808a56825a7f24343cf9d",
+      "2702a4bac20d654a6e8aac520bb238ab8ad2c3c5518a5256f5ff994e405c1bc0",
+      "72e758889b3a7360399ae20e9af757522eb747940597faee34354c58748b790e"
+    ],
+    "lens_timeout": 600.0,
+    "max_retries": 2,
+    "retry_base_delay": 10.0,
+    "retry_max_delay": 60.0,
+    "retry_policy": "backend.orchestrator.retry.run_with_retry inside run_panel: retries only errors whose text contains timeout / rate limit / connection / 429 / 502 / 503 / overloaded; delay base*2^n (+-25% jitter), capped",
+    "pause_between_levels_s": 10.0,
+    "levels": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "dry_run": false,
+    "similarity_method": "jaccard (ConsensusReviewer default)"
+  },
+  "config_fingerprint": "a89f0bf2c025ae6b4ff1b2b730a4e0297a6d184a0c6bc15a5f9a717433772951",
+  "environment": {
+    "python": "3.11.14",
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "cpu_count": 10,
+    "cli_version": "codex-cli 0.145.0",
+    "codex_env": {
+      "codex_home": "/Users/ihorkendiukhov/.codex",
+      "AGENTS.md": "761a7e14c29f9bb77edb3622fa1febcb4b8c377c854d980a0e1bb4312f008e0d",
+      "AGENTS.override.md": null,
+      "config.toml": "78fbe802e9a81a37f864267c0ffd66737711003fac995a9bf3b03197db4f33e4"
+    },
+    "loadavg_start": [
+      192.32,
+      159.58,
+      170.59
+    ],
+    "loadavg_end": [
+      333.19,
+      239.57,
+      201.93
+    ]
+  },
+  "levels": [
+    {
+      "k": 1,
+      "started_utc": "2026-10-01T02:28:48.198352Z",
+      "finished_utc": "2026-10-01T02:29:27.711701Z",
+      "summary": {
+        "k": 1,
+        "wall_seconds": 39.512,
+        "panels": 1,
+        "panels_complete": 1,
+        "panels_partial": 0,
+        "panels_failed": 0,
+        "lens_calls": 3,
+        "attempts": 3,
+        "retries": 0,
+        "failed_attempts": 0,
+        "failed_lens_calls_final": 0,
+        "error_categories": {},
+        "rate_limit_errors": 0,
+        "timeouts": 0,
+        "tool_events": 0,
+        "call_latency_s_successful": {
+          "n": 3,
+          "mean": 34.15,
+          "p50": 36.93,
+          "p95": 39.47,
+          "min": 26.04,
+          "max": 39.47
+        },
+        "call_latency_s_all_attempts": {
+          "n": 3,
+          "mean": 34.15,
+          "p50": 36.93,
+          "p95": 39.47,
+          "min": 26.04,
+          "max": 39.47
+        },
+        "panel_wall_s": {
+          "n": 1,
+          "mean": 39.48,
+          "p50": 39.48,
+          "p95": 39.48,
+          "min": 39.48,
+          "max": 39.48
+        },
+        "throughput_panels_per_min": 1.519,
+        "throughput_successful_calls_per_min": 4.556,
+        "tokens": {
+          "input_tokens": 44175,
+          "cached_input_tokens": 0,
+          "output_tokens": 4533,
+          "reasoning_output_tokens": 960
+        },
+        "tokens_per_successful_call": {
+          "input_tokens": 14725.0,
+          "cached_input_tokens": 0.0,
+          "output_tokens": 1511.0,
+          "reasoning_output_tokens": 320.0
+        },
+        "models_answering": [
+          "gpt-5.6-luna"
+        ],
+        "cli_versions": [
+          "codex-cli 0.145.0"
+        ]
+      },
+      "panels": [
+        {
+          "panel_id": "K1-P1",
+          "started_utc": "2026-10-01T02:28:48.226867Z",
+          "wall_seconds": 39.478,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 39.466,
+            "adversarial_reviewer": 36.939,
+            "bio_plausibility_checker": 26.054
+          },
+          "raw_critique_counts": {
+            "reviewer": 15,
+            "adversarial_reviewer": 8,
+            "bio_plausibility_checker": 6
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 29,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 12,
+            "medium": 14,
+            "low": 3
+          }
+        }
+      ],
+      "calls": [
+        {
+          "panel_id": "K1-P1",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:28:48.242376Z",
+          "t_start_s": 1.654,
+          "t_end_s": 27.693,
+          "latency_s": 26.039,
+          "adapter_duration_s": 26.038,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14751,
+          "cached_input_tokens": 0,
+          "output_tokens": 1074,
+          "reasoning_output_tokens": 162,
+          "tool_events": 0,
+          "output_chars": 4469,
+          "output_sha256": "e31a2cd6bcfa97e0492cdc3d3f27ed9b6e7f4b77dbaecb94c97951ec904c4488"
+        },
+        {
+          "panel_id": "K1-P1",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:28:48.235657Z",
+          "t_start_s": 1.647,
+          "t_end_s": 38.578,
+          "latency_s": 36.93,
+          "adapter_duration_s": 36.93,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14823,
+          "cached_input_tokens": 0,
+          "output_tokens": 1635,
+          "reasoning_output_tokens": 479,
+          "tool_events": 0,
+          "output_chars": 5992,
+          "output_sha256": "c7a2cf1534814a54dc95d0bd1ef6e680fba7bfd5e71e01025e0d75985c95ec4d"
+        },
+        {
+          "panel_id": "K1-P1",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:28:48.227889Z",
+          "t_start_s": 1.639,
+          "t_end_s": 41.105,
+          "latency_s": 39.466,
+          "adapter_duration_s": 39.465,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14601,
+          "cached_input_tokens": 0,
+          "output_tokens": 1824,
+          "reasoning_output_tokens": 319,
+          "tool_events": 0,
+          "output_chars": 7743,
+          "output_sha256": "48e07efc5489f95751bc42c737ffbc77dbb41f9726b79fe352b43a2f79078ad0"
+        }
+      ],
+      "raw_file": "experiments/orchestration/raw/real_concurrency_K1.jsonl"
+    },
+    {
+      "k": 2,
+      "started_utc": "2026-10-01T02:29:37.751883Z",
+      "finished_utc": "2026-10-01T02:30:18.658301Z",
+      "summary": {
+        "k": 2,
+        "wall_seconds": 40.905,
+        "panels": 2,
+        "panels_complete": 2,
+        "panels_partial": 0,
+        "panels_failed": 0,
+        "lens_calls": 6,
+        "attempts": 6,
+        "retries": 0,
+        "failed_attempts": 0,
+        "failed_lens_calls_final": 0,
+        "error_categories": {},
+        "rate_limit_errors": 0,
+        "timeouts": 0,
+        "tool_events": 0,
+        "call_latency_s_successful": {
+          "n": 6,
+          "mean": 35.3,
+          "p50": 36.0,
+          "p95": 40.83,
+          "min": 28.39,
+          "max": 40.83
+        },
+        "call_latency_s_all_attempts": {
+          "n": 6,
+          "mean": 35.3,
+          "p50": 36.0,
+          "p95": 40.83,
+          "min": 28.39,
+          "max": 40.83
+        },
+        "panel_wall_s": {
+          "n": 2,
+          "mean": 40.83,
+          "p50": 40.83,
+          "p95": 40.88,
+          "min": 40.78,
+          "max": 40.88
+        },
+        "throughput_panels_per_min": 2.934,
+        "throughput_successful_calls_per_min": 8.801,
+        "tokens": {
+          "input_tokens": 88368,
+          "cached_input_tokens": 19968,
+          "output_tokens": 9199,
+          "reasoning_output_tokens": 1857
+        },
+        "tokens_per_successful_call": {
+          "input_tokens": 14728.0,
+          "cached_input_tokens": 3328.0,
+          "output_tokens": 1533.2,
+          "reasoning_output_tokens": 309.5
+        },
+        "models_answering": [
+          "gpt-5.6-luna"
+        ],
+        "cli_versions": [
+          "codex-cli 0.145.0"
+        ]
+      },
+      "panels": [
+        {
+          "panel_id": "K2-P1",
+          "started_utc": "2026-10-01T02:29:37.760148Z",
+          "wall_seconds": 40.785,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 40.766,
+            "adversarial_reviewer": 35.833,
+            "bio_plausibility_checker": 28.427
+          },
+          "raw_critique_counts": {
+            "reviewer": 15,
+            "adversarial_reviewer": 7,
+            "bio_plausibility_checker": 5
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 27,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 10,
+            "medium": 15,
+            "low": 2
+          }
+        },
+        {
+          "panel_id": "K2-P2",
+          "started_utc": "2026-10-01T02:29:37.768040Z",
+          "wall_seconds": 40.885,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 40.875,
+            "adversarial_reviewer": 36.234,
+            "bio_plausibility_checker": 29.906
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 10,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 30,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 14,
+            "medium": 12,
+            "low": 3,
+            "info": 1
+          }
+        }
+      ],
+      "calls": [
+        {
+          "panel_id": "K2-P1",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.800632Z",
+          "t_start_s": 51.212,
+          "t_end_s": 79.607,
+          "latency_s": 28.395,
+          "adapter_duration_s": 28.389,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14755,
+          "cached_input_tokens": 9984,
+          "output_tokens": 999,
+          "reasoning_output_tokens": 173,
+          "tool_events": 0,
+          "output_chars": 3912,
+          "output_sha256": "77ef3c8d5d08b93c0ec2505bfd16213a436fb951775bbbbb7796c71d0e125835"
+        },
+        {
+          "panel_id": "K2-P2",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.836697Z",
+          "t_start_s": 51.248,
+          "t_end_s": 81.085,
+          "latency_s": 29.838,
+          "adapter_duration_s": 29.837,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14753,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1259,
+          "reasoning_output_tokens": 201,
+          "tool_events": 0,
+          "output_chars": 5339,
+          "output_sha256": "ad28af12a8b5b799f909c6607153f31eb00ea9d5b3f135cf475ca625f168616a"
+        },
+        {
+          "panel_id": "K2-P1",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.787602Z",
+          "t_start_s": 51.199,
+          "t_end_s": 87.013,
+          "latency_s": 35.814,
+          "adapter_duration_s": 35.809,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14827,
+          "cached_input_tokens": 0,
+          "output_tokens": 1596,
+          "reasoning_output_tokens": 497,
+          "tool_events": 0,
+          "output_chars": 5661,
+          "output_sha256": "48a464a78989a535777d8d84814b8f4108f7b49a522dbb1f4f3af36295e4c7fc"
+        },
+        {
+          "panel_id": "K2-P2",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.822167Z",
+          "t_start_s": 51.233,
+          "t_end_s": 87.413,
+          "latency_s": 36.18,
+          "adapter_duration_s": 36.179,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14825,
+          "cached_input_tokens": 0,
+          "output_tokens": 1583,
+          "reasoning_output_tokens": 200,
+          "tool_events": 0,
+          "output_chars": 7135,
+          "output_sha256": "d082f20f9d2dbf4d177ebcd17936e8d8fc99e5355496907a4815899cfab28ff9"
+        },
+        {
+          "panel_id": "K2-P1",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.768785Z",
+          "t_start_s": 51.18,
+          "t_end_s": 91.945,
+          "latency_s": 40.765,
+          "adapter_duration_s": 40.76,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14605,
+          "cached_input_tokens": 0,
+          "output_tokens": 1876,
+          "reasoning_output_tokens": 362,
+          "tool_events": 0,
+          "output_chars": 7827,
+          "output_sha256": "c048eeca7d38d7eb716a7abd6e0b2c59cc56d9dedef6c054425811a5416d7446"
+        },
+        {
+          "panel_id": "K2-P2",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:29:37.810218Z",
+          "t_start_s": 51.221,
+          "t_end_s": 92.054,
+          "latency_s": 40.833,
+          "adapter_duration_s": 40.832,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14603,
+          "cached_input_tokens": 0,
+          "output_tokens": 1886,
+          "reasoning_output_tokens": 424,
+          "tool_events": 0,
+          "output_chars": 7452,
+          "output_sha256": "90df2932501d4db58eadb0e78acf7cd9109053b1ccfd37a268da156784c6c94e"
+        }
+      ],
+      "raw_file": "experiments/orchestration/raw/real_concurrency_K2.jsonl"
+    },
+    {
+      "k": 4,
+      "started_utc": "2026-10-01T02:30:28.686948Z",
+      "finished_utc": "2026-10-01T02:31:26.675773Z",
+      "summary": {
+        "k": 4,
+        "wall_seconds": 57.987,
+        "panels": 4,
+        "panels_complete": 4,
+        "panels_partial": 0,
+        "panels_failed": 0,
+        "lens_calls": 12,
+        "attempts": 12,
+        "retries": 0,
+        "failed_attempts": 0,
+        "failed_lens_calls_final": 0,
+        "error_categories": {},
+        "rate_limit_errors": 0,
+        "timeouts": 0,
+        "tool_events": 0,
+        "call_latency_s_successful": {
+          "n": 12,
+          "mean": 51.26,
+          "p50": 52.69,
+          "p95": 57.89,
+          "min": 42.96,
+          "max": 57.89
+        },
+        "call_latency_s_all_attempts": {
+          "n": 12,
+          "mean": 51.26,
+          "p50": 52.69,
+          "p95": 57.89,
+          "min": 42.96,
+          "max": 57.89
+        },
+        "panel_wall_s": {
+          "n": 4,
+          "mean": 55.94,
+          "p50": 55.64,
+          "p95": 57.97,
+          "min": 54.51,
+          "max": 57.97
+        },
+        "throughput_panels_per_min": 4.139,
+        "throughput_successful_calls_per_min": 12.417,
+        "tokens": {
+          "input_tokens": 167055,
+          "cached_input_tokens": 38400,
+          "output_tokens": 19558,
+          "reasoning_output_tokens": 4196
+        },
+        "tokens_per_successful_call": {
+          "input_tokens": 13921.2,
+          "cached_input_tokens": 3200.0,
+          "output_tokens": 1629.8,
+          "reasoning_output_tokens": 349.7
+        },
+        "models_answering": [
+          "gpt-5.6-luna"
+        ],
+        "cli_versions": [
+          "codex-cli 0.145.0"
+        ]
+      },
+      "panels": [
+        {
+          "panel_id": "K4-P1",
+          "started_utc": "2026-10-01T02:30:28.695558Z",
+          "wall_seconds": 54.511,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 54.482,
+            "adversarial_reviewer": 53.317,
+            "bio_plausibility_checker": 46.689
+          },
+          "raw_critique_counts": {
+            "reviewer": 12,
+            "adversarial_reviewer": 11,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 30,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 13,
+            "medium": 15,
+            "low": 2
+          }
+        },
+        {
+          "panel_id": "K4-P2",
+          "started_utc": "2026-10-01T02:30:28.700530Z",
+          "wall_seconds": 54.938,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 54.919,
+            "adversarial_reviewer": 52.128,
+            "bio_plausibility_checker": 45.465
+          },
+          "raw_critique_counts": {
+            "reviewer": 12,
+            "adversarial_reviewer": 8,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 27,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 9,
+            "medium": 14,
+            "low": 4
+          }
+        },
+        {
+          "panel_id": "K4-P3",
+          "started_utc": "2026-10-01T02:30:28.704267Z",
+          "wall_seconds": 57.965,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 57.949,
+            "adversarial_reviewer": 51.179,
+            "bio_plausibility_checker": 45.147
+          },
+          "raw_critique_counts": {
+            "reviewer": 15,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 31,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 13,
+            "medium": 15,
+            "low": 3
+          }
+        },
+        {
+          "panel_id": "K4-P4",
+          "started_utc": "2026-10-01T02:30:28.710126Z",
+          "wall_seconds": 56.351,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 56.342,
+            "adversarial_reviewer": 55.052,
+            "bio_plausibility_checker": 43.066
+          },
+          "raw_critique_counts": {
+            "reviewer": 12,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 6
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 27,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 11,
+            "medium": 12,
+            "low": 4
+          }
+        }
+      ],
+      "calls": [
+        {
+          "panel_id": "K4-P4",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.810125Z",
+          "t_start_s": 102.221,
+          "t_end_s": 145.183,
+          "latency_s": 42.962,
+          "adapter_duration_s": 42.949,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13941,
+          "cached_input_tokens": 0,
+          "output_tokens": 1258,
+          "reasoning_output_tokens": 376,
+          "tool_events": 0,
+          "output_chars": 4318,
+          "output_sha256": "abf7aea2318d37d4256f57728441c773ea8b2039e512d4469323500f3dbafcc2"
+        },
+        {
+          "panel_id": "K4-P3",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.780051Z",
+          "t_start_s": 102.191,
+          "t_end_s": 147.269,
+          "latency_s": 45.078,
+          "adapter_duration_s": 45.077,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13982,
+          "cached_input_tokens": 3840,
+          "output_tokens": 1271,
+          "reasoning_output_tokens": 218,
+          "tool_events": 0,
+          "output_chars": 5186,
+          "output_sha256": "a98135c548e5432aa27cc84de33912e6b763dfe73f2eb7ad92bb5dd1be37a5b3"
+        },
+        {
+          "panel_id": "K4-P2",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.764655Z",
+          "t_start_s": 102.175,
+          "t_end_s": 147.587,
+          "latency_s": 45.411,
+          "adapter_duration_s": 45.411,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13945,
+          "cached_input_tokens": 3840,
+          "output_tokens": 1298,
+          "reasoning_output_tokens": 297,
+          "tool_events": 0,
+          "output_chars": 5025,
+          "output_sha256": "96f8736eb95f2d5c0d8d2ef1e68e315b88a6c7d54e3b37890fbc2ffc83610dc7"
+        },
+        {
+          "panel_id": "K4-P1",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.739244Z",
+          "t_start_s": 102.15,
+          "t_end_s": 148.811,
+          "latency_s": 46.661,
+          "adapter_duration_s": 46.661,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13947,
+          "cached_input_tokens": 0,
+          "output_tokens": 1246,
+          "reasoning_output_tokens": 240,
+          "tool_events": 0,
+          "output_chars": 5017,
+          "output_sha256": "41af3feb873a170539a77e12c80366c0b389b187d757998361c1f6196328fbb3"
+        },
+        {
+          "panel_id": "K4-P3",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.773924Z",
+          "t_start_s": 102.185,
+          "t_end_s": 153.301,
+          "latency_s": 51.116,
+          "adapter_duration_s": 51.116,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14015,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1635,
+          "reasoning_output_tokens": 314,
+          "tool_events": 0,
+          "output_chars": 6726,
+          "output_sha256": "358319e068fde87764ee42499e6af9bb3379837ffdaf258bfd6d042781a9c822"
+        },
+        {
+          "panel_id": "K4-P2",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.759326Z",
+          "t_start_s": 102.17,
+          "t_end_s": 154.25,
+          "latency_s": 52.08,
+          "adapter_duration_s": 52.079,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14017,
+          "cached_input_tokens": 3840,
+          "output_tokens": 1688,
+          "reasoning_output_tokens": 448,
+          "tool_events": 0,
+          "output_chars": 6355,
+          "output_sha256": "7ed8e69207ebdceb80537b74d5ff242b7b52c1073de7fa0040686109a76805bf"
+        },
+        {
+          "panel_id": "K4-P1",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.722456Z",
+          "t_start_s": 102.133,
+          "t_end_s": 155.438,
+          "latency_s": 53.305,
+          "adapter_duration_s": 53.304,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14019,
+          "cached_input_tokens": 0,
+          "output_tokens": 1921,
+          "reasoning_output_tokens": 320,
+          "tool_events": 0,
+          "output_chars": 8072,
+          "output_sha256": "72d41b65b088cf3112ec71da2e866c2d1c6c8782c50f10bbb395e3ff7d849407"
+        },
+        {
+          "panel_id": "K4-P1",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.711567Z",
+          "t_start_s": 102.122,
+          "t_end_s": 156.603,
+          "latency_s": 54.481,
+          "adapter_duration_s": 54.479,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13797,
+          "cached_input_tokens": 0,
+          "output_tokens": 1859,
+          "reasoning_output_tokens": 466,
+          "tool_events": 0,
+          "output_chars": 7336,
+          "output_sha256": "e62391f3c1098a13b61e1469c93cf40aeca786bdd9780593aa740723a2e1ad3e"
+        },
+        {
+          "panel_id": "K4-P2",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.752841Z",
+          "t_start_s": 102.164,
+          "t_end_s": 157.04,
+          "latency_s": 54.877,
+          "adapter_duration_s": 54.876,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13795,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1899,
+          "reasoning_output_tokens": 410,
+          "tool_events": 0,
+          "output_chars": 7707,
+          "output_sha256": "40f7ebd57cb42c25856869d758ec23f6e49a014fda29b320531f7f5e91e85a3d"
+        },
+        {
+          "panel_id": "K4-P4",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.796873Z",
+          "t_start_s": 102.208,
+          "t_end_s": 157.173,
+          "latency_s": 54.966,
+          "adapter_duration_s": 54.965,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14013,
+          "cached_input_tokens": 0,
+          "output_tokens": 1722,
+          "reasoning_output_tokens": 253,
+          "tool_events": 0,
+          "output_chars": 7583,
+          "output_sha256": "ff87ae1799c16909fb46fed4ee1082a09cdaf0a65cdef392e9758679da602f88"
+        },
+        {
+          "panel_id": "K4-P4",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.790596Z",
+          "t_start_s": 102.201,
+          "t_end_s": 158.464,
+          "latency_s": 56.263,
+          "adapter_duration_s": 56.262,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13791,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1810,
+          "reasoning_output_tokens": 484,
+          "tool_events": 0,
+          "output_chars": 6873,
+          "output_sha256": "096dba2ea4aa95afd3987ec6c9bc6d1c66c7b1ce7bf0116fa59372ef61a254bf"
+        },
+        {
+          "panel_id": "K4-P3",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:30:28.768100Z",
+          "t_start_s": 102.179,
+          "t_end_s": 160.071,
+          "latency_s": 57.892,
+          "adapter_duration_s": 57.891,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13793,
+          "cached_input_tokens": 0,
+          "output_tokens": 1951,
+          "reasoning_output_tokens": 370,
+          "tool_events": 0,
+          "output_chars": 8266,
+          "output_sha256": "57b768aa7f4a4946e3cb93e676be1504ae6d7042a64b3b85c0b8706471a269db"
+        }
+      ],
+      "raw_file": "experiments/orchestration/raw/real_concurrency_K4.jsonl"
+    },
+    {
+      "k": 8,
+      "started_utc": "2026-10-01T02:31:36.700867Z",
+      "finished_utc": "2026-10-01T02:32:23.717245Z",
+      "summary": {
+        "k": 8,
+        "wall_seconds": 47.016,
+        "panels": 8,
+        "panels_complete": 8,
+        "panels_partial": 0,
+        "panels_failed": 0,
+        "lens_calls": 24,
+        "attempts": 24,
+        "retries": 0,
+        "failed_attempts": 0,
+        "failed_lens_calls_final": 0,
+        "error_categories": {},
+        "rate_limit_errors": 0,
+        "timeouts": 0,
+        "tool_events": 0,
+        "call_latency_s_successful": {
+          "n": 24,
+          "mean": 38.05,
+          "p50": 38.55,
+          "p95": 45.02,
+          "min": 19.66,
+          "max": 46.96
+        },
+        "call_latency_s_all_attempts": {
+          "n": 24,
+          "mean": 38.05,
+          "p50": 38.55,
+          "p95": 45.02,
+          "min": 19.66,
+          "max": 46.96
+        },
+        "panel_wall_s": {
+          "n": 8,
+          "mean": 43.98,
+          "p50": 44.26,
+          "p95": 47.0,
+          "min": 38.74,
+          "max": 47.0
+        },
+        "throughput_panels_per_min": 10.209,
+        "throughput_successful_calls_per_min": 30.628,
+        "tokens": {
+          "input_tokens": 346134,
+          "cached_input_tokens": 163072,
+          "output_tokens": 36478,
+          "reasoning_output_tokens": 7582
+        },
+        "tokens_per_successful_call": {
+          "input_tokens": 14422.2,
+          "cached_input_tokens": 6794.7,
+          "output_tokens": 1519.9,
+          "reasoning_output_tokens": 315.9
+        },
+        "models_answering": [
+          "gpt-5.6-luna"
+        ],
+        "cli_versions": [
+          "codex-cli 0.145.0"
+        ]
+      },
+      "panels": [
+        {
+          "panel_id": "K8-P1",
+          "started_utc": "2026-10-01T02:31:36.707888Z",
+          "wall_seconds": 47.004,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 46.96,
+            "adversarial_reviewer": 38.734,
+            "bio_plausibility_checker": 31.674
+          },
+          "raw_critique_counts": {
+            "reviewer": 14,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 30,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 8,
+            "medium": 18,
+            "low": 4
+          }
+        },
+        {
+          "panel_id": "K8-P2",
+          "started_utc": "2026-10-01T02:31:36.712446Z",
+          "wall_seconds": 44.608,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 44.569,
+            "adversarial_reviewer": 42.847,
+            "bio_plausibility_checker": 33.576
+          },
+          "raw_critique_counts": {
+            "reviewer": 12,
+            "adversarial_reviewer": 10,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 29,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 9,
+            "medium": 16,
+            "low": 3,
+            "info": 1
+          }
+        },
+        {
+          "panel_id": "K8-P3",
+          "started_utc": "2026-10-01T02:31:36.717446Z",
+          "wall_seconds": 44.219,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 44.185,
+            "adversarial_reviewer": 38.487,
+            "bio_plausibility_checker": 32.122
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 10,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 30,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 11,
+            "medium": 14,
+            "low": 4,
+            "info": 1
+          }
+        },
+        {
+          "panel_id": "K8-P4",
+          "started_utc": "2026-10-01T02:31:36.721798Z",
+          "wall_seconds": 38.742,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 37.738,
+            "adversarial_reviewer": 38.709,
+            "bio_plausibility_checker": 30.025
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 6
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 28,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 9,
+            "medium": 15,
+            "low": 3,
+            "info": 1
+          }
+        },
+        {
+          "panel_id": "K8-P5",
+          "started_utc": "2026-10-01T02:31:36.727515Z",
+          "wall_seconds": 45.107,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 45.082,
+            "adversarial_reviewer": 43.48,
+            "bio_plausibility_checker": 33.591
+          },
+          "raw_critique_counts": {
+            "reviewer": 15,
+            "adversarial_reviewer": 10,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 32,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 12,
+            "medium": 14,
+            "low": 5,
+            "info": 1
+          }
+        },
+        {
+          "panel_id": "K8-P6",
+          "started_utc": "2026-10-01T02:31:36.732572Z",
+          "wall_seconds": 44.073,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 44.053,
+            "adversarial_reviewer": 36.85,
+            "bio_plausibility_checker": 33.064
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 8,
+            "bio_plausibility_checker": 7
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 28,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 8,
+            "medium": 17,
+            "low": 3
+          }
+        },
+        {
+          "panel_id": "K8-P7",
+          "started_utc": "2026-10-01T02:31:36.737111Z",
+          "wall_seconds": 43.811,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 43.796,
+            "adversarial_reviewer": 38.484,
+            "bio_plausibility_checker": 19.811
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 5
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 27,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 9,
+            "medium": 16,
+            "low": 2
+          }
+        },
+        {
+          "panel_id": "K8-P8",
+          "started_utc": "2026-10-01T02:31:36.742257Z",
+          "wall_seconds": 44.296,
+          "error": null,
+          "grade": "D",
+          "panel_failed": false,
+          "panel_partial": false,
+          "failed_lenses": [],
+          "lens_status": {
+            "reviewer": "ok",
+            "adversarial_reviewer": "ok",
+            "bio_plausibility_checker": "ok"
+          },
+          "lens_errors": {},
+          "attempts": {
+            "reviewer": 1,
+            "adversarial_reviewer": 1,
+            "bio_plausibility_checker": 1
+          },
+          "lens_durations_s": {
+            "reviewer": 44.286,
+            "adversarial_reviewer": 42.847,
+            "bio_plausibility_checker": 30.173
+          },
+          "raw_critique_counts": {
+            "reviewer": 13,
+            "adversarial_reviewer": 9,
+            "bio_plausibility_checker": 6
+          },
+          "parse_methods": {
+            "reviewer": "json",
+            "adversarial_reviewer": "json",
+            "bio_plausibility_checker": "json"
+          },
+          "total_merged": 28,
+          "multi_reviewer": 0,
+          "severity_histogram": {
+            "high": 16,
+            "medium": 11,
+            "low": 1
+          }
+        }
+      ],
+      "calls": [
+        {
+          "panel_id": "K8-P7",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.896674Z",
+          "t_start_s": 170.307,
+          "t_end_s": 189.964,
+          "latency_s": 19.657,
+          "adapter_duration_s": 19.656,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14753,
+          "cached_input_tokens": 3840,
+          "output_tokens": 1196,
+          "reasoning_output_tokens": 430,
+          "tool_events": 0,
+          "output_chars": 3758,
+          "output_sha256": "e7eec67d8ecbd6cec2002f78e457197f860ab9f21d722950a1b447a8830ed0a6"
+        },
+        {
+          "panel_id": "K8-P4",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.805214Z",
+          "t_start_s": 170.215,
+          "t_end_s": 200.174,
+          "latency_s": 29.959,
+          "adapter_duration_s": 29.957,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14751,
+          "cached_input_tokens": 3840,
+          "output_tokens": 1070,
+          "reasoning_output_tokens": 149,
+          "tool_events": 0,
+          "output_chars": 4490,
+          "output_sha256": "05f27da5c14daf740dc8d392ba1911d4c6549eb41a8643a55bcd43f6a1bd4f14"
+        },
+        {
+          "panel_id": "K8-P8",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.932433Z",
+          "t_start_s": 170.343,
+          "t_end_s": 200.327,
+          "latency_s": 29.984,
+          "adapter_duration_s": 29.984,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14749,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1056,
+          "reasoning_output_tokens": 166,
+          "tool_events": 0,
+          "output_chars": 4315,
+          "output_sha256": "5496b297d6df50a6a06a902c516054d2ed8efaa8021c479e148deeea9c13cc62"
+        },
+        {
+          "panel_id": "K8-P1",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.760809Z",
+          "t_start_s": 170.171,
+          "t_end_s": 201.827,
+          "latency_s": 31.656,
+          "adapter_duration_s": 31.656,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13943,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1120,
+          "reasoning_output_tokens": 199,
+          "tool_events": 0,
+          "output_chars": 4670,
+          "output_sha256": "9099bbf6f4dab908478388d8d80ca2f0dffcffaa260fca9aba0fc0942d9ed94c"
+        },
+        {
+          "panel_id": "K8-P3",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.793626Z",
+          "t_start_s": 170.206,
+          "t_end_s": 202.272,
+          "latency_s": 32.066,
+          "adapter_duration_s": 32.066,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13943,
+          "cached_input_tokens": 6912,
+          "output_tokens": 1177,
+          "reasoning_output_tokens": 198,
+          "tool_events": 0,
+          "output_chars": 4861,
+          "output_sha256": "2ca8df4ced7a11b673c4d986ee0541099a51c960c68e2263c5536a570186e0df"
+        },
+        {
+          "panel_id": "K8-P6",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.851664Z",
+          "t_start_s": 170.262,
+          "t_end_s": 203.218,
+          "latency_s": 32.956,
+          "adapter_duration_s": 32.955,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14751,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1203,
+          "reasoning_output_tokens": 270,
+          "tool_events": 0,
+          "output_chars": 4701,
+          "output_sha256": "9366e81d5c288ea9a034c40d80d86d3a3324f9a7503bda58ccdb208532173380"
+        },
+        {
+          "panel_id": "K8-P2",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.776981Z",
+          "t_start_s": 170.187,
+          "t_end_s": 203.729,
+          "latency_s": 33.542,
+          "adapter_duration_s": 33.541,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14753,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1237,
+          "reasoning_output_tokens": 254,
+          "tool_events": 0,
+          "output_chars": 4973,
+          "output_sha256": "0f261c3d2939729a936bead87338af97e798463543320bcea6d65eb0c1027a08"
+        },
+        {
+          "panel_id": "K8-P5",
+          "role": "bio_plausibility_checker",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.822438Z",
+          "t_start_s": 170.233,
+          "t_end_s": 203.744,
+          "latency_s": 33.512,
+          "adapter_duration_s": 33.511,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14751,
+          "cached_input_tokens": 0,
+          "output_tokens": 1215,
+          "reasoning_output_tokens": 228,
+          "tool_events": 0,
+          "output_chars": 4969,
+          "output_sha256": "c16be282ea16a570e87abddcca6008511e79d0b01b785a312e4913619c3bb137"
+        },
+        {
+          "panel_id": "K8-P6",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.837034Z",
+          "t_start_s": 170.248,
+          "t_end_s": 207.003,
+          "latency_s": 36.755,
+          "adapter_duration_s": 36.753,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14823,
+          "cached_input_tokens": 6912,
+          "output_tokens": 1348,
+          "reasoning_output_tokens": 296,
+          "tool_events": 0,
+          "output_chars": 5424,
+          "output_sha256": "7139e418c80f74be3b3cf9b35e7e8d3bbe349cd0fc61a179dcea2f0004353e88"
+        },
+        {
+          "panel_id": "K8-P4",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.799858Z",
+          "t_start_s": 170.21,
+          "t_end_s": 207.891,
+          "latency_s": 37.681,
+          "adapter_duration_s": 37.681,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13793,
+          "cached_input_tokens": 0,
+          "output_tokens": 1541,
+          "reasoning_output_tokens": 250,
+          "tool_events": 0,
+          "output_chars": 6661,
+          "output_sha256": "edc972a7bbbebf5cd591bfbc5c906667954868639d9253e0eda5497cdb5ef4d1"
+        },
+        {
+          "panel_id": "K8-P7",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.887954Z",
+          "t_start_s": 170.298,
+          "t_end_s": 208.637,
+          "latency_s": 38.339,
+          "adapter_duration_s": 38.339,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14825,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1525,
+          "reasoning_output_tokens": 259,
+          "tool_events": 0,
+          "output_chars": 6536,
+          "output_sha256": "d74a7a8e45874a4af18b6e62d1ea4cc8ba4be762f1c1301dbf6b212ec09bf9df"
+        },
+        {
+          "panel_id": "K8-P3",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.784476Z",
+          "t_start_s": 170.195,
+          "t_end_s": 208.64,
+          "latency_s": 38.446,
+          "adapter_duration_s": 38.445,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14823,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1529,
+          "reasoning_output_tokens": 181,
+          "tool_events": 0,
+          "output_chars": 6901,
+          "output_sha256": "8b98968b3cdc5cb278e33b2069c4959a89fdd99c4dbb9d82790618839014d084"
+        },
+        {
+          "panel_id": "K8-P4",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.802436Z",
+          "t_start_s": 170.213,
+          "t_end_s": 208.862,
+          "latency_s": 38.65,
+          "adapter_duration_s": 38.649,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14015,
+          "cached_input_tokens": 0,
+          "output_tokens": 1529,
+          "reasoning_output_tokens": 202,
+          "tool_events": 0,
+          "output_chars": 6883,
+          "output_sha256": "92a778c5e0d3e0dd7608afda37b17e7874fb5663b6db464469d5020d10d070a1"
+        },
+        {
+          "panel_id": "K8-P1",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.755856Z",
+          "t_start_s": 170.166,
+          "t_end_s": 208.886,
+          "latency_s": 38.72,
+          "adapter_duration_s": 38.72,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14823,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1507,
+          "reasoning_output_tokens": 287,
+          "tool_events": 0,
+          "output_chars": 6360,
+          "output_sha256": "16aaee66e2cecb4089e7c7bde7c7f81e0a0a4a817d8f928cd1723a9755559434"
+        },
+        {
+          "panel_id": "K8-P2",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.771735Z",
+          "t_start_s": 170.182,
+          "t_end_s": 212.998,
+          "latency_s": 42.816,
+          "adapter_duration_s": 42.815,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14825,
+          "cached_input_tokens": 11008,
+          "output_tokens": 1686,
+          "reasoning_output_tokens": 203,
+          "tool_events": 0,
+          "output_chars": 7733,
+          "output_sha256": "2ff8cd280a1fb82369c41b4f7983dae1fe289601c423c05507fab8a94413c5a0"
+        },
+        {
+          "panel_id": "K8-P8",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.911222Z",
+          "t_start_s": 170.321,
+          "t_end_s": 213.001,
+          "latency_s": 42.679,
+          "adapter_duration_s": 42.679,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14013,
+          "cached_input_tokens": 0,
+          "output_tokens": 1788,
+          "reasoning_output_tokens": 505,
+          "tool_events": 0,
+          "output_chars": 6547,
+          "output_sha256": "c84a3b6fbba7b929f17801029f22bab420a6729a14ba446d86658f9c160757d4"
+        },
+        {
+          "panel_id": "K8-P5",
+          "role": "adversarial_reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.815643Z",
+          "t_start_s": 170.226,
+          "t_end_s": 213.633,
+          "latency_s": 43.408,
+          "adapter_duration_s": 43.407,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14823,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1776,
+          "reasoning_output_tokens": 332,
+          "tool_events": 0,
+          "output_chars": 7457,
+          "output_sha256": "ab885ad2790397d9a2e7fd808d7954b2f65aeee78552e360a8e1b478001094cf"
+        },
+        {
+          "panel_id": "K8-P7",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.861027Z",
+          "t_start_s": 170.271,
+          "t_end_s": 213.949,
+          "latency_s": 43.678,
+          "adapter_duration_s": 43.676,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14603,
+          "cached_input_tokens": 0,
+          "output_tokens": 1797,
+          "reasoning_output_tokens": 516,
+          "tool_events": 0,
+          "output_chars": 6678,
+          "output_sha256": "4457880adfae648a009c6c129fe4e9c07b1590501d6b9a7cd41badbb45288ae2"
+        },
+        {
+          "panel_id": "K8-P6",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.832123Z",
+          "t_start_s": 170.242,
+          "t_end_s": 214.206,
+          "latency_s": 43.963,
+          "adapter_duration_s": 43.963,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14601,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1806,
+          "reasoning_output_tokens": 412,
+          "tool_events": 0,
+          "output_chars": 7232,
+          "output_sha256": "99c11a0ff5518f2ec0400127ff871af752bccc25fbac24370cf174ca6116d293"
+        },
+        {
+          "panel_id": "K8-P3",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.781461Z",
+          "t_start_s": 170.192,
+          "t_end_s": 214.338,
+          "latency_s": 44.146,
+          "adapter_duration_s": 44.146,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13793,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1814,
+          "reasoning_output_tokens": 476,
+          "tool_events": 0,
+          "output_chars": 6937,
+          "output_sha256": "207bcd439684510f159eea754b9c092c3f088e730dda2a2791bc806ad03ab293"
+        },
+        {
+          "panel_id": "K8-P8",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.901194Z",
+          "t_start_s": 170.311,
+          "t_end_s": 214.44,
+          "latency_s": 44.128,
+          "adapter_duration_s": 44.128,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13791,
+          "cached_input_tokens": 6912,
+          "output_tokens": 1855,
+          "reasoning_output_tokens": 358,
+          "tool_events": 0,
+          "output_chars": 7821,
+          "output_sha256": "776b3b66c9895bd14c52f0ecece45c2d8da250f2106709a5bb4f8d4519aa7084"
+        },
+        {
+          "panel_id": "K8-P2",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.765540Z",
+          "t_start_s": 170.176,
+          "t_end_s": 214.721,
+          "latency_s": 44.546,
+          "adapter_duration_s": 44.545,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13795,
+          "cached_input_tokens": 8960,
+          "output_tokens": 1844,
+          "reasoning_output_tokens": 516,
+          "tool_events": 0,
+          "output_chars": 6913,
+          "output_sha256": "b2440f6fd6295e7517e1fa152b0b3e0884a6f4cff3183bbc936ad89ea9037bf8"
+        },
+        {
+          "panel_id": "K8-P5",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.810059Z",
+          "t_start_s": 170.22,
+          "t_end_s": 215.236,
+          "latency_s": 45.015,
+          "adapter_duration_s": 45.015,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 13793,
+          "cached_input_tokens": 6912,
+          "output_tokens": 1891,
+          "reasoning_output_tokens": 379,
+          "tool_events": 0,
+          "output_chars": 7710,
+          "output_sha256": "4af481d6661f22a41ad10aad8de2de7fa2313b457cfb0540aa03afb3c0a46dfb"
+        },
+        {
+          "panel_id": "K8-P1",
+          "role": "reviewer",
+          "attempt": 1,
+          "started_utc": "2026-10-01T02:31:36.743780Z",
+          "t_start_s": 170.154,
+          "t_end_s": 217.112,
+          "latency_s": 46.959,
+          "adapter_duration_s": 46.955,
+          "success": true,
+          "error": null,
+          "error_category": null,
+          "transient": false,
+          "exit_code": 0,
+          "model": "gpt-5.6-luna",
+          "reasoning_effort": "low",
+          "cli_version": "codex-cli 0.145.0",
+          "input_tokens": 14601,
+          "cached_input_tokens": 9984,
+          "output_tokens": 1968,
+          "reasoning_output_tokens": 516,
+          "tool_events": 0,
+          "output_chars": 7477,
+          "output_sha256": "d23dcbfab6e9261975c2e008ca0bb3eb5806065aed325f869493af268914ad1d"
+        }
+      ],
+      "raw_file": "experiments/orchestration/raw/real_concurrency_K8.jsonl"
+    }
+  ],
+  "summary_by_level": [
+    {
+      "k": 1,
+      "wall_seconds": 39.512,
+      "panels": 1,
+      "panels_complete": 1,
+      "panels_partial": 0,
+      "panels_failed": 0,
+      "lens_calls": 3,
+      "attempts": 3,
+      "retries": 0,
+      "failed_attempts": 0,
+      "failed_lens_calls_final": 0,
+      "error_categories": {},
+      "rate_limit_errors": 0,
+      "timeouts": 0,
+      "tool_events": 0,
+      "call_latency_s_successful": {
+        "n": 3,
+        "mean": 34.15,
+        "p50": 36.93,
+        "p95": 39.47,
+        "min": 26.04,
+        "max": 39.47
+      },
+      "call_latency_s_all_attempts": {
+        "n": 3,
+        "mean": 34.15,
+        "p50": 36.93,
+        "p95": 39.47,
+        "min": 26.04,
+        "max": 39.47
+      },
+      "panel_wall_s": {
+        "n": 1,
+        "mean": 39.48,
+        "p50": 39.48,
+        "p95": 39.48,
+        "min": 39.48,
+        "max": 39.48
+      },
+      "throughput_panels_per_min": 1.519,
+      "throughput_successful_calls_per_min": 4.556,
+      "tokens": {
+        "input_tokens": 44175,
+        "cached_input_tokens": 0,
+        "output_tokens": 4533,
+        "reasoning_output_tokens": 960
+      },
+      "tokens_per_successful_call": {
+        "input_tokens": 14725.0,
+        "cached_input_tokens": 0.0,
+        "output_tokens": 1511.0,
+        "reasoning_output_tokens": 320.0
+      },
+      "models_answering": [
+        "gpt-5.6-luna"
+      ],
+      "cli_versions": [
+        "codex-cli 0.145.0"
+      ],
+      "panel_wall_p50_vs_k1": 1.0,
+      "call_latency_p50_vs_k1": 1.0
+    },
+    {
+      "k": 2,
+      "wall_seconds": 40.905,
+      "panels": 2,
+      "panels_complete": 2,
+      "panels_partial": 0,
+      "panels_failed": 0,
+      "lens_calls": 6,
+      "attempts": 6,
+      "retries": 0,
+      "failed_attempts": 0,
+      "failed_lens_calls_final": 0,
+      "error_categories": {},
+      "rate_limit_errors": 0,
+      "timeouts": 0,
+      "tool_events": 0,
+      "call_latency_s_successful": {
+        "n": 6,
+        "mean": 35.3,
+        "p50": 36.0,
+        "p95": 40.83,
+        "min": 28.39,
+        "max": 40.83
+      },
+      "call_latency_s_all_attempts": {
+        "n": 6,
+        "mean": 35.3,
+        "p50": 36.0,
+        "p95": 40.83,
+        "min": 28.39,
+        "max": 40.83
+      },
+      "panel_wall_s": {
+        "n": 2,
+        "mean": 40.83,
+        "p50": 40.83,
+        "p95": 40.88,
+        "min": 40.78,
+        "max": 40.88
+      },
+      "throughput_panels_per_min": 2.934,
+      "throughput_successful_calls_per_min": 8.801,
+      "tokens": {
+        "input_tokens": 88368,
+        "cached_input_tokens": 19968,
+        "output_tokens": 9199,
+        "reasoning_output_tokens": 1857
+      },
+      "tokens_per_successful_call": {
+        "input_tokens": 14728.0,
+        "cached_input_tokens": 3328.0,
+        "output_tokens": 1533.2,
+        "reasoning_output_tokens": 309.5
+      },
+      "models_answering": [
+        "gpt-5.6-luna"
+      ],
+      "cli_versions": [
+        "codex-cli 0.145.0"
+      ],
+      "panel_wall_p50_vs_k1": 1.034,
+      "call_latency_p50_vs_k1": 0.975
+    },
+    {
+      "k": 4,
+      "wall_seconds": 57.987,
+      "panels": 4,
+      "panels_complete": 4,
+      "panels_partial": 0,
+      "panels_failed": 0,
+      "lens_calls": 12,
+      "attempts": 12,
+      "retries": 0,
+      "failed_attempts": 0,
+      "failed_lens_calls_final": 0,
+      "error_categories": {},
+      "rate_limit_errors": 0,
+      "timeouts": 0,
+      "tool_events": 0,
+      "call_latency_s_successful": {
+        "n": 12,
+        "mean": 51.26,
+        "p50": 52.69,
+        "p95": 57.89,
+        "min": 42.96,
+        "max": 57.89
+      },
+      "call_latency_s_all_attempts": {
+        "n": 12,
+        "mean": 51.26,
+        "p50": 52.69,
+        "p95": 57.89,
+        "min": 42.96,
+        "max": 57.89
+      },
+      "panel_wall_s": {
+        "n": 4,
+        "mean": 55.94,
+        "p50": 55.64,
+        "p95": 57.97,
+        "min": 54.51,
+        "max": 57.97
+      },
+      "throughput_panels_per_min": 4.139,
+      "throughput_successful_calls_per_min": 12.417,
+      "tokens": {
+        "input_tokens": 167055,
+        "cached_input_tokens": 38400,
+        "output_tokens": 19558,
+        "reasoning_output_tokens": 4196
+      },
+      "tokens_per_successful_call": {
+        "input_tokens": 13921.2,
+        "cached_input_tokens": 3200.0,
+        "output_tokens": 1629.8,
+        "reasoning_output_tokens": 349.7
+      },
+      "models_answering": [
+        "gpt-5.6-luna"
+      ],
+      "cli_versions": [
+        "codex-cli 0.145.0"
+      ],
+      "panel_wall_p50_vs_k1": 1.409,
+      "call_latency_p50_vs_k1": 1.427
+    },
+    {
+      "k": 8,
+      "wall_seconds": 47.016,
+      "panels": 8,
+      "panels_complete": 8,
+      "panels_partial": 0,
+      "panels_failed": 0,
+      "lens_calls": 24,
+      "attempts": 24,
+      "retries": 0,
+      "failed_attempts": 0,
+      "failed_lens_calls_final": 0,
+      "error_categories": {},
+      "rate_limit_errors": 0,
+      "timeouts": 0,
+      "tool_events": 0,
+      "call_latency_s_successful": {
+        "n": 24,
+        "mean": 38.05,
+        "p50": 38.55,
+        "p95": 45.02,
+        "min": 19.66,
+        "max": 46.96
+      },
+      "call_latency_s_all_attempts": {
+        "n": 24,
+        "mean": 38.05,
+        "p50": 38.55,
+        "p95": 45.02,
+        "min": 19.66,
+        "max": 46.96
+      },
+      "panel_wall_s": {
+        "n": 8,
+        "mean": 43.98,
+        "p50": 44.26,
+        "p95": 47.0,
+        "min": 38.74,
+        "max": 47.0
+      },
+      "throughput_panels_per_min": 10.209,
+      "throughput_successful_calls_per_min": 30.628,
+      "tokens": {
+        "input_tokens": 346134,
+        "cached_input_tokens": 163072,
+        "output_tokens": 36478,
+        "reasoning_output_tokens": 7582
+      },
+      "tokens_per_successful_call": {
+        "input_tokens": 14422.2,
+        "cached_input_tokens": 6794.7,
+        "output_tokens": 1519.9,
+        "reasoning_output_tokens": 315.9
+      },
+      "models_answering": [
+        "gpt-5.6-luna"
+      ],
+      "cli_versions": [
+        "codex-cli 0.145.0"
+      ],
+      "panel_wall_p50_vs_k1": 1.121,
+      "call_latency_p50_vs_k1": 1.044
+    }
+  ],
+  "updated_utc": "2026-10-01T02:32:23.759142Z"
+}

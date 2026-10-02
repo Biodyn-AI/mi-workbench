@@ -1,0 +1,39 @@
+{
+  "artifact_id": "A09-flawed",
+  "scenario": "A donor-age signal in Geneformer cell embeddings (age regression / aging axis)",
+  "version": "flawed",
+  "flaws": [
+    {
+      "flaw_id": "A09-F1",
+      "type": "C3",
+      "family": "confounding",
+      "quote": "Cells were randomly split, stratified by cell type, into a training set (80%, 114,296 cells) and a test set (20%, 28,574 cells); the ridge penalty was chosen by 5-fold cross-validation within the training cells.",
+      "description": "Donor age is a donor-level label, and a random cell-level split places cells from every donor in both training and test sets, so the regressor can predict age by recognizing donor identity (genotype-, sex- or batch-linked expression) rather than age; the reported r = 0.84 / donor-level r = 0.93 and MAE 4.9 years are inflated by this leakage.",
+      "detection_criterion": "The critique must state that the train/test split is at the cell level so the same donors appear in training and test (and in the inner CV), allowing donor-identity memorization to inflate age prediction, and must call for a donor-held-out (grouped-by-donor) split. Generic calls for external validation or more cohorts do not qualify."
+    },
+    {
+      "flaw_id": "A09-F2",
+      "type": "S3",
+      "family": "statistics",
+      "quote": "The same embeddings identified cells from donors aged ≥90 (4,563 of 142,870 cells, 3.2%) with 97.4% test accuracy.",
+      "description": "With only 3.2% of cells from donors aged 90 or older, classifying every cell as 'not ≥90' already yields about 96.8% accuracy; the 97.4% accuracy is barely above this trivial baseline, is the only metric reported, and is interpreted as showing the embedding can single out the oldest donors.",
+      "detection_criterion": "The critique must note that accuracy is uninformative at ~3.2% prevalence (a trivial majority-class classifier reaches ~96.8%) and ask for imbalance-appropriate metrics such as sensitivity/recall, precision, AUPRC relative to prevalence, F1, MCC or balanced accuracy. A generic request for more metrics without the imbalance argument does not qualify."
+    },
+    {
+      "flaw_id": "A09-F3",
+      "type": "B2",
+      "family": "biological",
+      "quote": "CDKN2A (p16INK4a) also correlated positively with the axis in CD8 T cells (ρ = 0.21), consistent with its role in driving G1-to-S entry in the proliferating effector-memory pool that expands with age.",
+      "description": "p16INK4a is a CDK4/6 inhibitor that blocks G1-to-S progression and marks cell-cycle arrest/senescence; describing it as a driver of G1-to-S entry and proliferation reverses the sign of its regulatory role.",
+      "detection_criterion": "The critique must identify that CDKN2A/p16INK4a inhibits (not drives) G1-to-S progression, i.e. it is a CDK4/6 inhibitor associated with cell-cycle arrest/senescence, so the stated role and the 'proliferating' interpretation are wrong in sign. Merely questioning CDKN2A detection or the small correlation does not qualify."
+    },
+    {
+      "flaw_id": "A09-F4",
+      "type": "L1",
+      "family": "causal_logic",
+      "quote": "Taken together, the results show that Geneformer has learned to compute donor age from the immune-aging program: the model uses the loss of naive and co-stimulatory genes (CCR7, LEF1, SELL, CD28) and the gain of cytotoxic genes (GZMH, NKG7) to place cells along its aging axis.",
+      "description": "The evidence is purely observational (linear decodability of age and Spearman correlations between axis projections and gene expression); no in silico perturbation, ablation or other intervention was performed, so the claim that the model computes age from, or uses, these genes is unsupported.",
+      "detection_criterion": "The critique must state that correlations between the aging axis and gene expression (and decodability) do not show that Geneformer uses or computes age from these genes, and must call for interventional evidence such as in silico gene deletion/perturbation, activation ablation or patching. Generic comments that the interpretation is speculative, without the correlational-vs-causal point about model mechanism, do not qualify."
+    }
+  ]
+}
