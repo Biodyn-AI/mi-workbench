@@ -31,7 +31,7 @@ async def _launch_run(
         "task": task,
         "provider": "mock",
         "max_iterations": max_iterations,
-        "config_overrides": {"convergence_enabled": False},
+        "config_overrides": {"convergence_enabled": False, "revision_budget": None},
     })
     assert resp.status_code == 201
     return resp.json()["run_id"]

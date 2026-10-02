@@ -131,12 +131,30 @@ class TestMergeCritiques:
         assert severities[2] == SeverityLevel.LOW
 
     def test_merge_empty_results(self, consensus):
+        # Updated (E1): empty output and output with no recognisable critique
+        # format are lens failures, not clean reviews. Previously this panel
+        # silently merged to grade "A"; it must now be reported INCOMPLETE.
         r1 = self._make_result("")
         r2 = self._make_result("All looks good, no issues.")
         r3 = self._make_result("")
         result = consensus.merge_critiques([r1, r2, r3])
         assert len(result.critiques) == 0
+        assert result.overall_grade == "INCOMPLETE"
+        assert result.consensus_meta["panel_failed"] is True
+        assert result.consensus_meta["lens_status"] == {
+            "reviewer": "empty",
+            "adversarial_reviewer": "unparsed",
+            "bio_plausibility_checker": "empty",
+        }
+
+    def test_merge_explicit_clean_reviews_grade_a(self, consensus):
+        # A clean review under the JSON contract is an explicit empty list.
+        clean = self._make_result('```json\n{"critiques": [], "overall_assessment": "Sound."}\n```')
+        result = consensus.merge_critiques([clean, clean, clean])
+        assert result.critiques == []
         assert result.overall_grade == "A"
+        assert result.consensus_meta["panel_failed"] is False
+        assert result.consensus_meta["failed_lenses"] == []
 
 
 # ── Similarity Tests ────────────────────────────────────────────────
@@ -178,7 +196,9 @@ class TestConsensusRunner:
             output="[HIGH] Test critique from mock reviewer.",
         )
 
-        cr = ConsensusReviewer()
+        # Lens calls only: the lexical merge makes no adjudicator call (the
+        # default llm method adds one; see test_merge_defaults.py).
+        cr = ConsensusReviewer(similarity_method="jaccard")
         ws_ctx = WorkspaceContext(workspace_path="/tmp/test")
         result = await cr.run_consensus("artifact content", mock_adapter, ws_ctx)
 
@@ -209,10 +229,13 @@ class TestHelpers:
         assert _escalate_severity(SeverityLevel.CRITICAL) == SeverityLevel.CRITICAL
 
     def test_grade_computation(self, consensus):
-        # No critiques -> A
+        # Updated (E1): "no critiques -> A" only holds for a lens that actually
+        # returned a (clean) review; an empty output is a failed lens and the
+        # panel is INCOMPLETE rather than silently graded A.
+        clean = self._make_result('```json\n{"critiques": []}\n```')
+        assert consensus.merge_critiques([clean]).overall_grade == "A"
         r = self._make_result("")
-        result = consensus.merge_critiques([r])
-        assert result.overall_grade == "A"
+        assert consensus.merge_critiques([r]).overall_grade == "INCOMPLETE"
 
     def test_thinking_traces_stripped_before_parsing(self, consensus):
         """Traces like 'I will read...' should not affect critique parsing."""

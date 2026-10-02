@@ -11,8 +11,11 @@ from backend.tests.conftest import client  # noqa: F401
 
 
 async def _create_workspace_and_run(client: AsyncClient, ws_name: str, run_id: str) -> str:
-    """Helper: create a workspace and a run, returning the run_id."""
-    resp = await client.post("/api/workspaces", json={"name": ws_name, "path": ws_name})
+    """Helper: create a workspace (in a temp dir, never the repo root) and a
+    run, returning the run_id."""
+    import tempfile
+    ws_path = tempfile.mkdtemp(prefix=f"{ws_name}-")
+    resp = await client.post("/api/workspaces", json={"name": ws_name, "path": ws_path})
     ws_id = resp.json()["id"]
     run = RunState(
         run_id=run_id,

@@ -289,20 +289,24 @@ class TestExecuteRunResume:
         original_run_loop = LoopEngine.run_loop
 
         async def _spy_run_loop(self_engine, run_state, loop_def, cancel_event=None,
-                                workspace_path="", resume_from=0):
+                                workspace_path="", resume_from=0, **kwargs):
             captured_resume_from.append(resume_from)
             return await original_run_loop(
                 self_engine, run_state, loop_def,
                 cancel_event=cancel_event,
                 workspace_path=workspace_path,
                 resume_from=resume_from,
+                **kwargs,
             )
 
         with patch.object(runner, "get_run", new_callable=AsyncMock, return_value=paused_run), \
              patch.object(runner, "get_workspace", new_callable=AsyncMock, return_value=None), \
              patch.object(runner, "get_adapter", return_value=mock_adapter), \
              patch.object(runner, "update_run", new_callable=AsyncMock, return_value=None), \
-             patch.object(runner, "create_iteration", new_callable=AsyncMock, return_value=None), \
+             patch.object(runner, "update_run_if_status", new_callable=AsyncMock,
+                          return_value=True), \
+             patch.object(runner, "record_iterations_progress", new_callable=AsyncMock,
+                          return_value=0), \
              patch.object(LoopEngine, "run_loop", _spy_run_loop):
             await runner.execute_run(paused_run.run_id)
 

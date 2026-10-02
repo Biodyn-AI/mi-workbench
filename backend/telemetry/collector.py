@@ -4,10 +4,13 @@ from __future__ import annotations
 import csv
 import io
 import json
+import logging
 import time
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 from dataclasses import dataclass, field, asdict
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -25,6 +28,13 @@ class TelemetryRecord:
     latency_seconds: float = 0.0
     success: bool = True
     error: Optional[str] = None
+    # E4 (additive): provider-reported accounting and settings per call.
+    tokens_cached_input: int = 0
+    cli_version: str = ""
+    reasoning_effort: str = ""
+    # True when the input/output split is the legacy 70/30 estimate because
+    # the adapter reported only a total.
+    tokens_estimated: bool = False
 
 
 class TelemetryCollector:
@@ -43,7 +53,17 @@ class TelemetryCollector:
         Measures latency, captures token usage and cost, records success/failure.
         Returns the AdapterRunResult.
         """
+        result, _rec = await self.call_and_record(adapter, request, run_id, iteration, role)
+        return result
+
+    async def call_and_record(self, adapter, request, run_id: str, iteration: int, role: str):
+        """Like :meth:`wrap_adapter_call` but returns ``(result, record)``.
+
+        The record's reasoning effort is the adapter-reported one whenever a
+        result exists (e.g. ``"unsupported"`` for Gemini), the requested one
+        only if the call raised."""
         start = time.monotonic()
+        rec: Optional[TelemetryRecord] = None
         error_msg: Optional[str] = None
         success = True
         result = None
@@ -60,9 +80,18 @@ class TelemetryCollector:
         finally:
             elapsed = time.monotonic() - start
             tokens_total = result.token_usage if result else 0
-            # Estimate input/output split (adapters report total; rough 70/30 split)
-            tokens_input = int(tokens_total * 0.7)
-            tokens_output = tokens_total - tokens_input
+            reported_in = getattr(result, "input_tokens", 0) or 0
+            reported_out = getattr(result, "output_tokens", 0) or 0
+            tokens_estimated = False
+            if reported_in or reported_out:
+                # Provider-reported split (CLI JSON usage).
+                tokens_input, tokens_output = reported_in, reported_out
+                tokens_total = tokens_total or (reported_in + reported_out)
+            else:
+                # Legacy estimate when only a total is known (rough 70/30 split)
+                tokens_input = int(tokens_total * 0.7)
+                tokens_output = tokens_total - tokens_input
+                tokens_estimated = tokens_total > 0
             cost = result.cost_estimate if result else 0.0
 
             rec = TelemetryRecord(
@@ -71,7 +100,8 @@ class TelemetryCollector:
                 iteration=iteration,
                 role=role,
                 adapter=getattr(adapter, "name", type(adapter).__name__),
-                model=getattr(request, "model", ""),
+                # Model that answered (adapter-reported), else the requested one.
+                model=(getattr(result, "model", "") or getattr(request, "model", "") or ""),
                 tokens_input=tokens_input,
                 tokens_output=tokens_output,
                 tokens_total=tokens_total,
@@ -79,10 +109,16 @@ class TelemetryCollector:
                 latency_seconds=round(elapsed, 4),
                 success=success,
                 error=error_msg,
+                tokens_cached_input=getattr(result, "cached_input_tokens", 0) or 0,
+                cli_version=getattr(result, "cli_version", "") or "",
+                reasoning_effort=((getattr(result, "reasoning_effort", "") or "")
+                                  if result is not None
+                                  else (getattr(request, "reasoning_effort", "") or "")),
+                tokens_estimated=tokens_estimated,
             )
             self.record(rec)
 
-        return result
+        return result, rec
 
     def get_records(self, run_id: Optional[str] = None) -> list[TelemetryRecord]:
         """Get all records, optionally filtered by run_id."""
@@ -198,3 +234,74 @@ class TelemetryCollector:
     def export_json(self) -> str:
         """Export all records as JSON."""
         return json.dumps([asdict(r) for r in self._records], indent=2)
+
+
+# ── Process-wide collector and the adapter proxy that feeds it ─────────
+
+_GLOBAL_COLLECTOR = TelemetryCollector()
+
+
+def get_collector() -> TelemetryCollector:
+    """The process-wide collector (served by ``/api/telemetry``)."""
+    return _GLOBAL_COLLECTOR
+
+
+class TelemetryAdapter:
+    """Adapter proxy that records one :class:`TelemetryRecord` per adapter
+    call (every attempt, retries included; one per lens for a consensus
+    panel and one per LLM-adjudicator call) into the process-wide collector
+    and queues it for the ``telemetry`` table.
+
+    The role comes from the request (``prompt_bundle.variables["role"]``),
+    the iteration from ``iteration_getter()`` (the runner passes the run's
+    current iteration, which the engine advances before each step). Queued
+    records are written by the runner in the same transaction as their
+    iteration (``drain_pending``), so no extra database round trip is added
+    per call; ``persist=True`` writes each record immediately instead. A
+    telemetry failure never fails the call.
+    """
+
+    def __init__(self, inner: Any, run_id: str, iteration_getter=None,
+                 collector: Optional[TelemetryCollector] = None, persist: bool = False,
+                 db_path: Optional[str] = None):
+        self.inner = inner
+        self.run_id = run_id
+        self.iteration_getter = iteration_getter or (lambda: 0)
+        self.collector = collector or get_collector()
+        self.persist = persist
+        self.db_path = db_path
+        self.pending: list[TelemetryRecord] = []
+
+    def drain_pending(self) -> list[TelemetryRecord]:
+        """Records not yet written to the database (and forget them)."""
+        out, self.pending = self.pending, []
+        return out
+
+    @property
+    def name(self) -> str:
+        return getattr(self.inner, "name", type(self.inner).__name__)
+
+    def __getattr__(self, item):  # smoke_test, is_available, cli_version, ...
+        return getattr(self.inner, item)
+
+    async def run(self, request):
+        try:
+            role = str((request.prompt_bundle.variables or {}).get("role", ""))
+        except Exception:
+            role = ""
+        try:
+            iteration = int(self.iteration_getter() or 0)
+        except Exception:
+            iteration = 0
+        result, rec = await self.collector.call_and_record(
+            self.inner, request, self.run_id, iteration, role)
+        if rec is not None:
+            if self.persist:
+                try:
+                    from backend.telemetry.storage import save_record
+                    await save_record(rec, self.db_path)
+                except Exception:  # noqa: BLE001 - best effort
+                    logger.debug("telemetry persistence failed", exc_info=True)
+            else:
+                self.pending.append(rec)
+        return result

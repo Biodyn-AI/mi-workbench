@@ -323,3 +323,193 @@ async def test_api_repropack_run_not_found(client: AsyncClient) -> None:
     """POST /api/repropack/{run_id} returns 404 for nonexistent run."""
     resp = await client.post("/api/repropack/nonexistent_run")
     assert resp.status_code == 404
+
+
+# ── Iteration directories and persisted execution outputs ──────────
+
+
+def _write(path: Path, content) -> Path:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if isinstance(content, bytes):
+        path.write_bytes(content)
+    else:
+        path.write_text(content)
+    return path
+
+
+@pytest.fixture
+def full_run(tmp_path: Path):
+    """A run directory with iteration dirs and persisted execution outputs."""
+    run_dir = tmp_path / "ws" / "runs" / "run_full"
+    persist = tmp_path / "persist"
+    unit = persist / "20261001T120000_aaaa1111"
+    other_unit = persist / "20261001T120500_bbbb2222"   # another run's unit (not listed)
+    outside = tmp_path / "secrets"
+    _write(outside / "id_rsa", "PRIVATE")
+    _write(unit / "code.py", "print('hi')\n")
+    _write(unit / "stdout.txt", "hi\n" * 1000)
+    _write(unit / "stderr.txt", "")
+    _write(unit / "work" / "results.json", json.dumps({"auroc": 0.74}))
+    _write(unit / "work" / "big.bin", b"\0" * (2 * 1024 * 1024))     # above a 1 MB cap
+    _write(other_unit / "code.py", "print('other run')\n")
+
+    _write(run_dir / "MECH.md", "# top-level MECH")
+    it1 = run_dir / "iter_0001"
+    _write(it1 / "executor_output.md", "# MECH.md\nfull executor output")
+    _write(it1 / "MECH.md", "# MECH parsed")
+    _write(it1 / "RUN_LOG.md", "=== CODE EXECUTION REPORT ===")
+    _write(it1 / "figure.png", bytes(range(256)))
+    _write(it1 / "._MECH.md", b"\x00\x05\x16\x07AppleDouble")
+    _write(it1 / "CODE_EXECUTION.json", json.dumps({
+        "iteration": 1, "executed": 2,
+        "blocks": [{"index": 0, "persisted_to": str(unit)},
+                   {"index": 1, "persisted_to": str(outside)}],
+    }))
+    it2 = run_dir / "iter_0002"
+    _write(it2 / "consensus_merger_output.md", "merged feedback")
+    _write(it2 / "EVAL.md", "merged feedback")
+    _write(it2 / "CONSENSUS.json", json.dumps({"iteration": 2, "grade": "B"}))
+    _write(it2 / "reviewer_output.md", "[HIGH] x")
+    _write(it2 / "consensus_merger_feedback.md", "feedback for the executor")
+    _write(it2 / "nested" / "lens.txt", "nested file")
+    os.symlink(outside / "id_rsa", it2 / "leak.txt")
+    meta = {"run_id": "run_full", "task": "t", "provider": "mock", "status": "completed",
+            "config": {"code_execution_persist_dir": str(persist)}}
+    _write(run_dir / "run_meta.json", json.dumps(meta))
+    return run_dir, unit, other_unit, outside
+
+
+def _zip(data: bytes) -> zipfile.ZipFile:
+    return zipfile.ZipFile(io.BytesIO(data), "r")
+
+
+def test_every_iteration_directory_is_packaged(full_run, workspace_path):
+    run_dir = full_run[0]
+    zf = _zip(ReproPackGenerator(max_file_mb=1).generate(str(run_dir), workspace_path))
+    names = set(zf.namelist())
+    for d in ("iter_0001", "iter_0002"):
+        for f in (run_dir / d).rglob("*"):
+            if f.is_file() and not f.is_symlink() and not f.name.startswith("._"):
+                arc = f"iterations/{d}/{f.relative_to(run_dir / d).as_posix()}"
+                assert arc in names, arc
+                assert zf.read(arc) == f.read_bytes()           # byte-identical
+    for required in ("iterations/iter_0001/executor_output.md",
+                     "iterations/iter_0001/CODE_EXECUTION.json",
+                     "iterations/iter_0001/RUN_LOG.md",
+                     "iterations/iter_0002/CONSENSUS.json",
+                     "iterations/iter_0002/consensus_merger_feedback.md",
+                     "iterations/iter_0002/nested/lens.txt"):
+        assert required in names
+    assert zf.read("iterations/iter_0001/figure.png") == bytes(range(256))
+    assert "artifacts/MECH.md" in names                       # top-level files still there
+    assert not any(n.endswith("._MECH.md") for n in names)    # AppleDouble metadata skipped
+    assert "iterations/iter_0002/leak.txt" not in names       # symlink never followed
+    assert not any("PRIVATE" in zf.read(n).decode(errors="ignore") for n in names)
+
+
+def test_persisted_execution_outputs_are_packaged_with_a_size_cap(full_run, workspace_path):
+    run_dir, unit, other_unit, outside = full_run
+    zf = _zip(ReproPackGenerator(max_file_mb=1).generate(str(run_dir), workspace_path))
+    names = set(zf.namelist())
+    prefix = f"code_execution/iter_0001/{unit.name}"
+    for rel in ("code.py", "stdout.txt", "stderr.txt", "work/results.json"):
+        assert f"{prefix}/{rel}" in names
+        assert zf.read(f"{prefix}/{rel}") == (unit / rel).read_bytes()
+    assert f"{prefix}/work/big.bin" not in names                   # above the cap
+    assert not any(other_unit.name in n for n in names)            # not this run's unit
+    assert not any("secrets" in n or "id_rsa" in n for n in names)  # outside the persist dir
+    readme = zf.read("README.md").decode()
+    assert "## Files not included" in readme
+    assert f"`{prefix}/work/big.bin`" in readme and "per-file cap" in readme
+    assert "outside the run's code_execution_persist_dir" in readme
+    assert "iterations/iter_0002/leak.txt" in readme and "not a regular file" in readme
+    assert "Per-file size cap: 1.0 MB" in readme
+
+
+def test_size_cap_is_configurable(full_run, workspace_path, monkeypatch):
+    run_dir, unit, _, _ = full_run
+    big = f"code_execution/iter_0001/{unit.name}/work/big.bin"
+    uncapped = _zip(ReproPackGenerator().generate(str(run_dir), workspace_path, max_file_mb=0))
+    assert big in uncapped.namelist()
+    assert "Files not included" in uncapped.read("README.md").decode()
+    monkeypatch.setenv("MIW_REPROPACK_MAX_FILE_MB", "0.5")
+    gen = ReproPackGenerator()
+    assert gen.max_file_mb == 0.5
+    capped = _zip(gen.generate(str(run_dir), workspace_path))
+    assert big not in capped.namelist()
+    assert f"code_execution/iter_0001/{unit.name}/stdout.txt" in capped.namelist()  # 3 KB
+    with pytest.raises(ValueError):
+        ReproPackGenerator(max_file_mb=-1)
+
+
+def test_preview_lists_iterations_and_skipped_files(full_run, workspace_path):
+    run_dir, unit, _, _ = full_run
+    files = ReproPackGenerator(max_file_mb=1).preview(str(run_dir), workspace_path)
+    by_path = {f["path"]: f for f in files}
+    assert "iterations/iter_0002/CONSENSUS.json" in by_path
+    assert f"code_execution/iter_0001/{unit.name}/code.py" in by_path
+    assert "per-file cap" in by_path[f"code_execution/iter_0001/{unit.name}/work/big.bin"]["skipped"]
+
+
+def test_persisted_outputs_need_a_recorded_persist_dir(full_run, workspace_path):
+    run_dir, unit, _, _ = full_run
+    meta = json.loads((run_dir / "run_meta.json").read_text())
+    meta["config"] = {}
+    (run_dir / "run_meta.json").write_text(json.dumps(meta))
+    zf = _zip(ReproPackGenerator().generate(str(run_dir), workspace_path))
+    assert not any(n.startswith("code_execution/") for n in zf.namelist())
+    assert "code_execution_persist_dir is not recorded" in zf.read("README.md").decode()
+
+
+async def test_repropack_of_a_real_run_with_persisted_execution(tmp_path):
+    """End to end: a mock run with verified execution and a persist dir."""
+    from unittest.mock import patch
+
+    from backend.adapters.mock import MockAdapter
+    from backend.config import config
+    from backend.database import create_run, create_workspace, get_run, init_db
+    from backend.models import ProviderName, RunState, WorkspaceConfig
+    from backend.orchestrator import runner
+
+    old_db = config.db_path
+    config.db_path = str(tmp_path / "rp.db")
+    try:
+        await init_db()
+        MockAdapter.reset_iteration_count()
+        ws_dir = tmp_path / "ws"
+        ws_dir.mkdir()
+        ws = WorkspaceConfig(name="w", path=str(ws_dir), default_provider=ProviderName.MOCK)
+        await create_workspace(ws)
+        persist = tmp_path / "persist"
+        run = RunState(workspace_id=ws.id, loop_preset="executor_reviewer", task="t",
+                       provider=ProviderName.MOCK, model="", max_iterations=3,
+                       config={"convergence_enabled": False, "code_execution_enabled": True,
+                               "code_execution_persist_dir": str(persist)})
+        await create_run(run)
+        with patch.object(runner, "get_adapter",
+                          return_value=MockAdapter(min_delay=0, max_delay=0)):
+            await runner.execute_run(run.run_id)
+        final = await get_run(run.run_id)
+        assert final.stop_reason == "max_iterations"
+        run_dir = ws_dir / "runs" / run.run_id
+        zf = _zip(ReproPackGenerator().generate(str(run_dir), str(ws_dir), run_state=final))
+    finally:
+        config.db_path = old_db
+    names = set(zf.namelist())
+    iter_dirs = sorted(d.name for d in run_dir.iterdir() if d.name.startswith("iter_"))
+    assert iter_dirs == ["iter_0001", "iter_0002", "iter_0003"]
+    for d in iter_dirs:
+        for f in (run_dir / d).iterdir():
+            if f.is_file() and not f.name.startswith("._"):
+                assert f"iterations/{d}/{f.name}" in names
+    assert "iterations/iter_0001/CODE_EXECUTION.json" in names
+    assert "iterations/iter_0001/RUN_LOG.md" in names
+    assert "iterations/iter_0002/reviewer_feedback.md" in names
+    units = [p for p in persist.iterdir() if p.is_dir()]
+    assert len(units) == 2                                        # executor iterations 1 and 3
+    for u in units:
+        assert any(n.endswith(f"{u.name}/code.py") for n in names)
+        assert any(n.endswith(f"{u.name}/stdout.txt") for n in names)
+    stdout = [n for n in names if n.startswith("code_execution/iter_0001/")
+              and n.endswith("stdout.txt")][0]
+    assert b"incremental_auroc" in zf.read(stdout)

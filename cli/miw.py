@@ -105,23 +105,73 @@ def run():
     pass
 
 
+def parse_config_pairs(pairs: tuple[str, ...] | list[str]) -> dict:
+    """Parse ``KEY=VALUE`` options into a run-config dict.
+
+    Values are decoded as JSON when possible (``3``, ``0.5``, ``true``,
+    ``["a","b"]``, ``{"flag": true}``), otherwise kept as strings.
+    """
+    config: dict = {}
+    for pair in pairs or ():
+        if "=" not in pair:
+            raise click.BadParameter(f"expected KEY=VALUE, got {pair!r}", param_hint="--config")
+        key, value = pair.split("=", 1)
+        key = key.strip()
+        if not key:
+            raise click.BadParameter(f"empty key in {pair!r}", param_hint="--config")
+        try:
+            config[key] = json.loads(value)
+        except ValueError:
+            config[key] = value
+    return config
+
+
+def build_run_payload(
+    workspace_id: str,
+    loop_preset: str,
+    task: str,
+    provider: str,
+    model: str,
+    max_iterations: int,
+    effort: str = "",
+    config_pairs: tuple[str, ...] | list[str] = (),
+) -> dict:
+    """Request body for ``POST /runs``."""
+    payload = {
+        "workspace_id": workspace_id,
+        "loop_preset": loop_preset,
+        "task": task,
+        "provider": provider,
+        "model": model,
+        "max_iterations": max_iterations,
+        "config_overrides": parse_config_pairs(config_pairs),
+    }
+    if effort:
+        payload["reasoning_effort"] = effort
+    return payload
+
+
+_RUN_CONFIG_HELP = (
+    "Run-config override KEY=VALUE (repeatable; JSON values), e.g. "
+    "-c convergence_rule=all -c code_execution_enabled=true -c budget_max_tokens=2000000"
+)
+
+
 @run.command("preset")
 @click.argument("preset_name")
 @click.option("--workspace-id", "-w", required=True, help="Workspace ID")
 @click.option("--task", "-t", required=True, help="Task description")
 @click.option("--provider", "-p", default="mock", help="Provider to use")
-@click.option("--model", "-m", default="", help="Model name")
+@click.option("--model", "-m", default="", help="Model name (forwarded to the CLI adapter)")
+@click.option("--effort", "-e", default="", help="Reasoning effort (e.g. low, medium, high)")
 @click.option("--max-iterations", "-i", default=50, help="Maximum iterations")
-def run_preset(preset_name: str, workspace_id: str, task: str, provider: str, model: str, max_iterations: int):
-    """Start a run using a preset loop configuration."""
-    payload = {
-        "workspace_id": workspace_id,
-        "loop_preset": preset_name,
-        "task": task,
-        "provider": provider,
-        "model": model,
-        "max_iterations": max_iterations,
-    }
+@click.option("--config", "-c", "config_pairs", multiple=True, help=_RUN_CONFIG_HELP)
+def run_preset(preset_name: str, workspace_id: str, task: str, provider: str, model: str,
+               effort: str, max_iterations: int, config_pairs: tuple[str, ...]):
+    """Start a run using a preset loop (executor_reviewer, reviewer_consensus,
+    research_followups, example_custom, or any loops/<name>.yaml)."""
+    payload = build_run_payload(workspace_id, preset_name, task, provider, model,
+                                max_iterations, effort, config_pairs)
     with api_client() as client:
         resp = client.post("/runs", json=payload)
         data = handle_response(resp)
@@ -134,16 +184,15 @@ def run_preset(preset_name: str, workspace_id: str, task: str, provider: str, mo
 @click.option("--workspace-id", "-w", required=True, help="Workspace ID")
 @click.option("--task", "-t", required=True, help="Task description")
 @click.option("--provider", "-p", default="mock", help="Provider to use")
-@click.option("--model", "-m", default="", help="Model name")
-def run_loop(yaml_path: str, workspace_id: str, task: str, provider: str, model: str):
-    """Start a run using a custom loop YAML definition."""
-    payload = {
-        "workspace_id": workspace_id,
-        "loop_preset": f"custom:{yaml_path}",
-        "task": task,
-        "provider": provider,
-        "model": model,
-    }
+@click.option("--model", "-m", default="", help="Model name (forwarded to the CLI adapter)")
+@click.option("--effort", "-e", default="", help="Reasoning effort (e.g. low, medium, high)")
+@click.option("--max-iterations", "-i", default=50, help="Maximum iterations")
+@click.option("--config", "-c", "config_pairs", multiple=True, help=_RUN_CONFIG_HELP)
+def run_loop(yaml_path: str, workspace_id: str, task: str, provider: str, model: str,
+             effort: str, max_iterations: int, config_pairs: tuple[str, ...]):
+    """Start a run using a custom loop YAML definition (sent as custom:<path>)."""
+    payload = build_run_payload(workspace_id, f"custom:{yaml_path}", task, provider, model,
+                                max_iterations, effort, config_pairs)
     with api_client() as client:
         resp = client.post("/runs", json=payload)
         data = handle_response(resp)
@@ -185,23 +234,32 @@ def run_list(workspace_id: Optional[str], status: Optional[str], json_output: bo
 @click.argument("run_id")
 @click.option("--output", "-o", default=None, help="Output file path (default: repropack-<run_id>.zip)")
 @click.option("--preview", is_flag=True, help="Preview files without downloading")
-def run_repropack(run_id: str, output: Optional[str], preview: bool):
+@click.option("--max-file-mb", type=float, default=None,
+              help="Per-file size cap in MB for iteration files and persisted execution "
+                   "outputs (larger files are skipped and listed in the package README; "
+                   "default: server setting, 25 MB; 0 = no cap)")
+def run_repropack(run_id: str, output: Optional[str], preview: bool,
+                  max_file_mb: Optional[float]):
     """Download a reproducibility package for a run."""
+    params = {} if max_file_mb is None else {"max_file_mb": max_file_mb}
     if preview:
         with api_client() as client:
-            resp = client.get(f"/repropack/{run_id}/preview")
+            resp = client.get(f"/repropack/{run_id}/preview", params=params)
             data = handle_response(resp)
         click.echo(f"Repro pack for run {run_id} ({data['total_files']} files):")
         click.echo("")
         for f in data["files"]:
-            size_str = f"{f['size']:,} bytes" if f["size"] > 0 else "generated"
+            if f.get("skipped"):
+                size_str = f"skipped: {f['skipped']}"
+            else:
+                size_str = f"{f['size']:,} bytes" if f["size"] > 0 else "generated"
             click.echo(f"  {f['path']:<50} {size_str}")
         return
 
     output_path = output or f"repropack-{run_id}.zip"
     click.echo(f"Generating repro pack for run {run_id}...")
     with httpx.Client(base_url=get_base_url(), timeout=120.0) as client:
-        resp = client.post(f"/repropack/{run_id}")
+        resp = client.post(f"/repropack/{run_id}", params=params)
         if resp.status_code >= 400:
             click.secho(f"Error {resp.status_code}: {resp.text}", fg="red", err=True)
             sys.exit(1)

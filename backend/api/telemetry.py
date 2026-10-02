@@ -5,11 +5,14 @@ from fastapi import APIRouter, Query
 from fastapi.responses import PlainTextResponse
 
 from backend.telemetry.collector import TelemetryCollector
+from backend.telemetry.collector import get_collector as _get_global_collector
 
 router = APIRouter(prefix="/telemetry", tags=["telemetry"])
 
-# Shared in-memory collector (populated during run execution)
-_collector = TelemetryCollector()
+# Shared in-memory collector, populated during run execution: the runner wraps
+# every run's adapter in backend.telemetry.collector.TelemetryAdapter (one
+# record per adapter call, also persisted to the ``telemetry`` table).
+_collector: TelemetryCollector = _get_global_collector()
 
 
 def get_collector() -> TelemetryCollector:

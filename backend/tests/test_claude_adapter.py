@@ -42,7 +42,8 @@ class TestBuildCommand:
         assert "--output-format" in cmd
         assert "json" in cmd
         assert "--max-turns" in cmd
-        assert "1" in cmd
+        # tools enabled (request default): max_turns, not a single turn
+        assert cmd[cmd.index("--max-turns") + 1] == str(adapter.max_turns)
 
     def test_build_command_includes_system_prompt(self):
         adapter = ClaudeCodeAdapter(binary="claude")

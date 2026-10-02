@@ -146,6 +146,9 @@ class RunCreate(BaseModel):
     model: str = ""
     max_iterations: int = 50
     config_overrides: dict[str, Any] = {}
+    # Reasoning-effort setting forwarded to every adapter call ("" = CLI default).
+    # Stored as run config key ``reasoning_effort`` (a value in config_overrides wins).
+    reasoning_effort: str = ""
 
 
 class IterationResult(BaseModel):
@@ -163,6 +166,27 @@ class IterationResult(BaseModel):
     feedback: Optional[str] = None
     error: Optional[str] = None
     code_execution: Optional[dict[str, Any]] = None
+    # Per-call accounting (consensus steps: summed tokens over all lens calls,
+    # distinct provider/model/cli_version values joined with ",").
+    provider: str = ""
+    model: str = ""
+    reasoning_effort: str = ""
+    cli_version: str = ""
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cached_input_tokens: int = 0
+    duration_seconds: float = 0.0
+    # Review steps (single reviewer lens or consensus): parsed grade and severity
+    # counts, used to re-seed the convergence detector on resume. None = not a review.
+    grade: Optional[str] = None
+    critical_count: Optional[int] = None
+    high_count: Optional[int] = None
+    # Consensus steps: ConsensusReviewer.compute_consensus_report() plus attempts.
+    consensus_report: Optional[dict[str, Any]] = None
+    # Agent-side tool provenance of the step's adapter calls: whether tools were
+    # enabled, the sandbox, and counts of tool / shell-command / web-search / MCP
+    # items the CLI reported (codex JSONL). None = not recorded.
+    agent_tools: Optional[dict[str, Any]] = None
 
 
 class RunState(BaseModel):
@@ -183,6 +207,17 @@ class RunState(BaseModel):
     total_cost: float = 0.0
     config: dict[str, Any] = {}
     error: Optional[str] = None
+    # Why the loop ended: "converged:<signal>[+<signal>]", "max_iterations",
+    # "budget_tokens", "budget_cost", "revision_budget" (run config
+    # ``revision_budget``: the initial executor submission plus that many
+    # revisions were made and reviewed), "cancelled", "failed:<reason>",
+    # "stop_condition:<name>" (None while running / never started).
+    stop_reason: Optional[str] = None
+    # Token split (total_tokens == total_input_tokens + total_output_tokens for
+    # provider-reported usage; cached input is a subset of input).
+    total_input_tokens: int = 0
+    total_output_tokens: int = 0
+    total_cached_input_tokens: int = 0
 
 
 class RunSummary(BaseModel):
@@ -221,9 +256,15 @@ class LoopDefinition(BaseModel):
     version: str = "1.0.0"
     nodes: list[LoopNode] = []
     edges: list[LoopEdge] = []
+    # Evaluated by the engine (see backend.orchestrator.dsl.parse_stop_conditions):
+    # "max_iterations:N", "budget_max_tokens:N", "budget_max_cost:X",
+    # "grade_at_least:B", "on_flag:<flag>", "<convergence_key>:<value>";
+    # "user_stop" / "budget_exceeded" are always active. Run config overrides.
     stop_conditions: list[str] = ["user_stop", "budget_exceeded"]
     max_iterations: int = 50
     config: dict[str, Any] = {}
+    # Where the definition came from ("python" preset, a YAML path, or "").
+    source: str = ""
 
 
 # ── Provider / Adapter ─────────────────────────────────────────────────
@@ -249,6 +290,19 @@ class AdapterRunRequest(BaseModel):
     files_to_write: list[str] = []
     output_schema: dict[str, Any] = {}
     timeout_seconds: int = 300
+    # E4: model / reasoning-effort selection forwarded to the CLI ("" = CLI default;
+    # an adapter-level default set at construction is used when these are empty).
+    model: str = ""
+    reasoning_effort: str = ""
+    # False disables agent tools (reviewer calls; executor calls when verified
+    # execution is on): claude `--tools ""`; codex `--sandbox read-only` plus
+    # web search, shell / unified-exec, apps, plugins and other tool features
+    # disabled and the user config.toml ignored; gemini `--approval-mode
+    # default` plus a system-settings file excluding every built-in tool.
+    allow_tools: bool = True
+    # Provider-specific options from run config ``adapter_options`` (e.g.
+    # ``codex_ignore_user_config``, ``claude_max_turns``); unknown keys are ignored.
+    adapter_options: dict[str, Any] = {}
 
 
 class AdapterRunResult(BaseModel):
@@ -262,6 +316,17 @@ class AdapterRunResult(BaseModel):
     exit_code: int = 0
     error: Optional[str] = None
     raw_log: str = ""
+    # E4 accounting. token_usage == input_tokens + output_tokens for CLI adapters;
+    # input_tokens includes cached input, cached_input_tokens is that cached subset;
+    # raw_usage keeps the provider-native usage payload.
+    provider: str = ""
+    model: str = ""  # model that answered if discoverable, else the requested one
+    reasoning_effort: str = ""
+    cli_version: str = ""
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cached_input_tokens: int = 0
+    raw_usage: dict[str, Any] = {}
 
 
 # ── Artifacts ──────────────────────────────────────────────────────────
@@ -290,6 +355,29 @@ class RunMeta(BaseModel):
     total_cost: float = 0.0
     status: RunStatus = RunStatus.PENDING
     prompts_used: dict[str, str] = {}
+    # Revision-2 provenance (all optional / additive).
+    stop_reason: Optional[str] = None
+    error: Optional[str] = None
+    reasoning_effort: str = ""
+    total_input_tokens: int = 0
+    total_output_tokens: int = 0
+    total_cached_input_tokens: int = 0
+    cli_versions: list[str] = []
+    models_used: list[str] = []
+    loop_source: str = ""
+    stop_conditions: list[str] = []
+    # Run-config settings that affect results, plus (runner) the effective
+    # agent-tool settings (``effective_tool_settings``) and the effective
+    # stopping policy (``revision_budget``, ``effective_stopping``).
+    config: dict[str, Any] = {}
+    convergence: dict[str, Any] = {}
+    # One entry per iteration: number, role, status, provider, model,
+    # reasoning_effort, cli_version, input/output/cached tokens, cost, duration,
+    # grade, code-execution summary.
+    iterations: list[dict[str, Any]] = []
+    # Iteration writes deferred because the database stayed locked after its
+    # retries (each deferred iteration was persisted later); empty normally.
+    persistence_warnings: list[dict[str, Any]] = []
 
 
 # ── Knowledge Extractor ───────────────────────────────────────────────
@@ -354,14 +442,30 @@ class ReviewCritique(BaseModel):
     suggested_experiment: Optional[str] = None
     artifact_ref: Optional[str] = None  # e.g., "PROTOCOL.md", "MECH.md"
     section_ref: Optional[str] = None   # e.g., "Section 2.1 Controls"
+    # Consensus only: distinct reviewer lenses that raised this (merged) critique.
+    raised_by: list[str] = []
+    # Consensus only: the other critiques merged into this one (each a dict with
+    # lens, severity, description, required_fix), so no member's text is lost
+    # when the longest description represents the group.
+    merged_members: list[dict[str, Any]] = []
 
 
 class ReviewResult(BaseModel):
-    overall_grade: str = ""  # A/B/C/D/F or pass/fail
+    overall_grade: str = ""  # A/B/C/D/F or pass/fail; "INCOMPLETE" if the panel failed
     critiques: list[ReviewCritique] = []
     reproducibility_gaps: list[str] = []
     suspected_confounders: list[str] = []
     claim_validity: dict[str, str] = {}
+    # One-sentence verdict from the JSON critique contract (if provided).
+    overall_assessment: str = ""
+    # How critiques were extracted: "json" | "yaml" | "regex" | "none" ("" = not parsed).
+    parse_method: str = ""
+    # JSON decode detail ("strict" | "repaired" | "truncated" | "salvaged") or
+    # "invalid_contract:<reason>" when a contract block could not count as a review.
+    parse_detail: str = ""
+    # Consensus only: per-lens status, parse methods, merge groups, similarity
+    # settings, panel failure flags (see ConsensusReviewer.compute_consensus_report).
+    consensus_meta: dict[str, Any] = {}
 
 
 # ── Follow-up ─────────────────────────────────────────────────────────

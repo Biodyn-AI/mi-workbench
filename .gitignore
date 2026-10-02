@@ -56,3 +56,14 @@ htmlcov/
 
 # Local Claude Code instructions
 CLAUDE.md
+
+# Large experiment data (kits, raw LLM outputs); archived separately
+experiments_data/
+
+# PLOS submission bundle and SI archives (large; uploaded to the journal / archived on Zenodo)
+paper/plos/submission_files/
+paper/plos/si/*.zip
+# LaTeX build products
+*.out
+*.bbl.bak
+*.synctex.gz

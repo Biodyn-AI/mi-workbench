@@ -1,6 +1,8 @@
 """Tests for MI-Workbench backend API."""
 from __future__ import annotations
 
+import asyncio
+
 import os
 import json
 from pathlib import Path
@@ -14,10 +16,10 @@ pytestmark = pytest.mark.asyncio
 
 # ── Workspace tests ──────────────────────────────────────────────────
 
-async def test_create_workspace(client: AsyncClient) -> None:
+async def test_create_workspace(client: AsyncClient, tmp_path: Path) -> None:
     resp = await client.post("/api/workspaces", json={
         "name": "test-ws",
-        "path": "test-ws-dir",
+        "path": str(tmp_path / "test-ws-dir"),
     })
     assert resp.status_code == 201
     data = resp.json()
@@ -26,17 +28,17 @@ async def test_create_workspace(client: AsyncClient) -> None:
     assert data["git_mode"] == "none"
 
 
-async def test_list_workspaces(client: AsyncClient) -> None:
-    await client.post("/api/workspaces", json={"name": "ws1", "path": "ws1"})
-    await client.post("/api/workspaces", json={"name": "ws2", "path": "ws2"})
+async def test_list_workspaces(client: AsyncClient, tmp_path: Path) -> None:
+    await client.post("/api/workspaces", json={"name": "ws1", "path": str(tmp_path / "ws1")})
+    await client.post("/api/workspaces", json={"name": "ws2", "path": str(tmp_path / "ws2")})
     resp = await client.get("/api/workspaces")
     assert resp.status_code == 200
     data = resp.json()
     assert len(data) >= 2
 
 
-async def test_get_workspace(client: AsyncClient) -> None:
-    create = await client.post("/api/workspaces", json={"name": "ws-get", "path": "ws-get"})
+async def test_get_workspace(client: AsyncClient, tmp_path: Path) -> None:
+    create = await client.post("/api/workspaces", json={"name": "ws-get", "path": str(tmp_path / "ws-get")})
     ws_id = create.json()["id"]
     resp = await client.get(f"/api/workspaces/{ws_id}")
     assert resp.status_code == 200
@@ -48,8 +50,8 @@ async def test_get_workspace_not_found(client: AsyncClient) -> None:
     assert resp.status_code == 404
 
 
-async def test_delete_workspace(client: AsyncClient) -> None:
-    create = await client.post("/api/workspaces", json={"name": "ws-del", "path": "ws-del"})
+async def test_delete_workspace(client: AsyncClient, tmp_path: Path) -> None:
+    create = await client.post("/api/workspaces", json={"name": "ws-del", "path": str(tmp_path / "ws-del")})
     ws_id = create.json()["id"]
     resp = await client.delete(f"/api/workspaces/{ws_id}")
     assert resp.status_code == 204
@@ -64,8 +66,8 @@ async def test_delete_workspace_not_found(client: AsyncClient) -> None:
 
 # ── Run tests ────────────────────────────────────────────────────────
 
-async def test_create_run(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-run", "path": "ws-run"})
+async def test_create_run(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-run", "path": str(tmp_path / "ws-run")})
     ws_id = ws.json()["id"]
     resp = await client.post("/api/runs", json={
         "workspace_id": ws_id,
@@ -79,8 +81,8 @@ async def test_create_run(client: AsyncClient) -> None:
     assert data["status"] == "pending"
 
 
-async def test_list_runs(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-lr", "path": "ws-lr"})
+async def test_list_runs(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-lr", "path": str(tmp_path / "ws-lr")})
     ws_id = ws.json()["id"]
     await client.post("/api/runs", json={"workspace_id": ws_id, "task": "run1"})
     await client.post("/api/runs", json={"workspace_id": ws_id, "task": "run2"})
@@ -89,8 +91,8 @@ async def test_list_runs(client: AsyncClient) -> None:
     assert len(resp.json()) >= 2
 
 
-async def test_get_run(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-gr", "path": "ws-gr"})
+async def test_get_run(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-gr", "path": str(tmp_path / "ws-gr")})
     ws_id = ws.json()["id"]
     create = await client.post("/api/runs", json={"workspace_id": ws_id, "task": "t"})
     run_id = create.json()["run_id"]
@@ -99,8 +101,8 @@ async def test_get_run(client: AsyncClient) -> None:
     assert resp.json()["run_id"] == run_id
 
 
-async def test_stop_run(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-stop", "path": "ws-stop"})
+async def test_stop_run(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-stop", "path": str(tmp_path / "ws-stop")})
     ws_id = ws.json()["id"]
     create = await client.post("/api/runs", json={"workspace_id": ws_id, "task": "stopit"})
     run_id = create.json()["run_id"]
@@ -109,8 +111,8 @@ async def test_stop_run(client: AsyncClient) -> None:
     assert resp.json()["status"] == "stopped"
 
 
-async def test_stop_already_completed_run(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-sc", "path": "ws-sc"})
+async def test_stop_already_completed_run(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-sc", "path": str(tmp_path / "ws-sc")})
     ws_id = ws.json()["id"]
     create = await client.post("/api/runs", json={"workspace_id": ws_id, "task": "t"})
     run_id = create.json()["run_id"]
@@ -124,12 +126,20 @@ async def test_stop_already_completed_run(client: AsyncClient) -> None:
     assert resp.status_code == 400
 
 
-async def test_resume_run(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-res", "path": "ws-res"})
+async def test_resume_run(client: AsyncClient, tmp_path: Path) -> None:
+    from backend.orchestrator.runner import _active_tasks, is_run_active
+
+    ws = await client.post("/api/workspaces", json={"name": "ws-res", "path": str(tmp_path / "ws-res")})
     ws_id = ws.json()["id"]
     create = await client.post("/api/runs", json={"workspace_id": ws_id, "task": "t"})
     run_id = create.json()["run_id"]
     await client.post(f"/api/runs/{run_id}/stop")
+    # Resume is refused (409) while the stopped engine is still finishing its
+    # step (see test_fixes_r2_engine.py); wait for it to exit first.
+    task = _active_tasks.get(run_id)
+    if task is not None:
+        await asyncio.wait_for(asyncio.shield(task), 30)
+    assert not is_run_active(run_id)
     resp = await client.post(f"/api/runs/{run_id}/resume")
     assert resp.status_code == 200
     assert resp.json()["status"] == "running"
@@ -221,8 +231,8 @@ async def test_smoke_test_mock(client: AsyncClient) -> None:
 
 # ── Settings tests ───────────────────────────────────────────────────
 
-async def test_get_and_update_settings(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-set", "path": "ws-set"})
+async def test_get_and_update_settings(client: AsyncClient, tmp_path: Path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-set", "path": str(tmp_path / "ws-set")})
     ws_id = ws.json()["id"]
     # GET
     resp = await client.get(f"/api/settings/{ws_id}")

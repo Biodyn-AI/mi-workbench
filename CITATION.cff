@@ -1,0 +1,30 @@
+# This CITATION.cff file was written for the Citation File Format 1.2.0.
+# Validate with: cffconvert --validate
+cff-version: 1.2.0
+message: "If you use MI-Workbench, please cite the software and the accompanying article."
+type: software
+title: "MI-Workbench"
+abstract: >-
+  An autonomous multi-agent platform for mechanistic interpretability
+  research on biological foundation models.
+authors:
+  - family-names: "Kendiukhov"
+    given-names: "Ihor"
+repository-code: "https://github.com/Biodyn-AI/mi-workbench"
+license: MIT
+version: "1.1.0"
+keywords:
+  - mechanistic interpretability
+  - multi-agent systems
+  - single-cell foundation models
+  - research automation
+preferred-citation:
+  type: article
+  # Submitted manuscript; DOI to be added on acceptance.
+  status: submitted
+  title: "MI-Workbench: an autonomous multi-agent platform for mechanistic interpretability of biological foundation models"
+  authors:
+    - family-names: "Kendiukhov"
+      given-names: "Ihor"
+  journal: "PLOS ONE"
+  year: 2026

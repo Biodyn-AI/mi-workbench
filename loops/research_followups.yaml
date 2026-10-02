@@ -45,10 +45,16 @@ edges:
     target: executor
     condition: "on_flag:auto_run_top_1"
 
+# Evaluated by the engine (run config overrides these values).
 stop_conditions:
   - "user_stop"
   - "budget_exceeded"
-  - "max_iterations:30"
+  - "max_iterations:30"      # cap; the run's own max_iterations also applies
+  # Built-in defaults (no entry needed; the stopping calibration in
+  # experiments/stopping/results/ selected them): "revision_budget:4" (the
+  # initial executor submission plus at most 4 revisions, the last one still
+  # reviewed; stop reason revision_budget) and "convergence_enabled:false"
+  # (the adaptive rule is opt-in). "revision_budget:none" removes the budget.
 
 max_iterations: 30
 
@@ -56,4 +62,4 @@ config:
   initial_node: executor
   feedback_passthrough: true
   accumulate_artifacts: true
-  followup_policy: "ask_approval"
+  follow_up_policy: "ask_approval"

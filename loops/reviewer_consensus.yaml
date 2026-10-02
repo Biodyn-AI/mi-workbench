@@ -42,7 +42,13 @@ nodes:
     prompt_ref: ""
     config:
       merge_strategy: "deduplicate_escalate"
-      similarity_threshold: 0.5
+      # Default for consensus_similarity_method (run config overrides): LLM
+      # adjudication, the platform default (best held-out F1 in
+      # experiments/benchmark/results/merge_eval.json); a failed adjudication
+      # falls back to tfidf at its calibrated threshold 0.1. llm takes no
+      # threshold; a similarity_threshold set here applies only to the
+      # similarity_method set here (ignored when the run config selects another).
+      similarity_method: "llm"
       escalate_on_agreement: true
 
 edges:
@@ -77,11 +83,18 @@ edges:
     target: executor
     condition: "always"
 
+# Evaluated by the engine. Values map onto the run-config keys of the same
+# name; a value set in the run config overrides the one given here.
 stop_conditions:
   - "user_stop"
   - "budget_exceeded"
-  - "max_iterations:50"
-  - "on_flag:grade_A"
+  - "max_iterations:50"      # cap; the run's own max_iterations also applies
+  - "grade_at_least:A"       # stop after a review step graded A or better
+  # Built-in defaults (no entry needed; the stopping calibration in
+  # experiments/stopping/results/ selected them): "revision_budget:4" (the
+  # initial executor submission plus at most 4 revisions, the last one still
+  # reviewed; stop reason revision_budget) and "convergence_enabled:false"
+  # (the adaptive rule is opt-in). "revision_budget:none" removes the budget.
 
 max_iterations: 50
 

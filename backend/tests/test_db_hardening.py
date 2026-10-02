@@ -33,11 +33,12 @@ async def test_foreign_keys_enabled(client: AsyncClient) -> None:
 
 
 async def test_busy_timeout_set(client: AsyncClient) -> None:
-    """init_db should set busy_timeout=5000."""
-    async with aiosqlite.connect(config.db_path) as db:
+    """Every backend connection waits ``config.db_busy_timeout`` (default 30 s)
+    for a lock (busy_timeout is per connection, so it is set on each one)."""
+    async with get_db() as db:
         cursor = await db.execute("PRAGMA busy_timeout")
         row = await cursor.fetchone()
-        assert row[0] == 5000
+        assert row[0] == int(round(config.db_busy_timeout * 1000))
 
 
 # ── Schema version / migration tests ────────────────────────────────
@@ -52,9 +53,9 @@ async def test_schema_version_tracking(client: AsyncClient) -> None:
 # ── Pagination: runs ─────────────────────────────────────────────────
 
 
-async def test_pagination_runs(client: AsyncClient) -> None:
+async def test_pagination_runs(client: AsyncClient, tmp_path) -> None:
     """Create 10 runs, list with limit=3 offset=0 returns exactly 3."""
-    ws = await client.post("/api/workspaces", json={"name": "ws-pg", "path": "ws-pg"})
+    ws = await client.post("/api/workspaces", json={"name": "ws-pg", "path": str(tmp_path / "ws-pg")})
     ws_id = ws.json()["id"]
     for i in range(10):
         await client.post("/api/runs", json={
@@ -71,9 +72,9 @@ async def test_pagination_runs(client: AsyncClient) -> None:
     assert len(resp.json()) == 3
 
 
-async def test_pagination_offset(client: AsyncClient) -> None:
+async def test_pagination_offset(client: AsyncClient, tmp_path) -> None:
     """Create 10 runs, list with limit=3 offset=3 returns the next 3."""
-    ws = await client.post("/api/workspaces", json={"name": "ws-pg2", "path": "ws-pg2"})
+    ws = await client.post("/api/workspaces", json={"name": "ws-pg2", "path": str(tmp_path / "ws-pg2")})
     ws_id = ws.json()["id"]
     for i in range(10):
         await client.post("/api/runs", json={
@@ -126,12 +127,12 @@ async def test_pagination_claims(client: AsyncClient) -> None:
 # ── Follow-up depth limit ───────────────────────────────────────────
 
 
-async def test_follow_up_depth_limit(client: AsyncClient) -> None:
+async def test_follow_up_depth_limit(client: AsyncClient, tmp_path) -> None:
     """Verify depth increments and stops at max in the follow-up config logic."""
     from backend.database import create_run, get_run, update_run
     from backend.models import ProviderName, RunState, RunStatus
 
-    ws = await client.post("/api/workspaces", json={"name": "ws-depth", "path": "ws-depth"})
+    ws = await client.post("/api/workspaces", json={"name": "ws-depth", "path": str(tmp_path / "ws-depth")})
     ws_id = ws.json()["id"]
 
     # Simulate a run at depth 0 with max_follow_up_depth=2

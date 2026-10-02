@@ -1,0 +1,14 @@
+# Optional dependencies for the evaluation/analysis scripts (scripts/, experiments/)
+# and paper figures. NOT needed to run the backend, CLI or test suite.
+#   pip install -r requirements-analysis.txt
+# Versions in the author's analysis environment at the time of writing:
+# numpy 1.26.4, scipy 1.16.3, pandas 2.3.3, scikit-learn 1.5.1,
+# matplotlib 3.10.8, statsmodels 0.14.2.
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+scikit-learn>=1.3
+matplotlib>=3.7
+statsmodels>=0.14
+# Optional: embedding-based critique deduplication (backend/orchestrator/similarity.py).
+# sentence-transformers>=2.2

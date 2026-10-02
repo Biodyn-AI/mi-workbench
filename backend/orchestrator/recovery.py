@@ -20,14 +20,25 @@ async def recover_interrupted_runs() -> list[str]:
     - If no iterations yet, mark as FAILED with error "interrupted by server restart"
 
     For PENDING runs:
-    - Leave as PENDING (they might be legitimately queued)
+    - With persisted iterations (a run interrupted before its RUNNING status
+      was written, e.g. by an older version): mark as PAUSED (resumable)
+    - Otherwise leave as PENDING (they might be legitimately queued)
+
+    Interrupted runs get ``stop_reason="interrupted"``.
 
     Returns list of recovered run IDs.
     """
     recovered: list[str] = []
-    all_runs = await list_runs()
+    all_runs = await list_runs(limit=1_000_000)  # every run, not only the newest page
 
     for run in all_runs:
+        if run.status == RunStatus.PENDING:
+            full_run = await get_run(run.run_id)
+            if full_run is not None and (full_run.iterations or full_run.current_iteration > 0):
+                await update_run(run.run_id, status=RunStatus.PAUSED, stop_reason="interrupted")
+                logger.info("Recovered run %s: PENDING with progress -> PAUSED", run.run_id)
+                recovered.append(run.run_id)
+            continue
         if run.status == RunStatus.RUNNING:
             # Reload with iterations
             full_run = await get_run(run.run_id)
@@ -36,7 +47,7 @@ async def recover_interrupted_runs() -> list[str]:
 
             if full_run.iterations:
                 # Has progress -- mark as paused so it can be resumed
-                await update_run(run.run_id, status=RunStatus.PAUSED)
+                await update_run(run.run_id, status=RunStatus.PAUSED, stop_reason="interrupted")
                 logger.info(
                     "Recovered run %s: RUNNING -> PAUSED (%d iterations completed)",
                     run.run_id,

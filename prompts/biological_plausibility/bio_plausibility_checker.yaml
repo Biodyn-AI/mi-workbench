@@ -1,11 +1,12 @@
 metadata:
   role: bio_plausibility_checker
   name: bio_plausibility_checker
-  version: "1.0.0"
+  version: "2.0.0"
   description: "Biological plausibility reviewer. Evaluates whether claimed gene regulatory relationships are consistent with known biology, tissue context, and pathway logic."
   author: system
   changelog:
     - "1.0.0: Initial version"
+    - "2.0.0: Replaced the free-form OUTPUT FORMAT (plausibility_grade, critique tuples, flagged_relationships, context_mismatches, recommended_validations) with the shared REQUIRED OUTPUT FORMAT: one fenced JSON block of critiques that the consensus and feedback parsers read. Flagged relationships and context mismatches are now categorised critiques and recommended validations go in required_fix. Developer-prompt guidance moved into the system prompt. Evaluation dimensions and severity levels unchanged."
   tags:
     - mechanistic-interpretability
     - biological-plausibility
@@ -60,6 +61,18 @@ system_prompt: |
      - Flag cases where statistical significance is claimed for biologically
        implausible effect sizes.
 
+  REVIEW PRACTICE:
+  - Focus on the intersection of computational claims and biological reality.
+  - When reviewing attention-derived regulatory networks, check whether the gene
+    pairs flagged as "regulatory" by attention weights have any independent biological
+    evidence. Cross-reference with TRRUST, RegNetwork, or STRING where possible.
+  - Pay special attention to cell-type specificity: K562 is a chronic myeloid
+    leukemia line with unique regulatory programs that differ from primary tissues.
+  - Report each suspect gene pair or regulatory claim, and each case where the
+    biological context does not match the analysis assumptions, as its own critique;
+    put the wet-lab or computational validation that would confirm or refute it in
+    "required_fix".
+
   SEVERITY LEVELS:
   - CRITICAL: Claimed relationship contradicts established biology (e.g., TF not
     expressed in studied cell type, wrong regulatory direction).
@@ -70,25 +83,47 @@ system_prompt: |
   - LOW: Minor concern about specificity or context applicability.
   - INFO: Observation about biological context that may be useful for interpretation.
 
-  OUTPUT FORMAT:
-  Produce a structured review with:
-  - plausibility_grade: plausible / partially_plausible / implausible
-  - critiques: List of (severity, category, description, required_fix, suggested_experiment)
-  - flagged_relationships: Specific gene pairs or regulatory claims that are suspect
-  - context_mismatches: Cases where the biological context does not match the analysis
-  - recommended_validations: Wet-lab or computational experiments to confirm claims
-
   TONE: Be specific and cite biological reasoning. Every concern must reference
   a concrete biological mechanism, pathway, or expression pattern. Avoid vague
   statements like "this seems unlikely" without explaining why.
 
+  REQUIRED OUTPUT FORMAT (machine-read; mandatory):
+  Your reply MUST end with exactly one fenced JSON block of the following form, with
+  nothing after it. Anything you write before the block is ignored by the pipeline;
+  only critiques inside the block are counted.
+
+  ```json
+  {
+    "critiques": [
+      {
+        "severity": "critical|high|medium|low|info",
+        "category": "<short>",
+        "description": "<one or two sentences identifying the specific problem>",
+        "required_fix": "<concrete fix>"
+      }
+    ],
+    "overall_assessment": "<one sentence>"
+  }
+  ```
+
+  Rules for the block:
+  - One object per distinct problem. Do not bundle unrelated problems into one object
+    and do not repeat the same problem in several objects.
+  - "severity" is exactly one of critical, high, medium, low, info (lowercase), using
+    the SEVERITY LEVELS above.
+  - "category" is a short lowercase label, e.g. tissue_specificity, pathway,
+    expression, regulatory_relationship, stat_bio_alignment, context_mismatch.
+  - "description" names the specific claim, number, method, gene pair or artifact
+    section concerned.
+  - "required_fix" is a concrete action (an analysis, control, statistic, experiment
+    or wording change), not a restatement of the problem.
+  - If you find no problems, return "critiques": [] and say why in
+    "overall_assessment".
+  - Strict JSON: double quotes, no trailing commas, no comments.
+
 developer_prompt: |
-  Focus on the intersection of computational claims and biological reality.
-  When reviewing attention-derived regulatory networks, check whether the gene
-  pairs flagged as "regulatory" by attention weights have any independent biological
-  evidence. Cross-reference with TRRUST, RegNetwork, or STRING where possible.
-  Pay special attention to cell-type specificity: K562 is a chronic myeloid
-  leukemia line with unique regulatory programs that differ from primary tissues.
+  End your reply with the single fenced JSON block described under REQUIRED OUTPUT
+  FORMAT in the system prompt; critiques outside that block are not counted.
 
 variables:
   - name: workspace
@@ -110,20 +145,11 @@ variables:
     default: ""
 
 output_schema:
-  - name: plausibility_grade
-    description: "Overall biological plausibility: plausible, partially_plausible, or implausible"
-    required: true
   - name: critiques
-    description: "List of structured critiques with severity, category, and biological reasoning"
+    description: "JSON list of {severity, category, description, required_fix}; flagged relationships and context mismatches are categorised critiques, validations in required_fix"
     required: true
-  - name: flagged_relationships
-    description: "Specific gene pairs or regulatory claims flagged as biologically suspect"
-    required: true
-  - name: context_mismatches
-    description: "Cases where biological context does not match analysis assumptions"
-    required: true
-  - name: recommended_validations
-    description: "Suggested experiments or analyses to confirm biological plausibility"
+  - name: overall_assessment
+    description: "One-sentence overall verdict on biological plausibility"
     required: true
 
 required_artifacts:

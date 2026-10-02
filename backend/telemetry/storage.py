@@ -1,12 +1,31 @@
-"""SQLite persistence for telemetry records."""
+"""SQLite persistence for telemetry records.
+
+Connections are opened and closed through ``backend.database.open_connection``
+/ ``close_connection``, which serialise open/close per event loop (work-around
+for the SQLite 3.51.0-3.51.1 lock-order inversion between opening and closing
+WAL connections; see ``backend/database.py``) and set the busy timeout. Writes
+are retried on lock contention (``backend.database.write_transaction``).
+"""
 from __future__ import annotations
 
-from typing import Optional
+from contextlib import asynccontextmanager
+from typing import AsyncIterator, Optional
 
 import aiosqlite
 
 from backend.config import config
 from backend.telemetry.collector import TelemetryRecord
+
+
+@asynccontextmanager
+async def _connect(path: str) -> AsyncIterator[aiosqlite.Connection]:
+    from backend.database import close_connection, open_connection
+
+    db = await open_connection(path)
+    try:
+        yield db
+    finally:
+        await close_connection(db)
 
 
 _TELEMETRY_SCHEMA = """
@@ -24,7 +43,11 @@ CREATE TABLE IF NOT EXISTS telemetry (
     cost_estimate REAL NOT NULL DEFAULT 0.0,
     latency_seconds REAL NOT NULL DEFAULT 0.0,
     success INTEGER NOT NULL DEFAULT 1,
-    error TEXT
+    error TEXT,
+    tokens_cached_input INTEGER NOT NULL DEFAULT 0,
+    cli_version TEXT NOT NULL DEFAULT '',
+    reasoning_effort TEXT NOT NULL DEFAULT '',
+    tokens_estimated INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE INDEX IF NOT EXISTS idx_telemetry_run_id ON telemetry(run_id);
@@ -34,36 +57,87 @@ CREATE INDEX IF NOT EXISTS idx_telemetry_role ON telemetry(role);
 """
 
 
+# Columns added after the original schema (E4); existing tables are migrated
+# in place by init_telemetry_table.
+_ADDED_COLUMNS: list[tuple[str, str]] = [
+    ("tokens_cached_input", "INTEGER NOT NULL DEFAULT 0"),
+    ("cli_version", "TEXT NOT NULL DEFAULT ''"),
+    ("reasoning_effort", "TEXT NOT NULL DEFAULT ''"),
+    ("tokens_estimated", "INTEGER NOT NULL DEFAULT 0"),
+]
+
+
 async def init_telemetry_table(db_path: Optional[str] = None) -> None:
-    """Create the telemetry table if it doesn't exist."""
+    """Create the telemetry table if it doesn't exist (and add new columns).
+
+    Retried on lock contention (``backend.database`` busy timeout + retry)."""
+    from backend.database import _with_lock_retry
+
     path = db_path or config.db_path
-    async with aiosqlite.connect(path) as db:
-        await db.executescript(_TELEMETRY_SCHEMA)
-        await db.commit()
+
+    async def _init() -> None:
+        async with _connect(path) as db:
+            await db.executescript(_TELEMETRY_SCHEMA)
+            cursor = await db.execute("PRAGMA table_info(telemetry)")
+            existing = {row[1] for row in await cursor.fetchall()}
+            for column, decl in _ADDED_COLUMNS:
+                if column not in existing:
+                    await db.execute(f"ALTER TABLE telemetry ADD COLUMN {column} {decl}")
+            await db.commit()
+
+    await _with_lock_retry(_init, "init_telemetry_table")
+
+
+INSERT_SQL = """INSERT INTO telemetry
+   (timestamp, run_id, iteration, role, adapter, model,
+    tokens_input, tokens_output, tokens_total,
+    cost_estimate, latency_seconds, success, error,
+    tokens_cached_input, cli_version, reasoning_effort,
+    tokens_estimated)
+   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"""
+
+
+def record_values(rec: TelemetryRecord) -> tuple:
+    return (
+        rec.timestamp, rec.run_id, rec.iteration, rec.role,
+        rec.adapter, rec.model,
+        rec.tokens_input, rec.tokens_output, rec.tokens_total,
+        rec.cost_estimate, rec.latency_seconds,
+        int(rec.success), rec.error,
+        rec.tokens_cached_input, rec.cli_version, rec.reasoning_effort,
+        int(rec.tokens_estimated),
+    )
 
 
 async def save_record(rec: TelemetryRecord, db_path: Optional[str] = None) -> None:
     """Insert a single telemetry record."""
+    await save_records([rec], db_path)
+
+
+async def save_records(recs, db_path: Optional[str] = None) -> None:
+    """Insert several telemetry records in one connection / transaction."""
+    from backend.database import write_transaction
+
+    recs = list(recs)
+    if not recs:
+        return
     path = db_path or config.db_path
-    async with aiosqlite.connect(path) as db:
-        await db.execute(
-            """INSERT INTO telemetry
-               (timestamp, run_id, iteration, role, adapter, model,
-                tokens_input, tokens_output, tokens_total,
-                cost_estimate, latency_seconds, success, error)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-            (
-                rec.timestamp, rec.run_id, rec.iteration, rec.role,
-                rec.adapter, rec.model,
-                rec.tokens_input, rec.tokens_output, rec.tokens_total,
-                rec.cost_estimate, rec.latency_seconds,
-                int(rec.success), rec.error,
-            ),
-        )
-        await db.commit()
+    rows = [record_values(r) for r in recs]
+
+    async def _insert(db: aiosqlite.Connection) -> None:
+        await db.executemany(INSERT_SQL, rows)
+
+    # One BEGIN IMMEDIATE transaction, retried on lock contention.
+    await write_transaction(_insert, what="save telemetry records", path=path,
+                            foreign_keys=False)
 
 
 def _row_to_record(row: aiosqlite.Row) -> TelemetryRecord:
+    keys = set(row.keys())
+
+    def _opt(name: str, default):
+        return row[name] if name in keys and row[name] is not None else default
+
     return TelemetryRecord(
         timestamp=row["timestamp"],
         run_id=row["run_id"],
@@ -78,6 +152,10 @@ def _row_to_record(row: aiosqlite.Row) -> TelemetryRecord:
         latency_seconds=row["latency_seconds"],
         success=bool(row["success"]),
         error=row["error"],
+        tokens_cached_input=_opt("tokens_cached_input", 0),
+        cli_version=_opt("cli_version", ""),
+        reasoning_effort=_opt("reasoning_effort", ""),
+        tokens_estimated=bool(_opt("tokens_estimated", 0)),
     )
 
 
@@ -113,7 +191,7 @@ async def get_records(
     where = " AND ".join(clauses) if clauses else "1=1"
     sql = f"SELECT * FROM telemetry WHERE {where} ORDER BY timestamp"
 
-    async with aiosqlite.connect(path) as db:
+    async with _connect(path) as db:
         db.row_factory = aiosqlite.Row
         cursor = await db.execute(sql, params)
         rows = await cursor.fetchall()
@@ -129,7 +207,7 @@ async def get_summary(
     where = "WHERE run_id = ?" if run_id else ""
     params = (run_id,) if run_id else ()
 
-    async with aiosqlite.connect(path) as db:
+    async with _connect(path) as db:
         cursor = await db.execute(
             f"""SELECT
                 COUNT(*) as total_calls,
@@ -160,7 +238,7 @@ async def get_by_role(
     where = "WHERE run_id = ?" if run_id else ""
     params = (run_id,) if run_id else ()
 
-    async with aiosqlite.connect(path) as db:
+    async with _connect(path) as db:
         cursor = await db.execute(
             f"""SELECT role,
                 COUNT(*) as calls,
@@ -195,7 +273,7 @@ async def get_by_adapter(
     where = "WHERE run_id = ?" if run_id else ""
     params = (run_id,) if run_id else ()
 
-    async with aiosqlite.connect(path) as db:
+    async with _connect(path) as db:
         cursor = await db.execute(
             f"""SELECT adapter,
                 COUNT(*) as calls,

@@ -70,11 +70,22 @@ edges:
     target: adversarial
     condition: "every_k:5"
 
+# Evaluated by the engine (run config overrides these values):
+# max_iterations caps the run, on_flag:<flag> stops when
+# run.config["flags"][<flag>] is truthy, grade_at_least stops after a review
+# graded at least B, and the built-in revision budget (4) stops after the
+# fourth executor revision has been reviewed; whichever comes first wins.
 stop_conditions:
   - "user_stop"
   - "budget_exceeded"
   - "max_iterations:40"
   - "on_flag:knowledge_graph_stable"
+  - "grade_at_least:B"
+  # Built-in defaults (no entry needed; the stopping calibration in
+  # experiments/stopping/results/ selected them): "revision_budget:4" (the
+  # initial executor submission plus at most 4 revisions, the last one still
+  # reviewed; stop reason revision_budget) and "convergence_enabled:false"
+  # (the adaptive rule is opt-in). "revision_budget:none" removes the budget.
 
 max_iterations: 40
 

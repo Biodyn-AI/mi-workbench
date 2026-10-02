@@ -34,8 +34,12 @@ async def run_migrations() -> int:
     """Run pending migrations. Returns number of migrations applied."""
     from datetime import datetime
 
+    from backend.database import busy_timeout_seconds
+
     applied = 0
-    async with aiosqlite.connect(config.db_path) as db:
+    # Callers serialise this open/close with every other one (init_db holds
+    # backend.database's connection lock) and retry it on lock contention.
+    async with aiosqlite.connect(config.db_path, timeout=busy_timeout_seconds()) as db:
         current = await get_schema_version_raw(db)
         for version, description, sql in MIGRATIONS:
             if version <= current:

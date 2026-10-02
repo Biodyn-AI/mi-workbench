@@ -166,8 +166,8 @@ async def _create_run_via_api(client: AsyncClient, ws_id: str, task: str) -> str
     return resp.json()["run_id"]
 
 
-async def test_api_compare_metrics(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-cmp", "path": "ws-cmp"})
+async def test_api_compare_metrics(client: AsyncClient, tmp_path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-cmp", "path": str(tmp_path / "ws-cmp")})
     ws_id = ws.json()["id"]
     rid1 = await _create_run_via_api(client, ws_id, "task 1")
     rid2 = await _create_run_via_api(client, ws_id, "task 2")
@@ -180,8 +180,8 @@ async def test_api_compare_metrics(client: AsyncClient) -> None:
     assert "best_by_tokens" in data
 
 
-async def test_api_compare_summary(client: AsyncClient) -> None:
-    ws = await client.post("/api/workspaces", json={"name": "ws-cmp2", "path": "ws-cmp2"})
+async def test_api_compare_summary(client: AsyncClient, tmp_path) -> None:
+    ws = await client.post("/api/workspaces", json={"name": "ws-cmp2", "path": str(tmp_path / "ws-cmp2")})
     ws_id = ws.json()["id"]
     rid1 = await _create_run_via_api(client, ws_id, "task a")
     rid2 = await _create_run_via_api(client, ws_id, "task b")

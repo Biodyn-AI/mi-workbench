@@ -43,11 +43,18 @@ edges:
     target: executor
     condition: "always"
 
+# Evaluated by the engine. Values map onto the run-config keys of the same
+# name; a value set in the run config overrides the one given here.
 stop_conditions:
   - "user_stop"
   - "budget_exceeded"
-  - "max_iterations:50"
-  - "on_flag:grade_A"
+  - "max_iterations:50"      # cap; the run's own max_iterations also applies
+  - "grade_at_least:A"       # stop after a review step graded A or better
+  # Built-in defaults (no entry needed; the stopping calibration in
+  # experiments/stopping/results/ selected them): "revision_budget:4" (the
+  # initial executor submission plus at most 4 revisions, the last one still
+  # reviewed; stop reason revision_budget) and "convergence_enabled:false"
+  # (the adaptive rule is opt-in). "revision_budget:none" removes the budget.
 
 max_iterations: 50
 

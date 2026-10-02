@@ -1,0 +1,80 @@
+(version 1)
+;; MI-Workbench code-execution profile for macOS sandbox-exec (Seatbelt).
+;;
+;; Rendered by backend/orchestrator/sandbox/seatbelt.py.  Filesystem paths are
+;; NEVER interpolated into this text: they are passed as parameters with
+;; `sandbox-exec -D NAME=value` and referenced as (param "NAME"), so a path
+;; cannot inject profile syntax.  The marker comments below (NETWORK_POLICY,
+;; READ_ALLOWLIST, NETWORK_MACH_SERVICES) are replaced by fixed rule text
+;; chosen from the executor configuration.
+;;
+;; Rule precedence: for a given operation the LAST matching rule wins, so each
+;; "deny" below is followed by the narrow "allow" exceptions.
+;;
+;; Parameters:
+;;   WORK_ROOT  per-execution temporary root (cwd, HOME and TMPDIR live inside)
+;;   READ_<i>   additional read-only paths: interpreter prefixes/sys.path
+;;              entries and the configured read_only_paths (a data kit, ...)
+
+;; Everything not mentioned below (process execution, sysctl reads, IPC with
+;; the child's own descendants, ...) keeps the default so that ordinary
+;; scientific Python (numpy, pandas, matplotlib/Agg, multiprocessing) works.
+(allow default)
+
+;; ---- Network --------------------------------------------------------------
+;;@@NETWORK_POLICY@@
+
+;; ---- File writes: only inside the per-execution temp root -----------------
+(deny file-write*)
+(allow file-write*
+  (subpath (param "WORK_ROOT"))
+  (literal "/dev/null")
+  (literal "/dev/zero")
+  (literal "/dev/tty")
+  (literal "/dev/dtracehelper")
+  (regex #"^/dev/fd/[0-9]+$"))
+
+;; ---- File reads: system, interpreter, temp root, allow-listed data --------
+;; Metadata (stat/lstat/readlink) stays allowed everywhere so that path
+;; resolution works; the code can learn that a path exists, but cannot read a
+;; file or list a directory outside the allow-list.
+(deny file-read*)
+(allow file-read-metadata)
+(allow file-read*
+  (literal "/")
+  (subpath "/System")
+  (subpath "/usr")
+  (subpath "/bin")
+  (subpath "/sbin")
+  (subpath "/Library/Frameworks")
+  (subpath "/Library/Fonts")
+  (subpath "/private/etc")
+  (subpath "/private/var/db/timezone")
+  (subpath "/opt/homebrew")
+  (subpath "/opt/local")
+  (subpath "/dev")
+  (subpath (param "WORK_ROOT")))
+;;@@READ_ALLOWLIST@@
+
+;; ---- IPC and other processes ----------------------------------------------
+;; Deny Mach service lookups except those libc needs, so the code cannot ask
+;; privileged helpers (LaunchServices / `open`, pasteboard, AppleEvents, ...)
+;; to act outside the sandbox on its behalf.
+(deny mach-lookup)
+(allow mach-lookup
+  (global-name "com.apple.system.opendirectoryd.libinfo")
+  (global-name "com.apple.system.logger")
+  (global-name "com.apple.system.notification_center")
+  (global-name "com.apple.logd")
+  (global-name "com.apple.diagnosticd"))
+;;@@NETWORK_MACH_SERVICES@@
+
+;; No inspection of, or signals to, processes outside this sandbox (e.g. the
+;; backend that launched it).  kern.procargs* is the sysctl that returns another
+;; process's argv AND environment (which may hold API keys); the kernel still
+;; lets a process read its own.
+(deny process-info*)
+(allow process-info* (target same-sandbox))
+(deny sysctl-read (sysctl-name-prefix "kern.procargs"))
+(deny signal)
+(allow signal (target same-sandbox))

@@ -1,14 +1,21 @@
-fastapi>=0.100.0
-uvicorn[standard]>=0.20.0
-aiosqlite>=0.19.0
-pydantic>=2.0.0
-pyyaml>=6.0
-click>=8.0.0
-httpx>=0.24.0
-websockets>=11.0
-python-multipart>=0.0.6
-
-# Testing
-pytest>=7.0.0
-pytest-asyncio>=0.21.0
-pytest-cov>=4.0.0
+# Core runtime dependencies for the MI-Workbench backend (backend/) and CLI (cli/).
+# Lower bounds are the versions the test suite was run with
+# (conda env mi_workbench, Python 3.11.14). Python >= 3.11 is required.
+#
+#   pip install -r requirements.txt          # run the server and CLI
+#   pip install -r requirements-dev.txt      # + test suite
+#   pip install -r requirements-analysis.txt # + evaluation/analysis scripts
+#
+# The backend itself must stay pure Python: optional scientific or ML
+# libraries belong in requirements-analysis.txt and must be imported behind
+# try/except ImportError (enforced by backend/tests/test_hygiene.py).
+fastapi>=0.129.0
+uvicorn[standard]>=0.40.0
+pydantic>=2.12.5
+aiosqlite>=0.22.1
+pyyaml>=6.0.3
+click>=8.3.1
+# HTTP client used by the CLI (cli/miw.py) to talk to the API
+httpx>=0.28.1
+# WebSocket transport for uvicorn (/ws/runs/{run_id}); also pulled in by uvicorn[standard]
+websockets>=16.0

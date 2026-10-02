@@ -173,9 +173,10 @@ class TestConvergenceDetector:
         run_state = _make_run_state(max_iterations=6, config={"convergence_enabled": False})
         engine = LoopEngine(adapter=adapter, on_event=on_event)
 
-        result = asyncio.get_event_loop().run_until_complete(
-            engine.run_loop(run_state, loop)
-        )
+        # asyncio.run owns a fresh event loop; asyncio.get_event_loop() raised
+        # "There is no current event loop" once an earlier pytest-asyncio test
+        # had closed and unset the loop (order-dependent failure).
+        result = asyncio.run(engine.run_loop(run_state, loop))
         # Should NOT have emitted convergence_detected
         assert "convergence_detected" not in events
         # Should have reached budget/iteration limit instead

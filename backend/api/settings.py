@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 
-from backend.database import get_workspace
+from backend.database import execute_write, get_workspace
 from backend.models import GitMode, ProviderName, WorkspaceConfig
 
 router = APIRouter(prefix="/settings", tags=["settings"])
@@ -44,8 +44,6 @@ async def update_settings(workspace_id: str, body: WorkspaceSettings) -> Workspa
 
     # Re-persist the whole workspace via database
     import json
-    import aiosqlite
-    from backend.config import config as app_config
 
     set_parts = []
     values = []
@@ -68,9 +66,7 @@ async def update_settings(workspace_id: str, body: WorkspaceSettings) -> Workspa
 
     values.append(workspace_id)
     sql = f"UPDATE workspaces SET {', '.join(set_parts)} WHERE id = ?"
-    async with aiosqlite.connect(app_config.db_path) as db:
-        db.row_factory = aiosqlite.Row
-        await db.execute(sql, values)
-        await db.commit()
+    # Serialised open/close, busy timeout and lock retries (see backend.database).
+    await execute_write(sql, values, what="update workspace settings")
 
     return await get_workspace(workspace_id)

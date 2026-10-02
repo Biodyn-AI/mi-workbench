@@ -3,8 +3,9 @@ from __future__ import annotations
 
 import io
 from pathlib import Path
+from typing import Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import StreamingResponse
 
 from backend.database import get_run, get_workspace
@@ -24,8 +25,14 @@ def _resolve_run_dir(workspace_path: str, run_id: str) -> Path:
     return run_dir
 
 
+_MAX_FILE_MB = Query(None, ge=0, description=(
+    "Per-file size cap (MB) for iteration files and persisted execution outputs; "
+    "larger files are skipped and listed in the package README (0 = no cap)"))
+
+
 @router.post("/{run_id}")
-async def generate_repropack(run_id: str) -> StreamingResponse:
+async def generate_repropack(run_id: str,
+                             max_file_mb: Optional[float] = _MAX_FILE_MB) -> StreamingResponse:
     """Generate and download a reproducibility package zip for a run."""
     run_state = await get_run(run_id)
     if run_state is None:
@@ -41,6 +48,7 @@ async def generate_repropack(run_id: str) -> StreamingResponse:
         run_dir=str(run_dir),
         workspace_path=workspace.path,
         run_state=run_state,
+        max_file_mb=max_file_mb,
     )
 
     return StreamingResponse(
@@ -54,7 +62,7 @@ async def generate_repropack(run_id: str) -> StreamingResponse:
 
 
 @router.get("/{run_id}/preview")
-async def preview_repropack(run_id: str) -> dict:
+async def preview_repropack(run_id: str, max_file_mb: Optional[float] = _MAX_FILE_MB) -> dict:
     """Preview what would be included in the repro pack (file list + sizes)."""
     run_state = await get_run(run_id)
     if run_state is None:
@@ -69,6 +77,8 @@ async def preview_repropack(run_id: str) -> dict:
     files = _generator.preview(
         run_dir=str(run_dir),
         workspace_path=workspace.path,
+        run_state=run_state,
+        max_file_mb=max_file_mb,
     )
 
     return {

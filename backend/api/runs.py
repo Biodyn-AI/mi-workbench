@@ -23,6 +23,7 @@ from backend.models import (
     RunStatus,
     RunSummary,
 )
+from backend.orchestrator.presets import get_preset
 from backend.orchestrator.recovery import can_resume_run
 from backend.orchestrator.runner import (
     MAX_CONCURRENT_RUNS,
@@ -65,8 +66,16 @@ async def create_run_endpoint(
             detail=f"Maximum concurrent runs ({MAX_CONCURRENT_RUNS}) exceeded",
         )
 
+    # The loop must resolve now (Python preset, loops/<name>.yaml or custom:<path>)
+    try:
+        get_preset(body.loop_preset)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+
     # Sanitize config overrides
     safe_config = sanitize_config(body.config_overrides)
+    if body.reasoning_effort and not safe_config.get("reasoning_effort"):
+        safe_config["reasoning_effort"] = body.reasoning_effort
 
     run = RunState(
         workspace_id=body.workspace_id,
@@ -148,6 +157,14 @@ async def resume_run_endpoint(
         raise HTTPException(status_code=404, detail="Run not found")
     if run.status not in (RunStatus.STOPPED, RunStatus.PAUSED):
         raise HTTPException(status_code=400, detail=f"Cannot resume run with status {run.status.value}")
+    if is_run_active(run_id):
+        # A stop request only signals the engine; its in-flight step (up to
+        # adapter_timeout) still has to finish. Starting a second engine now
+        # would run the same iteration twice.
+        raise HTTPException(
+            status_code=409,
+            detail="Run is still stopping; retry when the in-flight step has finished",
+        )
     updated = await update_run(run_id, status=RunStatus.RUNNING)
     task = asyncio.create_task(execute_run(run_id))
     _active_tasks[run_id] = task

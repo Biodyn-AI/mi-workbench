@@ -1,0 +1,19 @@
+{
+  "session_id": "00000000-0000-0000-0000-000000000000",
+  "response": "OK. Precision@k was not needed.",
+  "stats": {
+    "models": {
+      "gemini-2.5-flash-lite": {
+        "api": {"totalRequests": 1, "totalErrors": 0, "totalLatencyMs": 410},
+        "tokens": {"input": 900, "prompt": 900, "candidates": 3, "total": 903, "cached": 0, "thoughts": 0, "tool": 0}
+      },
+      "gemini-2.5-pro": {
+        "api": {"totalRequests": 1, "totalErrors": 0, "totalLatencyMs": 2310},
+        "tokens": {"input": 2939, "prompt": 24939, "candidates": 20, "total": 25113, "cached": 22000, "thoughts": 154, "tool": 0}
+      }
+    },
+    "tools": {"totalCalls": 0, "totalSuccess": 0, "totalFail": 0, "totalDurationMs": 0,
+              "totalDecisions": {"accept": 0, "reject": 0, "modify": 0, "auto_accept": 0}, "byName": {}},
+    "files": {"totalLinesAdded": 0, "totalLinesRemoved": 0}
+  }
+}

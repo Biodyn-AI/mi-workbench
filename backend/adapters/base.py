@@ -21,3 +21,7 @@ class BaseAdapter(ABC):
     def is_available(self) -> bool:
         """Check if the adapter binary/API is available."""
         pass
+
+    async def cli_version(self) -> str:
+        """Version string of the underlying CLI ("" when not applicable)."""
+        return ""

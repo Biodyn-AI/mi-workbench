@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import pytest
+from pathlib import Path
+
 from httpx import AsyncClient
 
 from backend.api.runs import DENIED_CONFIG_KEYS, sanitize_config
@@ -11,9 +13,16 @@ pytestmark = pytest.mark.asyncio
 
 # ── Helper ──────────────────────────────────────────────────────────
 
-async def _create_workspace(client: AsyncClient, name: str = "val-ws") -> str:
-    """Create a workspace and return its ID."""
-    resp = await client.post("/api/workspaces", json={"name": name, "path": f"{name}-dir"})
+async def _create_workspace(client: AsyncClient, name: str, tmp_path: Path) -> str:
+    """Create a workspace under the test's tmp_path and return its ID.
+
+    The path must be absolute and temporary: tests that start a run write
+    ``runs/<run_id>/`` into the workspace directory (a relative path used to
+    create stray ``<name>-dir`` folders in the repository root).
+    """
+    resp = await client.post(
+        "/api/workspaces", json={"name": name, "path": str(tmp_path / f"{name}-dir")}
+    )
     assert resp.status_code == 201
     return resp.json()["id"]
 
@@ -30,8 +39,8 @@ async def test_create_run_invalid_workspace_id(client: AsyncClient) -> None:
 
 # ── 2. Task too long ────────────────────────────────────────────────
 
-async def test_create_run_task_too_long(client: AsyncClient) -> None:
-    ws_id = await _create_workspace(client, "val-ws-long")
+async def test_create_run_task_too_long(client: AsyncClient, tmp_path: Path) -> None:
+    ws_id = await _create_workspace(client, "val-ws-long", tmp_path)
     resp = await client.post("/api/runs", json={
         "workspace_id": ws_id,
         "task": "x" * 100_000,
@@ -41,8 +50,8 @@ async def test_create_run_task_too_long(client: AsyncClient) -> None:
 
 # ── 3. Too many config keys ─────────────────────────────────────────
 
-async def test_create_run_too_many_config_keys(client: AsyncClient) -> None:
-    ws_id = await _create_workspace(client, "val-ws-cfg")
+async def test_create_run_too_many_config_keys(client: AsyncClient, tmp_path: Path) -> None:
+    ws_id = await _create_workspace(client, "val-ws-cfg", tmp_path)
     overrides = {f"key_{i}": i for i in range(100)}
     resp = await client.post("/api/runs", json={
         "workspace_id": ws_id,
@@ -54,8 +63,8 @@ async def test_create_run_too_many_config_keys(client: AsyncClient) -> None:
 
 # ── 4. max_iterations bounds ────────────────────────────────────────
 
-async def test_create_run_max_iterations_bounds(client: AsyncClient) -> None:
-    ws_id = await _create_workspace(client, "val-ws-iter")
+async def test_create_run_max_iterations_bounds(client: AsyncClient, tmp_path: Path) -> None:
+    ws_id = await _create_workspace(client, "val-ws-iter", tmp_path)
     # Too low
     resp = await client.post("/api/runs", json={
         "workspace_id": ws_id,
@@ -119,11 +128,11 @@ def test_config_sanitization() -> None:
 
 # ── 9. Concurrent run limit ─────────────────────────────────────────
 
-async def test_concurrent_run_limit(client: AsyncClient) -> None:
+async def test_concurrent_run_limit(client: AsyncClient, tmp_path: Path) -> None:
     from backend.orchestrator.runner import MAX_CONCURRENT_RUNS, _active_runs
     import asyncio
 
-    ws_id = await _create_workspace(client, "val-ws-conc")
+    ws_id = await _create_workspace(client, "val-ws-conc", tmp_path)
 
     # Inject fake active runs to simulate the limit
     fake_events = {}
@@ -147,8 +156,8 @@ async def test_concurrent_run_limit(client: AsyncClient) -> None:
 
 # ── 10. Valid inputs pass ────────────────────────────────────────────
 
-async def test_valid_inputs_pass(client: AsyncClient) -> None:
-    ws_id = await _create_workspace(client, "val-ws-ok")
+async def test_valid_inputs_pass(client: AsyncClient, tmp_path: Path) -> None:
+    ws_id = await _create_workspace(client, "val-ws-ok", tmp_path)
     resp = await client.post("/api/runs", json={
         "workspace_id": ws_id,
         "task": "A perfectly normal task",

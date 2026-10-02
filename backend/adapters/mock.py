@@ -2,9 +2,19 @@
 
 Output varies by detected role and improves across iterations to exercise
 convergence detection in the pipeline.
+
+Consensus adjudication requests (role ``consensus_adjudicator``, sent by the
+default ``llm`` similarity method) get a valid, deterministic partition: the
+numbered critiques are grouped by exact text (case and whitespace ignored).
+These calls do not advance the mock's iteration counter (so the grade
+progression of the other roles is the same with or without adjudication),
+draw no random numbers, never simulate failures, and are counted separately
+(``adjudication_count`` / ``adjudication_history``).
 """
 import asyncio
+import json
 import random
+import re
 import time
 from typing import Optional
 
@@ -15,6 +25,7 @@ from backend.models import AdapterRunRequest, AdapterRunResult
 # ── Grade / severity progression tables ──────────────────────────────
 
 _GRADE_SEQUENCE = ["C", "B", "B+", "A-"]
+MOCK_CLI_VERSION = "mock"  # reported as AdapterRunResult.cli_version
 _TOKEN_TARGETS = {
     "executor": 2000,
     "reviewer": 1500,
@@ -216,6 +227,27 @@ domain-specific fine-tuning. Effort: high
 scBERT for improved GRN inference. Effort: high"""
 
 
+# ── Consensus adjudication (similarity method "llm") ─────────────────
+
+ADJUDICATOR_ROLE = "consensus_adjudicator"
+_NUMBERED_LINE = re.compile(r"^\[(\d+)\]\s?(.*)$")
+
+
+def mock_adjudication_groups(user_prompt: str) -> list[list[int]]:
+    """Group the ``[i] text`` lines of an adjudication prompt by exact text
+    (lower-cased, whitespace collapsed); groups ordered by first index."""
+    by_text: dict[str, list[int]] = {}
+    for line in (user_prompt or "").splitlines():
+        m = _NUMBERED_LINE.match(line.strip())
+        if not m:
+            continue
+        key = " ".join(m.group(2).split()).lower()
+        by_text.setdefault(key, []).append(int(m.group(1)))
+    groups = [sorted(set(g)) for g in by_text.values()]
+    groups.sort(key=lambda g: g[0])
+    return groups
+
+
 # ── Dispatch table ──────────────────────────────────────────────────
 
 _OUTPUT_BUILDERS = {
@@ -245,9 +277,14 @@ class MockAdapter(BaseAdapter):
         self.max_delay = max_delay
         self.invocation_count = 0
         self.history: list[dict] = []
+        self.adjudication_count = 0
+        self.adjudication_history: list[dict] = []
 
     def is_available(self) -> bool:
         return True
+
+    async def cli_version(self) -> str:
+        return MOCK_CLI_VERSION
 
     async def smoke_test(self) -> dict:
         return {
@@ -258,6 +295,8 @@ class MockAdapter(BaseAdapter):
         }
 
     async def run(self, request: AdapterRunRequest) -> AdapterRunResult:
+        if self._is_adjudication(request):
+            return await self._adjudicate(request)
         self.invocation_count += 1
         MockAdapter._iteration_count += 1
         iteration = (
@@ -277,6 +316,10 @@ class MockAdapter(BaseAdapter):
                 error="Mock simulated failure",
                 exit_code=1,
                 duration_seconds=time.monotonic() - start,
+                provider=self.name,
+                model="mock",
+                reasoning_effort=getattr(request, "reasoning_effort", ""),
+                cli_version=MOCK_CLI_VERSION,
             )
             self.history.append({"request": request, "result": result})
             return result
@@ -290,6 +333,10 @@ class MockAdapter(BaseAdapter):
         base_tokens = _TOKEN_TARGETS.get(role, 2000)
         token_usage = base_tokens + random.randint(-100, 100)
         cost = token_usage * 0.000003  # ~$3/1M tokens
+        # Deterministic 70/30 input/output split of the same total (no extra RNG
+        # draws, so delays/token totals are unchanged); input + output == total.
+        input_tokens = int(token_usage * 0.7)
+        output_tokens = token_usage - input_tokens
 
         artifacts = []
         if role == "executor":
@@ -314,8 +361,56 @@ class MockAdapter(BaseAdapter):
             duration_seconds=time.monotonic() - start,
             exit_code=0,
             raw_log=f"[mock] role={role} iter={iteration} tokens={token_usage}",
+            provider=self.name,
+            model="mock",
+            reasoning_effort=getattr(request, "reasoning_effort", ""),
+            cli_version=MOCK_CLI_VERSION,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            cached_input_tokens=0,
+            raw_usage={"input_tokens": input_tokens, "output_tokens": output_tokens,
+                       "synthetic": True},
         )
         self.history.append({"request": request, "result": result})
+        return result
+
+    @staticmethod
+    def _is_adjudication(request: AdapterRunRequest) -> bool:
+        role = str(request.prompt_bundle.variables.get("role", "") or "").strip().lower()
+        return role == ADJUDICATOR_ROLE
+
+    async def _adjudicate(self, request: AdapterRunRequest) -> AdapterRunResult:
+        """Deterministic adjudicator answer (see the module docstring)."""
+        self.adjudication_count += 1
+        start = time.monotonic()
+        # Fixed delay (no RNG draw, so the other calls' jitter is unchanged).
+        await asyncio.sleep(self.min_delay)
+        groups = mock_adjudication_groups(request.prompt_bundle.user_prompt)
+        n = sum(len(g) for g in groups)
+        output = "```json\n" + json.dumps({"groups": groups}) + "\n```"
+        token_usage = 200 + 20 * n
+        input_tokens = int(token_usage * 0.7)
+        output_tokens = token_usage - input_tokens
+        result = AdapterRunResult(
+            success=True,
+            output=output,
+            structured_output={"role": ADJUDICATOR_ROLE, "mock": True, "groups": groups},
+            token_usage=token_usage,
+            cost_estimate=token_usage * 0.000003,
+            duration_seconds=time.monotonic() - start,
+            exit_code=0,
+            raw_log=f"[mock] role={ADJUDICATOR_ROLE} n={n} groups={len(groups)}",
+            provider=self.name,
+            model="mock",
+            reasoning_effort=getattr(request, "reasoning_effort", ""),
+            cli_version=MOCK_CLI_VERSION,
+            input_tokens=input_tokens,
+            output_tokens=output_tokens,
+            cached_input_tokens=0,
+            raw_usage={"input_tokens": input_tokens, "output_tokens": output_tokens,
+                       "synthetic": True},
+        )
+        self.adjudication_history.append({"request": request, "result": result})
         return result
 
     # Map explicit role strings (set by the engine on the prompt bundle) to the
